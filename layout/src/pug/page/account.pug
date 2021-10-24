@@ -1,0 +1,81 @@
+extends ../include/_template.pug
+include ../include/_mixin
+
+block content
+    +body('', '', './')
+        section.my_project.pt-40.pb-100
+            .wraper 
+                .row 
+                    .col-12.col-lg-4 
+                        +manager(2)
+
+                    .col-12.col-lg-8.project
+                        .course_my.pt-40.pb-50.bg_white
+                            h1.ttl_main.fz-20.text-center.text-up Account Settings
+                            .info_detail.mt-30
+                                .wrap
+                                    ul#myTab.nav.nav-tabs(role='tablist')
+                                        li.nav-item(role='presentation')
+                                            button#tab01-tab.nav-link.active(data-bs-toggle='tab' data-bs-target='#tab01' type='button' role='tab' aria-controls='tab01' aria-selected='true') 
+                                                i.icon 
+                                                    img(src="common/images/icon/info_01.svg", alt="")
+                                                span Account Details
+                                        li.nav-item(role='presentation')
+                                            button#tab02-tab.nav-link(data-bs-toggle='tab' data-bs-target='#tab02' type='button' role='tab' aria-controls='tab02' aria-selected='false') 
+                                                i.icon 
+                                                    img(src="common/images/icon/info_02.svg", alt="")
+                                                span  Change Password
+                                        li.nav-item(role='presentation')
+                                            button#tab03-tab.nav-link(data-bs-toggle='tab' data-bs-target='#tab03' type='button' role='tab' aria-controls='tab03' aria-selected='false') 
+                                                i.icon 
+                                                    img(src="common/images/icon/info_03.svg", alt="")
+                                                span Manage Membership
+                                        li.nav-item(role='presentation')
+                                            button.nav-link(data-bs-toggle="modal" data-bs-target="#modal_logout") 
+                                                i.icon 
+                                                    img(src="common/images/icon/info_04.svg", alt="")
+                                                span Log out
+                                #myTabContent.tab-content.mt-40
+                                    #tab01.tab-pane.fade.show.active(role='tabpanel' aria-labelledby='tab01-tab') 
+                                        h2.ttl_sub.fz-22 Account Settings
+                                        .info.mt-30
+                                            form.form_edit(action="") 
+                                                .group 
+                                                    input(type="text", value='Nguyen')
+                                                .group 
+                                                    input(type="text", value='Van A')
+                                                .group 
+                                                    input(type="text", value='Birthday (12/12)')
+                                                .group 
+                                                    input(type="mail", value='nguyenvana@gmail.com')
+                                                .group 
+                                                    input.btn_submit(type="text", value='Save Changes')
+                                    #tab02.tab-pane.fade(role='tabpanel' aria-labelledby='tab02-tab') 
+                                        h2.ttl_sub.fz-22 Change Password
+                                        .info.mt-30
+                                            form.form_edit(action="") 
+                                                .group 
+                                                    input(type="password", placeholder='Old password')
+                                                .group 
+                                                    input(type="password", placeholder='New password')
+                                                .group 
+                                                    input(type="password", placeholder='Confirm new password')
+                                                .group 
+                                                    input.btn_submit(type="text", value='Save Changes')
+                                    #tab03.tab-pane.fade(role='tabpanel' aria-labelledby='tab03-tab') 
+                                        h2.ttl_sub.fz-22 Membership Details
+                                        .info.mt-30
+                                            .row 
+                                                .col-12.col-md-5 
+                                                    .label Membership Level:
+                                                .col-12.col-md-7 
+                                                    .content 
+                                                        p Monthly<br>
+                                                            a(href="") Upgrade to the yearly plan 
+                                                            | to get the best value for your membership!
+                                            .row 
+                                                .col-12.col-md-5 
+                                                    .label Membership Expiration:
+                                                .col-12.col-md-7 
+                                                    .content Monday, August 30, 2021 (23 days left) After this date you will not be able to download any project files or access members-only content.
+                                

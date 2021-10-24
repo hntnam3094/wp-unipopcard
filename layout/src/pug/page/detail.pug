@@ -1,0 +1,73 @@
+extends ../include/_template.pug
+include ../include/_mixin
+
+block content
+    +body('', 'nav1', './')
+        section.course_detail.pt-40.pb-40 
+            .wraper
+                .row 
+                    .col-12.col-lg-1
+                        .shared_comment.mt-100 
+                            .item 
+                                .ttl SHARE
+                                a.icon(href="") 
+                                    img(src="common/images/shared_01.svg", alt="")
+                                a.icon(href="")  
+                                    img(src="common/images/shared_02.svg", alt="")
+                            .item.mt-15 
+                                .ttl COMMENT
+                                a.icon(href="#comment") 
+                                    img(src="common/images/shared_03.svg", alt="")
+                                a.icon(href="")  
+                                    img(src="common/images/shared_04.svg", alt="")
+                    .col-12.col-lg-8.content_main
+                        .heading
+                            h1.ttl_main.fz-20.text-up.text-center SEPTEMBER 2021 MEMBER MAKE: CREPE PAPER MOKARA ORCHID
+                            .mt-30.text-center 
+                                a.btn_more(href="#")
+                                    span.block.main.fz-22 You Can Make This!
+                                    span.block.sub BECOME A MEMBER  
+                        .boding.mt-30
+                            p We are making a brand-new flower for this month’s Member Make! The mokara orchid is a cross of three different types of orchids and looks stunning in bouquets, arrangements, and centerpieces. If you want to learn how to make this crepe paper mokara orchid, check out our tools and materials list below.
+                            p Once you’ve got all your supplies ready and downloaded our flower pattern, you can join me and Emily live on September 24th at 11:00 am PDT. As always, we will be giving out a prize during the live, so make sure and tune in if you can!
+                            p 
+                            p 
+                                img(src="common/images/detail.png", alt="")
+                            p 
+                            p We are making a brand-new flower for this month’s Member Make! The mokara orchid is a cross of three different types of orchids and looks stunning in bouquets, arrangements, and centerpieces. If you want to learn how to make this crepe paper mokara orchid, check out our tools and materials list below.
+                            p Once you’ve got all your supplies ready and downloaded our flower pattern, you can join me and Emily live on September 24th at 11:00 am PDT. As always, we will be giving out a prize during the live, so make sure and tune in if you can!
+                        .resource.mt-30 
+                            ul.list_download.fz-20 
+                                each item in ['Photo Tutorial','PDF Instructions','PDF Tempalate','SVG Cut Files']
+                                    li.mt-20 
+                                        a(href="#") 
+                                            span.txt.trim.trim_1= item
+                                            soan.button Click Download & Print
+                        .mt-50.text-center 
+                            a.btn_more(href="#")
+                                span.block.main.fz-22 You Can Make This!
+                                span.block.sub BECOME A MEMBER  
+                        .comment.mt-80#comment.pb-30 
+                            .fb-comments(data-href='https://developers.facebook.com/docs/plugins/comments#configurator' data-width='' data-numposts='5')
+                    .col-12.col-lg-3.sidebar
+                        .footer
+                            ul.social.flexBox.midle
+                                each item in [1,2,3,4,5] 
+                                    li 
+                                        a(href="#") 
+                                            img(src=`common/images/social_0${item}.svg`, alt="")
+                            .text.mt-20
+                                p Join our email list to learn about new projects, discounts, and membership perks!
+                            .form_submit.pt-20 
+                                form(action="") 
+                                    input.input(type="text" placeholder='Your Email Adress')
+                                    input.submit(type="submit", value='JOIN NOW') 
+                        .more_corse.mt-50.category
+                            h3.ttl.text-up.fz-22 MORE TO LOVE
+                            .course_main
+                                .row
+                                    each item in [1,2,3]
+                                        .col-4.col-lg-12
+                                            a(href="#").item.mt-20
+                                                .imgDrop 
+                                                    img(src="common/images/product_more.png", alt="") 

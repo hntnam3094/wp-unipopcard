@@ -1,0 +1,61 @@
+extends ../include/_template.pug
+include ../include/_mixin
+
+block content
+    +body('', 'home', './')
+        section.banner 
+            .imgDrop 
+                img(src="common/images/banner.png", alt="")
+        section.video_intro 
+            .wraper 
+                .content_main 
+                    .video_production.imgDrop
+                        iframe(width='100%' data-src='' frameborder='0' allowfullscreen='' src='https://www.youtube.com/embed/Fyw9Am2Yn7I?autoplay=1&playsinline=1&mute=1')
+                        .img_bg.bg_fix
+                            img(src='common/images/product.png' alt='')
+        section.project.pt-40.pb-40
+            .wraper 
+                .heading.flexBox.midle
+                    h2.ttl_main.fz-40.text-up EXPLORE OUR PROJECTS
+                    .sort 
+                        .dropdown
+                            #dropdownMenuButton1.dropdown-toggle(type='button' data-bs-toggle='dropdown' aria-expanded='false') ALL CATEGORIES
+                            ul.dropdown-menu(aria-labelledby='dropdownMenuButton1')
+                                li
+                                    a.dropdown-item(href='#') Action
+                                li
+                                    a.dropdown-item(href='#') Another action
+                                li
+                                    a.dropdown-item(href='#') Something else here
+            
+                    .search_project
+                        input.input(type="text", placeholder='Search...')
+                        input.submit(type="submit")
+                .content_main 
+                    .row 
+                        each item in [1,2,3,4,5,6,7,8,9,10,11]
+                            .column.col-6.col-md-3 
+                                a(href="detail.html").item.mt-40 
+                                    .images 
+                                        .imgDrop 
+                                            img(src="common/images/product.png", alt="")
+                                    .content(data-mh='content')
+                                        h4.text-up.trim.trim_2 CHRISTMAS BOUQUET POP UP
+                                        .desc Category Christmas
+                .mt-40.text-center 
+                    a.btn_more.fz-20(href="category.htnl") LOAD MORE 
+        section.video_show.pt-50.pb-40 
+            .wraper 
+                .content_main
+                    .screenshot_slider.owl-carousel
+                        each item in [1,2,3,4,5,6]
+                            .item
+                                a(href="#").video
+                                    .imgDrop
+                                        img(src='common/images/product2.png' alt='')
+                                        //- iframe(width='100%' data-src='' frameborder='0' allowfullscreen='' src='https://www.youtube.com/embed/Fyw9Am2Yn7I?autoplay=1&playsinline=1&mute=1')
+                                        //- .img_bg.bg_fix
+                                            img(src='common/images/product2.png' alt='')
+                                    h4.ttl.mt-15.text-center Video: Honeycomb Apples and Pears
+                    
+            

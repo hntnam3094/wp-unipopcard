@@ -1,0 +1,77 @@
+extends ../include/_template.pug
+include ../include/_mixin
+
+block content
+    +body('', 'nav1', './')
+        section.category.pt-50.pb-50.upgrade 
+            .wraper
+                h1.ttl_main.fz-40.text-up.text-center Endless Referrals. Ready? 
+                .text.text-center Join over 25,000+ others actively finding leads and making sales with UpViral.
+            .content_main.mt-30.pt-100.pb-100 
+                .wraper 
+                    .flexBox.package.center
+                        .item_package.text-center.package_month
+                            .info_main 
+                                h3.ttl.fz-31 monthly membership
+                                .price.center.midle.flexBox.mt-20 
+                                    .new.fz-45 $1
+                                    .old.fz-22 $9.99
+                                .fz-22.mt-10 Full Acess
+                                .fz-20.mt-15.price_detail After 7 days,<br>$9.99/month<br>(paid month)
+                                .button.mt-20 JOIN NOW
+                            .info_other.toggle_parent 
+                                .toggle_content 
+                                    .list_detail.mt-30.pt-15.pb-40
+                                        each item in [1,2,3,4,5,6,7]
+                                            dl.mt-20
+                                                dt 16 curated DIY projects (patterns + tutorials) 
+                                                dd $160 VALUE
+                                    a(href="#").button.mt-40 JOIN NOW
+                                .toggle_btn
+                                    .short
+                                        |Xem thêm 
+                                    .long 
+                                        |Thu gọn
+                        .item_package.text-center.package_year
+                            .info_main 
+                                h3.ttl.fz-31 monthly membership
+                                .price.center.midle.flexBox.mt-20 
+                                    .new.fz-45 $1
+                                    .old.fz-22 $9.99
+                                .fz-22.mt-10 Full Acess
+                                .fz-20.mt-15.price_detail After 7 days,<br>$9.99/month<br>(paid month)
+                                .button.mt-20 JOIN NOW 
+                            .info_other.toggle_parent
+                                .toggle_content  
+                                    .list_detail.mt-30.pt-15.pb-40
+                                        each item in [1,2,3,4,5,6,7]
+                                            dl.mt-20
+                                                dt 16 curated DIY projects (patterns + tutorials) 
+                                                dd $160 VALUE
+                                    a(href="#").button.mt-40 JOIN NOW
+                                .toggle_btn
+                                    .short
+                                        |Xem thêm 
+                                    .long 
+                                        |Thu gọn
+                                    
+        section.question.pt-40.pb-100 
+            .wraper 
+                .flexBox
+                    .col-12.col-lg-6 
+                        h2.ttl_main.text-up.fz-60 Have questions?<br>We’re here to<br>help you!
+                        .content.pt-30
+                            each item in [1,2,3]
+                                .item.toggle_parent.mt-50 
+                                    .toggle_btn.fz-24 Can I cancel at any time?
+                                    .toggle_content
+                                        .text Yes. There are no contracts or hidden fees so you can cancel your monthly or yearly service at any time.
+                    .col-12.col-lg-6 
+                        .content.pt-100
+                            each item in [1,2,3,4]
+                                .item.toggle_parent.mt-50 
+                                    .toggle_btn.fz-24 Can I cancel at any time?
+                                    .toggle_content
+                                        .text Yes. There are no contracts or hidden fees so you can cancel your monthly or yearly service at any time.
+
+

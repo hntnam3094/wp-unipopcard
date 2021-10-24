@@ -1,0 +1,289 @@
+$w_320: 320px;
+$w_375: 375px;
+$w_480: 480px;
+$w_576: 576px;
+$w_767: 767px;
+$w_991: 991px;
+$w_1024: 1024px;
+$w_1200: 1200px;
+$w_1400: 1400px;
+$w_1600: 1700px;
+// @max with
+@mixin max_320 {
+    @media (max-width: #{$w_320}) {
+        @content;
+    }
+}
+
+@mixin max_375 {
+    @media (max-width: #{$w_375}) {
+        @content;
+    }
+}
+
+@mixin max_480 {
+    @media (max-width: #{$w_480}) {
+        @content;
+    }
+}
+
+@mixin max_576 {
+    @media (max-width: #{$w_576}) {
+        @content;
+    }
+}
+
+@mixin max_767 {
+    @media (max-width: #{$w_767}) {
+        @content;
+    }
+}
+
+@mixin max_991 {
+    @media (max-width: #{$w_991}) {
+        @content;
+    }
+}
+
+@mixin max_1024 {
+    @media (max-width: #{$w_1024}) {
+        @content;
+    }
+}
+
+@mixin max_1200 {
+    @media (max-width: #{$w_1200}) {
+        @content;
+    }
+}
+
+@mixin max_1400 {
+    @media (max-width: #{$w_1400}) {
+        @content;
+    }
+}
+
+@mixin max_1600 {
+    @media (max-width: #{$w_1600}) {
+        @content;
+    }
+}
+
+// @min width
+@mixin min_320 {
+    @media (min-width: #{$w_320 + 1}) {
+        @content;
+    }
+}
+
+@mixin min_375 {
+    @media (min-width: #{$w_375 + 1}) {
+        @content;
+    }
+}
+
+@mixin min_480 {
+    @media (min-width: #{$w_480 + 1}) {
+        @content;
+    }
+}
+
+@mixin min_576 {
+    @media (min-width: #{$w_576 + 1}) {
+        @content;
+    }
+}
+
+@mixin min_767 {
+    @media (min-width: #{$w_767 + 1}) {
+        @content;
+    }
+}
+
+@mixin min_991 {
+    @media (min-width: #{$w_991 + 1}) {
+        @content;
+    }
+}
+
+@mixin min_1024 {
+    @media (min-width: #{$w_1024 + 1}) {
+        @content;
+    }
+}
+
+@mixin min_1200 {
+    @media (min-width: #{$w_1200 + 1}) {
+        @content;
+    }
+}
+
+@mixin min_1400 {
+    @media (min-width: #{$w_1400 + 1}) {
+        @content;
+    }
+}
+
+@mixin min_1600 {
+    @media (min-width: #{$w_1600 + 1}) {
+        @content;
+    }
+}
+
+.bsd {
+    box-shadow: 0px 1px 7px 1px #ddd;
+}
+//============================================
+// 色
+//============================================
+$color:		#000;
+
+
+
+//============================================
+// サイト幅でセンタリング
+//============================================
+@mixin center{
+	width: $w;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+//============================================
+// aタグ hover時のみ下線をつける
+//============================================
+@mixin link_noline{
+	text-decoration: none;
+	&:hover{
+		text-decoration: underline;
+	}
+}
+
+//============================================
+// テキスト置換
+//============================================
+@mixin hide_text {
+	display: block;
+	white-space: nowrap;
+	text-indent: 100%;
+	overflow: hidden;
+}
+
+//============================================
+// jQueryAutoHeight.jsにて揃えられたmin-heightをリセット
+// PCサイトでは高さを揃えるが、スマホサイトでは高さ自由にする場合など。
+//============================================
+@mixin reset_height {
+	min-height: initial !important;
+	min-height: auto !important;
+}
+
+//============================================
+// YUI Fonts CSSによるフォントサイズ指定
+// fs12 = font-size:12px に相当します
+//============================================
+@mixin fs8	{ font-size: 57.1%;}
+@mixin fs9	{ font-size: 64.2%;}
+@mixin fs10	{ font-size: 71.4%;}
+@mixin fs11	{ font-size: 78.57%;}
+@mixin fs12	{ font-size: 85.7%;}
+@mixin fs13	{ font-size: 92.8%;}
+
+@mixin fs14	{ font-size: 100%;}
+
+@mixin fs15	{ font-size: 107.1%;}
+@mixin fs16	{ font-size: 114.2%;}
+@mixin fs17	{ font-size: 121.4%;}
+@mixin fs18	{ font-size: 128.5%;}
+@mixin fs19	{ font-size: 135.7%;}
+@mixin fs20	{ font-size: 142.8%;}
+@mixin fs21	{ font-size: 150%;}
+@mixin fs22	{ font-size: 157.1%;}
+@mixin fs23	{ font-size: 164.2%;}
+@mixin fs24	{ font-size: 171.4%;}
+@mixin fs25	{ font-size: 178.5%;}
+@mixin fs26	{ font-size: 185.7%;}
+@mixin fs27	{ font-size: 192.8%;}
+@mixin fs28	{ font-size: 200%;}
+@mixin fs29	{ font-size: 207.1%;}
+@mixin fs30	{ font-size: 214.2%;}
+@mixin fs31	{ font-size: 221.4%;}
+@mixin fs32	{ font-size: 228.5%;}
+@mixin fs33	{ font-size: 235.7%;}
+@mixin fs34	{ font-size: 242.8%;}
+@mixin fs35	{ font-size: 250%;}
+@mixin fs36	{ font-size: 257.1%;}
+@mixin fs37	{ font-size: 264.2%;}
+@mixin fs38	{ font-size: 271.4%;}
+@mixin fs39	{ font-size: 278.5%;}
+@mixin fs40	{ font-size: 285.7%;}
+
+
+
+//============================================
+// font
+//============================================
+@mixin mincho {font-family: "游明朝", YuMincho, "ヒラギノ明朝 ProN W3", "Hiragino Mincho ProN", "リュウミン R-KL", "HG明朝E", "ＭＳ Ｐ明朝", "ＭＳ 明朝", serif;}
+
+@mixin gothic {font-family: "ヒラギノ角ゴPro W3", "Hiragino Kaku Gothic Pro", "メイリオ", Meiryo, "ＭＳ　Ｐゴシック", "MS PGothic", sans-serif;}
+
+@mixin yugothic {
+    font-family: "游ゴシック Medium", "Yu Gothic Medium", "游ゴシック体", YuGothic, "游ゴシック", "Yu Gothic", "ヒラギノ角ゴPro W3", "Hiragino Kaku Gothic Pro", "メイリオ", Meiryo, "ＭＳ　Ｐゴシック", "MS PGothic", sans-serif;
+}
+//============================================
+// clearfix
+//============================================
+@mixin clearfix {
+	*zoom: 1;
+	&:after{
+		display: block;
+		content: "";
+		clear: both;
+	}
+}
+
+//============================================
+// inline-block
+//============================================
+@mixin inline-block{
+	display: inline-block;
+	*display: inline;
+	*zoom: 1;
+}
+
+//============================================
+// transition
+//============================================
+@mixin transition($value: .3s ease all) {
+	-webkit-transition: $value;
+	-moz-transition: $value;
+	-ms-transition: $value;
+	transition: $value;
+}
+
+//============================================
+// opacity
+//============================================
+@mixin opacity($value: .7) {
+	opacity: $value;
+	-ms-filter: "alpha(opacity=#{$value*100})";
+	filter: alpha(opacity=$value*100);
+}
+
+//============================================
+// box-sizing
+//============================================
+@mixin box-sizing($value: border-box) {
+	-webkit-box-sizing: $value;
+	   -moz-box-sizing: $value;
+	        box-sizing: $value;
+}
+
+//============================================
+// transform
+//============================================
+@mixin transform($value: none) {
+	-webkit-transform: $value;
+	   -moz-transform: $value;
+	        transform: $value;
+}

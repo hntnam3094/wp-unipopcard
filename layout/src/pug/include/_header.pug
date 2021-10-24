@@ -1,0 +1,81 @@
+header.header#header.active_search
+    mixin icon_down() 
+        svg(xmlns='http://www.w3.org/2000/svg' width='14' height='9' viewBox='0 0 14 9' fill='none')
+            path(d='M13.5443 1.91243C13.9348 1.5219 13.9348 0.88874 13.5443 0.498215C13.1537 0.107691 12.5206 0.107691 12.13 0.498215L13.5443 1.91243ZM7.18029 6.86218L6.47318 7.56928L7.18029 8.27639L7.8874 7.56928L7.18029 6.86218ZM2.23054 0.498215C1.84002 0.107691 1.20686 0.107691 0.816331 0.498215C0.425806 0.88874 0.425806 1.5219 0.816331 1.91243L2.23054 0.498215ZM12.13 0.498215L6.47318 6.15507L7.8874 7.56928L13.5443 1.91243L12.13 0.498215ZM7.8874 6.15507L2.23054 0.498215L0.816331 1.91243L6.47318 7.56928L7.8874 6.15507Z' fill='#2C2C2C')
+    .header-top
+        .wraper
+            button.navbar-toggler.toggle_class(type='button' data-bs-toggle='modal' data-bs-target='#navbarSupportedContent')
+                span.navbar-toggler-icon
+            //- .flexBox.space.midle
+                .tel 
+                    a(href="tel:02343933499").flexBox.midle
+                        i.icon 
+                            img(src="common/images/icon_tel.svg", alt="").imgAuto
+                        |+ (84 234) 3933499  
+                .language
+                    .dropdown
+                        #dropdown_language.dropdown_btn.dropdown-toggle( data-bs-toggle='dropdown' aria-haspopup='true' aria-expanded='false') 
+                            span English
+                            //- i.icon_down 
+                                +icon_down
+                        .dropdown-menu(aria-labelledby='dropdown_language')
+                            a.dropdown-item(href='#') 
+                                span English
+                            a.dropdown-item(href='#') 
+                                span Vietnamese
+                    
+
+    .header-bottom
+        .wraper.flexBox.space.midle.bottom
+            a(href="index.html").logo 
+                img(src="common/images/logo.svg", alt="").imgAuto
+            .header-right.flexBox.midle.end
+                nav.navbar.navbar-expand-lg.modal.fade#navbarSupportedContent.collapse(navbar-collapsetabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true")
+                    .modal-dialog
+                        .header_nav
+                            .nav.flexBox.midle.space
+                                ul.flexBox.midle
+                                    li.nav-item(class=(nav_active === "nav1" ? "active" : undefined))
+                                        a.nav-link(href='category.html') CRAFT COLECTION
+                                    li.nav-item(class=(nav_active === "nav2" ? "active" : undefined))
+                                        a.nav-link(href='contact.html') CRAFT ACADEMY
+                                
+                                ul.flexBox.midle
+                                    li.nav-item(class=(nav_active === "nav3" ? "active" : undefined))
+                                        a.nav-link(href='#' target='_blank') SHOP
+                                        //- .toggle_btn.icon_toggle
+                                        //-     +icon_down
+                                        //- ul.sub_menu.toggle_content
+                                        //-     li
+                                        //-         a(href="news.html") Natural Rubber SVR 3L
+                                        //-     li
+                                        //-         a(href="event.html") Natural Rubber SVR 10
+                                    li.nav-item(class=(nav_active === "nav4" ? "active" : undefined))
+                                        a.nav-link(href='upgrade.html') UPGRADE TO DAY
+                                    li.nav-item(class=(nav_active === "nav4" ? "active" : undefined))
+                                        a.nav-link(href='news.html') MY CRAFT ROOM
+            .nav_setting.dropdown 
+                .btn_setting.dropdown-toggle(id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false")
+                    img(src="common/images/icon/icon_setting.svg", alt="") 
+                .dropdown-menu(aria-labelledby='dropdownMenu2')
+                    ul
+                        li
+                            a(href="login.html").dropdown-item
+                                i.icon 
+                                    img(src="common/images/icon/icon_login.png", alt="")
+                                |Login
+                        li
+                            a(href="singup.html").dropdown-item
+                                i.icon 
+                                    img(src="common/images/icon/icon_signup.png", alt="")
+                                |Sign up
+                        li
+                            a(href="manager.html").dropdown-item
+                                i.icon 
+                                    img(src="common/images/icon/icon_profile.png", alt="")
+                                |Profile manager
+                        li
+                            a(href="logout.html").dropdown-item(data-bs-toggle="modal" data-bs-target="#modal_logout")  
+                                i.icon 
+                                    img(src="common/images/icon/icon_logout.png", alt="")
+                                |Log out

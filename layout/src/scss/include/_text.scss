@@ -1,0 +1,23 @@
+// .text {
+//     &-bold {
+//         font-family: 'Segoe UI bold';
+//         letter-spacing: 0.4px;
+//     }
+//     &-medium {
+//         font-family: 'Segoe UI semi';
+//     }
+//     &-center {
+//         text-align: center;
+//     }
+//     &-italic {
+//         font-style: italic;
+//     }
+//     &-up {
+//         text-transform: uppercase;
+//     }
+// }
+.w {
+    &_500 {
+        font-weight: bold;
+    }
+}

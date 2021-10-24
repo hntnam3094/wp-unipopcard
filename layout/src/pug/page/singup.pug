@@ -1,0 +1,45 @@
+extends ../include/_template.pug
+include ../include/_mixin
+
+block content
+    +body('action_page', 'nav1', './')
+        section.action_account 
+            .bg.imgDrop
+                img(src="common/images/bg.png", alt="")
+            .wraper
+                .form_action 
+                    a.logo_form(href="index.html")
+                        img(src="common/images/logo.svg", alt="").imgAutp 
+                    a.btn_close(href="index.html") 
+                        img(src="common/images/icon/icon_close.svg", alt="")
+                    form(action="") 
+                        .sub2.mt-40.fz-18 Start Your Free Trial Now
+                        .group.mt-20 
+                            input.input(type="text", placeholder='Fist name')
+                        .group.mt-20 
+                            input.input(type="text", placeholder='Last name')
+                        .group.mt-20 
+                            input.input(type="mail", placeholder='Email')
+                        .group.mt-20 
+                            input.input.input_password(type="password", placeholder='Password')
+                            i.toggle-password
+                        .group.mt-20
+                            input.btn_acction.mt-20(type='submit', value='Create Account')
+                        .group.mt-20
+                            p.text Already have an account? 
+                                a.forget_pass(href="login.html") Log in
+                            p By clicking “Create account” I accept the <br>Terms of Service, the Anti-Spam Policy, <br>and the Privacy Policy. Accessibitity info.
+        section.footing.pt-20.pb-20 
+            .wraper 
+                .row 
+                    .col-6 
+                        address © 2021 KenNguyen. All rights reserved.
+                    .col-6 
+                        .row 
+                            .col-4 
+                                a(href="#") Privacy Policy
+                            .col-4 
+                                a(href="#") Privacy Policy
+                            .col-4 
+                                a(href="#") Privacy Policy
+

@@ -1,0 +1,52 @@
+// Modal
+#modal_logout.modal.fade(tabindex='-1' aria-labelledby='exampleModalLabel' aria-hidden='true')
+    .modal-dialog
+        .modal-content
+            //- .modal-header
+                h5.modal-title.block.text-center Are you sure?
+                
+            .modal-body.text-center
+                button.btn-close(type='button' data-bs-dismiss='modal' aria-label='Close')
+                .pt-30 Do you want to log out of your account?
+            .modal-footer
+                button.btn.btn_cancel(type='button' data-bs-dismiss='modal') Cancel
+                button.btn.btn_more(type='button') Log out
+footer.footer.pt-40.pb-30 
+    .wraper 
+        .row 
+            .col-12.col-lg-5 
+                .content_main.flexBox 
+                    .images 
+                        img(src="common/images/avatar.png", alt="").imgAuto
+                    .content 
+                        p Lia Griffith is a designer, maker, artist, and author. Since launching her handcrafted lifestyle site with her first paper rose in 2013, Lia and her team have developed thousands of original DIY templates, SVG cut files, and tutorials to empower others who want to learn, make, and create. While paper flowers are where this journey began, Lia is most passionate about helping others find joy in crafting and reopen the door to their creative soul. She believes in changing lives one craft at a time. Join us.
+            .col-12.col-lg-7
+                .row
+                    .col-12.col-md-7
+                        .row
+                            .col-12.col-md-6.toggle_parent 
+                                h4.ttl.toggle_btn ABOUT
+                                .toggle_content 
+                                    ul.list_link 
+                                        each item in ['OUR TEAM','CONTACT US','LEGAL','FAQ','PRESS FEATURES','PARTNERS & AFILIATES']
+                                            li= item
+                            .col-12.col-md-6.toggle_parent  
+                                h4.ttl.toggle_btn RESOURCES
+                                .toggle_content 
+                                    ul.list_link 
+                                        each item in ['PAPER FLOWER','GLOSSARY','FELT FLOWER GLOSSARY','VIDEO LIBRARY','SHOP','GIVE A GIFT','BECOME A MEMBER','MATERIAL SOURCES','FREEBIES']
+                                            li= item
+                    .col-12.col-md-5
+                        h4.ttl STAY CONNECTED
+                        ul.social.flexBox.midle.mt-20
+                            each item in [1,2,3,4,5] 
+                                li 
+                                    a(href="#") 
+                                        img(src=`common/images/social_0${item}.svg`, alt="")
+                        .text.mt-20
+                            p Join our email list to learn about new projects, discounts, and membership perks!
+                        .form_submit.pt-20 
+                            form(action="") 
+                                input.input(type="text" placeholder='Your Email Adress')
+                                input.submit(type="submit", value='JOIN NOW')
+    

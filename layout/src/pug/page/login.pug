@@ -1,0 +1,51 @@
+extends ../include/_template.pug
+include ../include/_mixin
+
+block content
+    +body('action_page', 'nav1', './')
+        section.action_account 
+            .bg.imgDrop
+                img(src="common/images/bg.png", alt="")
+            .wraper
+                .form_action 
+                    a.btn_close(href="index.html") 
+                        img(src="common/images/icon/icon_close.svg", alt="")
+                    form(action="") 
+                        .sub1 Don’t have an account? 
+                            a(href="singup.html") Sign up
+                        .sub2.mt-20.fz-18 Welcome back
+                        a.btn_acction.btn_fb.mt-20(href="")
+                            span.icon 
+                                img(src="common/images/icon/icon_fb.svg", alt="")
+                            span.text Login with Facebook
+                        a.btn_acction.btn_gg.mt-20(href="")
+                            span.icon 
+                                img(src="common/images/icon/icon_fb.svg", alt="")
+                            span.text Login with Facebook
+                        .sub2.mt-70 Login with email
+                        .group.mt-20 
+                            input.input(type="mail", placeholder='Email')
+                        .group.mt-20 
+                            input.input.input_password(type="password", placeholder='Password')
+                            i.toggle-password
+                        .group.mt-20.flexBox.star.midle 
+                            input#checbox(type="checkbox", name='checbox')
+                            label(for="checbox") Remember me
+                        .group.mt-20
+                            input.btn_acction.mt-20(type='submit', value='Login')
+                        .group.mt-20 
+                            p.text
+                                a.forget_pass(href="forget_pass.html") Forgot password?
+        section.footing.pt-20.pb-20 
+            .wraper 
+                .row 
+                    .col-6 
+                        address © 2021 KenNguyen. All rights reserved.
+                    .col-6 
+                        .row 
+                            .col-4 
+                                a(href="#") Privacy Policy
+                            .col-4 
+                                a(href="#") Privacy Policy
+                            .col-4 
+                                a(href="#") Privacy Policy

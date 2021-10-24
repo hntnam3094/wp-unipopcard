@@ -1,0 +1,161 @@
+footer {  
+    background: rgba(176,190,201,0.1);
+}
+.footer {
+    .content_main {
+        @include max_991 {
+            margin-bottom: 20px;
+        }
+        @include max_767 {
+            margin-bottom: 0;
+        }
+        .images {
+            width: 50px;
+            @include min_767 {
+                width: 82px;
+            }
+        }
+        .content {
+            font-size: 13px;
+            letter-spacing: 0.02em;
+            width: 100%;
+            line-height: 18px;
+            @include max_767 {
+                margin-top: 10px;
+            }
+            @include min_767 {
+                font-size: 14px;
+                line-height: 22px;
+                line-height: 25px;
+                width: calc(100% - 82px);
+                padding-left: 20px;
+            }
+        }
+    }
+    .toggle_parent {
+        .toggle_btn {
+            position: relative;
+            cursor: pointer;
+            @include max_767 {
+                border-bottom: 1px solid #333;
+                color: #000;
+                &:before {
+                    position: absolute;
+                    content: "";
+                    width: 8px;
+                    height: 8px;
+                    background-image: url(../images/icon/icon_down.svg);
+                    background-size: 100%;
+                    position: absolute;
+                    top: 0;
+                    bottom: 0;
+                    margin: auto;
+                    right: 15px;
+                    background-repeat: no-repeat;
+                    background-position: center center;
+                    opacity: 0.5;
+                }
+            }
+        }
+        &.on {
+            .toggle_btn {
+                &:before {
+                    transform: rotate(180deg);
+                }
+            }
+        }
+    }
+    .ttl {
+        @include max_767 {
+            padding: 15px 0 10px;
+        }
+        @include min_767 {
+            pointer-events: none;
+        }
+    }
+    .toggle_content {
+        display: none;
+        @include max_767 {
+            border-bottom: 1px solid #333;
+            ul {
+                padding-bottom: 15px;
+            }
+        }
+        @include min_767 {
+            display: block!important;
+        }
+    }
+    .list_link {
+        font-size: 12px;
+        line-height: 19px;
+        text-transform: uppercase;
+        color: #000;
+        li {
+            margin-top: 15px;
+        }
+    }
+    .social {
+        @include min_767 {
+            justify-content: space-between;
+        }
+        li {
+            transition: all .3s;
+            &:hover {
+                transform: scale(1.1);
+            }
+            img {
+                @include max_1200 {
+                    width: 30px;
+                    height: auto;
+                }
+            }
+            &+li {
+                @include max_767 {
+                    margin-left: 15px;
+                }
+            }
+        }
+    }
+    .text {
+        font-size: 12px;
+        line-height: 18px;
+        margin-top: 20px;
+        @include min_767 {
+            font-size: 14px;
+            line-height: 22px;
+        }
+    }
+    .form_submit {
+        form {
+            position: relative;
+            .input {
+                display: block;
+                width: 100%;
+                height: 50px;
+                padding: 12px 10px;
+                text-align: center;
+                width: calc(100% - 100px);
+                background: #fff;
+                border: 1px solid #ebebeb;
+                &::placeholder {
+                    font-size: 12px;
+                }
+            }
+            .submit {
+                display: block;
+                width: 100px;
+                line-height: 48px;
+                text-align: center;
+                color: #fff;
+                font-size: 14px;
+                text-transform: uppercase;
+                background-color: #333;
+                border: none;
+                position: absolute;
+                border-radius: 0 3px 3px 0;
+                top: 0;
+                right: 0;
+            }
+        }
+    }
+}

@@ -1,0 +1,27 @@
+extends ../include/_template.pug
+include ../include/_mixin
+
+block content
+    +body('', '', './')
+        section.my_project.pt-40.pb-100
+            .wraper 
+                .row 
+                    .col-12.col-lg-4 
+                        +manager(0)
+
+                    .col-12.col-lg-8.project
+                        .course_my.pt-40.pb-50
+                            h1.ttl_main.fz-20.text-center.text-up My Downloaded Projects
+                            .row 
+                                each item in [1,2,3,4,5,6,7,8,9]
+                                    .column.col-6.col-md-4
+                                        a(href="detail.html").item.mt-30 
+                                            .images 
+                                                .imgDrop 
+                                                    img(src="common/images/product.png", alt="")
+                                            .content(data-mh='content')
+                                                h4.text-up.trim.trim_2 CHRISTMAS BOUQUET
+                                                .desc Category Christmas
+                            .mt-40.text-center 
+                                a.btn_more.fz-20(href="#") LOAD MORE 
+

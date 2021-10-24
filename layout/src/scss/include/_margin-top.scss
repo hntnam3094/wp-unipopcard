@@ -1,0 +1,55 @@
+/* 
+  5. margin top 
+*/
+$sizes: 15, 20, 25, 30, 35, 40, 50, 55, 60, 70, 75, 80, 100, 120, 140;
+.mt-5 {
+  margin-top: 5px!important;
+}
+.mt-10 {
+  margin-top: 10px;
+}
+@each $size in $sizes {
+  .mt-#{$size} {
+    margin-top: #{$size - ($size / 2.5)}px;
+    @include  min_767 {
+      margin-top: #{$size - ($size / 3.5)}px;
+    }
+    @include  min_991 {
+      margin-top: #{$size - ($size / 5)}px;
+    }
+    @include min_1200 {
+      margin-top: #{$size}px;
+    }
+  }
+}
+
+@each $size in $sizes {
+  .pt-#{$size} {
+    padding-top: #{$size - ($size / 1.85)}px;
+    @include  min_767 {
+      padding-top: #{$size - ($size / 3)}px;
+    }
+    @include  min_991 {
+      padding-top: #{$size - ($size / 5)}px;
+    }
+    @include min_1200 {
+      padding-top: #{$size}px;
+    }
+  }
+}
+
+
+@each $size in $sizes {
+  .pb-#{$size} {
+    padding-bottom: #{$size - ($size / 1.85)}px;
+    @include  min_767 {
+      padding-bottom: #{$size - ($size / 3)}px;
+    }
+    @include  min_991 {
+      padding-bottom: #{$size - ($size / 5)}px;
+    }
+    @include min_1200 {
+      padding-bottom: #{$size}px;
+    }
+  }
+}

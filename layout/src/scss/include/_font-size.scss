@@ -1,0 +1,61 @@
+/* 
+  2. fontsize 
+*/
+$fontsize:
+  80 70,
+  60 75,  
+  52 62,
+  50 60,
+  45 60,
+  40 56,
+  38 50,
+  36 48,
+  31 37,
+  30 40,
+  28 39,
+  26 35,
+  24 32;
+
+@each $size, $lheight in $fontsize {
+  .fz-#{$size} {
+    font-size: #{$size - ($size / 3)}px;
+    line-height: #{$lheight - ($lheight / 3)}px;
+    @include min_767 {
+        font-size: #{$size - ($size / 4)}px;
+        line-height: #{$lheight - ($lheight / 4)}px;
+    }
+    @include min_991 {
+        font-size: #{$size - ($size / 5)}px;
+        line-height: #{$lheight - ($lheight / 5)}px;
+    }
+    @include min_1200 {
+        font-size: #{$size}px;
+        line-height: #{$lheight}px;
+    }
+  }
+}
+$fontsize2:
+  22 26,
+  21 28,
+  20 27,
+  18 24;
+@each $size, $lheight in $fontsize2 {
+  .fz-#{$size} {
+    font-size: 16px;
+    line-height: 22px;
+    @include min_767 {
+        font-size: #{$size}px;
+        line-height: #{$lheight}px;
+    }
+  }
+}  
+.fz-15 {
+  @include min_767 {
+    font-size: 15px;
+    line-height: 20px;
+  }
+}
+.fz-11 {
+  font-size: 11px;
+  line-height: 15px;
+}
