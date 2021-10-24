@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
+  <g id="mail" opacity="0.5">
+    <path id="Path_844" data-name="Path 844" d="M0,0H16V16H0Z" fill="none"/>
+    <path id="Path_845" data-name="Path 845" d="M16.4,4H3.6A1.6,1.6,0,0,0,2,5.6v9.6a1.6,1.6,0,0,0,1.6,1.6H16.4A1.6,1.6,0,0,0,18,15.2V5.6A1.6,1.6,0,0,0,16.4,4Zm-.32,3.4-5.232,3.272a1.585,1.585,0,0,1-1.7,0L3.92,7.4a.679.679,0,1,1,.72-1.152L10,9.6l5.36-3.352A.679.679,0,1,1,16.08,7.4Z" transform="translate(-2 -2)" fill="#585858"/>
+  </g>
+</svg>
