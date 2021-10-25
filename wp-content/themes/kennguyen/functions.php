@@ -19,7 +19,7 @@ function create_custom_post_type_craft_collection()
      * Biến $label để chứa các text liên quan đến tên hiển thị của Post Type trong Admin
      */
     $label = array(
-        'name' => 'Craft collection', //Tên post type dạng số nhiều
+        'name' => 'CRAFT COLLECTION', //Tên post type dạng số nhiều
     );
 
 
@@ -110,3 +110,13 @@ function create_custom_post_type_craft_academy()
 }
 /* Kích hoạt hàm tạo custom post type */
 add_action('init', 'create_custom_post_type_craft_academy');
+
+// Alter the main query
+function add_craft_to_frontpage( $query ) {
+    if ( is_home() && $query->is_main_query() ) {
+        $query->set( 'post_type', array( 'post', 'craftacademy', 'craftcollection' ) );
+    }
+    return $query;
+}
+
+add_action( 'pre_get_posts', 'add_craft_to_frontpage' );
