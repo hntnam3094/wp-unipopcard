@@ -1,18 +1,8 @@
 <?php get_header(); ?>
     <main>
-      <section class="banner">
-        <div class="imgDrop"> <img src="<?php bloginfo('template_directory') ?>/common/images/banner.png" alt=""/></div>
-      </section>
-      <section class="video_intro">
-        <div class="wraper">
-          <div class="content_main">
-            <div class="video_production imgDrop">
-              <iframe width="100%" data-src="" frameborder="0" allowfullscreen="" src="https://www.youtube.com/embed/Fyw9Am2Yn7I?autoplay=1&amp;playsinline=1&amp;mute=1"></iframe>
-              <div class="img_bg bg_fix"><img src="<?php bloginfo('template_directory') ?>/common/images/product.png" alt=""/></div>
-            </div>
-          </div>
-        </div>
-      </section>
+        <?php get_template_part('template-parts/home/banner'); ?>
+        <?php get_template_part('template-parts/home/video'); ?>
+
       <section class="project pt-40 pb-40">
         <div class="wraper">
           <div class="heading flexBox midle">

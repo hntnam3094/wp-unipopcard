@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="<?php bloginfo('template_directory') ?>/common/css/owl.carousel.min.css"/>
     <link rel="stylesheet" href="<?php bloginfo('template_directory') ?>/common/css/common.css"/>
     <link rel="stylesheet" href="<?php bloginfo('template_directory') ?>/common/css/styles.css"/>
+    <link rel="stylesheet" href="<?php bloginfo('template_directory') ?>/common/css/custom.css"/>
     <?php wp_head(); ?>
 </head>
 <body nav_active="nav_active" <?php body_class(); ?>>
@@ -34,15 +35,31 @@
                     <div class="modal-dialog">
                         <div class="header_nav">
                             <div class="nav flexBox midle space">
-                                <ul class="flexBox midle">
-                                    <li class="nav-item"><a class="nav-link" href="category.html">CRAFT COLECTION</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="contact.html">CRAFT ACADEMY</a></li>
-                                </ul>
-                                <ul class="flexBox midle">
-                                    <li class="nav-item"><a class="nav-link" href="#" target="_blank">SHOP</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="upgrade.html">UPGRADE TO DAY</a></li>
-                                    <li class="nav-item"><a class="nav-link" href="news.html">MY CRAFT ROOM</a></li>
-                                </ul>
+                                <?php wp_nav_menu(
+                                    array(
+                                        'theme_location' => 'left-menu',
+                                        'container' => 'false',
+                                        'menu_id' => 'left-menu',
+                                        'menu_class' => 'flexBox midle'
+                                    )
+                                ); ?>
+                                <?php wp_nav_menu(
+                                    array(
+                                        'theme_location' => 'right-menu',
+                                        'container' => 'false',
+                                        'menu_id' => 'right-menu',
+                                        'menu_class' => 'flexBox midle'
+                                    )
+                                ); ?>
+<!--                                <ul class="flexBox midle">-->
+<!--                                    <li class="nav-item"><a class="nav-link" href="category.html">CRAFT COLECTION</a></li>-->
+<!--                                    <li class="nav-item"><a class="nav-link" href="contact.html">CRAFT ACADEMY</a></li>-->
+<!--                                </ul>-->
+<!--                                <ul class="flexBox midle">-->
+<!--                                    <li class="nav-item"><a class="nav-link" href="#" target="_blank">SHOP</a></li>-->
+<!--                                    <li class="nav-item"><a class="nav-link" href="upgrade.html">UPGRADE TO DAY</a></li>-->
+<!--                                    <li class="nav-item"><a class="nav-link" href="news.html">MY CRAFT ROOM</a></li>-->
+<!--                                </ul>-->
                             </div>
                         </div>
                     </div>
