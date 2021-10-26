@@ -1,3 +1,4 @@
+<?php global $va_options?>
 <!-- Modal-->
 <div class="modal fade" id="modal_logout" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -19,9 +20,9 @@
         <div class="row">
             <div class="col-12 col-lg-5">
                 <div class="content_main flexBox">
-                    <div class="images"> <img class="imgAuto" src="<?php bloginfo('template_directory') ?>/common/images/avatar.png" alt=""/></div>
+                    <div class="images"> <img class="imgAuto" src="<?php echo $va_options['kn_avatar']['url']; ?>" alt=""/></div>
                     <div class="content">
-                        <p>Lia Griffith is a designer, maker, artist, and author. Since launching her handcrafted lifestyle site with her first paper rose in 2013, Lia and her team have developed thousands of original DIY templates, SVG cut files, and tutorials to empower others who want to learn, make, and create. While paper flowers are where this journey began, Lia is most passionate about helping others find joy in crafting and reopen the door to their creative soul. She believes in changing lives one craft at a time. Join us.</p>
+                        <p><?php echo $va_options['kn_introduction']; ?></p>
                     </div>
                 </div>
             </div>
@@ -32,30 +33,27 @@
                             <div class="col-12 col-md-6 toggle_parent">
                                 <h4 class="ttl toggle_btn">ABOUT</h4>
                                 <div class="toggle_content">
-                                    <ul class="list_link">
-                                        <li>OUR TEAM</li>
-                                        <li>CONTACT US</li>
-                                        <li>LEGAL</li>
-                                        <li>FAQ</li>
-                                        <li>PRESS FEATURES</li>
-                                        <li>PARTNERS &amp; AFILIATES</li>
-                                    </ul>
+                                    <?php wp_nav_menu(
+                                        array(
+                                            'theme_location' => 'footer-about',
+                                            'container' => 'false',
+                                            'menu_id' => 'footer-about',
+                                            'menu_class' => 'list_link'
+                                        )
+                                    ); ?>
                                 </div>
                             </div>
                             <div class="col-12 col-md-6 toggle_parent">
                                 <h4 class="ttl toggle_btn">RESOURCES</h4>
                                 <div class="toggle_content">
-                                    <ul class="list_link">
-                                        <li>PAPER FLOWER</li>
-                                        <li>GLOSSARY</li>
-                                        <li>FELT FLOWER GLOSSARY</li>
-                                        <li>VIDEO LIBRARY</li>
-                                        <li>SHOP</li>
-                                        <li>GIVE A GIFT</li>
-                                        <li>BECOME A MEMBER</li>
-                                        <li>MATERIAL SOURCES</li>
-                                        <li>FREEBIES</li>
-                                    </ul>
+                                    <?php wp_nav_menu(
+                                        array(
+                                            'theme_location' => 'footer-resources',
+                                            'container' => 'false',
+                                            'menu_id' => 'footer-resources',
+                                            'menu_class' => 'list_link'
+                                        )
+                                    ); ?>
                                 </div>
                             </div>
                         </div>

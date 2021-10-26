@@ -19,6 +19,7 @@
 </head>
 <body nav_active="nav_active" <?php body_class(); ?>>
 <?php wp_body_open(); ?>
+
 <header class="header active_search" id="header">
     <div class="header-top">
         <div class="wraper">
