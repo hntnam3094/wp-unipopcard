@@ -13,6 +13,7 @@
         </div>
     </div>
 </div>
+<?php if( function_exists('slbd_display_widgets') ) { echo slbd_display_widgets(); } ?>
 <footer class="footer pt-40 pb-30">
     <div class="wraper">
         <div class="row">

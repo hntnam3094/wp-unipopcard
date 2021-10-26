@@ -2,17 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="32e96615-6081-4390-8200-210aa0bca673" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/wp-content/themes/kennguyen/archive-craftacademy.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/wp-content/themes/kennguyen/archive-craftcollection.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/wp-content/themes/kennguyen/archive.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/wp-content/themes/kennguyen/single-academy.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/wp-content/themes/kennguyen/single-craftcollection.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.htaccess" beforeDir="false" afterPath="$PROJECT_DIR$/.htaccess" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/wp-content/themes/kennguyen/slider.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/footer.php" beforeDir="false" afterPath="$PROJECT_DIR$/wp-content/themes/kennguyen/footer.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/functions.php" beforeDir="false" afterPath="$PROJECT_DIR$/wp-content/themes/kennguyen/functions.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/single.php" beforeDir="false" afterPath="$PROJECT_DIR$/wp-content/themes/kennguyen/single.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/template-parts/content/content-page.php" beforeDir="false" afterPath="$PROJECT_DIR$/wp-content/themes/kennguyen/template-parts/content/content-page.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/template-parts/content/content-single.php" beforeDir="false" afterPath="$PROJECT_DIR$/wp-content/themes/kennguyen/template-parts/content/content-single.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -80,6 +73,7 @@
       <workItem from="1635087764427" duration="4696000" />
       <workItem from="1635118986898" duration="4310000" />
       <workItem from="1635156873998" duration="12814000" />
+      <workItem from="1635243263187" duration="4211000" />
     </task>
     <servers />
   </component>
