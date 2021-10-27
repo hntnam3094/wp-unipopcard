@@ -18,7 +18,7 @@
                         'type'      => 'post',
                         'child_of'  => 0,
                         'hide_empty' => 0,
-                        'parent'    => 5
+                        'parent'    => 4
                     );
                     $categories = get_categories( $args );
                     foreach ( $categories as $category ) { ?>
@@ -31,32 +31,32 @@
                     <div class="col-6 col-md-4 col-lg-3">
                         <a class="item mt-20" href="detail.html">
                             <div class="imgDrop">
-                                <img src="common/images/product2.png" alt=""/>
+                                <img src="<?php bloginfo('template_directory') ?>/common/images/product2.png" alt=""/>
                             </div>
                         </a>
                     </div>
                     <div class="col-6 col-md-4 col-lg-3">
                         <a class="item mt-20 block" href="detail.html">
-                            <div class="imgDrop"> <img src="common/images/product2.png" alt=""/>
+                            <div class="imgDrop"> <img src="<?php bloginfo('template_directory') ?>/common/images/product2.png" alt=""/>
                             </div>
                         </a>
                     </div>
                     <div class="col-6 col-md-4 col-lg-3">
                         <a class="item mt-20 block" href="detail.html">
-                            <div class="imgDrop"> <img src="common/images/product2.png" alt=""/>
+                            <div class="imgDrop"> <img src="<?php bloginfo('template_directory') ?>/common/images/product2.png" alt=""/>
                             </div>
                         </a>
                     </div>
                     <div class="col-6 col-md-4 col-lg-3"> <a class="item mt-20 block" href="detail.html">
-                            <div class="imgDrop"> <img src="common/images/product2.png" alt=""/></div></a></div>
+                            <div class="imgDrop"> <img src="<?php bloginfo('template_directory') ?>/common/images/product2.png" alt=""/></div></a></div>
                     <div class="col-6 col-md-4 col-lg-3"> <a class="item mt-20 block" href="detail.html">
-                            <div class="imgDrop"> <img src="common/images/product2.png" alt=""/></div></a></div>
+                            <div class="imgDrop"> <img src="<?php bloginfo('template_directory') ?>/common/images/product2.png" alt=""/></div></a></div>
                     <div class="col-6 col-md-4 col-lg-3"> <a class="item mt-20 block" href="detail.html">
-                            <div class="imgDrop"> <img src="common/images/product2.png" alt=""/></div></a></div>
+                            <div class="imgDrop"> <img src="<?php bloginfo('template_directory') ?>/common/images/product2.png" alt=""/></div></a></div>
                     <div class="col-6 col-md-4 col-lg-3"> <a class="item mt-20 block" href="detail.html">
-                            <div class="imgDrop"> <img src="common/images/product2.png" alt=""/></div></a></div>
+                            <div class="imgDrop"> <img src="<?php bloginfo('template_directory') ?>/common/images/product2.png" alt=""/></div></a></div>
                     <div class="col-6 col-md-4 col-lg-3"> <a class="item mt-20 block" href="detail.html">
-                            <div class="imgDrop"> <img src="common/images/product2.png" alt=""/></div></a></div>
+                            <div class="imgDrop"> <img src="<?php bloginfo('template_directory') ?>/common/images/product2.png" alt=""/></div></a></div>
                 </div>
                 <div class="mt-30 text-center"> <a class="btn_more" href=""> <span class="block fz-31">JOIN NOW</span><span class="block sub">To Unlock ALL Collection Projects!</span></a></div>
             </div>
@@ -70,21 +70,21 @@
                 <div class="course_main mt-10">
                     <div class="row">
                         <div class="col-4 col-md-3 col-lg-2"> <a class="item mt-20" href="detail.html">
-                                <div class="imgDrop"> <img src="common/images/product3.png" alt=""/></div></a></div>
+                                <div class="imgDrop"> <img src="<?php bloginfo('template_directory') ?>/common/images/product3.png" alt=""/></div></a></div>
                         <div class="col-4 col-md-3 col-lg-2"> <a class="item mt-20 block" href="detail.html">
-                                <div class="imgDrop"> <img src="common/images/product3.png" alt=""/></div></a></div>
+                                <div class="imgDrop"> <img src="<?php bloginfo('template_directory') ?>/common/images/product3.png" alt=""/></div></a></div>
                         <div class="col-4 col-md-3 col-lg-2"> <a class="item mt-20 block" href="detail.html">
-                                <div class="imgDrop"> <img src="common/images/product3.png" alt=""/></div></a></div>
+                                <div class="imgDrop"> <img src="<?php bloginfo('template_directory') ?>/common/images/product3.png" alt=""/></div></a></div>
                         <div class="col-4 col-md-3 col-lg-2"> <a class="item mt-20 block" href="detail.html">
-                                <div class="imgDrop"> <img src="common/images/product3.png" alt=""/></div></a></div>
+                                <div class="imgDrop"> <img src="<?php bloginfo('template_directory') ?>/common/images/product3.png" alt=""/></div></a></div>
                         <div class="col-4 col-md-3 col-lg-2"> <a class="item mt-20 block" href="detail.html">
-                                <div class="imgDrop"> <img src="common/images/product3.png" alt=""/></div></a></div>
+                                <div class="imgDrop"> <img src="<?php bloginfo('template_directory') ?>/common/images/product3.png" alt=""/></div></a></div>
                         <div class="col-4 col-md-3 col-lg-2"> <a class="item mt-20 block" href="detail.html">
-                                <div class="imgDrop"> <img src="common/images/product3.png" alt=""/></div></a></div>
+                                <div class="imgDrop"> <img src="<?php bloginfo('template_directory') ?>/common/images/product3.png" alt=""/></div></a></div>
                         <div class="col-4 col-md-3 col-lg-2"> <a class="item mt-20 block" href="detail.html">
-                                <div class="imgDrop"> <img src="common/images/product3.png" alt=""/></div></a></div>
+                                <div class="imgDrop"> <img src="<?php bloginfo('template_directory') ?>/common/images/product3.png" alt=""/></div></a></div>
                         <div class="col-4 col-md-3 col-lg-2"> <a class="item mt-20 block" href="detail.html">
-                                <div class="imgDrop"> <img src="common/images/product3.png" alt=""/></div></a></div>
+                                <div class="imgDrop"> <img src="<?php bloginfo('template_directory') ?>/common/images/product3.png" alt=""/></div></a></div>
                     </div>
                     <div class="mt-30 text-center"> <a class="btn_more" href=""> <span class="block fz-31">JOIN NOW</span><span class="block sub">To Unlock ALL Collection Projects!</span></a></div>
                 </div>
@@ -99,17 +99,17 @@
                 <div class="course_main mt-10">
                     <div class="row">
                         <div class="col-4 col-md-3 col-lg-2"> <a class="item mt-20" href="#">
-                                <div class="imgDrop"> <img src="common/images/product4.png" alt=""/></div></a></div>
+                                <div class="imgDrop"> <img src="<?php bloginfo('template_directory') ?>/common/images/product4.png" alt=""/></div></a></div>
                         <div class="col-4 col-md-3 col-lg-2"> <a class="item mt-20" href="#">
-                                <div class="imgDrop"> <img src="common/images/product4.png" alt=""/></div></a></div>
+                                <div class="imgDrop"> <img src="<?php bloginfo('template_directory') ?>/common/images/product4.png" alt=""/></div></a></div>
                         <div class="col-4 col-md-3 col-lg-2"> <a class="item mt-20" href="#">
-                                <div class="imgDrop"> <img src="common/images/product4.png" alt=""/></div></a></div>
+                                <div class="imgDrop"> <img src="<?php bloginfo('template_directory') ?>/common/images/product4.png" alt=""/></div></a></div>
                         <div class="col-4 col-md-3 col-lg-2"> <a class="item mt-20" href="#">
-                                <div class="imgDrop"> <img src="common/images/product4.png" alt=""/></div></a></div>
+                                <div class="imgDrop"> <img src="<?php bloginfo('template_directory') ?>/common/images/product4.png" alt=""/></div></a></div>
                         <div class="col-4 col-md-3 col-lg-2"> <a class="item mt-20" href="#">
-                                <div class="imgDrop"> <img src="common/images/product4.png" alt=""/></div></a></div>
+                                <div class="imgDrop"> <img src="<?php bloginfo('template_directory') ?>/common/images/product4.png" alt=""/></div></a></div>
                         <div class="col-4 col-md-3 col-lg-2"> <a class="item mt-20" href="#">
-                                <div class="imgDrop"> <img src="common/images/product4.png" alt=""/></div></a></div>
+                                <div class="imgDrop"> <img src="<?php bloginfo('template_directory') ?>/common/images/product4.png" alt=""/></div></a></div>
                     </div>
                 </div>
             </div>
