@@ -2,17 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="32e96615-6081-4390-8200-210aa0bca673" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/wp-content/themes/kennguyen/core/class-tgm-plugin-activation.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/wp-content/themes/kennguyen/core/init.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/wp-content/themes/kennguyen/core/options.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/wp-content/themes/kennguyen/core/plugins.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/wp-content/themes/kennguyen/page-upgrade-today.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/wp-content/themes/kennguyen/template-parts/home/slider.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/archive-craftacademy.php" beforeDir="false" afterPath="$PROJECT_DIR$/wp-content/themes/kennguyen/archive-craftacademy.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/archive-craftcollection.php" beforeDir="false" afterPath="$PROJECT_DIR$/wp-content/themes/kennguyen/archive-craftcollection.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/footer.php" beforeDir="false" afterPath="$PROJECT_DIR$/wp-content/themes/kennguyen/footer.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/core/options.php" beforeDir="false" afterPath="$PROJECT_DIR$/wp-content/themes/kennguyen/core/options.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/core/plugins.php" beforeDir="false" afterPath="$PROJECT_DIR$/wp-content/themes/kennguyen/core/plugins.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/functions.php" beforeDir="false" afterPath="$PROJECT_DIR$/wp-content/themes/kennguyen/functions.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/header.php" beforeDir="false" afterPath="$PROJECT_DIR$/wp-content/themes/kennguyen/header.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/wp-content/themes/kennguyen/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/template-parts/home/video.php" beforeDir="false" afterPath="$PROJECT_DIR$/wp-content/themes/kennguyen/template-parts/home/video.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -82,6 +79,8 @@
       <workItem from="1635118986898" duration="4310000" />
       <workItem from="1635156873998" duration="12814000" />
       <workItem from="1635243263187" duration="4211000" />
+      <workItem from="1635295818065" duration="591000" />
+      <workItem from="1635331191024" duration="12309000" />
     </task>
     <servers />
   </component>

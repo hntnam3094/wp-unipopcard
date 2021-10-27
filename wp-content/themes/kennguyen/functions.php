@@ -7,8 +7,13 @@ function theme_setup() {
     register_nav_menu('footer-about',__( 'Footer column about' ));
     register_nav_menu('footer-resources',__( 'Footer column resources' ));
 
+    add_image_size('banner-thumb', 1349, 281);
+    add_image_size('collection-thumb', 285, 285);
+    add_image_size('month-thumb', 183, 183);
+    add_image_size('video-image-thumb', 920, 563);
     global $_wp_theme_features;
     $_wp_theme_features['post-thumbnails']= true;
+
 }
 add_action('init', 'theme_setup');
 
@@ -166,3 +171,79 @@ function custom_post_type_slider(){
 
 }
 add_action('init', 'custom_post_type_slider');
+
+
+// Registering custom post status
+function wpb_custom_post_status(){
+    register_post_status('free', array(
+        'label'                     => _x( 'Miễn phí', 'post' ),
+        'public'                    => true,
+        'exclude_from_search'       => true,
+        'show_in_admin_all_list'    => true,
+        'show_in_admin_status_list' => true,
+        'label_count'               => _n_noop( 'Miễn phí <span class="count">(%s)</span>', 'Miễn phí <span class="count">(%s)</span>' ),
+    ) );
+
+    register_post_status('sale', array(
+        'label'                     => _x( 'Đang bán', 'post' ),
+        'public'                    => true,
+        'exclude_from_search'       => true,
+        'show_in_admin_all_list'    => true,
+        'show_in_admin_status_list' => true,
+        'label_count'               => _n_noop( 'Đang bán <span class="count">(%s)</span>', 'Đang bán <span class="count">(%s)</span>' ),
+    ) );
+}
+add_action( 'init', 'wpb_custom_post_status' );
+
+
+add_action('admin_footer-post.php', 'wpb_append_post_status_list2');
+add_action('admin_footer-post-new.php', 'wpb_append_post_status_list2');
+function wpb_append_post_status_list2(){
+    global $post;
+    $complete = '';
+    $label = 'Miễn phí';
+    $value = 'free';
+    if($post->post_type == 'craftcollection' || $post->post_type == 'craftacademy'){
+
+        if($post->post_status == 'free'){
+            $complete = ' selected=\"selected\"';
+        }
+
+        $data = $complete ? $label : '';
+        echo '
+                <script>
+                jQuery(document).ready(function($){
+                    console.log("vàooo")
+                $("select#post_status").prepend("<option value=\"'.$value.'\" '.$complete.'>'.$label.'</option>");
+                $("#post-status-display").prepend("'.$data.'");
+                });
+                </script>
+                ';
+    }
+}
+
+// Using jQuery to add it to post status dropdown
+add_action('admin_footer-post.php', 'wpb_append_post_status_list');
+add_action('admin_footer-post-new.php', 'wpb_append_post_status_list');
+function wpb_append_post_status_list(){
+    global $post;
+    $complete = '';
+    $label = 'Đang bán';
+    $value = 'sale';
+    if($post->post_type == 'craftcollection' || $post->post_type == 'craftacademy'){
+        if($post->post_status == 'sale'){
+            $complete = ' selected=\"selected\"';
+        }
+        $data = $complete ? $label : '';
+        echo '
+                <script>
+                jQuery(document).ready(function($){
+                $("select#post_status").prepend("<option value=\"'.$value.'\" '.$complete.'>'.$label.'</option>");
+                $("#post-status-display").append("'.$data.'");
+                });
+                </script>
+                ';
+    }
+}
+
+
