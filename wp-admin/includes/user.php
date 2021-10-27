@@ -289,6 +289,7 @@ function get_user_to_edit( $user_id ) {
 		$user->filter = 'edit';
 	}
 
+
 	return $user;
 }
 

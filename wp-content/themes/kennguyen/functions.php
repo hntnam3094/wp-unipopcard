@@ -191,3 +191,24 @@ function custom_post_type_slider(){
 
 }
 add_action('init', 'custom_post_type_slider');
+
+
+function getRequest() {
+    global $wp;
+    $classes = '';
+    if ($wp->request == 'login' || $wp->request == 'singup' || $wp->request == 'forgot-pass')
+    {
+        $classes = 'action_page';
+    }
+    echo $classes;
+}
+
+add_action('get_request', 'getRequest');
+
+function wpabsolute_block_users_backend() {
+    if ( is_admin() && ! current_user_can( 'administrator' ) && ! wp_doing_ajax() ) {
+        wp_redirect( home_url() );
+        exit;
+    }
+}
+add_action( 'init', 'wpabsolute_block_users_backend' );

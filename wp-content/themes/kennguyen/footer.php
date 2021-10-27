@@ -8,7 +8,7 @@
             </div>
             <div class="modal-footer">
                 <button class="btn btn_cancel" type="button" data-bs-dismiss="modal">Cancel</button>
-                <button class="btn btn_more" type="button">Log out</button>
+                <a class="btn btn_more" href="<?php site_url() ?>/logout" type="button">Log out</a>
             </div>
         </div>
     </div>

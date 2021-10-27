@@ -129,6 +129,7 @@ switch ( $action ) {
 			wp_die( __( 'Sorry, you are not allowed to edit this user.' ) );
 		}
 
+
 		if ( IS_PROFILE_PAGE ) {
 			/**
 			 * Fires before the page loads on the 'Profile' editing screen.
@@ -457,6 +458,11 @@ endif;
 <tr class="user-nickname-wrap">
 	<th><label for="nickname"><?php _e( 'Nickname' ); ?> <span class="description"><?php _e( '(required)' ); ?></span></label></th>
 	<td><input type="text" name="nickname" id="nickname" value="<?php echo esc_attr( $profileuser->nickname ); ?>" class="regular-text" /></td>
+</tr>
+
+<tr class="user-birth_day-wrap">
+    <th><label for="birth_day"><?php _e( 'Birthday' ); ?></label></th>
+    <td><input type="date" name="birth_day" id="birth_day" value="<?php echo esc_attr( $profileuser->birth_day  ); ?>" class="regular-text" /></td>
 </tr>
 
 <tr class="user-display-name-wrap">
