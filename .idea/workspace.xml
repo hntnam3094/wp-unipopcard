@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="32e96615-6081-4390-8200-210aa0bca673" name="Default Changelist" comment="">
+  <change afterPath="$PROJECT_DIR$/wp-content/themes/kennguyen/core/class-tgm-plugin-activation.php" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/wp-content/themes/kennguyen/template-parts/home/slider.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/archive-craftcollection.php" beforeDir="false" afterPath="$PROJECT_DIR$/wp-content/themes/kennguyen/archive-craftcollection.php" afterDir="false" />
@@ -10,6 +11,25 @@
       <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/functions.php" beforeDir="false" afterPath="$PROJECT_DIR$/wp-content/themes/kennguyen/functions.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/wp-content/themes/kennguyen/index.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/template-parts/home/video.php" beforeDir="false" afterPath="$PROJECT_DIR$/wp-content/themes/kennguyen/template-parts/home/video.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/wp-content/themes/kennguyen/core/init.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/wp-content/themes/kennguyen/core/options.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/wp-content/themes/kennguyen/core/plugins.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/wp-content/themes/kennguyen/page-upgrade-today.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/wp-content/plugins/userPlugin.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/wp-content/themes/kennguyen/logout.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.htaccess" beforeDir="false" afterPath="$PROJECT_DIR$/.htaccess" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-admin/includes/user.php" beforeDir="false" afterPath="$PROJECT_DIR$/wp-admin/includes/user.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-admin/user-edit.php" beforeDir="false" afterPath="$PROJECT_DIR$/wp-admin/user-edit.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/account.php" beforeDir="false" afterPath="$PROJECT_DIR$/wp-content/themes/kennguyen/account.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/footer.php" beforeDir="false" afterPath="$PROJECT_DIR$/wp-content/themes/kennguyen/footer.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/forgot_pass.php" beforeDir="false" afterPath="$PROJECT_DIR$/wp-content/themes/kennguyen/forgot_pass.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/functions.php" beforeDir="false" afterPath="$PROJECT_DIR$/wp-content/themes/kennguyen/functions.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/header.php" beforeDir="false" afterPath="$PROJECT_DIR$/wp-content/themes/kennguyen/header.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/login.php" beforeDir="false" afterPath="$PROJECT_DIR$/wp-content/themes/kennguyen/login.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/manager.php" beforeDir="false" afterPath="$PROJECT_DIR$/wp-content/themes/kennguyen/manager.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/singup.php" beforeDir="false" afterPath="$PROJECT_DIR$/wp-content/themes/kennguyen/singup.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-includes/class-wp-user.php" beforeDir="false" afterPath="$PROJECT_DIR$/wp-includes/class-wp-user.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,7 +70,9 @@
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
