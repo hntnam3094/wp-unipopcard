@@ -9,10 +9,9 @@
 
 global $wpdb;
 $login_message = '';
+$table = $wpdb->prefix . 'customer';
 if (empty($_SESSION['user'])) {
 if ($_POST) {
-    $table = $wpdb->prefix . 'customer';
-
     $email = $wpdb->escape($_POST['email']);
     $password = $wpdb->escape($_POST['password']);
     $remember = $wpdb->escape($_POST['remember']);
@@ -31,6 +30,58 @@ if ($_POST) {
     }
     $login_message = '<p style="color: red">Sai mật khẩu hoặc tài khoản!</p>';
 }
+
+    require_once 'vendor/autoload.php';
+
+    $clientId = '1019571594189-htjk66sgngbpo5c04c8vqjppp8ttoagb.apps.googleusercontent.com';
+    $clientSecret = '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';
+    $redirectUri = 'http://dev.ken.com/login/';
+
+    $client = new Google_Client();
+    $client->setClientId($clientId);
+    $client->setClientSecret($clientSecret);
+    $client->setRedirectUri($redirectUri);
+    $client->addScope('email');
+    $client->addScope('profile');
+
+    if (isset($_GET['code'])) {
+        $token = $client->fetchAccessTokenWithAuthCode($_GET['code']);
+        $client->setAccessToken($token['access_token']);
+
+        $google_oauth = new Google_Service_Oauth2($client);
+        $google_account_info = $google_oauth->userinfo->get();
+        $email =  $google_account_info->email;
+
+        $queryResult = $wpdb->get_results(
+            $wpdb->prepare("SELECT * FROM {$table} WHERE email=%s",$email));
+
+        if (!empty($queryResult)) {
+            $_SESSION['user'] = $queryResult[0];
+            wp_redirect(site_url() . '/manager');
+            exit;
+        } else {
+            $data = array();
+            $data['first_name'] = $google_account_info->familyName;
+            $data['last_name'] = $google_account_info->givenName;
+            $data['email'] = $email;
+            $data['password'] = md5($email);
+            $data['active'] = 1;
+            $data['trackingMd5'] = md5($email);
+
+            $insertRs = $wpdb->insert($table, $data);
+            if (isset($insertRs)) {
+                $queryResultAfterInsert = $wpdb->get_results(
+                    $wpdb->prepare("SELECT * FROM {$table} WHERE email=%s",$email));
+                if (!empty($queryResultAfterInsert)) {
+                    $_SESSION['user'] = $queryResultAfterInsert[0];
+                    wp_redirect(site_url() . '/manager');
+                    exit;
+                }
+            }
+        }
+    }
+
+
 get_header();
 ?>
 <main>
@@ -47,10 +98,10 @@ get_header();
                                 </span>
                         <span class="text">Login with Facebook</span>
                     </a>
-                    <a class="btn_acction btn_gg mt-20" href="http://dev.ken.com/wp-login.php?loginSocial=google">
+                    <a class="btn_acction btn_gg mt-20" href="<?= $client->createAuthUrl() ?>">
                                 <span class="icon"> <img src="<?php bloginfo('template_directory') ?>/common/images/icon/icon_fb.svg" alt=""/>
                                 </span>
-                        <span class="text">Login with Facebook</span>
+                        <span class="text">Login with Google</span>
                     </a>
                     <div class="sub2 mt-70">Login with email</div>
                     <div class="group mt-20">
