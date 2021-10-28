@@ -1,7 +1,7 @@
 <?php
-if ( ! class_exists( 'ThachPham_Theme_Options' ) ) {
-    /* class ThachPham_Theme_Options sẽ chứa toàn bộ code tạo options trong theme từ Redux Framework */
-    class ThachPham_Theme_Options {
+if ( ! class_exists( 'VA_Theme_Options' ) ) {
+    /* class VA_Theme_Options sẽ chứa toàn bộ code tạo options trong theme từ Redux Framework */
+    class VA_Theme_Options {
         public $args = array();
         public $sections = array();
         public $theme;
@@ -62,8 +62,8 @@ if ( ! class_exists( 'ThachPham_Theme_Options' ) ) {
                 'display_name' => $theme->get('Name'), // Thiết lập tên theme hiển thị trong Theme Options
                 'menu_type' => 'menu',
                 'allow_sub_menu' => true,
-                'menu_title' => __('TP Theme Options', 'thachpham'),
-                'page_title' => __('TP Theme Options', 'thachpham'),
+                'menu_title' => __('VA Theme Options', 'vietanh'),
+                'page_title' => __('VA Theme Options', 'vietanh'),
                 'dev_mode' => false,
                 'customizer' => true,
                 'menu_icon' => '', // Đường dẫn icon của menu option
@@ -106,20 +106,20 @@ if ( ! class_exists( 'ThachPham_Theme_Options' ) ) {
             // Custom page help tabs, displayed using the help API. Tabs are shown in order of definition.
             $this->args['help_tabs'][] = array(
                 'id'      => 'redux-help-tab-1',
-                    'title'   => __( 'Theme Information 1', 'thachpham' ),
-                    'content' => __( '<p>This is the tab content, HTML is allowed.</p>', 'thachpham' )
+                    'title'   => __( 'Theme Information 1', 'vietanh' ),
+                    'content' => __( '<p>This is the tab content, HTML is allowed.</p>', 'vietanh' )
                 );
 
 
                 $this->args['help_tabs'][] = array(
                     'id'      => 'redux-help-tab-2',
-                    'title'   => __( 'Theme Information 2', 'thachpham' ),
-                    'content' => __( '<p>This is the tab content, HTML is allowed.</p>', 'thachpham' )
+                    'title'   => __( 'Theme Information 2', 'vietanh' ),
+                    'content' => __( '<p>This is the tab content, HTML is allowed.</p>', 'vietanh' )
                 );
 
 
                 // Set the help sidebar
-                $this->args['help_sidebar'] = __( '<p>This is the sidebar content, HTML is allowed.</p>', 'thachpham' );
+                $this->args['help_sidebar'] = __( '<p>This is the sidebar content, HTML is allowed.</p>', 'vietanh' );
             }
 
         /**
@@ -130,8 +130,8 @@ if ( ! class_exists( 'ThachPham_Theme_Options' ) ) {
         public function setSections() {
             // Home Section
             $this->sections[] = array(
-                'title'  => __( 'Header', 'thachpham' ),
-                'desc'   => __( 'All of settings for header on this theme.', 'thachpham' ),
+                'title'  => __( 'Header', 'vietanh' ),
+                'desc'   => __( 'All of settings for header on this theme.', 'vietanh' ),
                     'icon'   => 'el-icon-home',
                     'fields' => array(
                         array(
@@ -178,5 +178,5 @@ if ( ! class_exists( 'ThachPham_Theme_Options' ) ) {
             }
     }
     global $reduxConfig;
-    $reduxConfig = new ThachPham_Theme_Options();
+    $reduxConfig = new VA_Theme_Options();
 };

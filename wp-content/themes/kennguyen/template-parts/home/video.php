@@ -1,4 +1,3 @@
-
 <section class="video_intro">
     <div class="wraper">
         <div class="content_main">

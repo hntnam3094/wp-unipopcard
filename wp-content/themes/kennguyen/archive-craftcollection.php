@@ -28,37 +28,54 @@
             </div>
             <div class="course_main mt-10">
                 <div class="row">
-                    <div class="col-6 col-md-4 col-lg-3">
-                        <a class="item mt-20" href="detail.html">
-                            <div class="imgDrop">
-                                <img src="<?php bloginfo('template_directory') ?>/common/images/product2.png" alt=""/>
+                    <?php
+                    $args = array(
+                        'post_status' => 'free',
+                        'posts_per_page' => -1,
+                        'post_type'      => 'craftcollection'
+                    );
+                    $the_query = new WP_Query( $args );
+                    ?>
+                    <?php if( $the_query->have_posts() ): ?>
+                        <?php while( $the_query->have_posts() ) : $the_query->the_post(); ?>
+                            <div class="col-6 col-md-4 col-lg-3">
+                                <a class="item mt-20" href="detail.html">
+                                    <div class="imgDrop">
+                                        <?php echo get_the_post_thumbnail( get_the_id(), 'collection-thumb', array() ); ?>
+                                    </div>
+                                </a>
                             </div>
-                        </a>
-                    </div>
-                    <div class="col-6 col-md-4 col-lg-3">
-                        <a class="item mt-20 block" href="detail.html">
-                            <div class="imgDrop"> <img src="<?php bloginfo('template_directory') ?>/common/images/product2.png" alt=""/>
+                        <?php endwhile; ?>
+                    <?php endif; ?>
+                    <?php wp_reset_query(); ?>
+
+
+                    <?php
+                    $args = array(
+                        'post_status' => 'sale',
+                        'posts_per_page' => -1,
+                        'post_type'      => 'craftcollection',
+                        'showposts' => 5
+                    );
+                    $the_query = new WP_Query( $args );
+                    ?>
+                    <?php if( $the_query->have_posts() ): ?>
+                        <?php while( $the_query->have_posts() ) : $the_query->the_post(); ?>
+                            <div class="col-6 col-md-4 col-lg-3">
+                                <a class="item mt-20 block" href="detail.html">
+                                    <div class="imgDrop"> <?php echo get_the_post_thumbnail( get_the_id(), 'collection-thumb', array() ); ?>
+                                    </div>
+                                </a>
                             </div>
-                        </a>
-                    </div>
-                    <div class="col-6 col-md-4 col-lg-3">
-                        <a class="item mt-20 block" href="detail.html">
-                            <div class="imgDrop"> <img src="<?php bloginfo('template_directory') ?>/common/images/product2.png" alt=""/>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-6 col-md-4 col-lg-3"> <a class="item mt-20 block" href="detail.html">
-                            <div class="imgDrop"> <img src="<?php bloginfo('template_directory') ?>/common/images/product2.png" alt=""/></div></a></div>
-                    <div class="col-6 col-md-4 col-lg-3"> <a class="item mt-20 block" href="detail.html">
-                            <div class="imgDrop"> <img src="<?php bloginfo('template_directory') ?>/common/images/product2.png" alt=""/></div></a></div>
-                    <div class="col-6 col-md-4 col-lg-3"> <a class="item mt-20 block" href="detail.html">
-                            <div class="imgDrop"> <img src="<?php bloginfo('template_directory') ?>/common/images/product2.png" alt=""/></div></a></div>
-                    <div class="col-6 col-md-4 col-lg-3"> <a class="item mt-20 block" href="detail.html">
-                            <div class="imgDrop"> <img src="<?php bloginfo('template_directory') ?>/common/images/product2.png" alt=""/></div></a></div>
-                    <div class="col-6 col-md-4 col-lg-3"> <a class="item mt-20 block" href="detail.html">
-                            <div class="imgDrop"> <img src="<?php bloginfo('template_directory') ?>/common/images/product2.png" alt=""/></div></a></div>
+                        <?php endwhile; ?>
+                    <?php endif; ?>
+                    <?php wp_reset_query(); ?>
+
                 </div>
-                <div class="mt-30 text-center"> <a class="btn_more" href=""> <span class="block fz-31">JOIN NOW</span><span class="block sub">To Unlock ALL Collection Projects!</span></a></div>
+                <div class="mt-30 text-center"> <a class="btn_more" href="">
+                        <span class="block fz-31">JOIN NOW</span><span class="block sub">To Unlock ALL Collection Projects!</span>
+                    </a>
+                </div>
             </div>
             <div class="couse_intro mt-40">
                 <div class="heading">

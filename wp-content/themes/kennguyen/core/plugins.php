@@ -1,5 +1,5 @@
 <?php
-function thachpham_plugin_activation() {
+function va_plugin_activation() {
     // Khai bao plugin can cai dat
     $plugins = array(
         array(
@@ -12,7 +12,7 @@ function thachpham_plugin_activation() {
 
 	// Thiet lap TGM
 	$configs = array(
-        'menu' => 'tp_plugin_install',
+        'menu' => 'va_plugin_install',
         'has_notice' => true,
         'dismissable' => false,
         'is_automatic' => true
@@ -21,5 +21,5 @@ function thachpham_plugin_activation() {
 
 
 }
-add_action('tgmpa_register', 'thachpham_plugin_activation');
+add_action('tgmpa_register', 'va_plugin_activation');
 ?>
