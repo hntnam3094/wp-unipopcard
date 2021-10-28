@@ -269,7 +269,7 @@ function wpabsolute_block_users_backend() {
 }
 add_action( 'init', 'wpabsolute_block_users_backend' );
 
-<<<<<<< HEAD
+
 function activeAccountSMTP($email) {
     $urlActive = site_url() . '/verify?token='. md5($email);
 
@@ -323,5 +323,3 @@ function forgetPasswordSMTP($email) {
 }
 add_action( 'forget_password_email', 'forgetPasswordSMTP');
 
-=======
->>>>>>> origin/dev
