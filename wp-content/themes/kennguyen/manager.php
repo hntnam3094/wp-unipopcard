@@ -23,7 +23,7 @@ get_header();
                             </div>
                             <div class="name">
                                 <div class="fz-18">Account of</div>
-                                <div class="fz-24"><?= $user->first_name . $user->last_name ?></div>
+                                <div class="fz-24">Anna</div>
                             </div>
                         </div>
                         <div class="info_course">
