@@ -7,7 +7,7 @@
  * @since Ken Nguyen 1.0
  */
 
-wp_logout();
+session_unset();
 wp_redirect( site_url() . '/login' );
 exit;
 ?>

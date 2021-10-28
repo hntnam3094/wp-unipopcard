@@ -2,26 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="32e96615-6081-4390-8200-210aa0bca673" name="Default Changelist" comment="">
-  <change afterPath="$PROJECT_DIR$/wp-content/themes/kennguyen/core/class-tgm-plugin-activation.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/wp-content/themes/kennguyen/core/init.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/wp-content/themes/kennguyen/core/options.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/wp-content/themes/kennguyen/core/plugins.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/wp-content/themes/kennguyen/page-upgrade-today.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/wp-content/plugins/userPlugin.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/wp-content/themes/kennguyen/logout.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.htaccess" beforeDir="false" afterPath="$PROJECT_DIR$/.htaccess" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/wp-content/plugins/CustomerManagerment.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/wp-content/themes/kennguyen/common/js/custom.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/wp-content/themes/kennguyen/verify.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wp-admin/includes/user.php" beforeDir="false" afterPath="$PROJECT_DIR$/wp-admin/includes/user.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wp-admin/user-edit.php" beforeDir="false" afterPath="$PROJECT_DIR$/wp-admin/user-edit.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/plugins/userPlugin.php" beforeDir="false" afterPath="$PROJECT_DIR$/wp-content/plugins/userPlugin.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/account.php" beforeDir="false" afterPath="$PROJECT_DIR$/wp-content/themes/kennguyen/account.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/footer.php" beforeDir="false" afterPath="$PROJECT_DIR$/wp-content/themes/kennguyen/footer.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/forgot_pass.php" beforeDir="false" afterPath="$PROJECT_DIR$/wp-content/themes/kennguyen/forgot_pass.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/functions.php" beforeDir="false" afterPath="$PROJECT_DIR$/wp-content/themes/kennguyen/functions.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/header.php" beforeDir="false" afterPath="$PROJECT_DIR$/wp-content/themes/kennguyen/header.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/login.php" beforeDir="false" afterPath="$PROJECT_DIR$/wp-content/themes/kennguyen/login.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/logout.php" beforeDir="false" afterPath="$PROJECT_DIR$/wp-content/themes/kennguyen/logout.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/manager.php" beforeDir="false" afterPath="$PROJECT_DIR$/wp-content/themes/kennguyen/manager.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/singup.php" beforeDir="false" afterPath="$PROJECT_DIR$/wp-content/themes/kennguyen/singup.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wp-includes/class-wp-user.php" beforeDir="false" afterPath="$PROJECT_DIR$/wp-includes/class-wp-user.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,7 +52,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/wp-content/themes/kennguyen/core" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../tinphuc" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -93,7 +87,9 @@
       <workItem from="1635118986898" duration="4310000" />
       <workItem from="1635156873998" duration="12814000" />
       <workItem from="1635243263187" duration="4211000" />
-      <workItem from="1635290309360" duration="18445000" />
+      <workItem from="1635290309360" duration="25034000" />
+      <workItem from="1635344913793" duration="10040000" />
+      <workItem from="1635380255938" duration="22915000" />
     </task>
     <servers />
   </component>

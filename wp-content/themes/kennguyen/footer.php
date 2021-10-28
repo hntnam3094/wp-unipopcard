@@ -92,7 +92,7 @@
 <script src="<?php bloginfo('template_directory') ?>/common/js/popper.min.js"></script>
 <script src="<?php bloginfo('template_directory') ?>/common/js/bootstrap.min.js"></script>
 <script src="<?php bloginfo('template_directory') ?>/common/js/main.js"></script>
-
+<script src="<?php bloginfo('template_directory') ?>/common/js/custom.js"></script>
 <?php wp_footer(); ?>
 
 </body>
