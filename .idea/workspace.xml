@@ -2,11 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="32e96615-6081-4390-8200-210aa0bca673" name="Default Changelist" comment="">
-<<<<<<< HEAD
       <change afterPath="$PROJECT_DIR$/wp-content/plugins/CustomerManagerment.php" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/wp-content/themes/kennguyen/common/js/custom.js" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/wp-content/themes/kennguyen/verify.php" afterDir="false" />
-=======
   <change afterPath="$PROJECT_DIR$/wp-content/themes/kennguyen/core/class-tgm-plugin-activation.php" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/wp-content/themes/kennguyen/template-parts/home/slider.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
@@ -23,7 +21,6 @@
       <change afterPath="$PROJECT_DIR$/wp-content/plugins/userPlugin.php" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/wp-content/themes/kennguyen/logout.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.htaccess" beforeDir="false" afterPath="$PROJECT_DIR$/.htaccess" afterDir="false" />
->>>>>>> origin/dev
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/wp-content/plugins/userPlugin.php" beforeDir="false" afterPath="$PROJECT_DIR$/wp-content/plugins/userPlugin.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/account.php" beforeDir="false" afterPath="$PROJECT_DIR$/wp-content/themes/kennguyen/account.php" afterDir="false" />
@@ -35,6 +32,9 @@
       <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/logout.php" beforeDir="false" afterPath="$PROJECT_DIR$/wp-content/themes/kennguyen/logout.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/manager.php" beforeDir="false" afterPath="$PROJECT_DIR$/wp-content/themes/kennguyen/manager.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/singup.php" beforeDir="false" afterPath="$PROJECT_DIR$/wp-content/themes/kennguyen/singup.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/archive-craftcollection.php" beforeDir="false" afterPath="$PROJECT_DIR$/wp-content/themes/kennguyen/archive-craftcollection.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/single-craftcollection.php" beforeDir="false" afterPath="$PROJECT_DIR$/wp-content/themes/kennguyen/single-craftcollection.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -113,6 +113,12 @@
 =======
       <workItem from="1635295818065" duration="591000" />
       <workItem from="1635331191024" duration="12309000" />
+<<<<<<< HEAD
+>>>>>>> origin/dev
+=======
+      <workItem from="1635381239044" duration="1707000" />
+      <workItem from="1635417882232" duration="1788000" />
+      <workItem from="1635462315343" duration="2394000" />
 >>>>>>> origin/dev
     </task>
     <servers />

@@ -10,6 +10,7 @@
 global $wpdb;
 $login_message = '';
 $table = $wpdb->prefix . 'customer';
+require_once 'vendor/autoload.php';
 if (empty($_SESSION['user'])) {
 if ($_POST) {
     $email = $wpdb->escape($_POST['email']);
@@ -31,56 +32,86 @@ if ($_POST) {
     $login_message = '<p style="color: red">Sai mật khẩu hoặc tài khoản!</p>';
 }
 
-    require_once 'vendor/autoload.php';
+//    // start login with google
+//    try {
+//        $clientId = '1019571594189-htjk66sgngbpo5c04c8vqjppp8ttoagb.apps.googleusercontent.com';
+//        $clientSecret = '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';
+//        $redirectUri = 'http://localhost:80/login/';
+//
+//        $client = new Google_Client();
+//        $client->setClientId($clientId);
+//        $client->setClientSecret($clientSecret);
+//        $client->setRedirectUri($redirectUri);
+//        $client->addScope('email');
+//        $client->addScope('profile');
+//
+//        if (isset($_GET['code'])) {
+//            $token = $client->fetchAccessTokenWithAuthCode($_GET['code']);
+//            $client->setAccessToken($token['access_token']);
+//
+//            $google_oauth = new Google_Service_Oauth2($client);
+//            $google_account_info = $google_oauth->userinfo->get();
+//            $email =  $google_account_info->email;
+//
+//            $queryResult = $wpdb->get_results(
+//                $wpdb->prepare("SELECT * FROM {$table} WHERE email=%s",$email));
+//
+//            if (!empty($queryResult)) {
+//                $_SESSION['user'] = $queryResult[0];
+//                wp_redirect(site_url() . '/manager');
+//                exit;
+//            } else {
+//                $data = array();
+//                $data['first_name'] = $google_account_info->familyName;
+//                $data['last_name'] = $google_account_info->givenName;
+//                $data['email'] = $email;
+//                $data['password'] = md5($email);
+//                $data['active'] = 1;
+//                $data['trackingMd5'] = md5($email);
+//
+//                $insertRs = $wpdb->insert($table, $data);
+//                if (isset($insertRs)) {
+//                    $queryResultAfterInsert = $wpdb->get_results(
+//                        $wpdb->prepare("SELECT * FROM {$table} WHERE email=%s",$email));
+//                    if (!empty($queryResultAfterInsert)) {
+//                        $_SESSION['user'] = $queryResultAfterInsert[0];
+//                        wp_redirect(site_url() . '/manager');
+//                        exit;
+//                    }
+//                }
+//            }
+//        }
+//    }catch (Exception $exception) {
+//        wp_redirect(site_url() . '/login');
+//        exit;
+//    }
 
-    $clientId = '1019571594189-htjk66sgngbpo5c04c8vqjppp8ttoagb.apps.googleusercontent.com';
-    $clientSecret = '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';
-    $redirectUri = 'http://dev.ken.com/login/';
+//    // end login with google
 
-    $client = new Google_Client();
-    $client->setClientId($clientId);
-    $client->setClientSecret($clientSecret);
-    $client->setRedirectUri($redirectUri);
-    $client->addScope('email');
-    $client->addScope('profile');
+    $fb = new \Facebook\Facebook([
+        'app_id' => '3185286311726449',
+        'app_secret' => '7416e7ff97fb45592382f9a65401d374',
+        'default_graph_version' => 'v2.10',
+    ]);
 
-    if (isset($_GET['code'])) {
-        $token = $client->fetchAccessTokenWithAuthCode($_GET['code']);
-        $client->setAccessToken($token['access_token']);
+    $helper = $fb->getRedirectLoginHelper();
+    $login_url = $helper->getLoginUrl("http://localhost/login");
 
-        $google_oauth = new Google_Service_Oauth2($client);
-        $google_account_info = $google_oauth->userinfo->get();
-        $email =  $google_account_info->email;
 
-        $queryResult = $wpdb->get_results(
-            $wpdb->prepare("SELECT * FROM {$table} WHERE email=%s",$email));
+    try {
+        $accessToken = $helper->getAccessToken();
+        echo $accessToken;
 
-        if (!empty($queryResult)) {
-            $_SESSION['user'] = $queryResult[0];
-            wp_redirect(site_url() . '/manager');
-            exit;
-        } else {
-            $data = array();
-            $data['first_name'] = $google_account_info->familyName;
-            $data['last_name'] = $google_account_info->givenName;
-            $data['email'] = $email;
-            $data['password'] = md5($email);
-            $data['active'] = 1;
-            $data['trackingMd5'] = md5($email);
-
-            $insertRs = $wpdb->insert($table, $data);
-            if (isset($insertRs)) {
-                $queryResultAfterInsert = $wpdb->get_results(
-                    $wpdb->prepare("SELECT * FROM {$table} WHERE email=%s",$email));
-                if (!empty($queryResultAfterInsert)) {
-                    $_SESSION['user'] = $queryResultAfterInsert[0];
-                    wp_redirect(site_url() . '/manager');
-                    exit;
-                }
-            }
-        }
+    }catch (Exception $exception) {
+        echo $exception->getTraceAsString();
     }
 
+    if (!empty($accessToken)) {
+        $fb->setDefaultAccessToken($accessToken);
+        $res = $fb->get('/me?locale=en_US&fields=name,email');
+        $user = $res->getGraphUser();
+        echo $user->getField('name', 'email');
+    }
 
 get_header();
 ?>
@@ -92,17 +123,17 @@ get_header();
                 <form method="post" action="">
                     <div class="sub1">Don’t have an account? <a href="<?php site_url() ?>/singup">Sign up</a></div>
                     <div class="sub2 mt-20 fz-18">Welcome back</div>
-                    <a class="btn_acction btn_fb mt-20" href="">
+                    <a class="btn_acction btn_fb mt-20" href="<?= $login_url ?>">
                                 <span class="icon">
                                     <img src="<?php bloginfo('template_directory') ?>/common/images/icon/icon_fb.svg" alt=""/>
                                 </span>
                         <span class="text">Login with Facebook</span>
                     </a>
-                    <a class="btn_acction btn_gg mt-20" href="<?= $client->createAuthUrl() ?>">
-                                <span class="icon"> <img src="<?php bloginfo('template_directory') ?>/common/images/icon/icon_fb.svg" alt=""/>
-                                </span>
-                        <span class="text">Login with Google</span>
-                    </a>
+<!--                    <a class="btn_acction btn_gg mt-20" href="--><?//= $client->createAuthUrl() ?><!--">-->
+<!--                                <span class="icon"> <img src="--><?php //bloginfo('template_directory') ?><!--/common/images/icon/icon_fb.svg" alt=""/>-->
+<!--                                </span>-->
+<!--                        <span class="text">Login with Google</span>-->
+<!--                    </a>-->
                     <div class="sub2 mt-70">Login with email</div>
                     <div class="group mt-20">
                         <input id="email" name="email" class="input" type="mail" placeholder="Email"/>
@@ -142,7 +173,35 @@ get_header();
         </div>
     </section>
 </main>
+    <script>
+        window.fbAsyncInit = function() {
+            FB.init({
+                appId      : '{your-app-id}',
+                cookie     : true,
+                xfbml      : true,
+                version    : '{api-version}'
+            });
 
+            FB.AppEvents.logPageView();
+
+        };
+
+        (function(d, s, id){
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) {return;}
+            js = d.createElement(s); js.id = id;
+            js.src = "https://connect.facebook.net/en_US/sdk.js";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+
+
+
+        function checkLoginState() {
+            FB.getLoginStatus(function(response) {
+                statusChangeCallback(response);
+            });
+        }
+    </script>
 <?php get_footer();
 } else {
     wp_redirect(site_url() . '/manager');
