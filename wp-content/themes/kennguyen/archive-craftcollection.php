@@ -31,7 +31,7 @@
                     <?php
                     $args = array(
                         'post_status' => 'free',
-                        'posts_per_page' => -1,
+                        'showposts' => 1,
                         'post_type'      => 'craftcollection'
                     );
                     $the_query = new WP_Query( $args );
@@ -39,9 +39,9 @@
                     <?php if( $the_query->have_posts() ): ?>
                         <?php while( $the_query->have_posts() ) : $the_query->the_post(); ?>
                             <div class="col-6 col-md-4 col-lg-3">
-                                <a class="item mt-20" href="detail.html">
+                                <a class="item mt-20" href="<?= the_permalink()?>">
                                     <div class="imgDrop">
-                                        <?php echo get_the_post_thumbnail( get_the_id(), 'collection-thumb', array() ); ?>
+                                        <?php echo get_the_post_thumbnail( get_the_id(), 'collection-thumb', array('alt' => get_the_title()) ); ?>
                                     </div>
                                 </a>
                             </div>
@@ -54,6 +54,7 @@
                     $args = array(
                         'post_status' => 'sale',
                         'posts_per_page' => -1,
+                        'showposts' => 15,
                         'post_type'      => 'craftcollection',
                         'showposts' => 5
                     );
@@ -62,8 +63,8 @@
                     <?php if( $the_query->have_posts() ): ?>
                         <?php while( $the_query->have_posts() ) : $the_query->the_post(); ?>
                             <div class="col-6 col-md-4 col-lg-3">
-                                <a class="item mt-20 block" href="detail.html">
-                                    <div class="imgDrop"> <?php echo get_the_post_thumbnail( get_the_id(), 'collection-thumb', array() ); ?>
+                                <a class="item mt-20 block" href="#">
+                                    <div class="imgDrop"> <?php echo get_the_post_thumbnail( get_the_id(), 'collection-thumb', array('alt' => get_the_title()) ); ?>
                                     </div>
                                 </a>
                             </div>
