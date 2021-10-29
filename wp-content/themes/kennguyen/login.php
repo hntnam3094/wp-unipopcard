@@ -10,7 +10,6 @@
 global $wpdb;
 $login_message = '';
 $table = $wpdb->prefix . 'customer';
-require_once 'vendor/autoload.php';
 if (empty($_SESSION['user'])) {
 if ($_POST) {
     $email = $wpdb->escape($_POST['email']);
@@ -108,17 +107,17 @@ get_header();
                 <form method="post" action="">
                     <div class="sub1">Don’t have an account? <a href="<?php site_url() ?>/singup">Sign up</a></div>
                     <div class="sub2 mt-20 fz-18">Welcome back</div>
-                    <a class="btn_acction btn_fb mt-20" href="<?= $login_url ?>">
+                    <a class="btn_acction btn_fb mt-20" href="">
                                 <span class="icon">
                                     <img src="<?php bloginfo('template_directory') ?>/common/images/icon/icon_fb.svg" alt=""/>
                                 </span>
                         <span class="text">Login with Facebook</span>
                     </a>
-<!--                    <a class="btn_acction btn_gg mt-20" href="--><?//= $client->createAuthUrl() ?><!--">-->
-<!--                                <span class="icon"> <img src="--><?php //bloginfo('template_directory') ?><!--/common/images/icon/icon_fb.svg" alt=""/>-->
-<!--                                </span>-->
-<!--                        <span class="text">Login with Google</span>-->
-<!--                    </a>-->
+                    <a class="btn_acction btn_gg mt-20" href="<?= $client->createAuthUrl() ?>">
+                                <span class="icon"> <img src="<?php bloginfo('template_directory') ?>/common/images/icon/icon_fb.svg" alt=""/>
+                                </span>
+                        <span class="text">Login with Google</span>
+                    </a>
                     <div class="sub2 mt-70">Login with email</div>
                     <div class="group mt-20">
                         <input id="email" name="email" class="input" type="mail" placeholder="Email"/>
@@ -158,35 +157,7 @@ get_header();
         </div>
     </section>
 </main>
-    <script>
-        window.fbAsyncInit = function() {
-            FB.init({
-                appId      : '{your-app-id}',
-                cookie     : true,
-                xfbml      : true,
-                version    : '{api-version}'
-            });
 
-            FB.AppEvents.logPageView();
-
-        };
-
-        (function(d, s, id){
-            var js, fjs = d.getElementsByTagName(s)[0];
-            if (d.getElementById(id)) {return;}
-            js = d.createElement(s); js.id = id;
-            js.src = "https://connect.facebook.net/en_US/sdk.js";
-            fjs.parentNode.insertBefore(js, fjs);
-        }(document, 'script', 'facebook-jssdk'));
-
-
-
-        function checkLoginState() {
-            FB.getLoginStatus(function(response) {
-                statusChangeCallback(response);
-            });
-        }
-    </script>
 <?php get_footer();
 } else {
     wp_redirect(site_url() . '/manager');
