@@ -3,38 +3,34 @@
   <component name="ChangeListManager">
     <list default="true" id="32e96615-6081-4390-8200-210aa0bca673" name="Default Changelist" comment="">
       <change afterPath="$PROJECT_DIR$/wp-content/plugins/CustomerManagerment.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/wp-content/plugins/userPlugin.php" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/wp-content/themes/kennguyen/common/js/custom.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/wp-content/themes/kennguyen/verify.php" afterDir="false" />
-  <change afterPath="$PROJECT_DIR$/wp-content/themes/kennguyen/core/class-tgm-plugin-activation.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/wp-content/themes/kennguyen/template-parts/home/slider.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/archive-craftcollection.php" beforeDir="false" afterPath="$PROJECT_DIR$/wp-content/themes/kennguyen/archive-craftcollection.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/core/options.php" beforeDir="false" afterPath="$PROJECT_DIR$/wp-content/themes/kennguyen/core/options.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/core/plugins.php" beforeDir="false" afterPath="$PROJECT_DIR$/wp-content/themes/kennguyen/core/plugins.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/functions.php" beforeDir="false" afterPath="$PROJECT_DIR$/wp-content/themes/kennguyen/functions.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/wp-content/themes/kennguyen/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/template-parts/home/video.php" beforeDir="false" afterPath="$PROJECT_DIR$/wp-content/themes/kennguyen/template-parts/home/video.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/wp-content/themes/kennguyen/core/class-tgm-plugin-activation.php" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/wp-content/themes/kennguyen/core/init.php" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/wp-content/themes/kennguyen/core/options.php" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/wp-content/themes/kennguyen/core/plugins.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/wp-content/themes/kennguyen/page-upgrade-today.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/wp-content/plugins/userPlugin.php" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/wp-content/themes/kennguyen/logout.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/wp-content/themes/kennguyen/page-upgrade-today.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/wp-content/themes/kennguyen/template-parts/home/slider.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/wp-content/themes/kennguyen/verify.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.htaccess" beforeDir="false" afterPath="$PROJECT_DIR$/.htaccess" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/wp-content/plugins/userPlugin.php" beforeDir="false" afterPath="$PROJECT_DIR$/wp-content/plugins/userPlugin.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/account.php" beforeDir="false" afterPath="$PROJECT_DIR$/wp-content/themes/kennguyen/account.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/archive-craftcollection.php" beforeDir="false" afterPath="$PROJECT_DIR$/wp-content/themes/kennguyen/archive-craftcollection.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/core/options.php" beforeDir="false" afterPath="$PROJECT_DIR$/wp-content/themes/kennguyen/core/options.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/core/plugins.php" beforeDir="false" afterPath="$PROJECT_DIR$/wp-content/themes/kennguyen/core/plugins.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/footer.php" beforeDir="false" afterPath="$PROJECT_DIR$/wp-content/themes/kennguyen/footer.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/forgot_pass.php" beforeDir="false" afterPath="$PROJECT_DIR$/wp-content/themes/kennguyen/forgot_pass.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/functions.php" beforeDir="false" afterPath="$PROJECT_DIR$/wp-content/themes/kennguyen/functions.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/header.php" beforeDir="false" afterPath="$PROJECT_DIR$/wp-content/themes/kennguyen/header.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/wp-content/themes/kennguyen/index.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/login.php" beforeDir="false" afterPath="$PROJECT_DIR$/wp-content/themes/kennguyen/login.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/logout.php" beforeDir="false" afterPath="$PROJECT_DIR$/wp-content/themes/kennguyen/logout.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/manager.php" beforeDir="false" afterPath="$PROJECT_DIR$/wp-content/themes/kennguyen/manager.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/singup.php" beforeDir="false" afterPath="$PROJECT_DIR$/wp-content/themes/kennguyen/singup.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/archive-craftcollection.php" beforeDir="false" afterPath="$PROJECT_DIR$/wp-content/themes/kennguyen/archive-craftcollection.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/single-craftcollection.php" beforeDir="false" afterPath="$PROJECT_DIR$/wp-content/themes/kennguyen/single-craftcollection.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/singup.php" beforeDir="false" afterPath="$PROJECT_DIR$/wp-content/themes/kennguyen/singup.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/template-parts/home/video.php" beforeDir="false" afterPath="$PROJECT_DIR$/wp-content/themes/kennguyen/template-parts/home/video.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,6 +57,30 @@
       <filtered-out-file-type name="TAG" />
       <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
     </file-type-list>
+  </component>
+  <component name="PhpWorkspaceProjectConfiguration">
+    <include_path>
+      <path value="$PROJECT_DIR$/vendor/psr/cache" />
+      <path value="$PROJECT_DIR$/vendor/phpseclib/phpseclib" />
+      <path value="$PROJECT_DIR$/vendor/psr/http-client" />
+      <path value="$PROJECT_DIR$/vendor/psr/http-factory" />
+      <path value="$PROJECT_DIR$/vendor/psr/http-message" />
+      <path value="$PROJECT_DIR$/vendor/psr/log" />
+      <path value="$PROJECT_DIR$/vendor/monolog/monolog" />
+      <path value="$PROJECT_DIR$/vendor/firebase/php-jwt" />
+      <path value="$PROJECT_DIR$/vendor/symfony/deprecation-contracts" />
+      <path value="$PROJECT_DIR$/vendor/guzzlehttp/guzzle" />
+      <path value="$PROJECT_DIR$/vendor/guzzlehttp/promises" />
+      <path value="$PROJECT_DIR$/vendor/guzzlehttp/psr7" />
+      <path value="$PROJECT_DIR$/vendor/ralouphie/getallheaders" />
+      <path value="$PROJECT_DIR$/vendor/google/apiclient" />
+      <path value="$PROJECT_DIR$/vendor/google/apiclient-services" />
+      <path value="$PROJECT_DIR$/vendor/google/auth" />
+      <path value="$PROJECT_DIR$/vendor/paragonie/random_compat" />
+      <path value="$PROJECT_DIR$/vendor/composer" />
+      <path value="$PROJECT_DIR$/vendor/paragonie/constant_time_encoding" />
+      <path value="$PROJECT_DIR$/vendor/facebook/graph-sdk" />
+    </include_path>
   </component>
   <component name="ProjectId" id="1zxPuklSuzFi24bg3Saxu8tjX94" />
   <component name="ProjectViewState">
@@ -106,20 +126,14 @@
       <workItem from="1635118986898" duration="4310000" />
       <workItem from="1635156873998" duration="12814000" />
       <workItem from="1635243263187" duration="4211000" />
-<<<<<<< HEAD
       <workItem from="1635290309360" duration="25034000" />
       <workItem from="1635344913793" duration="10040000" />
       <workItem from="1635380255938" duration="22915000" />
-=======
       <workItem from="1635295818065" duration="591000" />
       <workItem from="1635331191024" duration="12309000" />
-<<<<<<< HEAD
->>>>>>> origin/dev
-=======
       <workItem from="1635381239044" duration="1707000" />
       <workItem from="1635417882232" duration="1788000" />
       <workItem from="1635462315343" duration="2394000" />
->>>>>>> origin/dev
     </task>
     <servers />
   </component>

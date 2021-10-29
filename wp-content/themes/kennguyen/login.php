@@ -95,23 +95,8 @@ if ($_POST) {
     ]);
 
     $helper = $fb->getRedirectLoginHelper();
-    $login_url = $helper->getLoginUrl("http://localhost/login");
+    $login_url = $helper->getLoginUrl("http://localhost/fb-callback.php");
 
-
-    try {
-        $accessToken = $helper->getAccessToken();
-        echo $accessToken;
-
-    }catch (Exception $exception) {
-        echo $exception->getTraceAsString();
-    }
-
-    if (!empty($accessToken)) {
-        $fb->setDefaultAccessToken($accessToken);
-        $res = $fb->get('/me?locale=en_US&fields=name,email');
-        $user = $res->getGraphUser();
-        echo $user->getField('name', 'email');
-    }
 
 get_header();
 ?>
