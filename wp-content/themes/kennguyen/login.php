@@ -7,9 +7,13 @@
  * @since Ken Nguyen 1.0
  */
 
+if(!session_id()) {
+    session_start();
+}
 global $wpdb;
-$login_message = '';
 $table = $wpdb->prefix . 'customer';
+$login_message = '';
+require_once 'vendor/autoload.php';
 if (empty($_SESSION['user'])) {
 if ($_POST) {
     $email = $wpdb->escape($_POST['email']);
@@ -31,59 +35,59 @@ if ($_POST) {
     $login_message = '<p style="color: red">Sai mật khẩu hoặc tài khoản!</p>';
 }
 
-//    // start login with google
-//    try {
-//        $clientId = '1019571594189-htjk66sgngbpo5c04c8vqjppp8ttoagb.apps.googleusercontent.com';
-//        $clientSecret = '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';
-//        $redirectUri = 'http://localhost:80/login/';
-//
-//        $client = new Google_Client();
-//        $client->setClientId($clientId);
-//        $client->setClientSecret($clientSecret);
-//        $client->setRedirectUri($redirectUri);
-//        $client->addScope('email');
-//        $client->addScope('profile');
-//
-//        if (isset($_GET['code'])) {
-//            $token = $client->fetchAccessTokenWithAuthCode($_GET['code']);
-//            $client->setAccessToken($token['access_token']);
-//
-//            $google_oauth = new Google_Service_Oauth2($client);
-//            $google_account_info = $google_oauth->userinfo->get();
-//            $email =  $google_account_info->email;
-//
-//            $queryResult = $wpdb->get_results(
-//                $wpdb->prepare("SELECT * FROM {$table} WHERE email=%s",$email));
-//
-//            if (!empty($queryResult)) {
-//                $_SESSION['user'] = $queryResult[0];
-//                wp_redirect(site_url() . '/manager');
-//                exit;
-//            } else {
-//                $data = array();
-//                $data['first_name'] = $google_account_info->familyName;
-//                $data['last_name'] = $google_account_info->givenName;
-//                $data['email'] = $email;
-//                $data['password'] = md5($email);
-//                $data['active'] = 1;
-//                $data['trackingMd5'] = md5($email);
-//
-//                $insertRs = $wpdb->insert($table, $data);
-//                if (isset($insertRs)) {
-//                    $queryResultAfterInsert = $wpdb->get_results(
-//                        $wpdb->prepare("SELECT * FROM {$table} WHERE email=%s",$email));
-//                    if (!empty($queryResultAfterInsert)) {
-//                        $_SESSION['user'] = $queryResultAfterInsert[0];
-//                        wp_redirect(site_url() . '/manager');
-//                        exit;
-//                    }
-//                }
-//            }
-//        }
-//    }catch (Exception $exception) {
-//        wp_redirect(site_url() . '/login');
-//        exit;
-//    }
+    // start login with google
+    try {
+        $clientId = '1019571594189-htjk66sgngbpo5c04c8vqjppp8ttoagb.apps.googleusercontent.com';
+        $clientSecret = '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';
+        $redirectUri = 'http://localhost:80/login/';
+
+        $client = new Google_Client();
+        $client->setClientId($clientId);
+        $client->setClientSecret($clientSecret);
+        $client->setRedirectUri($redirectUri);
+        $client->addScope('email');
+        $client->addScope('profile');
+
+        if (isset($_GET['code'])) {
+            $token = $client->fetchAccessTokenWithAuthCode($_GET['code']);
+            $client->setAccessToken($token['access_token']);
+
+            $google_oauth = new Google_Service_Oauth2($client);
+            $google_account_info = $google_oauth->userinfo->get();
+            $email =  $google_account_info->email;
+
+            $queryResult = $wpdb->get_results(
+                $wpdb->prepare("SELECT * FROM {$table} WHERE email=%s",$email));
+
+            if (!empty($queryResult)) {
+                $_SESSION['user'] = $queryResult[0];
+                wp_redirect(site_url() . '/manager');
+                exit;
+            } else {
+                $data = array();
+                $data['first_name'] = $google_account_info->familyName;
+                $data['last_name'] = $google_account_info->givenName;
+                $data['email'] = $email;
+                $data['password'] = md5($email);
+                $data['active'] = 1;
+                $data['trackingMd5'] = md5($email);
+
+                $insertRs = $wpdb->insert($table, $data);
+                if (isset($insertRs)) {
+                    $queryResultAfterInsert = $wpdb->get_results(
+                        $wpdb->prepare("SELECT * FROM {$table} WHERE email=%s",$email));
+                    if (!empty($queryResultAfterInsert)) {
+                        $_SESSION['user'] = $queryResultAfterInsert[0];
+                        wp_redirect(site_url() . '/manager');
+                        exit;
+                    }
+                }
+            }
+        }
+    }catch (Exception $exception) {
+        wp_redirect(site_url() . '/login');
+        exit;
+    }
 
 //    // end login with google
 
@@ -94,8 +98,8 @@ if ($_POST) {
     ]);
 
     $helper = $fb->getRedirectLoginHelper();
-    $login_url = $helper->getLoginUrl("http://localhost/fb-callback.php");
 
+    $login_url = $helper->getLoginUrl("http://localhost/fb-callback/");
 
 get_header();
 ?>
@@ -107,7 +111,7 @@ get_header();
                 <form method="post" action="">
                     <div class="sub1">Don’t have an account? <a href="<?php site_url() ?>/singup">Sign up</a></div>
                     <div class="sub2 mt-20 fz-18">Welcome back</div>
-                    <a class="btn_acction btn_fb mt-20" href="">
+                    <a class="btn_acction btn_fb mt-20" href="<?= $login_url ?>">
                                 <span class="icon">
                                     <img src="<?php bloginfo('template_directory') ?>/common/images/icon/icon_fb.svg" alt=""/>
                                 </span>
