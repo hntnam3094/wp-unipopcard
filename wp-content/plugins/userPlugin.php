@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name: My Plugin - Customer
+ * Plugin Name: Migration - Customer
  * Plugin URI: https://www.myplugin.com
  * Description: Plugin Description
  * Version: 1.0.0
