@@ -5,10 +5,10 @@
         <div class="wraper">
             <h1 class="ttl_main fz-40 text-up"><?= $craftcollection->labels->name ?> </h1>
             <div class="heading">
-                <h2 class="ttl_sub fz-31 text-up mt-40">Your SEPTEMBER CRAFT COLLECTION</h2>
+                <h2 class="ttl_sub fz-31 text-up mt-40">Your <?php echo date('F');?> CRAFT COLLECTION</h2>
                 <div class="text">
                     <p>See a project you want to make?
-                        <a href='#'>Become a member</a> to unlock this month’s collection and start crafting your favorites. When the month is up, you’ll get a new craft collection — and you can still access these projects anytime.</p>
+                        <a href='/upgrade-today'>Become a member</a> to unlock this month’s collection and start crafting your favorites. When the month is up, you’ll get a new craft collection — and you can still access these projects anytime.</p>
                 </div>
             </div>
             <div class="tab_category mt-30">
@@ -22,7 +22,7 @@
                     );
                     $categories = get_categories( $args );
                     foreach ( $categories as $category ) { ?>
-                        <?php echo '<div class="col-12 col-md-6 col-lg-3 item">  <a class="active" href="/category/'.$category->slug.'" target="_blank">'.$category->name.'</a></div>' ; ?>
+                        <?php echo '<div class="col-12 col-md-6 col-lg-3 item">  <a class="active" href="/craftcollection/'.$category->slug.'">'.$category->name.'</a></div>' ; ?>
                     <?php } ?>
                 </div>
             </div>
@@ -31,7 +31,6 @@
                     <?php
                     $args = array(
                         'post_status' => 'free',
-                        'posts_per_page' => -1,
                         'post_type'      => 'craftcollection'
                     );
                     $the_query = new WP_Query( $args );
@@ -53,9 +52,7 @@
                     <?php
                     $args = array(
                         'post_status' => 'sale',
-                        'posts_per_page' => -1,
                         'post_type'      => 'craftcollection',
-                        'showposts' => 5
                     );
                     $the_query = new WP_Query( $args );
                     ?>
@@ -72,61 +69,108 @@
                     <?php wp_reset_query(); ?>
 
                 </div>
-                <div class="mt-30 text-center"> <a class="btn_more" href="">
+                <div class="mt-30 text-center"> <a class="btn_more" href="/upgrade-today">
                         <span class="block fz-31">JOIN NOW</span><span class="block sub">To Unlock ALL Collection Projects!</span>
                     </a>
                 </div>
             </div>
             <div class="couse_intro mt-40">
                 <div class="heading">
-                    <h2 class="ttl_sub fz-31 text-up">September SVG CUT FILES & PRINTABLES</h2>
+                    <h2 class="ttl_sub fz-31 text-up">
+                        <?php
+                        $args = array(
+                            'type'      => 'post',
+                            'child_of'  => 0,
+                            'hide_empty' => 0,
+                            'parent'    => 4
+                        );
+                        $categories = get_categories( $args );
+                        $listCategoriesShow = [];
+                        foreach ( $categories as $category ) {
+                            if (count(get_term_meta($category->term_id, 'show_category')) > 0 && get_term_meta($category->term_id, 'show_category')[0] == 'yes') {
+                                array_push($listCategoriesShow, $category->name);
+                            }
+                        }
+                        echo date('F').' '.implode(' & ', $listCategoriesShow);
+                        ?>
+                        </h2>
                     <div class="text">
-                        <p>These designs are only available until the end of the month. <a href='#'>Become a member</a> to download them today!</p>
+                        <p>These designs are only available until the end of the month. <a href='/upgrade-today'>Become a member</a> to download them today!</p>
                     </div>
                 </div>
                 <div class="course_main mt-10">
                     <div class="row">
-                        <div class="col-4 col-md-3 col-lg-2"> <a class="item mt-20" href="detail.html">
-                                <div class="imgDrop"> <img src="<?php bloginfo('template_directory') ?>/common/images/product3.png" alt=""/></div></a></div>
-                        <div class="col-4 col-md-3 col-lg-2"> <a class="item mt-20 block" href="detail.html">
-                                <div class="imgDrop"> <img src="<?php bloginfo('template_directory') ?>/common/images/product3.png" alt=""/></div></a></div>
-                        <div class="col-4 col-md-3 col-lg-2"> <a class="item mt-20 block" href="detail.html">
-                                <div class="imgDrop"> <img src="<?php bloginfo('template_directory') ?>/common/images/product3.png" alt=""/></div></a></div>
-                        <div class="col-4 col-md-3 col-lg-2"> <a class="item mt-20 block" href="detail.html">
-                                <div class="imgDrop"> <img src="<?php bloginfo('template_directory') ?>/common/images/product3.png" alt=""/></div></a></div>
-                        <div class="col-4 col-md-3 col-lg-2"> <a class="item mt-20 block" href="detail.html">
-                                <div class="imgDrop"> <img src="<?php bloginfo('template_directory') ?>/common/images/product3.png" alt=""/></div></a></div>
-                        <div class="col-4 col-md-3 col-lg-2"> <a class="item mt-20 block" href="detail.html">
-                                <div class="imgDrop"> <img src="<?php bloginfo('template_directory') ?>/common/images/product3.png" alt=""/></div></a></div>
-                        <div class="col-4 col-md-3 col-lg-2"> <a class="item mt-20 block" href="detail.html">
-                                <div class="imgDrop"> <img src="<?php bloginfo('template_directory') ?>/common/images/product3.png" alt=""/></div></a></div>
-                        <div class="col-4 col-md-3 col-lg-2"> <a class="item mt-20 block" href="detail.html">
-                                <div class="imgDrop"> <img src="<?php bloginfo('template_directory') ?>/common/images/product3.png" alt=""/></div></a></div>
+                        <?php
+                        $args = array(
+                            'post_status' => 'free',
+                            'posts_per_page' => -1,
+                            'post_type'      => 'craftcollection',
+                            'showposts' => 5
+                        );
+                        $the_query = new WP_Query( $args );
+                        ?>
+                        <?php if( $the_query->have_posts() ): ?>
+                            <?php while( $the_query->have_posts() ) : $the_query->the_post(); ?>
+                                <div class="col-4 col-md-3 col-lg-2">
+                                    <a class="item mt-20" href="detail.html">
+                                        <div class="imgDrop"> <?php echo get_the_post_thumbnail( get_the_id(), 'collection-thumb', array() ); ?></div>
+                                    </a>
+                                </div>
+                            <?php endwhile; ?>
+                        <?php endif; ?>
+                        <?php wp_reset_query(); ?>
+
+                        <?php
+                        $args = array(
+                            'post_status' => 'sale',
+                            'posts_per_page' => -1,
+                            'post_type'      => 'craftcollection',
+                            'showposts' => 5
+                        );
+                        $the_query = new WP_Query( $args );
+                        ?>
+                        <?php if( $the_query->have_posts() ): ?>
+                            <?php while( $the_query->have_posts() ) : $the_query->the_post(); ?>
+                                <div class="col-4 col-md-3 col-lg-2">
+                                    <a class="item mt-20 block" href="detail.html">
+                                        <div class="imgDrop"> <?php echo get_the_post_thumbnail( get_the_id(), 'collection-thumb', array() ); ?></div>
+                                    </a>
+                                </div>
+                            <?php endwhile; ?>
+                        <?php endif; ?>
+                        <?php wp_reset_query(); ?>
                     </div>
-                    <div class="mt-30 text-center"> <a class="btn_more" href=""> <span class="block fz-31">JOIN NOW</span><span class="block sub">To Unlock ALL Collection Projects!</span></a></div>
+                    <div class="mt-30 text-center"> <a class="btn_more" href="/upgrade-today"> <span class="block fz-31">JOIN NOW</span><span class="block sub">To Unlock ALL Collection Projects!</span></a></div>
                 </div>
             </div>
             <div class="key_bonus mt-40">
                 <div class="heading">
-                    <h2 class="ttl_sub fz-31 text-up">YWEEKLY BONUS</h2>
+                    <h2 class="ttl_sub fz-31 text-up">WEEKLY BONUS</h2>
                     <div class="text">
                         <p>Every week we post a free project that you can download anytime and share with others!</p>
                     </div>
                 </div>
                 <div class="course_main mt-10">
                     <div class="row">
-                        <div class="col-4 col-md-3 col-lg-2"> <a class="item mt-20" href="#">
-                                <div class="imgDrop"> <img src="<?php bloginfo('template_directory') ?>/common/images/product4.png" alt=""/></div></a></div>
-                        <div class="col-4 col-md-3 col-lg-2"> <a class="item mt-20" href="#">
-                                <div class="imgDrop"> <img src="<?php bloginfo('template_directory') ?>/common/images/product4.png" alt=""/></div></a></div>
-                        <div class="col-4 col-md-3 col-lg-2"> <a class="item mt-20" href="#">
-                                <div class="imgDrop"> <img src="<?php bloginfo('template_directory') ?>/common/images/product4.png" alt=""/></div></a></div>
-                        <div class="col-4 col-md-3 col-lg-2"> <a class="item mt-20" href="#">
-                                <div class="imgDrop"> <img src="<?php bloginfo('template_directory') ?>/common/images/product4.png" alt=""/></div></a></div>
-                        <div class="col-4 col-md-3 col-lg-2"> <a class="item mt-20" href="#">
-                                <div class="imgDrop"> <img src="<?php bloginfo('template_directory') ?>/common/images/product4.png" alt=""/></div></a></div>
-                        <div class="col-4 col-md-3 col-lg-2"> <a class="item mt-20" href="#">
-                                <div class="imgDrop"> <img src="<?php bloginfo('template_directory') ?>/common/images/product4.png" alt=""/></div></a></div>
+                        <?php
+                        $args = array(
+                            'post_status' => 'free',
+                            'posts_per_page' => -1,
+                            'post_type'      => 'craftcollection',
+                            'showposts' => 5
+                        );
+                        $the_query = new WP_Query( $args );
+                        ?>
+                        <?php if( $the_query->have_posts() ): ?>
+                            <?php while( $the_query->have_posts() ) : $the_query->the_post(); ?>
+                                <div class="col-4 col-md-3 col-lg-2">
+                                    <a class="item mt-20" href="#">
+                                        <div class="imgDrop"> <img src="<?php bloginfo('template_directory') ?>/common/images/product4.png" alt=""/></div>
+                                    </a>
+                                </div>
+                            <?php endwhile; ?>
+                        <?php endif; ?>
+                        <?php wp_reset_query(); ?>
                     </div>
                 </div>
             </div>
