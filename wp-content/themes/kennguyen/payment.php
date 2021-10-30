@@ -14,6 +14,7 @@ global $wpdb;
 $table = $wpdb->prefix . 'customer';
 $table_order = $wpdb->prefix . 'order';
 $message = '';
+
 if (!empty($_SESSION['user'])) {
     global $va_options;
 
@@ -26,7 +27,7 @@ if (!empty($_SESSION['user'])) {
             $end_date = date("Y-m-d", strtotime("+1 month", strtotime($start_date)));
             $packge = [
               'id' => 1,
-              'package' => 'Year package',
+              'package' => 'Yearly package',
               'start_date' => $start_date,
               'end_date' => $end_date,
               'price' => $va_options['kn_monthly_package_price'],
@@ -60,6 +61,7 @@ if (!empty($_SESSION['user'])) {
             $data['sale_price'] = $_POST['sale_price'];
             $data['status'] = 1;
             if (empty($user->start_date) && empty($user->end_date)) {
+                var_dump('new');
                 $insertRs = $wpdb->insert($table_order, $data);
                 if (isset($insertRs)) {
                     $data = [ 'member_ship' => 1,
@@ -76,7 +78,9 @@ if (!empty($_SESSION['user'])) {
                     }
                 }
             } else {
-                if (!$today >= $user->start_date && !$today <= $user->end_date) {
+                if ($today >= $user->start_date && $today <= $user->end_date) {
+                    $message = '<h2 style="color: green">Your account is still valid, please try again later!</h2>';
+                } else {
                     $insertRs = $wpdb->insert($table_order, $data);
                     if (isset($insertRs)) {
                         $data = [ 'member_ship' => 1,
@@ -92,8 +96,6 @@ if (!empty($_SESSION['user'])) {
                             exit;
                         }
                     }
-                } else {
-                    $message = '<h2 style="color: green">Your account is still valid, please try again later!</h2>';
                 }
             }
 

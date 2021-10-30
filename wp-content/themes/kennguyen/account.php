@@ -7,6 +7,7 @@
  * @since Ken Nguyen 1.0
  */
 
+ob_start();
 if (!empty($_SESSION['user'])) {
 $user = $_SESSION['user'];
 $active = '';
@@ -79,8 +80,10 @@ if ($_POST) {
 
 }
 get_header();
+    do_action('is_membership');
 ?>
 <main>
+
     <section class="my_project pt-40 pb-100">
         <div class="wraper">
             <div class="row">
@@ -174,6 +177,39 @@ get_header();
                                         </form>
                                     </div>
                                 </div>
+                                <?php
+                                if (isset($_SESSION['user'])) {
+                                    $user = $_SESSION['user'];
+                                    $today = date("Y-m-d");
+                                    $expired_date = [];
+                                    $level_membership = 'Not active';
+                                    if (!empty($user->start_date) && !empty($user->end_date)) {
+                                        if ($today >= $user->start_date && $today <= $user->end_date) {
+                                            $number_end = date("z", strtotime($user->end_date)) + 1;
+                                            $number_today = date("z",strtotime($today)) + 1;
+                                            $days_left = $number_end - $number_today;
+                                            $date_formate = date('l,F j, Y', strtotime($user->end_date));
+                                            $expired_date = [
+                                                'days_left' => $days_left,
+                                                'date_format' => $date_formate
+                                            ];
+                                        } else {
+                                            $expired_date = [
+                                            ];
+                                        }
+                                    }
+
+                                    if ($user->type_member != 0) {
+                                        if ($user->type_member == 1) {
+                                            $level_membership = 'Monthly';
+                                        }
+
+                                        if ($user->type_member == 2) {
+                                            $level_membership = 'Yearly';
+                                        }
+                                    }
+                                }
+                                ?>
                                 <div class="tab-pane fade" id="tab03" role="tabpanel" aria-labelledby="tab03-tab">
                                     <h2 class="ttl_sub fz-22">Membership Details</h2>
                                     <div class="info mt-30">
@@ -183,7 +219,7 @@ get_header();
                                             </div>
                                             <div class="col-12 col-md-7">
                                                 <div class="content">
-                                                    <p>Monthly<br><a href="<?php site_url() ?>/upgrade-today">Upgrade to the yearly plan </a>to get the best value for your membership!</p>
+                                                    <p><?= $level_membership  ?><br><a href="<?php site_url() ?>/upgrade-today">Upgrade to the yearly plan </a>to get the best value for your membership!</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -192,7 +228,16 @@ get_header();
                                                 <div class="label">Membership Expiration:</div>
                                             </div>
                                             <div class="col-12 col-md-7">
-                                                <div class="content">Monday, August 30, 2021 (23 days left) After this date you will not be able to download any project files or access members-only content.</div>
+                                                <?php
+                                                if (!empty($expired_date)) { ?>
+                                                    <div class="content">
+                                                        <?= $expired_date['date_format'] ?> (<?= $expired_date['days_left'] ?> days left) After this date you will not be able to download any project files or access members-only content.
+                                                    </div>
+                                               <?php } else { ?>
+                                                    <div class="content">
+                                                        <a href="<?php site_url() ?>/upgrade-today">JOIN NOW</a>
+                                                    </div>
+                                               <?php }?>
                                             </div>
                                         </div>
                                     </div>

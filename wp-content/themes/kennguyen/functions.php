@@ -334,7 +334,6 @@ function forgetPasswordSMTP($email, $password) {
 }
 add_action( 'forget_password_email', 'forgetPasswordSMTP', 10, 2);
 
-<<<<<<< HEAD
 function your_function()
 {
     add_settings_field(
@@ -347,7 +346,7 @@ function your_function()
     );
 }
 add_action('admin_init', 'your_function');
-=======
+
 /*  Custom Field for Categories.
     ======================================== */
 
@@ -424,4 +423,20 @@ function smashing_craftcollection_column( $column, $post_id ) {
         echo get_post_status( $post_id);
     }
 }
->>>>>>> origin/dev
+
+add_action('is_membership', 'check_membership');
+function check_membership() {
+    $isMember = 0;
+    if (isset($_SESSION['user'])) {
+        $user = $_SESSION['user'];
+        $today = date("Y-m-d");
+        if (!empty($user->start_date) && !empty($user->end_date)) {
+            if ($today >= $user->start_date && $today <= $user->end_date) {
+                $isMember = 1;
+            } else {
+                $isMember = 0;
+            }
+        }
+    }
+    echo $isMember;
+}
