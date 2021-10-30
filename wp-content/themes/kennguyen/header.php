@@ -21,6 +21,7 @@
 <?php wp_body_open(); ?>
 
 <header class="header active_search" id="header">
+    <?php do_action('block_user_login'); ?>
     <div class="header-top">
         <div class="wraper">
             <button class="navbar-toggler toggle_class" type="button" data-bs-toggle="modal" data-bs-target="#navbarSupportedContent"><span class="navbar-toggler-icon"></span></button>
@@ -71,8 +72,8 @@
                 <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
                     <ul>
                         <?php
-                            global $user_ID;
-                            if ($user_ID == 0) { ?>
+                            $user = $_SESSION['user'];
+                            if (empty($user)) { ?>
                                 <li><a class="dropdown-item" href="<?php site_url() ?>/login"><i class="icon"> <img src="<?php bloginfo('template_directory') ?>/common/images/icon/icon_login.png" alt=""/></i>Login</a></li>
                                 <li><a class="dropdown-item" href="<?php site_url() ?>/singup"><i class="icon"> <img src="<?php bloginfo('template_directory') ?>/common/images/icon/icon_signup.png" alt=""/></i>Sign up</a></li>
 
@@ -94,3 +95,4 @@
 </header>
 
 <div id="content" class="site-content">
+

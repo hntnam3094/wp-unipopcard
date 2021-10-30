@@ -6,7 +6,10 @@
  * @subpackage Kem_Nguyen
  * @since Ken Nguyen 1.0
  */
-get_header()
+
+if (!empty($_SESSION['user'])) {
+$user = $_SESSION['user'];
+get_header();
 ?>
 <main>
     <section class="my_project pt-40 pb-100">
@@ -20,7 +23,7 @@ get_header()
                             </div>
                             <div class="name">
                                 <div class="fz-18">Account of</div>
-                                <div class="fz-24">Anna</div>
+                                <div class="fz-24"><?= $user->first_name .' '. $user->last_name ?></div>
                             </div>
                         </div>
                         <div class="info_course">
@@ -122,4 +125,9 @@ get_header()
         </div>
     </section>
 </main>
-<?php get_footer() ?>
+<?php get_footer();
+} else {
+    wp_redirect(home_url());
+    exit;
+}
+?>

@@ -6,8 +6,79 @@
  * @subpackage Kem_Nguyen
  * @since Ken Nguyen 1.0
  */
+
+if (!empty($_SESSION['user'])) {
+$user = $_SESSION['user'];
+$active = '';
+$password_message = '';
+$infomartion_message = '';
+if ($_POST) {
+    global $wpdb;
+    $table = $wpdb->prefix.'customer';
+
+    $first_name = $wpdb->escape($_POST['first_name']);
+    $last_name = $wpdb->escape($_POST['last_name']);
+    $birth_day = $wpdb->escape($_POST['birth_day']);
+    $email = $wpdb->escape($_POST['email']);
+
+    $old_password = $wpdb->escape($_POST['old_password']);
+    $new_password = $wpdb->escape($_POST['new_password']);
+    $new_password_confirm = $wpdb->escape($_POST['new_password_confirm']);
+
+    if (isset($_POST['old_password'])) {
+        $active = 'password';
+        if (empty($old_password) || empty($new_password) || empty($new_password_confirm)) {
+            $password_message = '<p style="color: red">Vui lòng điền đầy đủ thông tin mật khẩu!</p>';
+        } elseif (strlen($new_password) < 6 || strlen($new_password_confirm) < 6 ) {
+            $password_message = '<p style="color: red">Mật khẩu mới phải dài hơn 6 ký tự!</p>';
+        } elseif ($new_password != $new_password_confirm) {
+            $password_message = '<p style="color: red">Mật khẩu nhập lại không trùng với mật khẩu mới!</p>';
+        } else {
+            $queryResult = $wpdb->get_results(
+                $wpdb->prepare(
+                    "SELECT * 
+                            FROM {$table} 
+                            WHERE email=%s 
+                            AND password=%s",
+                    $user->email, md5($old_password)));
+
+            if (empty($queryResult)) {
+                $password_message = '<p style="color: red">Mật khẩu cũ sai!</p>';
+            } else {
+                $data = [ 'password' => md5($new_password) ];
+                $where = [ 'email' => $user->email ];
+                $results = $wpdb->update( $table, $data, $where);
+                if ($results != 0) {
+                    $password_message = '<p style="color: green">Đổi mật khẩu thành công!</p>';
+                } else {
+                    $password_message = '<p style="color: red">Đổi mật khẩu thất bại!</p>';
+                }
+            }
+        }
+    } else {
+        $active = 'infomartion';
+
+        $data = [ 'first_name' => $first_name,
+                  'last_name' => $last_name,
+                  'birth_day' => $birth_day,
+                  'email' => $email ];
+
+        $where = [ 'email' => $user->email ];
+        $results = $wpdb->update( $table, $data, $where);
+        if ($results != 0) {
+            $queryResult = $wpdb->get_results(
+                $wpdb->prepare("SELECT * FROM {$table}  WHERE email=%s ", $user->email));
+
+            $_SESSION['user'] = $queryResult[0];
+            $infomartion_message = '<p style="color: green">Cập nhật dữ liệu thành công!!</p>';
+        } else {
+            $infomartion_message = '<p style="color: green">Không có dữ liệu thay đổi!!!</p>';
+        }
+
+    }
+
+}
 get_header();
-$current_user = wp_get_current_user();
 ?>
 <main>
     <section class="my_project pt-40 pb-100">
@@ -21,7 +92,7 @@ $current_user = wp_get_current_user();
                             </div>
                             <div class="name">
                                 <div class="fz-18">Account of</div>
-                                <div class="fz-24">Anna</div>
+                                <div class="fz-24"><?= $user->first_name .' '. $user->last_name ?></div>
                             </div>
                         </div>
                         <div class="info_course">
@@ -46,10 +117,10 @@ $current_user = wp_get_current_user();
                             <div class="wrap">
                                 <ul class="nav nav-tabs" id="myTab" role="tablist">
                                     <li class="nav-item" role="presentation">
-                                        <button class="nav-link active" id="tab01-tab" data-bs-toggle="tab" data-bs-target="#tab01" type="button" role="tab" aria-controls="tab01" aria-selected="true"> <i class="icon"> <img src="<?php bloginfo('template_directory') ?>/common/images/icon/info_01.svg" alt=""/></i><span>Account Details</span></button>
+                                        <button class="nav-link <?= $active == '' ? 'active' : $active == 'infomartion' ? 'active' : '' ?>" id="tab01-tab" data-bs-toggle="tab" data-bs-target="#tab01" type="button" role="tab" aria-controls="tab01" aria-selected="true"> <i class="icon"> <img src="<?php bloginfo('template_directory') ?>/common/images/icon/info_01.svg" alt=""/></i><span>Account Details</span></button>
                                     </li>
                                     <li class="nav-item" role="presentation">
-                                        <button class="nav-link" id="tab02-tab" data-bs-toggle="tab" data-bs-target="#tab02" type="button" role="tab" aria-controls="tab02" aria-selected="false"> <i class="icon"> <img src="<?php bloginfo('template_directory') ?>/common/images/icon/info_02.svg" alt=""/></i><span> Change Password</span></button>
+                                        <button class="nav-link <?= $active == 'password' ? 'active' : '' ?>" id="tab02-tab" data-bs-toggle="tab" data-bs-target="#tab02" type="button" role="tab" aria-controls="tab02" aria-selected="false"> <i class="icon"> <img src="<?php bloginfo('template_directory') ?>/common/images/icon/info_02.svg" alt=""/></i><span> Change Password</span></button>
                                     </li>
                                     <li class="nav-item" role="presentation">
                                         <button class="nav-link" id="tab03-tab" data-bs-toggle="tab" data-bs-target="#tab03" type="button" role="tab" aria-controls="tab03" aria-selected="false"> <i class="icon"> <img src="<?php bloginfo('template_directory') ?>/common/images/icon/info_03.svg" alt=""/></i><span>Manage Membership</span></button>
@@ -60,43 +131,45 @@ $current_user = wp_get_current_user();
                                 </ul>
                             </div>
                             <div class="tab-content mt-40" id="myTabContent">
-                                <div class="tab-pane fade show active" id="tab01" role="tabpanel" aria-labelledby="tab01-tab">
+                                <div class="tab-pane fade <?= $active == '' ? 'show active' : $active == 'infomartion' ? 'show active' : '' ?>" id="tab01" role="tabpanel" aria-labelledby="tab01-tab">
                                     <h2 class="ttl_sub fz-22">Account Settings</h2>
+                                    <?php echo $infomartion_message?>
                                     <div class="info mt-30">
-                                        <form class="form_edit" action="">
+                                        <form class="form_edit" action="" method="post">
                                             <div class="group">
-                                                <input type="text" value="<?php echo isset($current_user->first_name) ? $current_user->first_name : ''?>"/>
+                                                <input type="text" name="first_name" value="<?php echo isset($user->first_name) ? $user->first_name : ''?>"/>
                                             </div>
                                             <div class="group">
-                                                <input type="text" value="<?php echo isset($current_user->last_name) ? $current_user->last_name : ''?>"/>
+                                                <input type="text" name="last_name" value="<?php echo isset($user->last_name) ? $user->last_name : ''?>"/>
                                             </div>
                                             <div class="group">
-                                                <input type="text" value="Birthday (12/12)"/>
+                                                <input type="text" name="birth_day" value="<?php echo isset($user->birth_day) ? $user->birth_day : ''?>"/>
                                             </div>
                                             <div class="group">
-                                                <input type="mail" value="<?php echo isset($current_user->user_email) ? $current_user->user_email : ''?>"/>
+                                                <input type="mail" name="email" value="<?php echo isset($user->email) ? $user->email : ''?>" readonly/>
                                             </div>
                                             <div class="group">
-                                                <input class="btn_submit" type="text" value="Save Changes"/>
+                                                <input class="btn_submit" type="submit" value="Save Changes"/>
                                             </div>
                                         </form>
                                     </div>
                                 </div>
-                                <div class="tab-pane fade" id="tab02" role="tabpanel" aria-labelledby="tab02-tab">
+                                <div class="tab-pane fade <?= $active == 'password' ? 'show active' : '' ?>" id="tab02" role="tabpanel" aria-labelledby="tab02-tab">
                                     <h2 class="ttl_sub fz-22">Change Password</h2>
+                                    <?php echo $password_message?>
                                     <div class="info mt-30">
-                                        <form class="form_edit" action="">
+                                        <form class="form_edit" action="" method="post">
                                             <div class="group">
-                                                <input type="password" placeholder="Old password"/>
+                                                <input type="text" name="old_password" placeholder="Old password"/>
                                             </div>
                                             <div class="group">
-                                                <input type="password" placeholder="New password"/>
+                                                <input type="text" name="new_password" placeholder="New password"/>
                                             </div>
                                             <div class="group">
-                                                <input type="password" placeholder="Confirm new password"/>
+                                                <input type="text" name="new_password_confirm" placeholder="Confirm new password"/>
                                             </div>
                                             <div class="group">
-                                                <input class="btn_submit" type="text" value="Save Changes"/>
+                                                <input class="btn_submit" type="submit" type="text" value="Save Changes"/>
                                             </div>
                                         </form>
                                     </div>
@@ -132,4 +205,9 @@ $current_user = wp_get_current_user();
         </div>
     </section>
 </main>
-<?php get_footer() ?>
+<?php get_footer();
+} else {
+    wp_redirect(home_url());
+    exit;
+}
+?>

@@ -1,4 +1,7 @@
 <?php
+if (!session_id()) {
+    session_start();
+}
 require_once dirname( __FILE__ ).'/core/init.php';
 
 function theme_setup() {
@@ -265,4 +268,58 @@ function wpabsolute_block_users_backend() {
     }
 }
 add_action( 'init', 'wpabsolute_block_users_backend' );
+
+
+function activeAccountSMTP($email) {
+    $urlActive = site_url() . '/verify?token='. md5($email);
+
+    $mail = new \PHPMailer\PHPMailer\PHPMailer(true);
+
+    $mail->IsSMTP();
+    $mail->Mailer = "smtp";
+    $mail->SMTPDebug  = 0;
+    $mail->SMTPAuth   = TRUE;
+    $mail->SMTPSecure = "tls";
+    $mail->Port       = 587;
+    $mail->Host       = "smtp.gmail.com";
+    $mail->Username   = "hntnam98@gmail.com";
+    $mail->Password   = "jyakbhhxylrgjvpi";
+
+    $mail->IsHTML(true);
+    $mail->AddAddress($email, "Veify email for KenNguyen");
+    $mail->SetFrom("hntnam98@gmail.com", "Verify account!!");
+    $mail->Subject = "Verify account!!";
+    $content = "<b>Click vào đường dẫn dưới đây để kích hoạt tài khoản!</b><br>";
+    $content .= "<a href='".$urlActive."'>Kích hoạt tài khoản</a>";
+    $mail->MsgHTML($content);
+    $mail->Send();
+
+}
+add_action( 'active_account_email', 'activeAccountSMTP');
+
+function forgetPasswordSMTP($email) {
+    $mail = new \PHPMailer\PHPMailer\PHPMailer(true);
+
+    $mail->IsSMTP();
+    $mail->Mailer = "smtp";
+    $mail->SMTPDebug  = 0;
+    $mail->SMTPAuth   = TRUE;
+    $mail->SMTPSecure = "tls";
+    $mail->Port       = 587;
+    $mail->Host       = "smtp.gmail.com";
+    $mail->Username   = "hntnam98@gmail.com";
+    $mail->Password   = "jyakbhhxylrgjvpi";
+
+    $mail->IsHTML(true);
+    $mail->AddAddress($email, "Forgot password email for KenNguyen");
+    $mail->SetFrom("hntnam98@gmail.com", "Forgot password!!");
+    $mail->Subject = "Forgot password!!";
+    $content = "<b>Quên mật khẩu!</b><br>";
+    $content .= "Mật khẩu tạm thời của bạn là:  <b>Az123456</b><br>";
+    $content .= "Vui lòng đổi mật khẩu sau khi đăng nhập thành công!";
+    $mail->MsgHTML($content);
+    $mail->Send();
+
+}
+add_action( 'forget_password_email', 'forgetPasswordSMTP');
 
