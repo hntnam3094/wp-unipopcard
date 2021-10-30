@@ -29,7 +29,7 @@
     </div>
     <div class="header-bottom">
         <div class="wraper flexBox space midle bottom">
-            <a class="logo" href="index.html">
+            <a class="logo" href="/">
                 <img class="imgAuto" src="<?php bloginfo('template_directory') ?>/common/images/logo.svg" alt=""/>
             </a>
             <div class="header-right flexBox midle end">

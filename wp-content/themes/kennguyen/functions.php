@@ -140,8 +140,8 @@ function custom_post_type_slider(){
      * Biến $label để chứa các text liên quan đến tên hiển thị của Post Type trong Admin
      */
     $label = array(
-        'name' => 'Ảnh slider', //Tên post type dạng số nhiều
-        'singular_name' => 'Ảnh slider' //Tên post type dạng số ít
+        'name' => 'Home slider', //Tên post type dạng số nhiều
+        'singular_name' => 'Home slider' //Tên post type dạng số ít
     );
 
     /*
@@ -149,10 +149,10 @@ function custom_post_type_slider(){
      */
     $args = array(
         'labels' => $label, //Gọi các label trong biến $label ở trên
-        'description' => 'Ảnh slider', //Mô tả của post type
+        'description' => 'Home slider', //Mô tả của post type
         'supports' => array(
             'title',
-            'thumbnail',
+            'thumbnail'
         ), //Các tính năng được hỗ trợ trong post type
         //'taxonomies' => array( 'category', 'post_tag' ), //Các taxonomy được phép sử dụng để phân loại nội dung
         'hierarchical' => false, //Cho phép phân cấp, nếu là false thì post type này giống như Post, true thì giống như Page
@@ -204,7 +204,7 @@ add_action('admin_footer-post-new.php', 'wpb_append_post_status_list2');
 function wpb_append_post_status_list2(){
     global $post;
     $complete = '';
-    $label = 'Miễn phí';
+    $label = 'Free';
     $value = 'free';
     if($post->post_type == 'craftcollection' || $post->post_type == 'craftacademy'){
 
@@ -231,7 +231,7 @@ add_action('admin_footer-post-new.php', 'wpb_append_post_status_list');
 function wpb_append_post_status_list(){
     global $post;
     $complete = '';
-    $label = 'Đang bán';
+    $label = 'Sale';
     $value = 'sale';
     if($post->post_type == 'craftcollection' || $post->post_type == 'craftacademy'){
         if($post->post_status == 'sale'){
@@ -247,6 +247,17 @@ function wpb_append_post_status_list(){
                 </script>
                 ';
     }
+}
+
+add_action('admin_footer-edit.php','rudr_status_into_inline_edit');
+
+function rudr_status_into_inline_edit() { // ultra-simple example
+    echo "<script>
+	jQuery(document).ready( function($) {
+        $( 'select[name=\"_status\"]' ).prepend( '<option value=\"free\">Free</option>' );
+        $( 'select[name=\"_status\"]' ).prepend( '<option value=\"sale\">Sale</option>' );
+	});
+	</script>";
 }
 
 function getRequest() {
@@ -323,6 +334,7 @@ function forgetPasswordSMTP($email, $password) {
 }
 add_action( 'forget_password_email', 'forgetPasswordSMTP', 10, 2);
 
+<<<<<<< HEAD
 function your_function()
 {
     add_settings_field(
@@ -335,3 +347,81 @@ function your_function()
     );
 }
 add_action('admin_init', 'your_function');
+=======
+/*  Custom Field for Categories.
+    ======================================== */
+
+// Add new term page
+function my_taxonomy_add_meta_fields( $taxonomy ) { ?>
+    <div class="form-field term-group">
+    <label for="show_category">
+        <?php _e( 'Show this category in category page', 'codilight-lite' ); ?> <input type="checkbox" id="show_category" name="show_category" value="yes" />
+    </label>
+    </div><?php
+}
+add_action( 'category_add_form_fields', 'my_taxonomy_add_meta_fields', 10, 2 );
+
+// Edit term page
+function my_taxonomy_edit_meta_fields( $term, $taxonomy ) {
+    $show_category = get_term_meta( $term->term_id, 'show_category', true ); ?>
+
+    <tr class="form-field term-group-wrap">
+    <th scope="row">
+        <label for="show_category"><?php _e( 'Show this category in category page', 'codilight-lite' ); ?></label>
+    </th>
+    <td>
+        <input type="checkbox" id="show_category" name="show_category" value="yes" <?php echo ( $show_category ) ? checked( $show_category, 'yes' ) : ''; ?>/>
+    </td>
+    </tr><?php
+}
+add_action( 'category_edit_form_fields', 'my_taxonomy_edit_meta_fields', 10, 2 );
+
+// Save custom meta
+function my_taxonomy_save_taxonomy_meta( $term_id, $tag_id ) {
+    if ( isset( $_POST[ 'show_category' ] ) ) {
+        update_term_meta( $term_id, 'show_category', 'yes' );
+    } else {
+        update_term_meta( $term_id, 'show_category', '' );
+    }
+}
+add_action( 'created_category', 'my_taxonomy_save_taxonomy_meta', 10, 2 );
+add_action( 'edited_category', 'my_taxonomy_save_taxonomy_meta', 10, 2 );
+
+add_action('init','add_get_val');
+function add_get_val() {
+    global $wp;
+    $wp->add_query_var('category');
+}
+
+// Add the custom columns to the book post type:
+add_filter( 'manage_craftacademy_posts_columns', 'set_custom_edit_craftacademy_columns' );
+function set_custom_edit_craftacademy_columns($columns) {
+    $columns['status'] = __( 'Status', 'smashing' );
+
+    return $columns;
+}
+
+add_action( 'manage_craftacademy_posts_custom_column', 'smashing_craftacademy_column', 10, 2);
+function smashing_craftacademy_column( $column, $post_id ) {
+    // Image column
+    if ( 'status' === $column ) {
+        echo get_post_status( $post_id);
+    }
+}
+
+// Add the custom columns to the book post type:
+add_filter( 'manage_craftcollection_posts_columns', 'set_custom_edit_craftcollection_columns' );
+function set_custom_edit_craftcollection_columns($columns) {
+    $columns['status'] = __( 'Status', 'smashing' );
+
+    return $columns;
+}
+
+add_action( 'manage_craftcollection_posts_custom_column', 'smashing_craftcollection_column', 10, 2);
+function smashing_craftcollection_column( $column, $post_id ) {
+    // Image column
+    if ( 'status' === $column ) {
+        echo get_post_status( $post_id);
+    }
+}
+>>>>>>> origin/dev
