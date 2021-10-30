@@ -323,3 +323,15 @@ function forgetPasswordSMTP($email, $password) {
 }
 add_action( 'forget_password_email', 'forgetPasswordSMTP', 10, 2);
 
+function your_function()
+{
+    add_settings_field(
+        'myprefix_setting-id',
+        'This is the setting title',
+        'myprefix_setting_callback_function',
+        'general',
+        'default',
+        array('label_for' => 'myprefix_setting-id')
+    );
+}
+add_action('admin_init', 'your_function');

@@ -1,4 +1,7 @@
-<?php get_header()?>
+<?php
+global $va_options;
+get_header()
+?>
 <main>
     <section class="category pt-50 pb-50 upgrade">
         <div class="wraper">
@@ -12,12 +15,12 @@
                         <div class="info_main">
                             <h3 class="ttl fz-31">monthly membership</h3>
                             <div class="price center midle flexBox mt-20">
-                                <div class="new fz-45">$1</div>
-                                <div class="old fz-22">$9.99</div>
+                                <div class="new fz-45"><?=  $va_options['kn_monthly_package_sale_price']; ?>$</div>
+                                <div class="old fz-22"><?=  $va_options['kn_monthly_package_price']; ?>$</div>
                             </div>
                             <div class="fz-22 mt-10">Full Acess</div>
-                            <div class="fz-20 mt-15 price_detail">After 7 days,<br>$9.99/month<br>(paid month)</div>
-                            <div class="button mt-20">JOIN NOW</div>
+                            <div class="fz-20 mt-15 price_detail">After 7 days,<br>$<?=  $va_options['kn_monthly_package_price']; ?>/month<br>(paid month)</div>
+                            <a class="button mt-20" href="<?php site_url() ?>/payment?package=monthly">JOIN NOW</a>
                         </div>
                         <div class="info_other toggle_parent">
                             <div class="toggle_content">
@@ -50,7 +53,7 @@
                                         <dt>16 curated DIY projects (patterns + tutorials) </dt>
                                         <dd>$160 VALUE</dd>
                                     </dl>
-                                </div><a class="button mt-40" href="#">JOIN NOW</a>
+                                </div><a class="button mt-40" href="<?php site_url() ?>/payment?package=monthly">JOIN NOW</a>
                             </div>
                             <div class="toggle_btn">
                                 <div class="short">Xem thêm </div>
@@ -63,12 +66,12 @@
                         <div class="info_main">
                             <h3 class="ttl fz-31">monthly membership</h3>
                             <div class="price center midle flexBox mt-20">
-                                <div class="new fz-45">$1</div>
-                                <div class="old fz-22">$9.99</div>
+                                <div class="new fz-45"><?=  $va_options['kn_year_package_sale_price']; ?>$</div>
+                                <div class="old fz-22"><?=  $va_options['kn_year_package_price']; ?>$</div>
                             </div>
                             <div class="fz-22 mt-10">Full Acess</div>
-                            <div class="fz-20 mt-15 price_detail">After 7 days,<br>$9.99/month<br>(paid month)</div>
-                            <div class="button mt-20">JOIN NOW </div>
+                            <div class="fz-20 mt-15 price_detail">After 7 days,<br>$<?=  $va_options['kn_year_package_price']; ?>/month<br>(paid month)</div>
+                            <a class="button mt-20" href="<?php site_url() ?>/payment?package=year">JOIN NOW </a>
                         </div>
                         <div class="info_other toggle_parent">
                             <div class="toggle_content">
@@ -101,7 +104,7 @@
                                         <dt>16 curated DIY projects (patterns + tutorials) </dt>
                                         <dd>$160 VALUE</dd>
                                     </dl>
-                                </div><a class="button mt-40" href="#">JOIN NOW</a>
+                                </div><a class="button mt-40" href="<?php site_url() ?>/payment?package=year">JOIN NOW</a>
                             </div>
                             <div class="toggle_btn">
                                 <div class="short">Xem thêm </div>

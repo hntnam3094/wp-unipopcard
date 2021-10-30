@@ -18,7 +18,7 @@ $queryResult = $wpdb->get_results(
     $wpdb->prepare(
         "SELECT * FROM {$table} WHERE id=%d",$id));
 
-$edit = admin_url( 'ken_customer_edit.php?customer=' .$id . '&action=edit' );
+$edit = admin_url( '/ken_customer_edit.php?customer=' .$id . '&action=edit' );
 $home = admin_url('?page=customer_managerment.php');
 
 if (!empty($queryResult)) {

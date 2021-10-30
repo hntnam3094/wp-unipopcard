@@ -71,7 +71,7 @@ class Paulund_Wp_List_Table
 
 // WP_List_Table is not loaded automatically so we need to load it in our application
 if( ! class_exists( 'WP_List_Table' ) ) {
-    require_once( ABSPATH . 'wp-admin/includes/class-wp-list-table.php' );
+    require_once(ABSPATH . 'wp-admin/includes/class-wp-list-table.php');
 }
 
 /**
@@ -231,8 +231,8 @@ class Customer_Table extends WP_List_Table
 
     function column_email($item) {
         $text = 'Are you sure?';
-        $view    = admin_url( 'ken_customer/ken_customer.php?customer=' .$item['id'] . '&action=view' );
-        $edit    = admin_url( 'ken_customer/ken_customer_edit.php?customer=' .$item['id'] . '&action=edit' );
+        $view    = admin_url( 'ken_customer.php?customer=' .$item['id'] . '&action=view' );
+        $edit    = admin_url( 'ken_customer_edit.php?customer=' .$item['id'] . '&action=edit' );
 
         $actions = array(
             'view'      => sprintf('<a href="%s">View</a>',$view),

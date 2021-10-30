@@ -2,16 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="32e96615-6081-4390-8200-210aa0bca673" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/wp-admin/ken_customer.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/wp-admin/ken_customer_edit.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wp-content/plugins/CustomerManagerment.php" beforeDir="false" afterPath="$PROJECT_DIR$/wp-content/plugins/CustomerManagerment.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/account.php" beforeDir="false" afterPath="$PROJECT_DIR$/wp-content/themes/kennguyen/account.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/forgot_pass.php" beforeDir="false" afterPath="$PROJECT_DIR$/wp-content/themes/kennguyen/forgot_pass.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-admin/ken_customer.php" beforeDir="false" afterPath="$PROJECT_DIR$/wp-admin/ken_customer.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/plugins/CustomerManagerment.php" beforeDir="false" afterPath="$PROJECT_DIR$/wp-content/themes/kennguyen/core/customer-managerment.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/plugins/userPlugin.php" beforeDir="false" afterPath="$PROJECT_DIR$/wp-content/themes/kennguyen/core/migrate-customer.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/common/css/custom.css" beforeDir="false" afterPath="$PROJECT_DIR$/wp-content/themes/kennguyen/common/css/custom.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/core/init.php" beforeDir="false" afterPath="$PROJECT_DIR$/wp-content/themes/kennguyen/core/init.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/core/options.php" beforeDir="false" afterPath="$PROJECT_DIR$/wp-content/themes/kennguyen/core/options.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/functions.php" beforeDir="false" afterPath="$PROJECT_DIR$/wp-content/themes/kennguyen/functions.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/login.php" beforeDir="false" afterPath="$PROJECT_DIR$/wp-content/themes/kennguyen/login.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/manager.php" beforeDir="false" afterPath="$PROJECT_DIR$/wp-content/themes/kennguyen/manager.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/singup.php" beforeDir="false" afterPath="$PROJECT_DIR$/wp-content/themes/kennguyen/singup.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/page-upgrade-today.php" beforeDir="false" afterPath="$PROJECT_DIR$/wp-content/themes/kennguyen/page-upgrade-today.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/payment.php" beforeDir="false" afterPath="$PROJECT_DIR$/wp-content/themes/kennguyen/payment.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -93,6 +93,8 @@
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\wamp642\www\kennguyen\wp-admin" />
+      <recent name="C:\wamp642\www\kennguyen\wp-content\themes\kennguyen\customer" />
+      <recent name="C:\wamp642\www\kennguyen\wp-content\themes\kennguyen\core" />
       <recent name="C:\wamp642\www\kennguyen\wp-admin\ken_customer" />
       <recent name="D:\outsource\ken\wp-content\themes\kennguyen" />
     </key>
@@ -118,7 +120,7 @@
       <workItem from="1635381239044" duration="1707000" />
       <workItem from="1635417882232" duration="1788000" />
       <workItem from="1635462315343" duration="2394000" />
-      <workItem from="1635554648477" duration="20079000" />
+      <workItem from="1635554648477" duration="31163000" />
     </task>
     <servers />
   </component>

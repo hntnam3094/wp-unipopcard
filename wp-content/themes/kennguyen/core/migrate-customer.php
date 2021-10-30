@@ -39,7 +39,7 @@ function my_plugin_create_db() {
             active INT DEFAULT 0,
             trackingMd5 VARCHAR(500));";
 
-        require_once (ABSPATH. 'wp-admin/includes/upgrade.php' );
+        require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
         dbDelta($sql);
     }
 
@@ -49,7 +49,7 @@ function my_plugin_create_db() {
             id_customer INT DEFAULT 0,
             id_post INT DEFAULT 0);";
 
-        require_once (ABSPATH. 'wp-admin/includes/upgrade.php' );
+        require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
         dbDelta($sql);
     }
 
@@ -60,10 +60,11 @@ function my_plugin_create_db() {
             email VARCHAR(255) ,
             full_name VARCHAR(255),
             package VARCHAR(255),
-            price INT DEFAULT 0,
+            price FLOAT DEFAULT 0,
+            sale_price FLOAT DEFAULT 0,
             status INT DEFAULT 0);";
 
-        require_once (ABSPATH. 'wp-admin/includes/upgrade.php' );
+        require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
         dbDelta($sql);
     }
 

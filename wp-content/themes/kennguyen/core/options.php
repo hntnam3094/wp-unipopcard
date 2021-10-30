@@ -40,6 +40,8 @@ if ( ! class_exists( 'VA_Theme_Options' ) ) {
             // Create the sections and fields
             $this->setSections();
 
+            $this->setPayment();
+
 
             if ( ! isset( $this->args['opt_name'] ) ) { // No errors please
                 return;
@@ -176,6 +178,48 @@ if ( ! class_exists( 'VA_Theme_Options' ) ) {
 
 
             }
+
+        public function setPayment() {
+            // Home Section
+            $this->sections[] = array(
+                'title'  => __( 'Upgrade today', 'upgrade_today' ),
+                'desc'   => __( 'All of settings for header on this theme.', 'upgrade_today' ),
+                'icon'   => 'el-icon-home',
+                'fields' => array(
+                    array(
+                        'id' => 'kn_monthly_package_price',
+                        'type' => 'text',
+                        'title' => __('Giá gốc gói tháng', 'vietanh'),
+                        'compiler' => true,
+                    ),
+                    array(
+                        'id' => 'kn_monthly_package_sale_price',
+                        'type' => 'text',
+                        'title' => __('Giá giảm gói tháng', 'vietanh'),
+                        'compiler' => true,
+                    ),
+                    array(
+                        'id' => 'kn_year_package_price',
+                        'type' => 'text',
+                        'title' => __('Giá gốc gói năm', 'vietanh'),
+                        'compiler' => true,
+                    ),
+                    array(
+                        'id' => 'kn_year_package_sale_price',
+                        'type' => 'text',
+                        'title' => __('Giá giảm gói năm', 'vietanh'),
+                        'compiler' => true,
+                    ),
+
+
+
+                )
+            ); // end section
+
+
+        }
+
+
     }
     global $reduxConfig;
     $reduxConfig = new VA_Theme_Options();
