@@ -28,11 +28,11 @@ if ($_POST) {
     if (isset($_POST['old_password'])) {
         $active = 'password';
         if (empty($old_password) || empty($new_password) || empty($new_password_confirm)) {
-            $password_message = '<p style="color: red">Vui lòng điền đầy đủ thông tin mật khẩu!</p>';
+            $password_message = '<p style="color: red">Please complete password information!</p>';
         } elseif (strlen($new_password) < 6 || strlen($new_password_confirm) < 6 ) {
-            $password_message = '<p style="color: red">Mật khẩu mới phải dài hơn 6 ký tự!</p>';
+            $password_message = '<p style="color: red">New password must be longer than 6 characters!</p>';
         } elseif ($new_password != $new_password_confirm) {
-            $password_message = '<p style="color: red">Mật khẩu nhập lại không trùng với mật khẩu mới!</p>';
+            $password_message = '<p style="color: red">Confirm password does not match the new password!</p>';
         } else {
             $queryResult = $wpdb->get_results(
                 $wpdb->prepare(
@@ -43,15 +43,15 @@ if ($_POST) {
                     $user->email, md5($old_password)));
 
             if (empty($queryResult)) {
-                $password_message = '<p style="color: red">Mật khẩu cũ sai!</p>';
+                $password_message = '<p style="color: red">Wrong old password!</p>';
             } else {
                 $data = [ 'password' => md5($new_password) ];
                 $where = [ 'email' => $user->email ];
                 $results = $wpdb->update( $table, $data, $where);
                 if ($results != 0) {
-                    $password_message = '<p style="color: green">Đổi mật khẩu thành công!</p>';
+                    $password_message = '<p style="color: green">Change password successfully!</p>';
                 } else {
-                    $password_message = '<p style="color: red">Đổi mật khẩu thất bại!</p>';
+                    $password_message = '<p style="color: red">Change password failed!</p>';
                 }
             }
         }
@@ -70,9 +70,9 @@ if ($_POST) {
                 $wpdb->prepare("SELECT * FROM {$table}  WHERE email=%s ", $user->email));
 
             $_SESSION['user'] = $queryResult[0];
-            $infomartion_message = '<p style="color: green">Cập nhật dữ liệu thành công!!</p>';
+            $infomartion_message = '<p style="color: green">Data update successful!!</p>';
         } else {
-            $infomartion_message = '<p style="color: green">Không có dữ liệu thay đổi!!!</p>';
+            $infomartion_message = '<p style="color: green">No data changes!!!</p>';
         }
 
     }
@@ -100,7 +100,7 @@ get_header();
                                 <li class="mt-40"><a href="<?php site_url() ?>/manager">
                                         <div class="icon"> <img src="<?php bloginfo('template_directory') ?>/common/images/icon/acc_01.svg" alt=""/><img class="on" src="<?php bloginfo('template_directory') ?>/common/images/icon/acc_01_on.svg" alt=""/></div>
                                         <div class="txt">My Downloaded Projects</div></a></li>
-                                <li class="mt-40"><a href="upgrade.html">
+                                <li class="mt-40"><a href="<?php site_url() ?>/upgrade-today">
                                         <div class="icon"> <img src="<?php bloginfo('template_directory') ?>/common/images/icon/acc_02.svg" alt=""/><img class="on" src="<?php bloginfo('template_directory') ?>/common/images/icon/acc_02_on.svg" alt=""/></div>
                                         <div class="txt">Upgrade Today</div></a></li>
                                 <li class="mt-40"><a class="active" href="<?php site_url() ?>/account">
@@ -183,7 +183,7 @@ get_header();
                                             </div>
                                             <div class="col-12 col-md-7">
                                                 <div class="content">
-                                                    <p>Monthly<br><a href="">Upgrade to the yearly plan </a>to get the best value for your membership!</p>
+                                                    <p>Monthly<br><a href="<?php site_url() ?>/upgrade-today">Upgrade to the yearly plan </a>to get the best value for your membership!</p>
                                                 </div>
                                             </div>
                                         </div>

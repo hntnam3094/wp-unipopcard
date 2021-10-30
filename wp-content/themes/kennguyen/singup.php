@@ -21,9 +21,9 @@ if ($_POST) {
     $password = $wpdb->escape($_POST['password']);
 
     if (empty($first_name) || empty($last_name) || empty($email) || empty($password)) {
-        $message = 'Vui lòng điền đầy đủ thông tin!';
+        $message = 'Please fill out the form!';
     } elseif (strlen($password) < 6) {
-        $message = 'Mật khẩu phải từ 6 ký tự trở lên!';
+        $message = 'Password must be 6 or more characters!';
     } else {
         $results = $wpdb->query(
             $wpdb->prepare(
@@ -31,7 +31,7 @@ if ($_POST) {
         );
 
         if ($results != 0) {
-            $message = 'Email này đã được sử dụng! Vui lòng sử dụng email khác!';
+            $message = 'E-mail is being used! Please use another email!';
         } else {
             $data = array();
             $data['first_name'] = $first_name;
@@ -42,10 +42,10 @@ if ($_POST) {
 
             $insertRs = $wpdb->insert($table, $data);
             if (isset($insertRs)) {
-                $success = 'Đăng ký thành công! Vui lòng kiểm tra email để kích hoạt tài khoản!';
+                $success = 'Sign Up Success! Please check your email to activate your account!';
                 do_action('active_account_email', $data['email']);
             } else {
-                $message = 'Đăng ký không thành công!';
+                $message = 'Registration failed!';
             }
 
         }

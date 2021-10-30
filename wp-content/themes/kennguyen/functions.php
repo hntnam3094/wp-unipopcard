@@ -308,7 +308,7 @@ function activeAccountSMTP($email) {
 }
 add_action( 'active_account_email', 'activeAccountSMTP');
 
-function forgetPasswordSMTP($email) {
+function forgetPasswordSMTP($email, $password) {
     $mail = new \PHPMailer\PHPMailer\PHPMailer(true);
 
     $mail->IsSMTP();
@@ -326,13 +326,13 @@ function forgetPasswordSMTP($email) {
     $mail->SetFrom("hntnam98@gmail.com", "Forgot password!!");
     $mail->Subject = "Forgot password!!";
     $content = "<b>Quên mật khẩu!</b><br>";
-    $content .= "Mật khẩu tạm thời của bạn là:  <b>Az123456</b><br>";
+    $content .= "Mật khẩu tạm thời của bạn là:  <b>$password</b><br>";
     $content .= "Vui lòng đổi mật khẩu sau khi đăng nhập thành công!";
     $mail->MsgHTML($content);
     $mail->Send();
 
 }
-add_action( 'forget_password_email', 'forgetPasswordSMTP');
+add_action( 'forget_password_email', 'forgetPasswordSMTP', 10, 2);
 
 /*  Custom Field for Categories.
     ======================================== */
