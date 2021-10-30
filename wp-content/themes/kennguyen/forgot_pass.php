@@ -18,17 +18,27 @@ if ($_POST) {
         $wpdb->prepare(
             "SELECT * FROM {$table} WHERE email=%s",$email));
     if (!empty($queryResult)) {
-        $data = [ 'password' => md5('Az123456') ];
+        $alphabet = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
+        $pass = array();
+        $alphaLength = strlen($alphabet) - 1;
+        for ($i = 0; $i < 8; $i++) {
+            $n = rand(0, $alphaLength);
+            $pass[] = $alphabet[$n];
+        }
+
+        $random_pass = implode($pass);
+
+        $data = [ 'password' => md5($random_pass) ];
         $where = [ 'email' => $email ];
         $results = $wpdb->update( $table, $data, $where);
 
         if ($results != 0) {
-            do_action('forget_password_email', $email);
+            do_action('forget_password_email', $email, $random_pass);
         }
-        $message = '<p style="color: green">Vui lòng kiểm tra email, để lấy lại mật khẩu mới!!</p>';
+        $message = '<p style="color: green">Please check email to get new password!!</p>';
 
     } else {
-        $message = '<p style="color: red">Email không tồn tại!!</p>';
+        $message = '<p style="color: red">Email do not exist!!</p>';
     }
 
 }

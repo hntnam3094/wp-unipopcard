@@ -32,7 +32,7 @@ if ($_POST) {
         wp_redirect(site_url() . '/manager');
         exit;
     }
-    $login_message = '<p style="color: red">Sai mật khẩu hoặc tài khoản!</p>';
+    $login_message = '<p style="color: red">Wrong password or account!</p>';
 }
 
     // start login with google

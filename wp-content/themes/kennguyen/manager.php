@@ -31,7 +31,7 @@ get_header();
                                 <li class="mt-40"><a class="active" href="<?php site_url() ?>/manager">
                                         <div class="icon"> <img src="<?php bloginfo('template_directory') ?>/common/images/icon/acc_01.svg" alt=""/><img class="on" src="<?php bloginfo('template_directory') ?>/common/images/icon/acc_01_on.svg" alt=""/></div>
                                         <div class="txt">My Downloaded Projects</div></a></li>
-                                <li class="mt-40"><a href="upgrade.html">
+                                <li class="mt-40"><a href="<?php site_url() ?>/upgrade-today">
                                         <div class="icon"> <img src="<?php bloginfo('template_directory') ?>/common/images/icon/acc_02.svg" alt=""/><img class="on" src="<?php bloginfo('template_directory') ?>/common/images/icon/acc_02_on.svg" alt=""/></div>
                                         <div class="txt">Upgrade Today</div></a></li>
                                 <li class="mt-40"><a href="<?php site_url() ?>/account">

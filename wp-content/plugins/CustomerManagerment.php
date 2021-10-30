@@ -22,9 +22,11 @@ class Paulund_Wp_List_Table
     /**
      * Constructor will create the menu item
      */
+    public $message;
     public function __construct()
     {
         add_action( 'admin_menu', array($this, 'add_customer_managerment' ));
+        add_action( 'admin_head', array( &$this, 'admin_header' ) );
     }
 
     /**
@@ -32,8 +34,18 @@ class Paulund_Wp_List_Table
      */
     public function add_customer_managerment()
     {
-        add_menu_page( 'Khách hàng', 'Khách hàng', 'manage_options', 'customer_managerment.php', array($this, 'list_table_page') );
-        add_submenu_page( 'Thêm mới ', 'Thêm mới ', 'Thêm mới', 'manage_options', 'add_new_customer', 'edit_customer' );
+        add_menu_page( 'Customer', 'Customer', 'manage_options', 'customer_managerment.php', array($this, 'list_table_page') );
+
+    }
+
+    function admin_header() {
+        $page = ( isset($_GET['page'] ) ) ? esc_attr( $_GET['page'] ) : false;
+        if( 'customer_managerment.php' != $page )
+            return;
+
+        echo '<style type="text/css">';
+        echo '.wp-list-table .column-email { width: 30%; }';
+        echo '</style>';
     }
 
     /**
@@ -45,10 +57,12 @@ class Paulund_Wp_List_Table
     {
         $customer = new Customer_Table();
         $customer->prepare_items();
+        $add    = admin_url( 'ken_customer_edit.php');
         ?>
         <div class="wrap">
             <div id="icon-users" class="icon32"></div>
-            <h2>Khách hàng</h2>
+            <h1 style="font-weight: bold">Customer</h1>
+            <a href="<?= $add ?>" class="button">Add new</a>
             <?php $customer->display(); ?>
         </div>
         <?php
@@ -103,7 +117,6 @@ class Customer_Table extends WP_List_Table
     public function get_columns()
     {
         $columns = array(
-            'id'          => 'ID',
             'email'       => 'Email',
             'first_name' => 'First Name',
             'last_name'        => 'Last Name',
@@ -169,7 +182,6 @@ class Customer_Table extends WP_List_Table
     public function column_default( $item, $column_name )
     {
         switch( $column_name ) {
-            case 'id':
             case 'email':
             case 'first_name':
             case 'last_name':
@@ -218,32 +230,36 @@ class Customer_Table extends WP_List_Table
     }
 
     function column_email($item) {
+        $text = 'Are you sure?';
+        $view    = admin_url( 'ken_customer/ken_customer.php?customer=' .$item['id'] . '&action=view' );
+        $edit    = admin_url( 'ken_customer/ken_customer_edit.php?customer=' .$item['id'] . '&action=edit' );
+
         $actions = array(
-            'edit'      => sprintf('<a href="?page=%s&action=%s&email=%s">Chỉnh sửa</a>',$_REQUEST['page'],'edit',$item['id']),
-            'delete'    => sprintf('<a href="?page=%s&action=%s&email=%s">Xóa</a>',$_REQUEST['page'],'delete',$item['id']),
-            'view'      => sprintf('<a href="?page=%s&action=%s&email=%s">Xem</a>',$_REQUEST['page'],'view',$item['id']),
-            'passsword'    => sprintf('<a href="?page=%s&action=%s&email=%s">Gửi lại mật khẩu mới</a>',$_REQUEST['page'],'password',$item['id']),
+            'view'      => sprintf('<a href="%s">View</a>',$view),
+            'edit'      => sprintf('<a href="%s">Edit</a>',$edit),
+            'delete'    => sprintf( '<a href="?page=%s&action=%s&customer=%s" onclick="return confirm(`Are you sure?`)">Delete</a>',$_REQUEST['page'],'delete',$item['id']),
+            'password'    => sprintf( '<a href="?page=%s&action=%s&customer=%s">Submit new password</a>',$_REQUEST['page'],'password',$item['email'])
         );
         return sprintf('%1$s %2$s', $item['email'], $this->row_actions($actions) );
     }
 
     function column_type_member($item)
     {
-        $member = 'Không hỗ trợ';
+        $member = '-';
         if ($item['type_member'] == 1) {
-            $member = 'Thành viên tháng';
+            $member = 'Weekly member';
         }
         if ($item['type_member'] == 2) {
-            $member = 'Thành viên năm';
+            $member = 'Monthly member';
         }
         return $member;
     }
 
     function column_member_ship($item)
     {
-        $member = 'Chưa đăng ký';
+        $member = 'Normal member';
         if ($item['membership'] == 1) {
-            $member = 'Đã đăng ký';
+            $member = 'Member';
         }
         return $member;
     }
@@ -256,25 +272,45 @@ class Customer_Table extends WP_List_Table
 //    }
 
     function process_bulk_action() {
-        //Detect when a bulk action is being triggered...
+        global $wpdb;
+        $table = $wpdb->prefix . 'customer';
+        if( 'password' == $this->current_action() )
+        {
+            $email = $_GET['customer'];
+            if (!empty($email)) {
+                $queryResult = $wpdb->get_results(
+                    $wpdb->prepare(
+                        "SELECT * FROM {$table} WHERE email=%s",$email));
+                if (!empty($queryResult)) {
+                    $alphabet = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
+                    $pass = array();
+                    $alphaLength = strlen($alphabet) - 1;
+                    for ($i = 0; $i < 8; $i++) {
+                        $n = rand(0, $alphaLength);
+                        $pass[] = $alphabet[$n];
+                    }
+
+                    $random_pass = implode($pass);
+
+                    $data = [ 'password' => md5($random_pass) ];
+                    $where = [ 'email' => $email ];
+                    $results = $wpdb->update( $table, $data, $where);
+
+                    if ($results != 0) {
+                        do_action('forget_password_email', $email, $random_pass);
+                        wp_die('Please check email to get new password!!');
+                    }
+                }
+            }
+        }
+
         if( 'delete' == $this->current_action() )
         {
-            echo '<script>
-                        
-                    </script>';
-            $id = $_GET['email'];
-            wp_die($id);
+            $id = $_GET['customer'];
+            $wpdb->delete( $table, array( 'id' => $id ) );
+            wp_die('This customer has been deleted!');
         }
 
-        if( 'edit' == $this->current_action() )
-        {
-            $id = $_GET['email'];
-            $this->edit_customer($id);
-        }
-    }
-
-    function edit_customer($id) {
-        wp_die($id);
     }
 
 
