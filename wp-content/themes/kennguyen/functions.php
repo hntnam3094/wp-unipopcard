@@ -442,20 +442,18 @@ function check_membership() {
     echo $isMember;
 }
 
-<<<<<<< HEAD
+
 add_filter('set-screen-option', 'test_table_set_option', 10, 3);
 function test_table_set_option($status, $option, $value)
 {
     var_dump($value);
     return $value;
 }
-=======
-add_filter('nav_menu_css_class' , 'special_nav_class' , 10 , 2);
 
+add_filter('nav_menu_css_class' , 'special_nav_class' , 10 , 2);
 function special_nav_class ($classes, $item) {
     if (in_array('current-menu-item', $classes) ){
         $classes[] = 'active ';
     }
     return $classes;
 }
->>>>>>> origin/dev

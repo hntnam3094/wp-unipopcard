@@ -200,13 +200,10 @@ if ( ! class_exists( 'VA_Theme_Options' ) ) {
             // Home Section
             $this->sections[] = array(
                 'title'  => __( 'Upgrade today', 'upgrade_today' ),
-<<<<<<< HEAD
                 'desc'   => __( 'All of settings for package payment.', 'upgrade_today' ),
                 'icon'   => 'el-icon-home',
-=======
                 'desc'   => __( 'All of settings for header on this theme.', 'upgrade_today' ),
                 'icon'   => 'el-icon-circle-arrow-right',
->>>>>>> origin/dev
                 'fields' => array(
                     array(
                         'id' => 'kn_monthly_package_price',
@@ -241,7 +238,6 @@ if ( ! class_exists( 'VA_Theme_Options' ) ) {
 
         }
 
-<<<<<<< HEAD
         public function setEmailSetting() {
             // Home Section
             $this->sections[] = array(
@@ -279,10 +275,12 @@ if ( ! class_exists( 'VA_Theme_Options' ) ) {
                         'title' => __('SMTPSecure', 'vietanh'),
                         'compiler' => true,
                     )
+                )
+            );
+        }
 
 
 
-=======
         public function setSectionsSettingHome() {
             // Home Section
             $this->sections[] = array(
@@ -311,7 +309,6 @@ if ( ! class_exists( 'VA_Theme_Options' ) ) {
                         'compiler' => true,
                         'desc' => __('Cho phép dùng đuôi: jpg,png,gif', 'vietanh')
                     ),
->>>>>>> origin/dev
                 )
             ); // end section
 
