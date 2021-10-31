@@ -10,16 +10,13 @@ function theme_setup() {
     register_nav_menu('footer-about',__( 'Footer column about' ));
     register_nav_menu('footer-resources',__( 'Footer column resources' ));
 
-    add_image_size('banner-thumb', 1349, 281);
-    add_image_size('collection-thumb', 285, 285);
-    add_image_size('month-thumb', 183, 183);
-    add_image_size('video-image-thumb', 920, 563);
     global $_wp_theme_features;
     $_wp_theme_features['post-thumbnails']= true;
 
 }
 add_action('init', 'theme_setup');
 
+//custom hide menu in admin
 function hide_menu() {
     remove_menu_page( 'edit.php' ); //Posts
 }

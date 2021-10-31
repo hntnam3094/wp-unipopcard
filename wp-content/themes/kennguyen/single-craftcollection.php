@@ -95,7 +95,7 @@
                                             echo '<div class="col-4 col-lg-12">
                                                     <a class="item mt-20" href="'.get_the_permalink().'">
                                                         <div class="imgDrop">
-                                                            '.get_the_post_thumbnail( get_the_id(), 'collection-thumb', array() ).'
+                                                            '.get_the_post_thumbnail( get_the_id() ).'
                                                         </div>
                                                     </a>
                                                 </div>';

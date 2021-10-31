@@ -59,7 +59,7 @@ $parentCategoryId = get_category_by_slug('craft-collection') !== null ? get_cate
                             <div class="col-6 col-md-4 col-lg-3">
                                 <a class="item mt-20" href="<?= get_the_permalink()?>">
                                     <div class="imgDrop">
-                                        <?php echo get_the_post_thumbnail( get_the_id(), 'collection-thumb', array() ); ?>
+                                        <?php echo get_the_post_thumbnail( get_the_id() ); ?>
                                     </div>
                                 </a>
                             </div>
@@ -79,7 +79,7 @@ $parentCategoryId = get_category_by_slug('craft-collection') !== null ? get_cate
                         <?php while( $the_query->have_posts() ) : $the_query->the_post(); ?>
                             <div class="col-6 col-md-4 col-lg-3">
                                 <a class="item mt-20 block" href="<?= get_the_permalink() ?>">
-                                    <div class="imgDrop"> <?php echo get_the_post_thumbnail( get_the_id(), 'collection-thumb', array() ); ?>
+                                    <div class="imgDrop"> <?php echo get_the_post_thumbnail( get_the_id() ); ?>
                                     </div>
                                 </a>
                             </div>
@@ -132,7 +132,7 @@ $parentCategoryId = get_category_by_slug('craft-collection') !== null ? get_cate
                             <?php while( $the_query->have_posts() ) : $the_query->the_post(); ?>
                                 <div class="col-4 col-md-3 col-lg-2">
                                     <a class="item mt-20" href="<?= get_the_permalink() ?>">
-                                        <div class="imgDrop"> <?php echo get_the_post_thumbnail( get_the_id(), 'collection-thumb', array() ); ?></div>
+                                        <div class="imgDrop"> <?php echo get_the_post_thumbnail( get_the_id() ); ?></div>
                                     </a>
                                 </div>
                             <?php endwhile; ?>
@@ -152,7 +152,7 @@ $parentCategoryId = get_category_by_slug('craft-collection') !== null ? get_cate
                             <?php while( $the_query->have_posts() ) : $the_query->the_post(); ?>
                                 <div class="col-4 col-md-3 col-lg-2">
                                     <a class="item mt-20 block" href="<?= get_the_permalink() ?>">
-                                        <div class="imgDrop"> <?php echo get_the_post_thumbnail( get_the_id(), 'collection-thumb', array() ); ?></div>
+                                        <div class="imgDrop"> <?php echo get_the_post_thumbnail( get_the_id() ); ?></div>
                                     </a>
                                 </div>
                             <?php endwhile; ?>
@@ -184,7 +184,7 @@ $parentCategoryId = get_category_by_slug('craft-collection') !== null ? get_cate
                             <?php while( $the_query->have_posts() ) : $the_query->the_post(); ?>
                                 <div class="col-4 col-md-3 col-lg-2">
                                     <a class="item mt-20" href="<?= get_the_permalink() ?>">
-                                        <div class="imgDrop"> <?php echo get_the_post_thumbnail( get_the_id(), 'collection-thumb', array() ); ?></div>
+                                        <div class="imgDrop"> <?php echo get_the_post_thumbnail( get_the_id() ); ?></div>
                                     </a>
                                 </div>
                             <?php endwhile; ?>

@@ -2,117 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="32e96615-6081-4390-8200-210aa0bca673" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/wp-content/themes/kennguyen/single-craftacademy.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wp-content/languages/themes/twentynineteen-vi.mo" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/wp-content/languages/themes/twentynineteen-vi.po" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/archive-craftacademy.php" beforeDir="false" afterPath="$PROJECT_DIR$/wp-content/themes/kennguyen/archive-craftacademy.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/archive-craftcollection.php" beforeDir="false" afterPath="$PROJECT_DIR$/wp-content/themes/kennguyen/archive-craftcollection.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/common/js/custom.js" beforeDir="false" afterPath="$PROJECT_DIR$/wp-content/themes/kennguyen/common/js/custom.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/core/options.php" beforeDir="false" afterPath="$PROJECT_DIR$/wp-content/themes/kennguyen/core/options.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/footer.php" beforeDir="false" afterPath="$PROJECT_DIR$/wp-content/themes/kennguyen/footer.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/functions.php" beforeDir="false" afterPath="$PROJECT_DIR$/wp-content/themes/kennguyen/functions.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/wp-content/themes/kennguyen/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/single-academy.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/single-craftacademy.php" beforeDir="false" afterPath="$PROJECT_DIR$/wp-content/themes/kennguyen/single-craftacademy.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/single-craftcollection.php" beforeDir="false" afterPath="$PROJECT_DIR$/wp-content/themes/kennguyen/single-craftcollection.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/template-parts/home/banner.php" beforeDir="false" afterPath="$PROJECT_DIR$/wp-content/themes/kennguyen/template-parts/home/banner.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/template-parts/home/video.php" beforeDir="false" afterPath="$PROJECT_DIR$/wp-content/themes/kennguyen/template-parts/home/video.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wp-content/themes/twentynineteen/404.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/wp-content/themes/twentynineteen/archive.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/wp-content/themes/twentynineteen/classes/class-twentynineteen-svg-icons.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/wp-content/themes/twentynineteen/classes/class-twentynineteen-walker-comment.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/wp-content/themes/twentynineteen/comments.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/wp-content/themes/twentynineteen/fonts/NonBreakingSpaceOverride.woff" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/wp-content/themes/twentynineteen/fonts/NonBreakingSpaceOverride.woff2" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/wp-content/themes/twentynineteen/footer.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/wp-content/themes/twentynineteen/functions.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/wp-content/themes/twentynineteen/header.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/wp-content/themes/twentynineteen/image.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/wp-content/themes/twentynineteen/images/pattern_01.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/wp-content/themes/twentynineteen/images/pattern_02.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/wp-content/themes/twentynineteen/images/pattern_03.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/wp-content/themes/twentynineteen/images/pattern_04.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/wp-content/themes/twentynineteen/inc/back-compat.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/wp-content/themes/twentynineteen/inc/block-patterns.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/wp-content/themes/twentynineteen/inc/color-patterns.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/wp-content/themes/twentynineteen/inc/customizer.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/wp-content/themes/twentynineteen/inc/helper-functions.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/wp-content/themes/twentynineteen/inc/icon-functions.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/wp-content/themes/twentynineteen/inc/template-functions.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/wp-content/themes/twentynineteen/inc/template-tags.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/wp-content/themes/twentynineteen/index.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/wp-content/themes/twentynineteen/js/customize-controls.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/wp-content/themes/twentynineteen/js/customize-preview.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/wp-content/themes/twentynineteen/js/priority-menu.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/wp-content/themes/twentynineteen/js/skip-link-focus-fix.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/wp-content/themes/twentynineteen/js/touch-keyboard-navigation.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/wp-content/themes/twentynineteen/package-lock.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/wp-content/themes/twentynineteen/package.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/wp-content/themes/twentynineteen/page.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/wp-content/themes/twentynineteen/postcss.config.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/wp-content/themes/twentynineteen/print.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/wp-content/themes/twentynineteen/print.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/wp-content/themes/twentynineteen/readme.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/wp-content/themes/twentynineteen/sass/_normalize.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/wp-content/themes/twentynineteen/sass/blocks/_blocks.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/wp-content/themes/twentynineteen/sass/elements/_elements.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/wp-content/themes/twentynineteen/sass/elements/_lists.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/wp-content/themes/twentynineteen/sass/elements/_tables.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/wp-content/themes/twentynineteen/sass/forms/_buttons.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/wp-content/themes/twentynineteen/sass/forms/_fields.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/wp-content/themes/twentynineteen/sass/forms/_forms.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/wp-content/themes/twentynineteen/sass/layout/_layout.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/wp-content/themes/twentynineteen/sass/media/_captions.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/wp-content/themes/twentynineteen/sass/media/_galleries.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/wp-content/themes/twentynineteen/sass/media/_media.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/wp-content/themes/twentynineteen/sass/mixins/_mixins-master.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/wp-content/themes/twentynineteen/sass/mixins/_utilities.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/wp-content/themes/twentynineteen/sass/modules/_accessibility.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/wp-content/themes/twentynineteen/sass/modules/_alignments.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/wp-content/themes/twentynineteen/sass/modules/_clearings.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/wp-content/themes/twentynineteen/sass/navigation/_links.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/wp-content/themes/twentynineteen/sass/navigation/_menu-footer-navigation.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/wp-content/themes/twentynineteen/sass/navigation/_menu-main-navigation.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/wp-content/themes/twentynineteen/sass/navigation/_menu-social-navigation.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/wp-content/themes/twentynineteen/sass/navigation/_navigation.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/wp-content/themes/twentynineteen/sass/navigation/_next-previous.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/wp-content/themes/twentynineteen/sass/site/_site.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/wp-content/themes/twentynineteen/sass/site/footer/_site-footer.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/wp-content/themes/twentynineteen/sass/site/header/_site-featured-image.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/wp-content/themes/twentynineteen/sass/site/header/_site-header.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/wp-content/themes/twentynineteen/sass/site/primary/_archives.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/wp-content/themes/twentynineteen/sass/site/primary/_comments.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/wp-content/themes/twentynineteen/sass/site/primary/_posts-and-pages.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/wp-content/themes/twentynineteen/sass/site/secondary/_widgets.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/wp-content/themes/twentynineteen/sass/typography/_copy.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/wp-content/themes/twentynineteen/sass/typography/_headings.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/wp-content/themes/twentynineteen/sass/typography/_typography.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/wp-content/themes/twentynineteen/sass/variables-site/_colors.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/wp-content/themes/twentynineteen/sass/variables-site/_columns.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/wp-content/themes/twentynineteen/sass/variables-site/_fonts.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/wp-content/themes/twentynineteen/sass/variables-site/_structure.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/wp-content/themes/twentynineteen/sass/variables-site/_transitions.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/wp-content/themes/twentynineteen/sass/variables-site/_variables-site.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/wp-content/themes/twentynineteen/screenshot.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/wp-content/themes/twentynineteen/search.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/wp-content/themes/twentynineteen/single.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/wp-content/themes/twentynineteen/style-editor-customizer.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/wp-content/themes/twentynineteen/style-editor-customizer.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/wp-content/themes/twentynineteen/style-editor.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/wp-content/themes/twentynineteen/style-editor.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/wp-content/themes/twentynineteen/style-rtl.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/wp-content/themes/twentynineteen/style.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/wp-content/themes/twentynineteen/style.scss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/wp-content/themes/twentynineteen/template-parts/content/content-excerpt.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/wp-content/themes/twentynineteen/template-parts/content/content-none.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/wp-content/themes/twentynineteen/template-parts/content/content-page.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/wp-content/themes/twentynineteen/template-parts/content/content-single.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/wp-content/themes/twentynineteen/template-parts/content/content.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/wp-content/themes/twentynineteen/template-parts/footer/footer-widgets.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/wp-content/themes/twentynineteen/template-parts/header/entry-header.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/wp-content/themes/twentynineteen/template-parts/header/site-branding.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/wp-content/themes/twentynineteen/template-parts/post/author-bio.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/wp-content/themes/twentynineteen/template-parts/post/discussion-meta.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/template-parts/home/slider.php" beforeDir="false" afterPath="$PROJECT_DIR$/wp-content/themes/kennguyen/template-parts/home/slider.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
