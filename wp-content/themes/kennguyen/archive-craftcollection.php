@@ -1,5 +1,7 @@
 <?php get_header(); ?>
-<?php $craftcollection = get_post_type_object( 'craftcollection' ); ?>
+<?php $craftcollection = get_post_type_object( 'craftcollection' );
+$parentCategoryId = get_category_by_slug('craft-collection') !== null ? get_category_by_slug('craft-collection')->cat_ID : 0;
+?>
 <main>
     <section class="category pt-50 pb-50">
         <div class="wraper">
@@ -14,33 +16,50 @@
             <div class="tab_category mt-30">
                 <div class="row">
                     <?php
+                    $categoryNameSelected = get_query_var('category');
+                    if (!empty($categoryNameSelected)) {
+                        $categoryNameSelected = str_replace('-and-', '&', $categoryNameSelected);
+                    }
                     $args = array(
                         'type'      => 'post',
                         'child_of'  => 0,
                         'hide_empty' => 0,
-                        'parent'    => 4
+                        'parent'    => $parentCategoryId
                     );
                     $categories = get_categories( $args );
-                    foreach ( $categories as $category ) { ?>
-                        <?php echo '<div class="col-12 col-md-6 col-lg-3 item">  <a class="active" href="/craftcollection/'.$category->slug.'">'.$category->name.'</a></div>' ; ?>
-                    <?php } ?>
+                    foreach ( $categories as $key => $category ) {
+                        $active = $categoryNameSelected == $category->name ? 'active' : '';
+                        if (empty($categoryNameSelected) && $key == 0) {
+                            $active = 'active';
+                            $categoryNameSelected = $category->name;
+                        }
+                        echo '<div class="col-12 col-md-6 col-lg-3 item">  <a class="' . $active . '" href="?category=' . str_replace('&', '-and-', $category->name) . '">' . $category->name . '</a></div>';
+                    }
+                        ?>
                 </div>
             </div>
             <div class="course_main mt-10">
                 <div class="row">
                     <?php
+                    if (empty($categoryNameSelected)) {
+                        $categoryIdSelected = 0;
+                    } else {
+                        $categoryIdSelected = get_cat_ID($categoryNameSelected);
+                    }
+
                     $args = array(
                         'post_status' => 'free',
-                        'post_type'      => 'craftcollection'
+                        'post_type'      => 'craftcollection',
+                        'cat' => $categoryIdSelected
                     );
                     $the_query = new WP_Query( $args );
                     ?>
                     <?php if( $the_query->have_posts() ): ?>
                         <?php while( $the_query->have_posts() ) : $the_query->the_post(); ?>
                             <div class="col-6 col-md-4 col-lg-3">
-                                <a class="item mt-20" href="detail.html">
+                                <a class="item mt-20" href="<?= get_the_permalink()?>">
                                     <div class="imgDrop">
-                                        <?php echo get_the_post_thumbnail( get_the_id(), 'collection-thumb', array() ); ?>
+                                        <?php echo get_the_post_thumbnail( get_the_id() ); ?>
                                     </div>
                                 </a>
                             </div>
@@ -59,8 +78,8 @@
                     <?php if( $the_query->have_posts() ): ?>
                         <?php while( $the_query->have_posts() ) : $the_query->the_post(); ?>
                             <div class="col-6 col-md-4 col-lg-3">
-                                <a class="item mt-20 block" href="detail.html">
-                                    <div class="imgDrop"> <?php echo get_the_post_thumbnail( get_the_id(), 'collection-thumb', array() ); ?>
+                                <a class="item mt-20 block" href="<?= get_the_permalink() ?>">
+                                    <div class="imgDrop"> <?php echo get_the_post_thumbnail( get_the_id() ); ?>
                                     </div>
                                 </a>
                             </div>
@@ -82,7 +101,7 @@
                             'type'      => 'post',
                             'child_of'  => 0,
                             'hide_empty' => 0,
-                            'parent'    => 4
+                            'parent'    => $parentCategoryId
                         );
                         $categories = get_categories( $args );
                         $listCategoriesShow = [];
@@ -112,8 +131,8 @@
                         <?php if( $the_query->have_posts() ): ?>
                             <?php while( $the_query->have_posts() ) : $the_query->the_post(); ?>
                                 <div class="col-4 col-md-3 col-lg-2">
-                                    <a class="item mt-20" href="detail.html">
-                                        <div class="imgDrop"> <?php echo get_the_post_thumbnail( get_the_id(), 'collection-thumb', array() ); ?></div>
+                                    <a class="item mt-20" href="<?= get_the_permalink() ?>">
+                                        <div class="imgDrop"> <?php echo get_the_post_thumbnail( get_the_id() ); ?></div>
                                     </a>
                                 </div>
                             <?php endwhile; ?>
@@ -132,8 +151,8 @@
                         <?php if( $the_query->have_posts() ): ?>
                             <?php while( $the_query->have_posts() ) : $the_query->the_post(); ?>
                                 <div class="col-4 col-md-3 col-lg-2">
-                                    <a class="item mt-20 block" href="detail.html">
-                                        <div class="imgDrop"> <?php echo get_the_post_thumbnail( get_the_id(), 'collection-thumb', array() ); ?></div>
+                                    <a class="item mt-20 block" href="<?= get_the_permalink() ?>">
+                                        <div class="imgDrop"> <?php echo get_the_post_thumbnail( get_the_id() ); ?></div>
                                     </a>
                                 </div>
                             <?php endwhile; ?>
@@ -164,8 +183,8 @@
                         <?php if( $the_query->have_posts() ): ?>
                             <?php while( $the_query->have_posts() ) : $the_query->the_post(); ?>
                                 <div class="col-4 col-md-3 col-lg-2">
-                                    <a class="item mt-20" href="#">
-                                        <div class="imgDrop"> <img src="<?php bloginfo('template_directory') ?>/common/images/product4.png" alt=""/></div>
+                                    <a class="item mt-20" href="<?= get_the_permalink() ?>">
+                                        <div class="imgDrop"> <?php echo get_the_post_thumbnail( get_the_id() ); ?></div>
                                     </a>
                                 </div>
                             <?php endwhile; ?>

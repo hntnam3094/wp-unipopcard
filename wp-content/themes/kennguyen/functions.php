@@ -10,18 +10,19 @@ function theme_setup() {
     register_nav_menu('footer-about',__( 'Footer column about' ));
     register_nav_menu('footer-resources',__( 'Footer column resources' ));
 
-    add_image_size('banner-thumb', 1349, 281);
-    add_image_size('collection-thumb', 285, 285);
-    add_image_size('month-thumb', 183, 183);
-    add_image_size('video-image-thumb', 920, 563);
     global $_wp_theme_features;
     $_wp_theme_features['post-thumbnails']= true;
 
 }
 add_action('init', 'theme_setup');
 
-add_filter ( 'nav_menu_css_class', 'so_37823371_menu_item_class', 10, 4 );
+//custom hide menu in admin
+function hide_menu() {
+    remove_menu_page( 'edit.php' ); //Posts
+}
+add_action('admin_head', 'hide_menu');
 
+add_filter ( 'nav_menu_css_class', 'so_37823371_menu_item_class', 10, 4 );
 function so_37823371_menu_item_class ( $classes, $item, $args, $depth ){
     $classes[] = 'nav-item';
     return $classes;
@@ -441,9 +442,20 @@ function check_membership() {
     echo $isMember;
 }
 
+<<<<<<< HEAD
 add_filter('set-screen-option', 'test_table_set_option', 10, 3);
 function test_table_set_option($status, $option, $value)
 {
     var_dump($value);
     return $value;
 }
+=======
+add_filter('nav_menu_css_class' , 'special_nav_class' , 10 , 2);
+
+function special_nav_class ($classes, $item) {
+    if (in_array('current-menu-item', $classes) ){
+        $classes[] = 'active ';
+    }
+    return $classes;
+}
+>>>>>>> origin/dev

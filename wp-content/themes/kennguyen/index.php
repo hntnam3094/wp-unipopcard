@@ -55,7 +55,7 @@
                 <?php if( $the_query->have_posts() ): ?>
                     <?php while( $the_query->have_posts() ) : $the_query->the_post(); ?>
                         <div class="column col-6 col-md-3">
-                            <a class="item block mt-40" href="detail.html">
+                            <a class="item block mt-40" href="<?= get_the_permalink() ?>">
                                 <div class="images">
                                     <div class="imgDrop"> <?php echo get_the_post_thumbnail( get_the_ID() ); ?></div>
                                 </div>
@@ -78,7 +78,7 @@
                 <?php wp_reset_query(); ?>
             </div>
           </div>
-          <div class="mt-40 text-center"> <a class="btn_more fz-20" href="category.htnl">LOAD MORE </a></div>
+          <div class="mt-40 text-center"> <a class="btn_more fz-20" href="/craftcollection">LOAD MORE </a></div>
         </div>
       </section>
       <?php get_template_part('template-parts/home/slider'); ?>
