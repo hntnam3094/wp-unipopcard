@@ -80,7 +80,6 @@ if ($_POST) {
 
 }
 get_header();
-    do_action('is_membership');
 ?>
 <main>
 

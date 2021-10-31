@@ -123,8 +123,8 @@ if (!empty($queryResult)) {
                         <th><label for="first_name">Membership</label></th>
                         <td>
                             <select id="member_ship" class="regular-text" name="member_ship">
-                                <option value="0" <?= $user->member_ship == 0 ? 'selected' : '' ?>>Nomal member</option>
-                                <option value="1" <?= $user->member_ship == 1 ? 'selected' : '' ?>>Member package</option>
+                                <option value="0" <?= $user->member_ship == 0 ? 'selected' : '' ?>>-</option>
+                                <option value="1" <?= $user->member_ship == 1 ? 'selected' : '' ?>>Membership</option>
                             </select>
                         </td>
                     </tr>
@@ -132,9 +132,9 @@ if (!empty($queryResult)) {
                         <th><label for="first_name">Type member</label></th>
                         <td>
                             <select id="type_member" class="regular-text" name="type_member">
-                                <option value="0" <?= $user->type_member == 0 ? 'selected' : '' ?>>Not registration</option>
-                                <option value="1" <?= $user->type_member == 1 ? 'selected' : '' ?>>Weekly member</option>
-                                <option value="2" <?= $user->type_member == 2 ? 'selected' : '' ?>>Monthly member</option>
+                                <option value="0" <?= $user->type_member == 0 ? 'selected' : '' ?>>-</option>
+                                <option value="1" <?= $user->type_member == 1 ? 'selected' : '' ?>>Monthly member</option>
+                                <option value="2" <?= $user->type_member == 2 ? 'selected' : '' ?>>Yearly member</option>
                             </select>
                         </td>
                     </tr>
@@ -193,8 +193,8 @@ if (!empty($queryResult)) {
                         <th><label for="first_name">Membership</label></th>
                         <td>
                             <select id="member_ship" class="regular-text" name="member_ship">
-                                <option value="0">Nomal member</option>
-                                <option value="1">Member package</option>
+                                <option value="0">-</option>
+                                <option value="1">Membership</option>
                             </select>
                         </td>
                     </tr>
@@ -202,9 +202,9 @@ if (!empty($queryResult)) {
                         <th><label for="first_name">Type member</label></th>
                         <td>
                             <select id="type_member" class="regular-text" name="type_member">
-                                <option value="0">Not registration</option>
-                                <option value="1">Weekly member</option>
-                                <option value="2">Monthly member</option>
+                                <option value="0">-</option>
+                                <option value="1">Monthly member</option>
+                                <option value="2">Yearly member</option>
                             </select>
                         </td>
                     </tr>

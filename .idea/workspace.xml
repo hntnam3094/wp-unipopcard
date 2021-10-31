@@ -3,7 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="32e96615-6081-4390-8200-210aa0bca673" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-admin/ken_customer.php" beforeDir="false" afterPath="$PROJECT_DIR$/wp-admin/ken_customer.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-admin/ken_customer_edit.php" beforeDir="false" afterPath="$PROJECT_DIR$/wp-admin/ken_customer_edit.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/account.php" beforeDir="false" afterPath="$PROJECT_DIR$/wp-content/themes/kennguyen/account.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/core/customer-managerment.php" beforeDir="false" afterPath="$PROJECT_DIR$/wp-content/themes/kennguyen/core/customer-managerment.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/core/options.php" beforeDir="false" afterPath="$PROJECT_DIR$/wp-content/themes/kennguyen/core/options.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/functions.php" beforeDir="false" afterPath="$PROJECT_DIR$/wp-content/themes/kennguyen/functions.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/payment.php" beforeDir="false" afterPath="$PROJECT_DIR$/wp-content/themes/kennguyen/payment.php" afterDir="false" />
     </list>
@@ -12,7 +16,7 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ComposerSettings">
+  <component name="ComposerSettings" doNotAsk="true">
     <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
     <execution />
   </component>
@@ -114,7 +118,8 @@
       <workItem from="1635381239044" duration="1707000" />
       <workItem from="1635417882232" duration="1788000" />
       <workItem from="1635462315343" duration="2394000" />
-      <workItem from="1635554648477" duration="35486000" />
+      <workItem from="1635554648477" duration="41144000" />
+      <workItem from="1635649514769" duration="2933000" />
     </task>
     <servers />
   </component>
