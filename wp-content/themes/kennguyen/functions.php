@@ -425,7 +425,6 @@ function smashing_craftcollection_column( $column, $post_id ) {
     }
 }
 
-add_action('is_membership', 'check_membership');
 function check_membership() {
     $isMember = 0;
     if (isset($_SESSION['user'])) {
@@ -439,7 +438,7 @@ function check_membership() {
             }
         }
     }
-    echo $isMember;
+    return $isMember;
 }
 
 add_filter('nav_menu_css_class' , 'special_nav_class' , 10 , 2);

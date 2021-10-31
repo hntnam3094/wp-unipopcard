@@ -1,6 +1,8 @@
 <?php get_header(); ?>
 <?php $craftcollection = get_post_type_object( 'craftcollection' );
 $parentCategoryId = get_category_by_slug('craft-collection') !== null ? get_category_by_slug('craft-collection')->cat_ID : 0;
+$getMember = check_membership();
+$isShowPost = $getMember == 1 ? '' : 'block';
 ?>
 <main>
     <section class="category pt-50 pb-50">
@@ -78,7 +80,7 @@ $parentCategoryId = get_category_by_slug('craft-collection') !== null ? get_cate
                     <?php if( $the_query->have_posts() ): ?>
                         <?php while( $the_query->have_posts() ) : $the_query->the_post(); ?>
                             <div class="col-6 col-md-4 col-lg-3">
-                                <a class="item mt-20 block" href="<?= get_the_permalink() ?>">
+                                <a class="item mt-20 <?= $isShowPost ?>" href="<?= get_the_permalink() ?>">
                                     <div class="imgDrop"> <?php echo get_the_post_thumbnail( get_the_id() ); ?>
                                     </div>
                                 </a>
@@ -151,7 +153,7 @@ $parentCategoryId = get_category_by_slug('craft-collection') !== null ? get_cate
                         <?php if( $the_query->have_posts() ): ?>
                             <?php while( $the_query->have_posts() ) : $the_query->the_post(); ?>
                                 <div class="col-4 col-md-3 col-lg-2">
-                                    <a class="item mt-20 block" href="<?= get_the_permalink() ?>">
+                                    <a class="item mt-20 <?= $isShowPost ?>" href="<?= get_the_permalink() ?>">
                                         <div class="imgDrop"> <?php echo get_the_post_thumbnail( get_the_id() ); ?></div>
                                     </a>
                                 </div>
