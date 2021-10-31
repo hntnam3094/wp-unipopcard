@@ -16,7 +16,12 @@
                             </a>
                         </div>
                         <div class="item mt-15">
-                            <div class="ttl">COMMENT</div><a class="icon" href="#comment"> <img src="common/images/shared_03.svg" alt=""/></a><a class="icon" href=""> <img src="common/images/shared_04.svg" alt=""/></a>
+                            <div class="ttl">COMMENT</div><a class="icon" href="#comment">
+                                <img src="<?php bloginfo('template_directory') ?>/common/images/shared_03.svg" alt=""/>
+                            </a>
+                            <a class="icon" href="">
+                                <img src="<?php bloginfo('template_directory') ?>/common/images/shared_04.svg" alt=""/>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -49,7 +54,7 @@
                     </div>
                     <div class="mt-50 text-center"> <a class="btn_more" href="/upgrade-today"><span class="block main fz-22">You Can Make This!</span><span class="block sub">BECOME A MEMBER  </span></a></div>
                     <div class="comment mt-80 pb-30" id="comment" class="fb-comments">
-<!--                        <div class="fb-comments" data-href="https://developers.facebook.com/docs/plugins/comments#configurator" data-width="" data-numposts="5"></div>-->
+                        <div class="fb-comments" data-href="https://developers.facebook.com/docs/plugins/comments#configurator" data-width="" data-numposts="5"></div>
                     </div>
                 </div>
                 <div class="col-12 col-lg-3 sidebar">
