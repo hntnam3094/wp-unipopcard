@@ -1,8 +1,8 @@
 <?php
 add_action( 'admin_menu', 'my_admin_menu' );
 function my_admin_menu() {
-    add_menu_page( 'Pill', 'Pill', 'manage_options', 'kn-pill', 'admin_pill_page', 'dashicons-tickets');
-    add_menu_page( 'Reports', 'Reports', 'manage_options', 'kn-report', 'admin_report_page', 'dashicons-tickets');
+    add_menu_page( 'Pill management', 'Pills', 'manage_options', 'kn-pill', 'admin_pill_page', 'dashicons-tickets');
+    add_menu_page( 'Report management', 'Reports', 'manage_options', 'kn-report', 'admin_report_page', 'dashicons-tickets');
     wp_enqueue_script( 'google-charts', get_template_directory_uri() . '/js/google-charts.js', array(), '20151215', false );
 }
 
@@ -24,7 +24,7 @@ function admin_pill_page(){
     $totalAmount = 0;
     ?>
     <div class="wrap">
-        <h2>Pill</h2>
+        <h2>Pill management</h2>
         <div class="tablenav top">
             <div class="alignleft actions">
                 <label>From</label>
@@ -107,13 +107,13 @@ function admin_report_page(){
     $query = getQueryReport($type, $from, $to);
     $total_query = "SELECT COUNT(1) FROM (${query}) AS combined_table";
     $total = $wpdb->get_var( $total_query );
-    $items_per_page = 10;
+    $items_per_page = 45;
     $page = isset( $_GET['cpage'] ) ? abs( (int) $_GET['cpage'] ) : 1;
     $offset = ( $page * $items_per_page ) - $items_per_page;
     $result = $wpdb->get_results( $query . " LIMIT ${offset}, ${items_per_page}" );
     ?>
     <div class="wrap">
-        <h2>Reports</h2>
+        <h2>Report management</h2>
         <div class="tablenav top">
             <div class="alignleft actions">
                 <label>From</label>
@@ -186,28 +186,34 @@ function admin_report_page(){
 //            'current' => $page
 //        ));
         ?>
+        <div id="columnchart_material" style="height: 500px; margin-top: 15px"></div>
+        <div id="piechart" style="margin-top: 15px"></div>
     </div>
-    <h2>Report chart</h2>
-    <div id="columnchart_material"></div>
-    <div id="piechart"></div>
+
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+    <?php
+    $dataColumnChart = [['Timeline', 'Package month', 'Package year']];
+    foreach ($result as $value) {
+        array_push($dataColumnChart, [$value->timeLine, $value->incomeMonth, $value->incomeYear]);
+    }
+    $dataPieChart = [['Package', 'Income']];
+    array_push($dataPieChart, ['Package month', $totalMonthIncome]);
+    array_push($dataPieChart, ['Package year', $totalYearIncome]);
+    ?>
+
     <script type="text/javascript">
+        let listDataColumnChart = <?= json_encode($dataColumnChart) ;?>;
         google.charts.load('current', {'packages':['bar']});
         google.charts.setOnLoadCallback(drawChart);
 
         function drawChart() {
-            let data = google.visualization.arrayToDataTable([
-                ['Year', 'Month', 'Year'],
-                ['2014', 1000, 400],
-                ['2015', 1170, 460],
-                ['2016', 660, 1120],
-                ['2017', 1030, 540]
-            ]);
+            let data = google.visualization.arrayToDataTable(listDataColumnChart);
 
             let options = {
                 chart: {
-                    title: 'Company Performance',
-                    subtitle: 'Sales, Expenses, and Profit: 2014-2017',
+                    title: 'Ken nguyen report',
+                    subtitle: 'Package month, year from: <?=$from?>~<?=$to?>',
                 }
             };
 
@@ -218,19 +224,16 @@ function admin_report_page(){
     </script>
 
     <script type="text/javascript">
+        let listDataPieChart = <?= json_encode($dataPieChart) ;?>;
         google.charts.load('current', {'packages':['corechart']});
         google.charts.setOnLoadCallback(drawChart);
 
         function drawChart() {
 
-            let data = google.visualization.arrayToDataTable([
-                ['Package', 'Income'],
-                ['Month',     11],
-                ['Year',      2]
-            ]);
+            let data = google.visualization.arrayToDataTable(listDataPieChart);
 
             let options = {
-                title: 'My Daily Activities'
+                title: 'Ken nguyen report'
             };
 
             let chart = new google.visualization.PieChart(document.getElementById('piechart'));
