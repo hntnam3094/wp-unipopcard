@@ -391,6 +391,7 @@ add_action('init','add_get_val');
 function add_get_val() {
     global $wp;
     $wp->add_query_var('category');
+    $wp->add_query_var('q');
 }
 
 // Add the custom columns to the book post type:

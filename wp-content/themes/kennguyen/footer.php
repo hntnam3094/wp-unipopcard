@@ -97,6 +97,14 @@
 <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-617ddd1be044758e"></script>
 <script>
     $(function (){
+        const urlParams = new URLSearchParams(window.location.search);
+        let paramQ = urlParams.get('q')
+        let paramCategory = urlParams.get('category')
+        if (paramQ || paramCategory) {
+            $('#input-search-data').val(paramQ)
+            document.getElementById('input-search-data').scrollIntoView();
+        }
+
         $('#btn-share-facebook').on('click', () => {
             if ($('#at-share-dock .at-svc-facebook').length > 0) {
                 $('#at-share-dock .at-svc-facebook')[0].click()
@@ -107,6 +115,11 @@
             if ($('#at-share-dock .at-svc-pinterest_share').length > 0) {
                 $('#at-share-dock .at-svc-pinterest_share')[0].click()
             }
+        })
+
+        $('#btn-search-data').on('click', () => {
+            urlParams.set('q', $('#input-search-data').val());
+            window.location.href='?' + urlParams.toString()
         })
     })
 </script>
