@@ -1,5 +1,23 @@
 <?php get_header(); ?>
-<?php global $va_options?>
+<?php global $va_options;
+global $wpdb;
+$table = $wpdb->prefix . 'customer_download';
+
+if (isset($_POST)) {
+    $customer_id = $_POST['customerId'];
+    $post_id = $_POST['postId'];
+    if (!empty($customer_id) && !empty($post_id)) {
+        $queryResult = $wpdb->get_results(
+            $wpdb->prepare("SELECT * FROM {$table} WHERE id_customer=%d AND id_post=%d",$customer_id, $post_id));
+        if (empty($queryResult)) {
+            $data = array();
+            $data['id_customer'] = $customer_id;
+            $data['id_post'] = $post_id;
+            $insertRs = $wpdb->insert($table, $data);
+        }
+    }
+}
+?>
 <main>
     <section class="course_detail pt-40 pb-40">
         <div class="wraper">
@@ -37,10 +55,11 @@
                         <ul class="list_download fz-20">
                             <?php
                             $rows = get_field('list_file');
+                            $user = $_SESSION['user'];
                             if( $rows ) {
                                 foreach( $rows as $row ) {
                                     echo '
-                                <li class="mt-20">
+                                <li data-iduser="'.$user->id.'" data-idpost="'.get_the_ID().'" class="mt-20 download-item">
                                     <a href="'.$row['file']['url'].'" download>
                                         <span class="txt trim trim_1">'.$row['file_name'].'</span>
                                         <soan class="button">Click Download & Print</soan>

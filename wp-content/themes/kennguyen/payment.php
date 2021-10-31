@@ -50,7 +50,7 @@ if (!empty($_SESSION['user'])) {
     }
 
     if (!empty($_POST) && !empty($_POST['id'])) {
-        if (empty($user)) {
+        if (!empty($user)) {
             $today = date("Y-m-d");
             $data = array();
             $data['id_customer'] = $user->id;
