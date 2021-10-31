@@ -6,3 +6,5 @@ require_once dirname( __FILE__ ).'/plugins.php';
 require_once dirname( __FILE__ ).'/options.php';
 require_once dirname( __FILE__ ).'/customer-managerment.php';
 require_once dirname( __FILE__ ).'/migrate-customer.php';
+//require_once dirname( __FILE__ ).'/report-management.php';
+require_once dirname( __FILE__ ).'/report-page.php';
