@@ -65,37 +65,37 @@
                             </form>
                         </div>
                     </div>
+                    <?php
+                    $args = array(
+                        'post_status' => 'free',
+                        'post_type'      => 'craftcollection',
+                        'cat' => wp_get_post_categories(get_the_ID())
+                    );
+                    $currentId = get_the_ID();
+                    $the_query = new WP_Query( $args );
+                    ?>
+                    <?php if( $the_query->have_posts() ): ?>
                     <div class="more_corse mt-50 category">
                         <h3 class="ttl text-up fz-22">MORE TO LOVE</h3>
                         <div class="course_main">
                             <div class="row">
-                                <?php
-                                $args = array(
-                                    'post_status' => 'free',
-                                    'post_type'      => 'craftcollection',
-                                    'cat' => wp_get_post_categories(get_the_ID())
-                                );
-                                $currentId = get_the_ID();
-                                $the_query = new WP_Query( $args );
-                                ?>
-                                <?php if( $the_query->have_posts() ): ?>
-                                    <?php while( $the_query->have_posts() ) : $the_query->the_post();
-                                        if (get_the_ID() != $currentId) {
-                                            echo '<div class="col-4 col-lg-12">
-                                            <a class="item mt-20" href="'.get_the_permalink().'">
-                                                <div class="imgDrop">
-                                                    '.get_the_post_thumbnail( get_the_id(), 'collection-thumb', array() ).'
-                                                </div>
-                                            </a>
-                                        </div>';
-                                        }
-                                        ?>
-                                    <?php endwhile; ?>
-                                <?php endif; ?>
-                                <?php wp_reset_query(); ?>
+                                <?php while( $the_query->have_posts() ) : $the_query->the_post();
+                                    if (get_the_ID() != $currentId) {
+                                        echo '<div class="col-4 col-lg-12">
+                                                    <a class="item mt-20" href="'.get_the_permalink().'">
+                                                        <div class="imgDrop">
+                                                            '.get_the_post_thumbnail( get_the_id(), 'collection-thumb', array() ).'
+                                                        </div>
+                                                    </a>
+                                                </div>';
+                                    }
+                                    ?>
+                                <?php endwhile; ?>
                             </div>
                         </div>
                     </div>
+                    <?php endif; ?>
+                    <?php wp_reset_query(); ?>
                 </div>
             </div>
         </div>

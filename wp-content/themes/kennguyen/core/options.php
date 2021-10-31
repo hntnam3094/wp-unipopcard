@@ -38,9 +38,13 @@ if ( ! class_exists( 'VA_Theme_Options' ) ) {
 
 
             // Create the sections and fields
+            $this->setSectionsSettingHome();
+
             $this->setSections();
 
             $this->setPayment();
+
+
 
 
             if ( ! isset( $this->args['opt_name'] ) ) { // No errors please
@@ -64,8 +68,8 @@ if ( ! class_exists( 'VA_Theme_Options' ) ) {
                 'display_name' => $theme->get('Name'), // Thiết lập tên theme hiển thị trong Theme Options
                 'menu_type' => 'menu',
                 'allow_sub_menu' => true,
-                'menu_title' => __('VA Theme Options', 'vietanh'),
-                'page_title' => __('VA Theme Options', 'vietanh'),
+                'menu_title' => __('Settings', 'vietanh'),
+                'page_title' => __('Settings', 'vietanh'),
                 'dev_mode' => false,
                 'customizer' => true,
                 'menu_icon' => '', // Đường dẫn icon của menu option
@@ -132,59 +136,70 @@ if ( ! class_exists( 'VA_Theme_Options' ) ) {
         public function setSections() {
             // Home Section
             $this->sections[] = array(
-                'title'  => __( 'Header', 'vietanh' ),
+                'title'  => __( 'Setting footer', 'vietanh' ),
                 'desc'   => __( 'All of settings for header on this theme.', 'vietanh' ),
-                    'icon'   => 'el-icon-home',
+                    'icon'   => 'el-icon-circle-arrow-right',
                     'fields' => array(
                         array(
                             'id' => 'kn_avatar',
                             'type' => 'media',
-                            'title' => __('Tùy chọn logo', 'vietanh'),
-                            'compiler' => true,
-                            'desc' => __('Cho phép dùng đuôi: jpg,png,gif', 'vietanh')
+                            'title' => __('Avatar', 'vietanh'),
+                            'compiler' => true
                         ),
                         array(
                             'id' => 'kn_introduction',
                             'type' => 'textarea',
-                            'title' => __('Tùy chọn logo', 'vietanh'),
-                            'compiler' => true,
-                            'desc' => __('Cho phép dùng đuôi: jpg,png,gif', 'vietanh')
+                            'title' => __('Introduction', 'vietanh'),
+                            'compiler' => true
                         ),
                         array(
                             'id' => 'section2-start',
                             'type' => 'section',
-                            'title' => __('Tùy chọn logo', 'vietanh'),
-                            'compiler' => true,
-                            'desc' => __('Cho phép dùng đuôi: jpg,png,gif', 'vietanh')
+                            'title' => __('Social network', 'vietanh'),
+                            'compiler' => true
                         ),
                         array(
-                            'id' => 'address',
+                            'id' => 'sn_facebook',
                             'type' => 'text',
-                            'title' => __('Tùy chọn logo', 'vietanh'),
-                            'compiler' => true,
-                            'desc' => __('Cho phép dùng đuôi: jpg,png,gif', 'vietanh')
+                            'title' => __('Link facebook', 'vietanh'),
+                            'compiler' => true
                         ),
                         array(
-                            'id' => 'section3-start',
-                            'type' => 'section',
-                            'title' => __('Tùy chọn logo', 'vietanh'),
-                            'compiler' => true,
-                            'desc' => __('Cho phép dùng đuôi: jpg,png,gif', 'vietanh')
+                            'id' => 'sn_instagram',
+                            'type' => 'text',
+                            'title' => __('Link instagram', 'vietanh'),
+                            'compiler' => true
                         ),
-
-
+                        array(
+                            'id' => 'sn_pinterest',
+                            'type' => 'text',
+                            'title' => __('Link pinterest', 'vietanh'),
+                            'compiler' => true
+                        ),
+                        array(
+                            'id' => 'sn_youtube',
+                            'type' => 'text',
+                            'title' => __('Link youtube', 'vietanh'),
+                            'compiler' => true
+                        ),
+                        array(
+                            'id' => 'sn_email',
+                            'type' => 'text',
+                            'title' => __('Link email', 'vietanh'),
+                            'compiler' => true
+                        ),
                     )
                 ); // end section
 
 
-            }
+        }
 
         public function setPayment() {
             // Home Section
             $this->sections[] = array(
                 'title'  => __( 'Upgrade today', 'upgrade_today' ),
                 'desc'   => __( 'All of settings for header on this theme.', 'upgrade_today' ),
-                'icon'   => 'el-icon-home',
+                'icon'   => 'el-icon-circle-arrow-right',
                 'fields' => array(
                     array(
                         'id' => 'kn_monthly_package_price',
@@ -213,6 +228,40 @@ if ( ! class_exists( 'VA_Theme_Options' ) ) {
 
 
 
+                )
+            ); // end section
+
+
+        }
+
+        public function setSectionsSettingHome() {
+            // Home Section
+            $this->sections[] = array(
+                'title'  => __( 'Setting home page', 'vietanh' ),
+                'desc'   => __( 'All of settings for header on this theme.', 'vietanh' ),
+                'icon'   => 'el-icon-home',
+                'fields' => array(
+                    array(
+                        'id' => 'kn_banner',
+                        'type' => 'media',
+                        'title' => __('Banner', 'vietanh'),
+                        'compiler' => true,
+                        'desc' => __('Cho phép dùng đuôi: jpg,png,gif', 'vietanh')
+                    ),
+                    array(
+                        'id' => 'kn_url_video',
+                        'type' => 'text',
+                        'title' => __('Video', 'vietanh'),
+                        'compiler' => true,
+                        'desc' => __('Cho phép dùng đuôi: jpg,png,gif', 'vietanh')
+                    ),
+                    array(
+                        'id' => 'kn_image_video',
+                        'type' => 'media',
+                        'title' => __('Image for video', 'vietanh'),
+                        'compiler' => true,
+                        'desc' => __('Cho phép dùng đuôi: jpg,png,gif', 'vietanh')
+                    ),
                 )
             ); // end section
 

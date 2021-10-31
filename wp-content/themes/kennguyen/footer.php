@@ -61,11 +61,11 @@
                     <div class="col-12 col-md-5">
                         <h4 class="ttl">STAY CONNECTED</h4>
                         <ul class="social flexBox midle mt-20">
-                            <li> <a href="#"> <img src="<?php bloginfo('template_directory') ?>/common/images/social_01.svg" alt=""/></a></li>
-                            <li> <a href="#"> <img src="<?php bloginfo('template_directory') ?>/common/images/social_02.svg" alt=""/></a></li>
-                            <li> <a href="#"> <img src="<?php bloginfo('template_directory') ?>/common/images/social_03.svg" alt=""/></a></li>
-                            <li> <a href="#"> <img src="<?php bloginfo('template_directory') ?>/common/images/social_04.svg" alt=""/></a></li>
-                            <li> <a href="#"> <img src="<?php bloginfo('template_directory') ?>/common/images/social_05.svg" alt=""/></a></li>
+                            <li> <a href="<?= $va_options['sn_facebook']; ?>"> <img src="<?php bloginfo('template_directory') ?>/common/images/social_01.svg" alt=""/></a></li>
+                            <li> <a href="<?= $va_options['sn_instagram']; ?>"> <img src="<?php bloginfo('template_directory') ?>/common/images/social_02.svg" alt=""/></a></li>
+                            <li> <a href="<?= $va_options['sn_pinterest']; ?>"> <img src="<?php bloginfo('template_directory') ?>/common/images/social_03.svg" alt=""/></a></li>
+                            <li> <a href="<?= $va_options['sn_youtube']; ?>"> <img src="<?php bloginfo('template_directory') ?>/common/images/social_04.svg" alt=""/></a></li>
+                            <li> <a href="<?= $va_options['sn_email']; ?>"> <img src="<?php bloginfo('template_directory') ?>/common/images/social_05.svg" alt=""/></a></li>
                         </ul>
                         <div class="text mt-20">
                             <p>Join our email list to learn about new projects, discounts, and membership perks!</p>
@@ -93,6 +93,23 @@
 <script src="<?php bloginfo('template_directory') ?>/common/js/bootstrap.min.js"></script>
 <script src="<?php bloginfo('template_directory') ?>/common/js/main.js"></script>
 <script src="<?php bloginfo('template_directory') ?>/common/js/custom.js"></script>
+<!-- Go to www.addthis.com/dashboard to customize your tools -->
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-617ddd1be044758e"></script>
+<script>
+    $(function (){
+        $('#btn-share-facebook').on('click', () => {
+            if ($('#at-share-dock .at-svc-facebook').length > 0) {
+                $('#at-share-dock .at-svc-facebook')[0].click()
+            }
+        })
+        $('#btn-share-pinterest').on('click', () => {
+            console.log('vàooo', $('#at4-share .at-svc-pinterest_share'))
+            if ($('#at-share-dock .at-svc-pinterest_share').length > 0) {
+                $('#at-share-dock .at-svc-pinterest_share')[0].click()
+            }
+        })
+    })
+</script>
 <?php wp_footer(); ?>
 
 </body>

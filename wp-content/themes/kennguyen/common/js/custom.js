@@ -1,5 +1,5 @@
 $(function (){
-    Singup.init();
+    //Singup.init();
 })
 
 // var Singup = {

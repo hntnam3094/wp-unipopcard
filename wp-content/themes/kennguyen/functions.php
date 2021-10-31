@@ -20,8 +20,12 @@ function theme_setup() {
 }
 add_action('init', 'theme_setup');
 
-add_filter ( 'nav_menu_css_class', 'so_37823371_menu_item_class', 10, 4 );
+function hide_menu() {
+    remove_menu_page( 'edit.php' ); //Posts
+}
+add_action('admin_head', 'hide_menu');
 
+add_filter ( 'nav_menu_css_class', 'so_37823371_menu_item_class', 10, 4 );
 function so_37823371_menu_item_class ( $classes, $item, $args, $depth ){
     $classes[] = 'nav-item';
     return $classes;
@@ -439,4 +443,13 @@ function check_membership() {
         }
     }
     echo $isMember;
+}
+
+add_filter('nav_menu_css_class' , 'special_nav_class' , 10 , 2);
+
+function special_nav_class ($classes, $item) {
+    if (in_array('current-menu-item', $classes) ){
+        $classes[] = 'active ';
+    }
+    return $classes;
 }
