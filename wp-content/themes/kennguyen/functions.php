@@ -301,8 +301,8 @@ function activeAccountSMTP($email) {
     $mail->AddAddress($email, "Veify email for KenNguyen");
     $mail->SetFrom("hntnam98@gmail.com", "Verify account!!");
     $mail->Subject = "Verify account!!";
-    $content = "<b>Click vào đường dẫn dưới đây để kích hoạt tài khoản!</b><br>";
-    $content .= "<a href='".$urlActive."'>Kích hoạt tài khoản</a>";
+    $content = "<b>Click on the link below to activate your account!</b><br>";
+    $content .= "<a href='".$urlActive."'>Active account</a>";
     $mail->MsgHTML($content);
     $mail->Send();
 
@@ -326,9 +326,9 @@ function forgetPasswordSMTP($email, $password) {
     $mail->AddAddress($email, "Forgot password email for KenNguyen");
     $mail->SetFrom("hntnam98@gmail.com", "Forgot password!!");
     $mail->Subject = "Forgot password!!";
-    $content = "<b>Quên mật khẩu!</b><br>";
-    $content .= "Mật khẩu tạm thời của bạn là:  <b>$password</b><br>";
-    $content .= "Vui lòng đổi mật khẩu sau khi đăng nhập thành công!";
+    $content = "<b>Forgot password!</b><br>";
+    $content .= "Your temporary password is:  <b>$password</b><br>";
+    $content .= "Please change password after successful login!";
     $mail->MsgHTML($content);
     $mail->Send();
 
@@ -441,8 +441,15 @@ function check_membership() {
     return $isMember;
 }
 
-add_filter('nav_menu_css_class' , 'special_nav_class' , 10 , 2);
 
+add_filter('set-screen-option', 'test_table_set_option', 10, 3);
+function test_table_set_option($status, $option, $value)
+{
+    var_dump($value);
+    return $value;
+}
+
+add_filter('nav_menu_css_class' , 'special_nav_class' , 10 , 2);
 function special_nav_class ($classes, $item) {
     if (in_array('current-menu-item', $classes) ){
         $classes[] = 'active ';

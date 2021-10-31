@@ -36,7 +36,7 @@ if (!empty($queryResult)) {
 
     function column_member_ship($item)
     {
-        $member = 'Normal member';
+        $member = '-';
         if ($item == 1) {
             $member = 'Member';
         }

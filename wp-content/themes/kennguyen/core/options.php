@@ -44,6 +44,8 @@ if ( ! class_exists( 'VA_Theme_Options' ) ) {
 
             $this->setPayment();
 
+            $this->setEmailSetting();
+
 
 
 
@@ -198,6 +200,8 @@ if ( ! class_exists( 'VA_Theme_Options' ) ) {
             // Home Section
             $this->sections[] = array(
                 'title'  => __( 'Upgrade today', 'upgrade_today' ),
+                'desc'   => __( 'All of settings for package payment.', 'upgrade_today' ),
+                'icon'   => 'el-icon-home',
                 'desc'   => __( 'All of settings for header on this theme.', 'upgrade_today' ),
                 'icon'   => 'el-icon-circle-arrow-right',
                 'fields' => array(
@@ -233,6 +237,49 @@ if ( ! class_exists( 'VA_Theme_Options' ) ) {
 
 
         }
+
+        public function setEmailSetting() {
+            // Home Section
+            $this->sections[] = array(
+                'title'  => __( 'Email setting', 'upgrade_today' ),
+                'desc'   => __( 'All of settings for email.', 'emnail_setting' ),
+                'icon'   => 'el-icon-home',
+                'fields' => array(
+                    array(
+                        'id' => 'kn_email_from',
+                        'type' => 'text',
+                        'title' => __('Email', 'vietanh'),
+                        'compiler' => true,
+                    ),
+                    array(
+                        'id' => 'kn_email_password',
+                        'type' => 'text',
+                        'title' => __('Email password', 'vietanh'),
+                        'compiler' => true,
+                    ),
+                    array(
+                        'id' => 'kn_email_host',
+                        'type' => 'text',
+                        'title' => __('Email host', 'vietanh'),
+                        'compiler' => true,
+                    ),
+                    array(
+                        'id' => 'kn_email_port',
+                        'type' => 'text',
+                        'title' => __('Email port', 'vietanh'),
+                        'compiler' => true,
+                    ),
+                    array(
+                        'id' => 'kn_email_secure',
+                        'type' => 'text',
+                        'title' => __('SMTPSecure', 'vietanh'),
+                        'compiler' => true,
+                    )
+                )
+            );
+        }
+
+
 
         public function setSectionsSettingHome() {
             // Home Section

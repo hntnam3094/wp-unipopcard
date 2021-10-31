@@ -50,7 +50,7 @@ if (!empty($_SESSION['user'])) {
     }
 
     if (!empty($_POST) && !empty($_POST['id'])) {
-        if (isset($user)) {
+        if (empty($user)) {
             $today = date("Y-m-d");
             $data = array();
             $data['id_customer'] = $user->id;
@@ -61,7 +61,6 @@ if (!empty($_SESSION['user'])) {
             $data['sale_price'] = $_POST['sale_price'];
             $data['status'] = 1;
             if (empty($user->start_date) && empty($user->end_date)) {
-                var_dump('new');
                 $insertRs = $wpdb->insert($table_order, $data);
                 if (isset($insertRs)) {
                     $data = [ 'member_ship' => 1,
