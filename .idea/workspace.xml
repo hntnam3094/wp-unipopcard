@@ -2,10 +2,169 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="32e96615-6081-4390-8200-210aa0bca673" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/wp-content/themes/kennguyen/common/images/imageblock.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/archive-craftcollection.php" beforeDir="false" afterPath="$PROJECT_DIR$/wp-content/themes/kennguyen/archive-craftcollection.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/functions.php" beforeDir="false" afterPath="$PROJECT_DIR$/wp-content/themes/kennguyen/functions.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/assets/css/ajax-loader.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/assets/css/bootstrap.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/assets/css/common.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/assets/css/jquery.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/assets/css/owl.carousel.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/assets/css/owl.theme.default.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/assets/css/page/category.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/assets/css/slick-theme.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/assets/css/slick.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/assets/css/styles.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/assets/fonts/NeueHaasUnica-Black.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/assets/fonts/NeueHaasUnica-Black.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/assets/fonts/NeueHaasUnica-Black.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/assets/fonts/NeueHaasUnica-Black.woff2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/assets/fonts/NeueHaasUnica-Bold.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/assets/fonts/NeueHaasUnica-Bold.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/assets/fonts/NeueHaasUnica-Bold.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/assets/fonts/NeueHaasUnica-Bold.woff2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/assets/fonts/NeueHaasUnica-BoldItalic.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/assets/fonts/NeueHaasUnica-BoldItalic.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/assets/fonts/NeueHaasUnica-BoldItalic.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/assets/fonts/NeueHaasUnica-BoldItalic.woff2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/assets/fonts/NeueHaasUnica-BoldItalic_1.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/assets/fonts/NeueHaasUnica-BoldItalic_1.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/assets/fonts/NeueHaasUnica-BoldItalic_1.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/assets/fonts/NeueHaasUnica-BoldItalic_1.woff2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/assets/fonts/NeueHaasUnica-ExtBlkIta.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/assets/fonts/NeueHaasUnica-ExtBlkIta.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/assets/fonts/NeueHaasUnica-ExtBlkIta.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/assets/fonts/NeueHaasUnica-ExtBlkIta.woff2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/assets/fonts/NeueHaasUnica-ExtLtIta.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/assets/fonts/NeueHaasUnica-ExtLtIta.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/assets/fonts/NeueHaasUnica-ExtLtIta.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/assets/fonts/NeueHaasUnica-ExtLtIta.woff2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/assets/fonts/NeueHaasUnica-ExtraBlack.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/assets/fonts/NeueHaasUnica-ExtraBlack.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/assets/fonts/NeueHaasUnica-ExtraBlack.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/assets/fonts/NeueHaasUnica-ExtraBlack.woff2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/assets/fonts/NeueHaasUnica-ExtraBold.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/assets/fonts/NeueHaasUnica-ExtraBold.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/assets/fonts/NeueHaasUnica-ExtraBold.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/assets/fonts/NeueHaasUnica-ExtraBold.woff2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/assets/fonts/NeueHaasUnica-ExtraBoldItalic.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/assets/fonts/NeueHaasUnica-ExtraBoldItalic.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/assets/fonts/NeueHaasUnica-ExtraBoldItalic.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/assets/fonts/NeueHaasUnica-ExtraBoldItalic.woff2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/assets/fonts/NeueHaasUnica-ExtraLight.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/assets/fonts/NeueHaasUnica-ExtraLight.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/assets/fonts/NeueHaasUnica-ExtraLight.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/assets/fonts/NeueHaasUnica-ExtraLight.woff2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/assets/fonts/NeueHaasUnica-Italic.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/assets/fonts/NeueHaasUnica-Italic.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/assets/fonts/NeueHaasUnica-Italic.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/assets/fonts/NeueHaasUnica-Italic.woff2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/assets/fonts/NeueHaasUnica-Light.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/assets/fonts/NeueHaasUnica-Light.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/assets/fonts/NeueHaasUnica-Light.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/assets/fonts/NeueHaasUnica-Light.woff2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/assets/fonts/NeueHaasUnica-LightItalic.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/assets/fonts/NeueHaasUnica-LightItalic.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/assets/fonts/NeueHaasUnica-LightItalic.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/assets/fonts/NeueHaasUnica-LightItalic.woff2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/assets/fonts/NeueHaasUnica-Medium.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/assets/fonts/NeueHaasUnica-Medium.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/assets/fonts/NeueHaasUnica-Medium.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/assets/fonts/NeueHaasUnica-Medium.woff2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/assets/fonts/NeueHaasUnica-MediumItalic.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/assets/fonts/NeueHaasUnica-MediumItalic.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/assets/fonts/NeueHaasUnica-MediumItalic.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/assets/fonts/NeueHaasUnica-MediumItalic.woff2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/assets/fonts/NeueHaasUnica-Regular.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/assets/fonts/NeueHaasUnica-Regular.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/assets/fonts/NeueHaasUnica-Regular.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/assets/fonts/NeueHaasUnica-Regular.woff2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/assets/fonts/NeueHaasUnica-Thin.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/assets/fonts/NeueHaasUnica-Thin.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/assets/fonts/NeueHaasUnica-Thin.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/assets/fonts/NeueHaasUnica-Thin.woff2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/assets/fonts/NeueHaasUnica-ThinItalic.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/assets/fonts/NeueHaasUnica-ThinItalic.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/assets/fonts/NeueHaasUnica-ThinItalic.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/assets/fonts/NeueHaasUnica-ThinItalic.woff2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/assets/fonts/stylesheet.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/assets/images/avatar.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/assets/images/banner.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/assets/images/bg.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/assets/images/btn_make.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/assets/images/comment.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/assets/images/detail.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/assets/images/icon/acc_01.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/assets/images/icon/acc_01_on.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/assets/images/icon/acc_02.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/assets/images/icon/acc_02_on.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/assets/images/icon/acc_03.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/assets/images/icon/acc_03_on.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/assets/images/icon/detail.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/assets/images/icon/form_card.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/assets/images/icon/form_date.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/assets/images/icon/form_key.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/assets/images/icon/form_mail.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/assets/images/icon/form_main.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/assets/images/icon/form_name.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/assets/images/icon/icon_acc.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/assets/images/icon/icon_change.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/assets/images/icon/icon_close.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/assets/images/icon/icon_comment.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/assets/images/icon/icon_dowload.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/assets/images/icon/icon_down.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/assets/images/icon/icon_eye.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/assets/images/icon/icon_fb.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/assets/images/icon/icon_gg.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/assets/images/icon/icon_lock.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/assets/images/icon/icon_login.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/assets/images/icon/icon_logout.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/assets/images/icon/icon_logout.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/assets/images/icon/icon_make.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/assets/images/icon/icon_member.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/assets/images/icon/icon_profile.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/assets/images/icon/icon_search.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/assets/images/icon/icon_setting.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/assets/images/icon/icon_setting2.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/assets/images/icon/icon_signup.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/assets/images/icon/icon_up.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/assets/images/icon/icon_video.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/assets/images/icon/info_01.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/assets/images/icon/info_02.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/assets/images/icon/info_03.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/assets/images/icon/info_04.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/assets/images/icon/step_01.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/assets/images/icon/step_02.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/assets/images/icon/step_03.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/assets/images/icon_right.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/assets/images/logo.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/assets/images/method_01.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/assets/images/method_02.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/assets/images/product.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/assets/images/product2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/assets/images/product3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/assets/images/product4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/assets/images/product_more.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/assets/images/shared_01.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/assets/images/shared_02.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/assets/images/shared_03.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/assets/images/shared_04.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/assets/images/social_01.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/assets/images/social_02.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/assets/images/social_03.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/assets/images/social_04.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/assets/images/social_05.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/assets/js/bootstrap.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/assets/js/jquery.matchHeight-min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/assets/js/jquery.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/assets/js/main.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/assets/js/owl.carousel.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/assets/js/popper.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/assets/js/read_more.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/assets/js/select_custom.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/assets/js/slick.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/footer.php" beforeDir="false" afterPath="$PROJECT_DIR$/wp-content/themes/kennguyen/footer.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/single-craftacademy.php" beforeDir="false" afterPath="$PROJECT_DIR$/wp-content/themes/kennguyen/single-craftacademy.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wp-content/themes/kennguyen/single-craftcollection.php" beforeDir="false" afterPath="$PROJECT_DIR$/wp-content/themes/kennguyen/single-craftcollection.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -86,11 +245,11 @@
       <recent name="D:\outsource\ken" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\viet_anh\Documents\source_code\outsource\ken_nguyen\wp-content\themes\kennguyen\common\images" />
+      <recent name="C:\Users\viet_anh\Documents\source_code\outsource\ken_nguyen\wp-content\themes\kennguyen\assets\images" />
       <recent name="C:\wamp642\www\kennguyen\wp-admin" />
       <recent name="C:\wamp642\www\kennguyen\wp-content\themes\kennguyen\customer" />
       <recent name="C:\wamp642\www\kennguyen\wp-content\themes\kennguyen\core" />
-      <recent name="C:\wamp642\www\kennguyen\wp-admin\ken_customer" />
-      <recent name="D:\outsource\ken\wp-content\themes\kennguyen" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />

@@ -391,6 +391,7 @@ add_action('init','add_get_val');
 function add_get_val() {
     global $wp;
     $wp->add_query_var('category');
+    $wp->add_query_var('q');
 }
 
 // Add the custom columns to the book post type:
@@ -433,8 +434,6 @@ function check_membership() {
         if (!empty($user->start_date) && !empty($user->end_date)) {
             if ($today >= $user->start_date && $today <= $user->end_date) {
                 $isMember = 1;
-            } else {
-                $isMember = 0;
             }
         }
     }

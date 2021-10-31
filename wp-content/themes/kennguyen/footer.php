@@ -70,12 +70,14 @@
                         <div class="text mt-20">
                             <p>Join our email list to learn about new projects, discounts, and membership perks!</p>
                         </div>
-                        <div class="form_submit pt-20">
-                            <form action="">
-                                <input class="input" type="text" placeholder="Your Email Adress"/>
-                                <input class="submit" type="submit" value="JOIN NOW"/>
-                            </form>
-                        </div>
+                        <?php if (check_membership() != 1) {
+                            echo '<div class="form_submit pt-20">
+                                        <form action="">
+                                            <input class="input" type="text" placeholder="Your Email Adress"/>
+                                            <input class="submit" type="submit" value="JOIN NOW"/>
+                                        </form>
+                                    </div>';
+                        } ?>
                     </div>
                 </div>
             </div>
@@ -97,6 +99,14 @@
 <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-617ddd1be044758e"></script>
 <script>
     $(function (){
+        const urlParams = new URLSearchParams(window.location.search);
+        let paramQ = urlParams.get('q')
+        let paramCategory = urlParams.get('category')
+        if (paramQ || paramCategory) {
+            $('#input-search-data').val(paramQ)
+            document.getElementById('input-search-data').scrollIntoView();
+        }
+
         $('#btn-share-facebook').on('click', () => {
             if ($('#at-share-dock .at-svc-facebook').length > 0) {
                 $('#at-share-dock .at-svc-facebook')[0].click()
@@ -107,6 +117,11 @@
             if ($('#at-share-dock .at-svc-pinterest_share').length > 0) {
                 $('#at-share-dock .at-svc-pinterest_share')[0].click()
             }
+        })
+
+        $('#btn-search-data').on('click', () => {
+            urlParams.set('q', $('#input-search-data').val());
+            window.location.href='?' + urlParams.toString()
         })
     })
 </script>

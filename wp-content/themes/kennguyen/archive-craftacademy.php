@@ -1,6 +1,7 @@
 <?php get_header(); ?>
 <?php $craftacademy = get_post_type_object( 'craftacademy' );
 $parentCategoryId = get_category_by_slug('craft-academy') !== null ? get_category_by_slug('craft-academy')->cat_ID : 0;
+$isShowPost = check_membership() == 1 ? '' : 'block';
 ?>
 <main>
     <section class="category pt-50 pb-50">
@@ -8,10 +9,12 @@ $parentCategoryId = get_category_by_slug('craft-academy') !== null ? get_categor
             <h1 class="ttl_main fz-40 text-up"><?= $craftacademy->labels->name ?> </h1>
             <div class="heading">
                 <h2 class="ttl_sub fz-31 text-up mt-40">Your <?php echo date('F');?> CRAFT ACADEMY</h2>
-                <div class="text">
+                <?php if (check_membership() != 1) {
+                    echo '<div class="text">
                     <p>See a project you want to make?
-                        <a href='/upgrade-today'>Become a member</a> to unlock this month’s academy and start crafting your favorites. When the month is up, you’ll get a new craft academy — and you can still access these projects anytime.</p>
-                </div>
+                        <a href="/upgrade-today">Become a member</a> to unlock this month’s collection and start crafting your favorites. When the month is up, you’ll get a new craft collection — and you can still access these projects anytime.</p>
+                </div>';
+                } ?>
             </div>
             <div class="tab_category mt-30">
                 <div class="row">
@@ -78,7 +81,7 @@ $parentCategoryId = get_category_by_slug('craft-academy') !== null ? get_categor
                     <?php if( $the_query->have_posts() ): ?>
                         <?php while( $the_query->have_posts() ) : $the_query->the_post(); ?>
                             <div class="col-6 col-md-4 col-lg-3">
-                                <a class="item mt-20 block" href="<?= get_the_permalink() ?>">
+                                <a class="item mt-20 <?= $isShowPost?>" href="<?= get_the_permalink() ?>">
                                     <div class="imgDrop"> <?php echo get_the_post_thumbnail( get_the_id() ); ?>
                                     </div>
                                 </a>
@@ -88,10 +91,12 @@ $parentCategoryId = get_category_by_slug('craft-academy') !== null ? get_categor
                     <?php wp_reset_query(); ?>
 
                 </div>
-                <div class="mt-30 text-center"> <a class="btn_more" href="/upgrade-today">
-                        <span class="block fz-31">JOIN NOW</span><span class="block sub">To Unlock ALL Academy Projects!</span>
+                <?php if (check_membership() != 1) {
+                    echo '<div class="mt-30 text-center"> <a class="btn_more" href="/upgrade-today">
+                        <span class="block fz-31">JOIN NOW</span><span class="block sub">To Unlock ALL Collection Projects!</span>
                     </a>
-                </div>
+                </div>';
+                } ?>
             </div>
             <div class="couse_intro mt-40">
                 <div class="heading">
@@ -115,9 +120,11 @@ $parentCategoryId = get_category_by_slug('craft-academy') !== null ? get_categor
                         echo date('F').' '.implode(' & ', $listCategoriesShow);
                         ?>
                     </h2>
-                    <div class="text">
-                        <p>These designs are only available until the end of the month. <a href='/upgrade-today'>Become a member</a> to download them today!</p>
-                    </div>
+                    <?php if (check_membership() != 1) {
+                        echo '<div class="text">
+                        <p>These designs are only available until the end of the month. <a href="/upgrade-today">Become a member</a> to download them today!</p>
+                    </div>';
+                    }?>
                 </div>
                 <div class="course_main mt-10">
                     <div class="row">
@@ -153,7 +160,7 @@ $parentCategoryId = get_category_by_slug('craft-academy') !== null ? get_categor
                         <?php if( $the_query->have_posts() ): ?>
                             <?php while( $the_query->have_posts() ) : $the_query->the_post(); ?>
                                 <div class="col-4 col-md-3 col-lg-2">
-                                    <a class="item mt-20 block" href="<?= get_the_permalink() ?>">
+                                    <a class="item mt-20 <?= $isShowPost ?>" href="<?= get_the_permalink() ?>">
                                         <div class="imgDrop"> <?php echo get_the_post_thumbnail( get_the_id() ); ?></div>
                                     </a>
                                 </div>
@@ -161,7 +168,9 @@ $parentCategoryId = get_category_by_slug('craft-academy') !== null ? get_categor
                         <?php endif; ?>
                         <?php wp_reset_query(); ?>
                     </div>
-                    <div class="mt-30 text-center"> <a class="btn_more" href="/upgrade-today"> <span class="block fz-31">JOIN NOW</span><span class="block sub">To Unlock ALL Academy Projects!</span></a></div>
+                    <?php if (check_membership() != 1) {
+                        echo '<div class="mt-30 text-center"> <a class="btn_more" href="/upgrade-today"> <span class="block fz-31">JOIN NOW</span><span class="block sub">To Unlock ALL Collection Projects!</span></a></div>';
+                    } ?>
                 </div>
             </div>
             <div class="key_bonus mt-40">
@@ -198,21 +207,4 @@ $parentCategoryId = get_category_by_slug('craft-academy') !== null ? get_categor
         </div>
     </section>
 </main>
-
-<?php
-$args = array(
-    'post_status' => 'publish',
-    'posts_per_page' => -1,
-    'post_type'      => 'craftacademy'
-);
-$the_query = new WP_Query( $args );
-?>
-<?php if( $the_query->have_posts() ): ?>
-    <?php while( $the_query->have_posts() ) : $the_query->the_post(); ?>
-        <?php the_title() ?>
-    <?php endwhile; ?>
-<?php endif; ?>
-<?php wp_reset_query(); ?>
-
-
 <?php get_footer(); ?>

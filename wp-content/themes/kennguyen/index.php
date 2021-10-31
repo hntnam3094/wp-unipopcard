@@ -30,14 +30,15 @@
               </div>
             </div>
             <div class="search_project">
-              <input class="input" type="text" placeholder="Search..."/>
-              <input class="submit" type="submit"/>
+              <input class="input" type="text" placeholder="Search..." id="input-search-data"/>
+              <input class="submit" type="submit" id="btn-search-data"/>
             </div>
           </div>
           <div class="content_main">
             <div class="row">
                 <?php
                 $category = get_query_var('category');
+                $keyword = get_query_var('q');
                 if (empty($category)) {
                     $category = 0;
                 } else {
@@ -47,6 +48,7 @@
                     'post_status' => array('free', 'sale'),
                     'post_type'      => array('craftcollection', 'craftacademy'),
                     'cat' => $category,
+                    's'		=> $keyword,
                     'orderby' => 'date',
                     'order' => 'DESC',
                 );
