@@ -1,6 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="16" height="12.8" viewBox="0 0 16 12.8">
-  <g id="credit_card_black_24dp" opacity="0.5">
-    <path id="Path_894" data-name="Path 894" d="M0,0H16V12.8H0Z" fill="none"/>
-    <path id="Path_895" data-name="Path 895" d="M16.4,4H3.6A1.588,1.588,0,0,0,2.008,5.6L2,15.2a1.594,1.594,0,0,0,1.6,1.6H16.4A1.594,1.594,0,0,0,18,15.2V5.6A1.594,1.594,0,0,0,16.4,4Zm-.8,11.2H4.4a.8.8,0,0,1-.8-.8v-4H16.4v4A.8.8,0,0,1,15.6,15.2Zm.8-8H3.6V5.6H16.4Z" transform="translate(-2 -4)" fill="#585858"/>
-  </g>
-</svg>
