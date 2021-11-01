@@ -105,12 +105,8 @@ function admin_report_page(){
     $type = $_GET['type'] ?? 'day';
 
     $query = getQueryReport($type, $from, $to);
-    $total_query = "SELECT COUNT(1) FROM (${query}) AS combined_table";
-    $total = $wpdb->get_var( $total_query );
-    $items_per_page = 45;
     $page = isset( $_GET['cpage'] ) ? abs( (int) $_GET['cpage'] ) : 1;
-    $offset = ( $page * $items_per_page ) - $items_per_page;
-    $result = $wpdb->get_results( $query . " LIMIT ${offset}, ${items_per_page}" );
+    $result = $wpdb->get_results( $query );
     ?>
     <div class="wrap">
         <h2>Report management</h2>
@@ -133,8 +129,9 @@ function admin_report_page(){
                 <input type="submit" id="btn-report-submit" class="button action" value="Apply">
             </div>
         </div>
-        <table class="widefat fixed">
-            <thead>
+        <div style="display: block; width: 100%; height: 50vh; overflow-y: scroll">
+            <table class="widefat fixed">
+                <thead style="position: sticky; top: -1px; background-color: white">
                 <tr>
                     <th class="manage-column column-columnname" scope="col">No</th>
                     <th class="manage-column column-columnname" scope="col">Timeline</th>
@@ -142,40 +139,41 @@ function admin_report_page(){
                     <th class="manage-column column-columnname num" scope="col">Package year income</th>
                     <th class="manage-column column-columnname num" scope="col">Total</th>
                 </tr>
-            </thead>
+                </thead>
 
-            <tbody>
-            <?php
-            $start = $items_per_page * ($page - 1);
-            $no = $start == 0 ? 1 : $start;
-            $totalMonthIncome = 0;
-            $totalYearIncome = 0;
-            $totalIncome = 0;
-            foreach ($result as $value) {
-                $income = $value->incomeMonth + $value->incomeYear;
-                $totalMonthIncome += $value->incomeMonth;
-                $totalYearIncome += $value->incomeYear;
-                $totalIncome += $income;
-                ?>
-                <tr class="alternate">
-                    <td class="column-columnname"><?= $no++ ?></td>
-                    <td class="column-columnname"><?= $value->timeLine ?></td>
-                    <td class="column-columnname num"><?= usd($value->incomeMonth) ?></td>
-                    <td class="column-columnname num"><?= usd($value->incomeYear) ?></td>
-                    <td class="column-columnname num"><?= usd($income) ?></td>
+                <tbody>
+                <?php
+                $start = $items_per_page * ($page - 1);
+                $no = $start == 0 ? 1 : $start;
+                $totalMonthIncome = 0;
+                $totalYearIncome = 0;
+                $totalIncome = 0;
+                foreach ($result as $value) {
+                    $income = $value->incomeMonth + $value->incomeYear;
+                    $totalMonthIncome += $value->incomeMonth;
+                    $totalYearIncome += $value->incomeYear;
+                    $totalIncome += $income;
+                    ?>
+                    <tr class="alternate">
+                        <td class="column-columnname"><?= $no++ ?></td>
+                        <td class="column-columnname"><?= $value->timeLine ?></td>
+                        <td class="column-columnname num"><?= usd($value->incomeMonth) ?></td>
+                        <td class="column-columnname num"><?= usd($value->incomeYear) ?></td>
+                        <td class="column-columnname num"><?= usd($income) ?></td>
+                    </tr>
+                <?php }?>
+                </tbody>
+
+                <tfoot style="position: sticky; bottom: -1px; background-color: white">
+                <tr>
+                    <th class="manage-column column-columnname" scope="col" colspan="2" style="text-align: right"><strong>Total</strong></th>
+                    <th class="manage-column column-columnname num" scope="col"><?= usd($totalMonthIncome) ?></th>
+                    <th class="manage-column column-columnname num" scope="col"><?= usd($totalYearIncome) ?></th>
+                    <th class="manage-column column-columnname num" scope="col"><?= usd($totalIncome) ?></th>
                 </tr>
-            <?php }?>
-            </tbody>
-
-            <tfoot>
-            <tr>
-                <th class="manage-column column-columnname" scope="col" colspan="2" style="text-align: right"><strong>Total</strong></th>
-                <th class="manage-column column-columnname num" scope="col"><?= usd($totalMonthIncome) ?></th>
-                <th class="manage-column column-columnname num" scope="col"><?= usd($totalYearIncome) ?></th>
-                <th class="manage-column column-columnname num" scope="col"><?= usd($totalIncome) ?></th>
-            </tr>
-            </tfoot>
-        </table>
+                </tfoot>
+            </table>
+        </div>
         <?php
 //        echo paginate_links( array(
 //            'base' => add_query_arg( 'cpage', '%#%' ),
