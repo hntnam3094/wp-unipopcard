@@ -2,3 +2,61 @@
     display: block !important;
     transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out;
 }
+
+.manager_member .summary{
+    height: 100%;
+    padding: 30px;
+}
+
+.manager_member .summary h3{
+    text-align: center;
+    font-size: 1.3em;
+    font-weight: 600;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.manager_member .summary .summary-item:not(:last-of-type){
+    padding-bottom: 10px;
+    padding-top: 10px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.manager_member .summary .text{
+    font-size: 1em;
+    font-weight: 600;
+}
+
+.manager_member .summary .price{
+    font-size: 1em;
+    float: right;
+}
+
+.manager_member .summary button{
+    margin-top: 20px;
+    width: 100%;
+}
+.payment .price  .old{
+    position: relative;
+}
+.payment .price .old:before {
+    position: absolute;
+    content: "";
+    height: 2px;
+    width: 40px;
+    background: #c41320;
+    transform: rotate(-20deg);
+    top: 11px;
+}
+
+.payment_info label {
+    font-size: 13px;
+}
+
+.payment_info input {
+    font-size: 13px;
+}
+
+.btn-2checkout {
+    width: 100%;
+}

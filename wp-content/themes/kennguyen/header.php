@@ -17,9 +17,11 @@
     <link rel="stylesheet" href="<?php bloginfo('template_directory') ?>/common/css/custom.css"/>
     <?php wp_head(); ?>
 </head>
-<body nav_active="nav_active" <?php body_class(); ?>>
+<body nav_active="nav_active" class="<?php do_action('get_request'); ?>" <?php body_class(); ?>>
 <?php wp_body_open(); ?>
+
 <header class="header active_search" id="header">
+    <?php do_action('block_user_login'); ?>
     <div class="header-top">
         <div class="wraper">
             <button class="navbar-toggler toggle_class" type="button" data-bs-toggle="modal" data-bs-target="#navbarSupportedContent"><span class="navbar-toggler-icon"></span></button>
@@ -27,7 +29,7 @@
     </div>
     <div class="header-bottom">
         <div class="wraper flexBox space midle bottom">
-            <a class="logo" href="index.html">
+            <a class="logo" href="/">
                 <img class="imgAuto" src="<?php bloginfo('template_directory') ?>/common/images/logo.svg" alt=""/>
             </a>
             <div class="header-right flexBox midle end">
@@ -69,10 +71,22 @@
                 <div class="btn_setting dropdown-toggle" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false"><img src="<?php bloginfo('template_directory') ?>/common/images/icon/icon_setting.svg" alt=""/></div>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
                     <ul>
-                        <li><a class="dropdown-item" href="login.html"><i class="icon"> <img src="<?php bloginfo('template_directory') ?>/common/images/icon/icon_login.png" alt=""/></i>Login</a></li>
-                        <li><a class="dropdown-item" href="singup.html"><i class="icon"> <img src="<?php bloginfo('template_directory') ?>/common/images/icon/icon_signup.png" alt=""/></i>Sign up</a></li>
-                        <li><a class="dropdown-item" href="manager.html"><i class="icon"> <img src="<?php bloginfo('template_directory') ?>/common/images/icon/icon_profile.png" alt=""/></i>Profile manager</a></li>
-                        <li><a class="dropdown-item" href="logout.html" data-bs-toggle="modal" data-bs-target="#modal_logout"> <i class="icon"> <img src="<?php bloginfo('template_directory') ?>/common/images/icon/icon_logout.png" alt=""/></i>Log out</a></li>
+                        <?php
+                            $user = $_SESSION['user'];
+                            if (empty($user)) { ?>
+                                <li><a class="dropdown-item" href="<?php site_url() ?>/login"><i class="icon"> <img src="<?php bloginfo('template_directory') ?>/common/images/icon/icon_login.png" alt=""/></i>Login</a></li>
+                                <li><a class="dropdown-item" href="<?php site_url() ?>/singup"><i class="icon"> <img src="<?php bloginfo('template_directory') ?>/common/images/icon/icon_signup.png" alt=""/></i>Sign up</a></li>
+
+                            <?php    } else
+                            { ?>
+                                <li><a class="dropdown-item" href="<?php site_url() ?>/manager"><i class="icon"> <img src="<?php bloginfo('template_directory') ?>/common/images/icon/icon_profile.png" alt=""/></i>Profile manager</a></li>
+                                <li>
+                                    <a class="dropdown-item" href="logout.html" data-bs-toggle="modal" data-bs-target="#modal_logout">
+                                        <i class="icon"> <img src="<?php bloginfo('template_directory') ?>/common/images/icon/icon_logout.png" alt=""/>
+                                        </i>Log out</a></li>
+
+                            <?php    }
+                        ?>
                     </ul>
                 </div>
             </div>
@@ -81,3 +95,4 @@
 </header>
 
 <div id="content" class="site-content">
+

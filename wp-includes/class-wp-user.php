@@ -34,6 +34,7 @@
  * @property string $locale
  * @property string $rich_editing
  * @property string $syntax_highlighting
+ * @property string $birth_day
  */
 class WP_User {
 	/**
