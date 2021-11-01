@@ -86,7 +86,8 @@
 </footer>
 <div id="fb-root"></div>
 <script async="" defer="" crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&amp;version=v12.0" nonce="EsXrjZVa"></script>
-<script src="<?php bloginfo('template_directory') ?>/common/js/jquery.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<!--<script src="--><?php //bloginfo('template_directory') ?><!--/common/js/jquery.min.js"></script>-->
 <script src="<?php bloginfo('template_directory') ?>/common/js/select_custom.js"></script>
 <script src="<?php bloginfo('template_directory') ?>/common/js/jquery.matchHeight-min.js"></script>
 <script src="<?php bloginfo('template_directory') ?>/common/js/owl.carousel.js"></script>
@@ -95,9 +96,74 @@
 <script src="<?php bloginfo('template_directory') ?>/common/js/bootstrap.min.js"></script>
 <script src="<?php bloginfo('template_directory') ?>/common/js/main.js"></script>
 <script src="<?php bloginfo('template_directory') ?>/common/js/custom.js"></script>
+<!--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>-->
+<script src="https://www.2checkout.com/checkout/api/2co.min.js"></script>
 <!-- Go to www.addthis.com/dashboard to customize your tools -->
-<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-617ddd1be044758e"></script>
+<!--<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-617ddd1be044758e"></script>-->
 <script>
+    // window.addEventListener('load', function() {
+    //     // Initialize the JS Payments SDK client.
+    //     let jsPaymentClient = new  TwoPayClient('251761074825');
+    //
+    //     // Create the component that will hold the card fields.
+    //     let component = jsPaymentClient.components.create('card');
+    //
+    //     // Mount the card fields component in the desired HTML tag. This is where the iframe will be located.
+    //     component.mount('#card-element');
+    //
+    //     // Handle form submission.
+    //     document.getElementById('payment-form').addEventListener('submit', (event) => {
+    //         event.preventDefault();
+    //
+    //         // Extract the Name field value
+    //         const billingDetails = {
+    //             name: document.querySelector('#name').value
+    //         };
+    //
+    //         // Call the generate method using the component as the first parameter
+    //         // and the billing details as the second one
+    //         jsPaymentClient.tokens.generate(component, billingDetails).then((response) => {
+    //             console.log(response.token);
+    //         }).catch((error) => {
+    //             console.error(error);
+    //         });
+    //     });
+    // });
+    $(function () {
+        TCO.loadPubKey();
+        $("#payment-form").submit(function (e) {
+            tokenRequest();
+            return false;
+        })
+
+    })
+
+    var tokenRequest = function () {
+        var args = {
+            sellerId: "251761074825",
+            publishableKey: "7B37BE41-5897-499F-9A70-7429DC2F7FF2",
+            ccNo: $('#creditCardNumber').val(),
+            cvv: $('#cvv').val(),
+            expMonth: $('#expiredMonth').val(),
+            expYear: $('#expiredYear').val(),
+        }
+        TCO.requestToken(successCallback, errorCallback, args);
+    }
+
+    var successCallback = function (data) {
+        var myForm = document.getElementById('payment-form')
+        myForm.token.value = data.response.token.token
+        myForm.submit()
+    }
+
+    var errorCallback = function (data) {
+        if (data.errorCode == 200) {
+            tokenRequest()
+        } else {
+            alert(data.errorMsg)
+        }
+    }
+
     $(function (){
         const urlParams = new URLSearchParams(window.location.search);
         let paramQ = urlParams.get('q')

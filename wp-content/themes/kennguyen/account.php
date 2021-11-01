@@ -184,12 +184,14 @@ get_header();
                                     $level_membership = 'Not active';
                                     if (!empty($user->start_date) && !empty($user->end_date)) {
                                         if ($today >= $user->start_date && $today <= $user->end_date) {
-                                            $number_end = date("z", strtotime($user->end_date)) + 1;
-                                            $number_today = date("z",strtotime($today)) + 1;
-                                            $days_left = $number_end - $number_today;
+                                            $now = time();
+                                            $number_end = strtotime($user->end_date);
+                                            $days_left = $number_end - $now;
+                                            $total_days = round($days_left / (60 * 60 * 24));
+
                                             $date_formate = date('l,F j, Y', strtotime($user->end_date));
                                             $expired_date = [
-                                                'days_left' => $days_left,
+                                                'days_left' => $total_days,
                                                 'date_format' => $date_formate
                                             ];
                                         } else {

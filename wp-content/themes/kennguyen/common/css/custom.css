@@ -48,3 +48,15 @@
     transform: rotate(-20deg);
     top: 11px;
 }
+
+.payment_info label {
+    font-size: 13px;
+}
+
+.payment_info input {
+    font-size: 13px;
+}
+
+.btn-2checkout {
+    width: 100%;
+}

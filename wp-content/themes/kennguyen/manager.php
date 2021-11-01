@@ -9,6 +9,36 @@
 
 if (!empty($_SESSION['user'])) {
 $user = $_SESSION['user'];
+global $wpdb;
+$table = $wpdb->prefix . 'customer_download';
+$limit = 9;
+if (!empty($_POST)) {
+    if ($_POST['isLoad']) {
+        $limit += 100;
+    }
+}
+$queryResult = $wpdb->get_results(
+    $wpdb->prepare("SELECT * FROM {$table} WHERE id_customer=%d LIMIT %d",$user->id,$limit));
+$arrayPost = [];
+if (!empty($queryResult)) {
+   foreach ($queryResult as $item) {
+       $categories = get_the_category($item->id_post);
+       $listCategory = [];
+       foreach ($categories as $category) {
+           array_push($listCategory, $category->name);
+       }
+       $categoryItem =  implode(', ', $listCategory);
+
+       $post = [
+         'thumbnail' => get_the_post_thumbnail($item->id_post),
+         'title' => get_the_title($item->id_post),
+         'category' => $categoryItem,
+         'url' => get_the_permalink($item->id_post)
+       ];
+
+       array_push($arrayPost, $post);
+   }
+}
 get_header();
 ?>
 <main>
@@ -45,80 +75,29 @@ get_header();
                     <div class="course_my pt-40 pb-50">
                         <h1 class="ttl_main fz-20 text-center text-up">My Downloaded Projects</h1>
                         <div class="row">
-                            <div class="column col-6 col-md-4"><a class="item mt-30" href="detail.html">
-                                    <div class="images">
-                                        <div class="imgDrop"> <img src="<?php bloginfo('template_directory') ?>/common/images/product.png" alt=""/></div>
+                            <?php if (isset($arrayPost)) {
+                                foreach ($arrayPost as $post) { ?>
+                                    <div class="column col-6 col-md-4">
+                                        <a class="item mt-30" href="<?= $post['url'] ?>">
+                                            <div class="images">
+                                                <div class="imgDrop">
+                                                    <?= $post['thumbnail'] ?>
+                                                </div>
+                                            </div>
+                                            <div class="content" data-mh="content">
+                                                <h4 class="text-up trim trim_2"> <?= $post['title'] ?></h4>
+                                                <div class="desc"> <?= $post['category'] ?></div>
+                                            </div>
+                                        </a>
                                     </div>
-                                    <div class="content" data-mh="content">
-                                        <h4 class="text-up trim trim_2">CHRISTMAS BOUQUET</h4>
-                                        <div class="desc">Category Christmas</div>
-                                    </div></a></div>
-                            <div class="column col-6 col-md-4"><a class="item mt-30" href="detail.html">
-                                    <div class="images">
-                                        <div class="imgDrop"> <img src="<?php bloginfo('template_directory') ?>/common/images/product.png" alt=""/></div>
-                                    </div>
-                                    <div class="content" data-mh="content">
-                                        <h4 class="text-up trim trim_2">CHRISTMAS BOUQUET</h4>
-                                        <div class="desc">Category Christmas</div>
-                                    </div></a></div>
-                            <div class="column col-6 col-md-4"><a class="item mt-30" href="detail.html">
-                                    <div class="images">
-                                        <div class="imgDrop"> <img src="<?php bloginfo('template_directory') ?>/common/images/product.png" alt=""/></div>
-                                    </div>
-                                    <div class="content" data-mh="content">
-                                        <h4 class="text-up trim trim_2">CHRISTMAS BOUQUET</h4>
-                                        <div class="desc">Category Christmas</div>
-                                    </div></a></div>
-                            <div class="column col-6 col-md-4"><a class="item mt-30" href="detail.html">
-                                    <div class="images">
-                                        <div class="imgDrop"> <img src="<?php bloginfo('template_directory') ?>/common/images/product.png" alt=""/></div>
-                                    </div>
-                                    <div class="content" data-mh="content">
-                                        <h4 class="text-up trim trim_2">CHRISTMAS BOUQUET</h4>
-                                        <div class="desc">Category Christmas</div>
-                                    </div></a></div>
-                            <div class="column col-6 col-md-4"><a class="item mt-30" href="detail.html">
-                                    <div class="images">
-                                        <div class="imgDrop"> <img src="<?php bloginfo('template_directory') ?>/common/images/product.png" alt=""/></div>
-                                    </div>
-                                    <div class="content" data-mh="content">
-                                        <h4 class="text-up trim trim_2">CHRISTMAS BOUQUET</h4>
-                                        <div class="desc">Category Christmas</div>
-                                    </div></a></div>
-                            <div class="column col-6 col-md-4"><a class="item mt-30" href="detail.html">
-                                    <div class="images">
-                                        <div class="imgDrop"> <img src="<?php bloginfo('template_directory') ?>/common/images/product.png" alt=""/></div>
-                                    </div>
-                                    <div class="content" data-mh="content">
-                                        <h4 class="text-up trim trim_2">CHRISTMAS BOUQUET</h4>
-                                        <div class="desc">Category Christmas</div>
-                                    </div></a></div>
-                            <div class="column col-6 col-md-4"><a class="item mt-30" href="detail.html">
-                                    <div class="images">
-                                        <div class="imgDrop"> <img src="<?php bloginfo('template_directory') ?>/common/images/product.png" alt=""/></div>
-                                    </div>
-                                    <div class="content" data-mh="content">
-                                        <h4 class="text-up trim trim_2">CHRISTMAS BOUQUET</h4>
-                                        <div class="desc">Category Christmas</div>
-                                    </div></a></div>
-                            <div class="column col-6 col-md-4"><a class="item mt-30" href="detail.html">
-                                    <div class="images">
-                                        <div class="imgDrop"> <img src="<?php bloginfo('template_directory') ?>/common/images/product.png" alt=""/></div>
-                                    </div>
-                                    <div class="content" data-mh="content">
-                                        <h4 class="text-up trim trim_2">CHRISTMAS BOUQUET</h4>
-                                        <div class="desc">Category Christmas</div>
-                                    </div></a></div>
-                            <div class="column col-6 col-md-4"><a class="item mt-30" href="detail.html">
-                                    <div class="images">
-                                        <div class="imgDrop"> <img src="<?php bloginfo('template_directory') ?>/common/images/product.png" alt=""/></div>
-                                    </div>
-                                    <div class="content" data-mh="content">
-                                        <h4 class="text-up trim trim_2">CHRISTMAS BOUQUET</h4>
-                                        <div class="desc">Category Christmas</div>
-                                    </div></a></div>
-                        </div>
-                        <div class="mt-40 text-center"> <a class="btn_more fz-20" href="#">LOAD MORE </a></div>
+                            <?php    }
+                            } ?>
+                            <div class="mt-40 text-center">
+                                <form method="post" action="">
+                                    <input name="isLoad" type="hidden" value="true">
+                                    <button type="submit" class="btn_more fz-20 load-more-manager" >LOAD MORE </button>
+                                </form>
+                            </div>
                     </div>
                 </div>
             </div>
