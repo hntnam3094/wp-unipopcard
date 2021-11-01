@@ -259,7 +259,7 @@ function admin_report_page(){
 
 function getQueryReport($type, $from, $to) {
     if ($type == 'day') {
-        return 'SELECT * , ROUND(SUM(if(wp_order.package like "Monthly", wp_order.sale_price, 0))) AS incomeMonth,
+        return 'SELECT ROUND(SUM(if(wp_order.package like "Monthly", wp_order.sale_price, 0))) AS incomeMonth,
 			ROUND(SUM(if(wp_order.package like "Year", wp_order.sale_price, 0))) AS incomeYear,
                 DATE_FORMAT(v.start_date,"%d/%m/%Y") AS "timeLine"
                 FROM wp_order
@@ -280,7 +280,7 @@ function getQueryReport($type, $from, $to) {
     }
 
     if ($type == 'week') {
-        return 'SELECT * , ROUND(SUM(if(wp_order.package like "Monthly", wp_order.sale_price, 0))) AS incomeMonth,
+        return 'SELECT ROUND(SUM(if(wp_order.package like "Monthly", wp_order.sale_price, 0))) AS incomeMonth,
 			ROUND(SUM(if(wp_order.package like "Year", wp_order.sale_price, 0))) AS incomeYear,
                 CONCAT(DATE_FORMAT(DATE(v.start_date + INTERVAL ( - WEEKDAY(v.start_date)) DAY),"%d/%m/%Y")," ~ ",
                 DATE_FORMAT(DATE(v.start_date + INTERVAL (6 - WEEKDAY(v.start_date)) DAY),"%d/%m/%Y")) AS timeLine
@@ -302,7 +302,7 @@ function getQueryReport($type, $from, $to) {
     }
 
     if ($type == 'month') {
-        return 'SELECT * , ROUND(SUM(if(wp_order.package like "Monthly", wp_order.sale_price, 0))) AS incomeMonth,
+        return 'SELECT ROUND(SUM(if(wp_order.package like "Monthly", wp_order.sale_price, 0))) AS incomeMonth,
 			ROUND(SUM(if(wp_order.package like "Year", wp_order.sale_price, 0))) AS incomeYear,
                 DATE_FORMAT(v.start_date,"%m/%Y") AS "timeLine"
                 FROM wp_order
@@ -323,7 +323,7 @@ function getQueryReport($type, $from, $to) {
     }
 
     if ($type == 'quarter') {
-        return 'SELECT * , ROUND(SUM(if(wp_order.package like "Monthly", wp_order.sale_price, 0))) AS incomeMonth,
+        return 'SELECT ROUND(SUM(if(wp_order.package like "Monthly", wp_order.sale_price, 0))) AS incomeMonth,
 			ROUND(SUM(if(wp_order.package like "Year", wp_order.sale_price, 0))) AS incomeYear,
                 CONCAT(DATE_FORMAT(MAKEDATE(YEAR(v.start_date), 1) + INTERVAL QUARTER(v.start_date) QUARTER - INTERVAL 1 QUARTER,"%d/%m/%Y")," ~ ",
                 DATE_FORMAT(MAKEDATE(YEAR(v.start_date), 1) + INTERVAL QUARTER(v.start_date) QUARTER - INTERVAL 1 DAY,"%d/%m/%Y")) AS timeLine
@@ -345,7 +345,7 @@ function getQueryReport($type, $from, $to) {
     }
 
     if ($type == 'year') {
-        return 'SELECT * , ROUND(SUM(if(wp_order.package like "Monthly", wp_order.sale_price, 0))) AS incomeMonth,
+        return 'SELECT ROUND(SUM(if(wp_order.package like "Monthly", wp_order.sale_price, 0))) AS incomeMonth,
 			ROUND(SUM(if(wp_order.package like "Year", wp_order.sale_price, 0))) AS incomeYear,
                 DATE_FORMAT(v.start_date,"%Y") AS "timeLine"
                 FROM wp_order
