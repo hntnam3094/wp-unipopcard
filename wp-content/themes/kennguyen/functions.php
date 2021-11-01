@@ -283,6 +283,7 @@ add_action( 'init', 'wpabsolute_block_users_backend' );
 
 
 function activeAccountSMTP($email) {
+    global $va_options;
     $urlActive = site_url() . '/verify?token='. md5($email);
 
     $mail = new \PHPMailer\PHPMailer\PHPMailer(true);
@@ -291,15 +292,15 @@ function activeAccountSMTP($email) {
     $mail->Mailer = "smtp";
     $mail->SMTPDebug  = 0;
     $mail->SMTPAuth   = TRUE;
-    $mail->SMTPSecure = "tls";
-    $mail->Port       = 587;
-    $mail->Host       = "smtp.gmail.com";
-    $mail->Username   = "hntnam98@gmail.com";
-    $mail->Password   = "jyakbhhxylrgjvpi";
+    $mail->SMTPSecure = $va_options['kn_email_secure'];
+    $mail->Port       = $va_options['kn_email_port'];
+    $mail->Host       = $va_options['kn_email_host'];
+    $mail->Username   = $va_options['kn_email_from'];
+    $mail->Password   = $va_options['kn_email_password'];
 
     $mail->IsHTML(true);
     $mail->AddAddress($email, "Veify email for KenNguyen");
-    $mail->SetFrom("hntnam98@gmail.com", "Verify account!!");
+    $mail->SetFrom($va_options['kn_email_from'], "Verify account!!");
     $mail->Subject = "Verify account!!";
     $content = "<b>Click on the link below to activate your account!</b><br>";
     $content .= "<a href='".$urlActive."'>Active account</a>";
@@ -310,21 +311,22 @@ function activeAccountSMTP($email) {
 add_action( 'active_account_email', 'activeAccountSMTP');
 
 function forgetPasswordSMTP($email, $password) {
+    global $va_options;
     $mail = new \PHPMailer\PHPMailer\PHPMailer(true);
 
     $mail->IsSMTP();
     $mail->Mailer = "smtp";
     $mail->SMTPDebug  = 0;
     $mail->SMTPAuth   = TRUE;
-    $mail->SMTPSecure = "tls";
-    $mail->Port       = 587;
-    $mail->Host       = "smtp.gmail.com";
-    $mail->Username   = "hntnam98@gmail.com";
-    $mail->Password   = "jyakbhhxylrgjvpi";
+    $mail->SMTPSecure = $va_options['kn_email_secure'];
+    $mail->Port       = $va_options['kn_email_port'];
+    $mail->Host       = $va_options['kn_email_host'];
+    $mail->Username   = $va_options['kn_email_from'];
+    $mail->Password   = $va_options['kn_email_password'];
 
     $mail->IsHTML(true);
     $mail->AddAddress($email, "Forgot password email for KenNguyen");
-    $mail->SetFrom("hntnam98@gmail.com", "Forgot password!!");
+    $mail->SetFrom($va_options['kn_email_from'], "Forgot password!!");
     $mail->Subject = "Forgot password!!";
     $content = "<b>Forgot password!</b><br>";
     $content .= "Your temporary password is:  <b>$password</b><br>";

@@ -11,12 +11,13 @@ if(!session_id()) {
     session_start();
 }
 global $wpdb;
+global $va_options;
 $table = $wpdb->prefix . 'customer';
 require_once 'vendor/autoload.php';
 
 $fb = new \Facebook\Facebook([
-    'app_id' => '3185286311726449',
-    'app_secret' => '7416e7ff97fb45592382f9a65401d374',
+    'app_id' => $va_options['kn_app_id'],
+    'app_secret' => $va_options['kn_app_serect'],
     'default_graph_version' => 'v2.10',
 ]);
 

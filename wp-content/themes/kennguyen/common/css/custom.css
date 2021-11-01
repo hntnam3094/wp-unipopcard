@@ -51,6 +51,7 @@
 
 .payment_info label {
     font-size: 13px;
+    margin-left: 10px;
 }
 
 .payment_info input {

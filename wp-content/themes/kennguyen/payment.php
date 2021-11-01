@@ -157,60 +157,60 @@ if (!empty($_SESSION['user'])) {
                                 <form id="payment-form" action="" method="post">
                                     <input id="token" name="token" type="hidden" value="">
                                     <div class="row ">
-                                        <div class="col-6">
+                                        <div class="col-12 col-md-6">
                                             <label>Name of card</label>
                                             <input type="text" class="form-control" id="nameOfCard" name="nameOfCard" value="John Doe" placeholder="John Doe" required>
                                         </div>
-                                        <div class="col-6">
+                                        <div class="col-12 col-md-6">
                                             <label>Credit Card Number</label>
                                             <input type="text" class="form-control" id="creditCardNumber" name="creditCardNumber" value="" placeholder="4111111111111111" required>
                                         </div>
                                     </div>
                                     <div class="row pt-20 pb-20">
-                                        <div class="col-4">
+                                        <div class="col-12 col-md-4">
                                             <label>Expired Month</label>
                                             <input type="text" class="form-control" id="expiredMonth" name="expiredMonth" value="" placeholder="10" required>
                                         </div>
-                                        <div class="col-4">
+                                        <div class="col-12 col-md-4">
                                             <label>Expired Year</label>
                                             <input type="text" class="form-control" id="expiredYear" name="expiredYear" value="" placeholder="2023" required>
                                         </div>
-                                        <div class="col-4">
+                                        <div class="col-12 col-md-4">
                                             <label>CVV</label>
                                             <input type="text" class="form-control" id="cvv" name="cvv" value="" placeholder="123" required>
                                         </div>
                                     </div>
                                     <hr/>
                                     <div class="row pt-20">
-                                        <div class="col-6">
+                                        <div class="col-12 col-md-6">
                                             <label>Full name</label>
                                             <input type="text" class="form-control" id="fullName" name="fullName" value="" placeholder="John Doe" required>
                                         </div>
-                                        <div class="col-6">
+                                        <div class="col-12 col-md-6">
                                             <label>Email</label>
                                             <input type="email" class="form-control" id="email" name="email" value="" placeholder="example@gmail.com" required>
                                         </div>
                                     </div>
                                     <div class="row pt-20">
-                                        <div class="col-6">
+                                        <div class="col-12 col-md-6">
                                             <label>Address</label>
                                             <input type="text" class="form-control" id="address" name="address" value="" placeholder="123 Strest ST" required>
                                         </div>
-                                        <div class="col-6">
+                                        <div class="col-12 col-md-6">
                                             <label>Country</label>
                                             <input type="text" class="form-control" id="country" name="country" value="" placeholder="USA" required>
                                         </div>
                                     </div>
                                     <div class="row pt-20">
-                                        <div class="col-4">
+                                        <div class="col-12 col-md-4">
                                             <label>City</label>
                                             <input type="text" class="form-control" id="city" name="city" value="" placeholder="New York" required>
                                         </div>
-                                        <div class="col-4">
+                                        <div class="col-12 col-md-4">
                                             <label>State</label>
                                             <input type="text" class="form-control" id="state" name="state" value="" placeholder="OH" required>
                                         </div>
-                                        <div class="col-4">
+                                        <div class="col-12 col-md-4">
                                             <label>Zip Code</label>
                                             <input type="text" class="form-control" id="zipCode" name="zipCode" value="" placeholder="5000" required>
                                         </div>

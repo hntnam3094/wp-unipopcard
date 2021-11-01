@@ -46,6 +46,7 @@ if ( ! class_exists( 'VA_Theme_Options' ) ) {
 
             $this->setEmailSetting();
 
+            $this->setFacebookAppLogin();
 
 
 
@@ -242,8 +243,8 @@ if ( ! class_exists( 'VA_Theme_Options' ) ) {
             // Home Section
             $this->sections[] = array(
                 'title'  => __( 'Email setting', 'upgrade_today' ),
-                'desc'   => __( 'All of settings for email.', 'emnail_setting' ),
-                'icon'   => 'el-icon-home',
+                'desc'   => __( 'All of settings for email.', 'email_setting' ),
+                'icon'   => 'el-icon-list-alt',
                 'fields' => array(
                     array(
                         'id' => 'kn_email_from',
@@ -312,6 +313,35 @@ if ( ! class_exists( 'VA_Theme_Options' ) ) {
                 )
             ); // end section
 
+        }
+
+        public function setFacebookAppLogin() {
+            // Home Section
+            $this->sections[] = array(
+                'title'  => __( 'Setting Login with Facebook', 'vietanh' ),
+                'desc'   => __( 'All of settings for login with facebook.', 'vietanh' ),
+                'icon'   => 'el-icon-facebook',
+                'fields' => array(
+                    array(
+                        'id' => 'kn_app_id',
+                        'type' => 'text',
+                        'title' => __('App ID', 'vietanh'),
+                        'compiler' => true,
+                    ),
+                    array(
+                        'id' => 'kn_app_serect',
+                        'type' => 'text',
+                        'title' => __('App Serect', 'vietanh'),
+                        'compiler' => true,
+                    ),
+                    array(
+                        'id' => 'kn_url_callback',
+                        'type' => 'text',
+                        'title' => __('Url Callback', 'vietanh'),
+                        'compiler' => true,
+                    )
+                )
+            ); // end section
 
         }
 
