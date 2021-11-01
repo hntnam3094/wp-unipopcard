@@ -1,7 +1,6 @@
 
-###How to release dev env dev env : http://ehub.vinaweber.com/ 
-- Dev env
-    kennguyen.vinaweber.com
+- ###  dev env"
+    http://kennguyen.vinaweber.com
     
 - Use ssh account bellow:
     IP:45.117.171.81
