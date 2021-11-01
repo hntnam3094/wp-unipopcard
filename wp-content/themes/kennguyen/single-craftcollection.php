@@ -48,32 +48,13 @@ if (isset($_POST)) {
                 <div class="col-12 col-lg-8 content_main">
                     <div class="heading">
                         <?php if (check_membership() == 1 || get_post_status() == 'free') { ?>
-                        <h1 class="ttl_main fz-20 text-up text-center"><?= get_the_title()?></h1>
+                            <h1 class="ttl_main fz-20 text-up text-center"><?= get_the_title()?></h1>
                         <?php } ?>
                         <?php if (check_membership() != 1) {
                             echo '<div class="mt-30 text-center"> <a class="btn_more" href="/upgrade-today"><span class="block main fz-22">You Can Make This!</span><span class="block sub">BECOME A MEMBER  </span></a></div>';
                         } ?>
                     </div>
-<<<<<<< HEAD
-                    <div class="boding mt-30">
-                        <?= get_the_content()?>
-                    </div>
-                    <div class="resource mt-30">
-                        <ul class="list_download fz-20">
-                            <?php
-                            $rows = get_field('list_file');
-                            $user = $_SESSION['user'];
-                            if( $rows ) {
-                                foreach( $rows as $row ) {
-                                    echo '
-                                <li data-iduser="'.$user->id.'" data-idpost="'.get_the_ID().'" class="mt-20 download-item">
-                                    <a href="'.$row['file']['url'].'" download>
-                                        <span class="txt trim trim_1">'.$row['file_name'].'</span>
-                                        <soan class="button">Click Download & Print</soan>
-                                    </a>
-                                </li>
-                                ';
-=======
+
                     <?php if (check_membership() == 1 || get_post_status() == 'free') { ?>
                         <div class="boding mt-30">
                             <?= get_the_content()?>
@@ -82,10 +63,14 @@ if (isset($_POST)) {
                             <ul class="list_download fz-20">
                                 <?php
                                 $rows = get_field('list_file');
+                                $user = null;
+                                if (isset($_SESSION['user'])) {
+                                    $user = $_SESSION['user'];
+                                }
                                 if( $rows ) {
                                     foreach( $rows as $row ) {
                                         echo '
-                                    <li class="mt-20">
+                                    <li data-iduser="'.$user->id.'" data-idpost="'.get_the_ID().'" class="mt-20 download-item">
                                         <a href="'.$row['file']['url'].'" download>
                                             <span class="txt trim trim_1">'.$row['file_name'].'</span>
                                             <soan class="button">Click Download & Print</soan>
@@ -93,7 +78,6 @@ if (isset($_POST)) {
                                     </li>
                                     ';
                                     }
->>>>>>> origin/dev
                                 }
                                 ?>
                             </ul>
