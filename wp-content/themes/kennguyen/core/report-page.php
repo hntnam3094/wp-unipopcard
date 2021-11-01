@@ -261,58 +261,108 @@ function getQueryReport($type, $from, $to) {
     if ($type == 'day') {
         return 'SELECT * , ROUND(SUM(if(wp_order.package like "Monthly", wp_order.sale_price, 0))) AS incomeMonth,
 			ROUND(SUM(if(wp_order.package like "Year", wp_order.sale_price, 0))) AS incomeYear,
-                DATE_FORMAT(wp_order.bought_date,"%d/%m/%Y") AS "timeLine"
+                DATE_FORMAT(v.start_date,"%d/%m/%Y") AS "timeLine"
                 FROM wp_order
-                WHERE DATE_FORMAT(wp_order.bought_date,"%Y-%m") >= "'.$from.'"
-                AND DATE_FORMAT(wp_order.bought_date,"%Y-%m") <= "'.$to.'"
-                GROUP BY DATE(wp_order.bought_date)
-                ORDER BY wp_order.bought_date DESC';
+                RIGHT JOIN (
+                SELECT * FROM (
+                  SELECT ADDDATE("1970-01-01", t4 * 10000 + t3 * 1000 + t2 * 100 + t1 * 10 + t0) AS start_date
+                  FROM
+                    (SELECT 0 t0 UNION SELECT 1 UNION SELECT 2 UNION SELECT 3 UNION SELECT 4 UNION SELECT 5 UNION SELECT 6 UNION SELECT 7 UNION SELECT 8 UNION SELECT 9) t0,
+                    (SELECT 0 t1 UNION SELECT 1 UNION SELECT 2 UNION SELECT 3 UNION SELECT 4 UNION SELECT 5 UNION SELECT 6 UNION SELECT 7 UNION SELECT 8 UNION SELECT 9) t1,
+                    (SELECT 0 t2 UNION SELECT 1 UNION SELECT 2 UNION SELECT 3 UNION SELECT 4 UNION SELECT 5 UNION SELECT 6 UNION SELECT 7 UNION SELECT 8 UNION SELECT 9) t2,
+                    (SELECT 0 t3 UNION SELECT 1 UNION SELECT 2 UNION SELECT 3 UNION SELECT 4 UNION SELECT 5 UNION SELECT 6 UNION SELECT 7 UNION SELECT 8 UNION SELECT 9) t3,
+                    (SELECT 0 t4 UNION SELECT 1 UNION SELECT 2 UNION SELECT 3 UNION SELECT 4 UNION SELECT 5 UNION SELECT 6 UNION SELECT 7 UNION SELECT 8 UNION SELECT 9) t4
+                ) v1) v ON v.start_date = wp_order.bought_date
+                WHERE DATE_FORMAT(v.start_date,"%Y-%m") >= "'.$from.'"
+                AND DATE_FORMAT(v.start_date,"%Y-%m") <= "'.$to.'"
+                GROUP BY DATE(v.start_date)
+                ORDER BY v.start_date';
     }
 
     if ($type == 'week') {
         return 'SELECT * , ROUND(SUM(if(wp_order.package like "Monthly", wp_order.sale_price, 0))) AS incomeMonth,
 			ROUND(SUM(if(wp_order.package like "Year", wp_order.sale_price, 0))) AS incomeYear,
-                CONCAT(DATE_FORMAT(DATE(wp_order.bought_date + INTERVAL ( - WEEKDAY(wp_order.bought_date)) DAY),"%d/%m/%Y")," ~ ",
-                DATE_FORMAT(DATE(wp_order.bought_date + INTERVAL (6 - WEEKDAY(wp_order.bought_date)) DAY),"%d/%m/%Y")) AS timeLine
+                CONCAT(DATE_FORMAT(DATE(v.start_date + INTERVAL ( - WEEKDAY(v.start_date)) DAY),"%d/%m/%Y")," ~ ",
+                DATE_FORMAT(DATE(v.start_date + INTERVAL (6 - WEEKDAY(v.start_date)) DAY),"%d/%m/%Y")) AS timeLine
                 FROM wp_order
-                WHERE DATE_FORMAT(wp_order.bought_date,"%Y-%m") >= "'.$from.'"
-                AND DATE_FORMAT(wp_order.bought_date,"%Y-%m") <= "'.$to.'"
-                GROUP BY WEEK(wp_order.bought_date, 1), YEAR(wp_order.bought_date)
-                ORDER BY wp_order.bought_date DESC';
+                RIGHT JOIN (
+                SELECT * FROM (
+                  SELECT ADDDATE("1970-01-01", t4 * 10000 + t3 * 1000 + t2 * 100 + t1 * 10 + t0) AS start_date
+                  FROM
+                    (SELECT 0 t0 UNION SELECT 1 UNION SELECT 2 UNION SELECT 3 UNION SELECT 4 UNION SELECT 5 UNION SELECT 6 UNION SELECT 7 UNION SELECT 8 UNION SELECT 9) t0,
+                    (SELECT 0 t1 UNION SELECT 1 UNION SELECT 2 UNION SELECT 3 UNION SELECT 4 UNION SELECT 5 UNION SELECT 6 UNION SELECT 7 UNION SELECT 8 UNION SELECT 9) t1,
+                    (SELECT 0 t2 UNION SELECT 1 UNION SELECT 2 UNION SELECT 3 UNION SELECT 4 UNION SELECT 5 UNION SELECT 6 UNION SELECT 7 UNION SELECT 8 UNION SELECT 9) t2,
+                    (SELECT 0 t3 UNION SELECT 1 UNION SELECT 2 UNION SELECT 3 UNION SELECT 4 UNION SELECT 5 UNION SELECT 6 UNION SELECT 7 UNION SELECT 8 UNION SELECT 9) t3,
+                    (SELECT 0 t4 UNION SELECT 1 UNION SELECT 2 UNION SELECT 3 UNION SELECT 4 UNION SELECT 5 UNION SELECT 6 UNION SELECT 7 UNION SELECT 8 UNION SELECT 9) t4
+                ) v1) v ON v.start_date = wp_order.bought_date
+                WHERE DATE_FORMAT(v.start_date,"%Y-%m") >= "'.$from.'"
+                AND DATE_FORMAT(v.start_date,"%Y-%m") <= "'.$to.'"
+                GROUP BY WEEK(v.start_date, 1), YEAR(v.start_date)
+                ORDER BY v.start_date DESC';
     }
 
     if ($type == 'month') {
         return 'SELECT * , ROUND(SUM(if(wp_order.package like "Monthly", wp_order.sale_price, 0))) AS incomeMonth,
 			ROUND(SUM(if(wp_order.package like "Year", wp_order.sale_price, 0))) AS incomeYear,
-                DATE_FORMAT(wp_order.bought_date,"%m/%Y") AS "timeLine"
+                DATE_FORMAT(v.start_date,"%m/%Y") AS "timeLine"
                 FROM wp_order
-                WHERE DATE_FORMAT(wp_order.bought_date,"%Y-%m") >= "'.$from.'"
-                AND DATE_FORMAT(wp_order.bought_date,"%Y-%m") <= "'.$to.'"
-                GROUP BY MONTH(wp_order.bought_date), YEAR(wp_order.bought_date)
-                ORDER BY wp_order.bought_date DESC';
+                RIGHT JOIN (
+                SELECT * FROM (
+                  SELECT ADDDATE("1970-01-01", t4 * 10000 + t3 * 1000 + t2 * 100 + t1 * 10 + t0) AS start_date
+                  FROM
+                    (SELECT 0 t0 UNION SELECT 1 UNION SELECT 2 UNION SELECT 3 UNION SELECT 4 UNION SELECT 5 UNION SELECT 6 UNION SELECT 7 UNION SELECT 8 UNION SELECT 9) t0,
+                    (SELECT 0 t1 UNION SELECT 1 UNION SELECT 2 UNION SELECT 3 UNION SELECT 4 UNION SELECT 5 UNION SELECT 6 UNION SELECT 7 UNION SELECT 8 UNION SELECT 9) t1,
+                    (SELECT 0 t2 UNION SELECT 1 UNION SELECT 2 UNION SELECT 3 UNION SELECT 4 UNION SELECT 5 UNION SELECT 6 UNION SELECT 7 UNION SELECT 8 UNION SELECT 9) t2,
+                    (SELECT 0 t3 UNION SELECT 1 UNION SELECT 2 UNION SELECT 3 UNION SELECT 4 UNION SELECT 5 UNION SELECT 6 UNION SELECT 7 UNION SELECT 8 UNION SELECT 9) t3,
+                    (SELECT 0 t4 UNION SELECT 1 UNION SELECT 2 UNION SELECT 3 UNION SELECT 4 UNION SELECT 5 UNION SELECT 6 UNION SELECT 7 UNION SELECT 8 UNION SELECT 9) t4
+                ) v1) v ON v.start_date = wp_order.bought_date
+                WHERE DATE_FORMAT(v.start_date,"%Y-%m") >= "'.$from.'"
+                AND DATE_FORMAT(v.start_date,"%Y-%m") <= "'.$to.'"
+                GROUP BY MONTH(v.start_date), YEAR(v.start_date)
+                ORDER BY v.start_date DESC';
     }
 
     if ($type == 'quarter') {
         return 'SELECT * , ROUND(SUM(if(wp_order.package like "Monthly", wp_order.sale_price, 0))) AS incomeMonth,
 			ROUND(SUM(if(wp_order.package like "Year", wp_order.sale_price, 0))) AS incomeYear,
-                CONCAT(DATE_FORMAT(MAKEDATE(YEAR(wp_order.bought_date), 1) + INTERVAL QUARTER(wp_order.bought_date) QUARTER - INTERVAL 1 QUARTER,"%d/%m/%Y")," ~ ",
-                DATE_FORMAT(MAKEDATE(YEAR(wp_order.bought_date), 1) + INTERVAL QUARTER(wp_order.bought_date) QUARTER - INTERVAL 1 DAY,"%d/%m/%Y")) AS timeLine
+                CONCAT(DATE_FORMAT(MAKEDATE(YEAR(v.start_date), 1) + INTERVAL QUARTER(v.start_date) QUARTER - INTERVAL 1 QUARTER,"%d/%m/%Y")," ~ ",
+                DATE_FORMAT(MAKEDATE(YEAR(v.start_date), 1) + INTERVAL QUARTER(v.start_date) QUARTER - INTERVAL 1 DAY,"%d/%m/%Y")) AS timeLine
                 FROM wp_order
-                WHERE DATE_FORMAT(wp_order.bought_date,"%Y-%m") >= "'.$from.'"
-                AND DATE_FORMAT(wp_order.bought_date,"%Y-%m") <= "'.$to.'"
-                GROUP BY QUARTER(wp_order.bought_date), YEAR(wp_order.bought_date)
-                ORDER BY wp_order.bought_date DESC';
+                RIGHT JOIN (
+                SELECT * FROM (
+                  SELECT ADDDATE("1970-01-01", t4 * 10000 + t3 * 1000 + t2 * 100 + t1 * 10 + t0) AS start_date
+                  FROM
+                    (SELECT 0 t0 UNION SELECT 1 UNION SELECT 2 UNION SELECT 3 UNION SELECT 4 UNION SELECT 5 UNION SELECT 6 UNION SELECT 7 UNION SELECT 8 UNION SELECT 9) t0,
+                    (SELECT 0 t1 UNION SELECT 1 UNION SELECT 2 UNION SELECT 3 UNION SELECT 4 UNION SELECT 5 UNION SELECT 6 UNION SELECT 7 UNION SELECT 8 UNION SELECT 9) t1,
+                    (SELECT 0 t2 UNION SELECT 1 UNION SELECT 2 UNION SELECT 3 UNION SELECT 4 UNION SELECT 5 UNION SELECT 6 UNION SELECT 7 UNION SELECT 8 UNION SELECT 9) t2,
+                    (SELECT 0 t3 UNION SELECT 1 UNION SELECT 2 UNION SELECT 3 UNION SELECT 4 UNION SELECT 5 UNION SELECT 6 UNION SELECT 7 UNION SELECT 8 UNION SELECT 9) t3,
+                    (SELECT 0 t4 UNION SELECT 1 UNION SELECT 2 UNION SELECT 3 UNION SELECT 4 UNION SELECT 5 UNION SELECT 6 UNION SELECT 7 UNION SELECT 8 UNION SELECT 9) t4
+                ) v1) v ON v.start_date = wp_order.bought_date
+                WHERE DATE_FORMAT(v.start_date,"%Y-%m") >= "'.$from.'"
+                AND DATE_FORMAT(v.start_date,"%Y-%m") <= "'.$to.'"
+                GROUP BY QUARTER(v.start_date), YEAR(v.start_date)
+                ORDER BY v.start_date DESC';
     }
 
     if ($type == 'year') {
         return 'SELECT * , ROUND(SUM(if(wp_order.package like "Monthly", wp_order.sale_price, 0))) AS incomeMonth,
 			ROUND(SUM(if(wp_order.package like "Year", wp_order.sale_price, 0))) AS incomeYear,
-                DATE_FORMAT(wp_order.bought_date,"%m/%Y") AS "timeLine"
+                DATE_FORMAT(v.start_date,"%Y") AS "timeLine"
                 FROM wp_order
-                WHERE DATE_FORMAT(wp_order.bought_date,"%Y-%m") >= "'.$from.'"
-                AND DATE_FORMAT(wp_order.bought_date,"%Y-%m") <= "'.$to.'"
-                GROUP BY YEAR(wp_order.bought_date)
-                ORDER BY wp_order.bought_date DESC';
+                RIGHT JOIN (
+                SELECT * FROM (
+                  SELECT ADDDATE("1970-01-01", t4 * 10000 + t3 * 1000 + t2 * 100 + t1 * 10 + t0) AS start_date
+                  FROM
+                    (SELECT 0 t0 UNION SELECT 1 UNION SELECT 2 UNION SELECT 3 UNION SELECT 4 UNION SELECT 5 UNION SELECT 6 UNION SELECT 7 UNION SELECT 8 UNION SELECT 9) t0,
+                    (SELECT 0 t1 UNION SELECT 1 UNION SELECT 2 UNION SELECT 3 UNION SELECT 4 UNION SELECT 5 UNION SELECT 6 UNION SELECT 7 UNION SELECT 8 UNION SELECT 9) t1,
+                    (SELECT 0 t2 UNION SELECT 1 UNION SELECT 2 UNION SELECT 3 UNION SELECT 4 UNION SELECT 5 UNION SELECT 6 UNION SELECT 7 UNION SELECT 8 UNION SELECT 9) t2,
+                    (SELECT 0 t3 UNION SELECT 1 UNION SELECT 2 UNION SELECT 3 UNION SELECT 4 UNION SELECT 5 UNION SELECT 6 UNION SELECT 7 UNION SELECT 8 UNION SELECT 9) t3,
+                    (SELECT 0 t4 UNION SELECT 1 UNION SELECT 2 UNION SELECT 3 UNION SELECT 4 UNION SELECT 5 UNION SELECT 6 UNION SELECT 7 UNION SELECT 8 UNION SELECT 9) t4
+                ) v1) v ON v.start_date = wp_order.bought_date
+                WHERE DATE_FORMAT(v.start_date,"%Y-%m") >= "'.$from.'"
+                AND DATE_FORMAT(v.start_date,"%Y-%m") <= "'.$to.'"
+                GROUP BY YEAR(v.start_date)
+                ORDER BY v.start_date DESC';
     }
 }
 
