@@ -12,9 +12,11 @@ $user = $_SESSION['user'];
 global $wpdb;
 $table = $wpdb->prefix . 'customer_download';
 $limit = 9;
+$isButtonLoad = true;
 if (!empty($_POST)) {
+    $isButtonLoad = false;
     if ($_POST['isLoad']) {
-        $limit += 100;
+        $limit += $_POST['limit'];
     }
 }
 $queryResult = $wpdb->get_results(
@@ -92,12 +94,17 @@ get_header();
                                     </div>
                             <?php    }
                             } ?>
-                            <div class="mt-40 text-center">
-                                <form method="post" action="">
-                                    <input name="isLoad" type="hidden" value="true">
-                                    <button type="submit" class="btn_more fz-20 load-more-manager" >LOAD MORE </button>
-                                </form>
-                            </div>
+                            <?php
+                                if ($limit == count($arrayPost)) { ?>
+                                    <div class="mt-40 text-center">
+                                        <form method="post" action="">
+                                            <input name="isLoad" type="hidden" value="true">
+                                            <input name="limit" type="hidden" value="<?= $limit ?>">
+                                            <button type="submit" class="btn_more fz-20 load-more-manager" >LOAD MORE </button>
+                                        </form>
+                                    </div>
+                            <?php    }
+                            ?>
                     </div>
                 </div>
             </div>

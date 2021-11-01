@@ -117,11 +117,11 @@ get_header();
                                 </span>
                         <span class="text">Login with Facebook</span>
                     </a>
-                    <a class="btn_acction btn_gg mt-20" href="<?= $client->createAuthUrl() ?>">
-                                <span class="icon"> <img src="<?php bloginfo('template_directory') ?>/common/images/icon/icon_fb.svg" alt=""/>
-                                </span>
-                        <span class="text">Login with Google</span>
-                    </a>
+<!--                    <a class="btn_acction btn_gg mt-20" >-->
+<!--                                <span class="icon">  alt=""/>-->
+<!--                                </span>-->
+<!--                        <span class="text">Login with Google</span>-->
+<!--                    </a>-->
                     <div class="sub2 mt-70">Login with email</div>
                     <div class="group mt-20">
                         <input id="email" name="email" class="input" type="mail" placeholder="Email"/>

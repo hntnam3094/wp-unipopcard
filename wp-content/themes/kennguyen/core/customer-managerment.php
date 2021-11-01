@@ -35,7 +35,8 @@ class Paulund_Wp_List_Table
      */
     public function add_customer_managerment()
     {
-        $hook = add_menu_page( 'Customer', 'Customer', 'manage_options', 'customer_managerment.php', array($this, 'list_table_page') );
+        $hook = add_menu_page( 'Customer', 'Customer', 'manage_options',
+            'customer_managerment.php', array($this, 'list_table_page'), 'dashicons-universal-access' );
         add_action( "load-$hook", 'add_options' );
 
         function add_options()
@@ -70,19 +71,37 @@ class Paulund_Wp_List_Table
      */
     public function list_table_page()
     {
+        $selected = '';
+        if ($_POST['type_membership'] != '') {
+            $selected = $_POST['type_membership'];
+        }
         $customer = new Customer_Table();
         $customer->prepare_items();
-
         $add    = admin_url( 'ken_customer_edit.php');
         ?>
         <div class="wrap">
-            <div id="icon-users" class="icon32"></div>
-            <div style="display: flex; align-items: center">
-                <h1 style="font-weight: bold; margin-right: 30px">Customer</h1>
-                <a href="<?= $add ?>" style="margin-top: 15px" class="page-title-action">Add new</a>
+            <div style="margin-bottom: 15px" >
+                <h2 style="font-size: 30px">Customer management</h2>
+                <a href="<?= $add ?>" class="page-title-action">Add new</a>
             </div>
+            <div class="alignleft">
+                <form method="post">
+                    <select id="select-type-membership" name="type_membership">
+                        <option value="" <?= $selected == '' ? 'selected' : '' ?>>Type member</option>
+                        <option value="0" <?= $selected == 0 ? 'selected' : '' ?>>Not active</option>
+                        <option value="1" <?= $selected == 1 ? 'selected' : '' ?>>Monthly member</option>
+                        <option value="2" <?= $selected == 2 ? 'selected' : '' ?>>Yearly member</option>
+                    </select>
+                    <button type="submit" class="button">Apply</button>
+                </form>
+            </div>
+            <div>
+                <form method="post">
+                    <?php $customer->search_box('search', 'search_id'); ?>
+                </form>
+            </div>
+
             <?php
-            $customer->search_box('search', 'search_id');
             $customer->display();
             ?>
         </div>
@@ -115,7 +134,7 @@ class Customer_Table extends WP_List_Table
         $data = $this->table_data();
         usort( $data, array( &$this, 'sort_data' ));
 
-        $perPage = $this->get_items_per_page('books_per_page', 5);
+        $perPage = $this->get_items_per_page('customer_per_page', 5);
         $currentPage = $this->get_pagenum();
 //        $perPage = 2;
 //        $currentPage = $this->get_pagenum();
@@ -141,7 +160,6 @@ class Customer_Table extends WP_List_Table
     public function get_columns()
     {
         $columns = array(
-            'cb'        => '<input type="checkbox" />',
             'email'       => 'Email',
             'first_name' => 'First Name',
             'last_name'        => 'Last Name',
@@ -181,12 +199,26 @@ class Customer_Table extends WP_List_Table
     private function table_data()
     {
         $data = array();
-
         global $wpdb;
         $table = $wpdb->prefix . 'customer';
+        $result = [];
         $result = $wpdb->get_results(
             $wpdb->prepare(
                 "SELECT * FROM {$table} "));
+
+        if (!empty($_POST) && isset($_POST['s'])) {
+
+            $char = $_POST['s'] . '%';
+            $result = $wpdb->get_results(
+                "SELECT * FROM {$table} WHERE email LIKE '$char' OR first_name LIKE '$char' OR last_name LIKE '$char';");
+        }
+
+        if (!empty($_POST) && $_POST['type_membership'] != '') {
+            $type = $_POST['type_membership'];
+            $result = $wpdb->get_results(
+                "SELECT * FROM {$table} WHERE type_member = '$type';");
+        }
+
 
 
         foreach ($result as $item) {
@@ -207,7 +239,6 @@ class Customer_Table extends WP_List_Table
     public function column_default( $item, $column_name )
     {
         switch( $column_name ) {
-            case 'cb':
             case 'email':
             case 'first_name':
             case 'last_name':
@@ -305,6 +336,11 @@ class Customer_Table extends WP_List_Table
         return $member;
     }
 
+    function column_id($item)
+    {
+
+    }
+
 //    function get_bulk_actions() {
 //        $actions = array(
 //            'edit'    => 'Edit'
@@ -312,58 +348,47 @@ class Customer_Table extends WP_List_Table
 //        return $actions;
 //    }
 
-    function get_bulk_actions() {
-        $actions = array(
-            'bulk_delete_customer'    => 'Delete'
-        );
-        return $actions;
-    }
 
-    function column_cb($item) {
-        return sprintf(
-            '<input type="checkbox" name="book[]" value="%s" />', $item['ID']
-        );
-    }
 
     function process_bulk_action() {
         global $wpdb;
         $table = $wpdb->prefix . 'customer';
-//        if( 'password' == $this->current_action() )
-//        {
-//            $email = $_GET['customer'];
-//            if (!empty($email)) {
-//                $queryResult = $wpdb->get_results(
-//                    $wpdb->prepare(
-//                        "SELECT * FROM {$table} WHERE email=%s",$email));
-//                if (!empty($queryResult)) {
-//                    $alphabet = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
-//                    $pass = array();
-//                    $alphaLength = strlen($alphabet) - 1;
-//                    for ($i = 0; $i < 8; $i++) {
-//                        $n = rand(0, $alphaLength);
-//                        $pass[] = $alphabet[$n];
-//                    }
-//
-//                    $random_pass = implode($pass);
-//
-//                    $data = [ 'password' => md5($random_pass) ];
-//                    $where = [ 'email' => $email ];
-//                    $results = $wpdb->update( $table, $data, $where);
-//
-//                    if ($results != 0) {
-//                        do_action('forget_password_email', $email, $random_pass);
-//                        wp_die('Please check email to get new password!!');
-//                    }
-//                }
-//            }
-//        }
-//
-//        if( 'delete' == $this->current_action() )
-//        {
-//            $id = $_GET['customer'];
-//            $wpdb->delete( $table, array( 'id' => $id ) );
-//            wp_die('This customer has been deleted!');
-//        }
+        if( 'password' == $this->current_action() )
+        {
+            $email = $_GET['customer'];
+            if (!empty($email)) {
+                $queryResult = $wpdb->get_results(
+                    $wpdb->prepare(
+                        "SELECT * FROM {$table} WHERE email=%s",$email));
+                if (!empty($queryResult)) {
+                    $alphabet = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
+                    $pass = array();
+                    $alphaLength = strlen($alphabet) - 1;
+                    for ($i = 0; $i < 8; $i++) {
+                        $n = rand(0, $alphaLength);
+                        $pass[] = $alphabet[$n];
+                    }
+
+                    $random_pass = implode($pass);
+
+                    $data = [ 'password' => md5($random_pass) ];
+                    $where = [ 'email' => $email ];
+                    $results = $wpdb->update( $table, $data, $where);
+
+                    if ($results != 0) {
+                        do_action('forget_password_email', $email, $random_pass);
+                        wp_die('Please check email to get new password!!');
+                    }
+                }
+            }
+        }
+
+        if( 'delete' == $this->current_action() )
+        {
+            $id = $_GET['customer'];
+            $wpdb->delete( $table, array( 'id' => $id ) );
+            wp_die('This customer has been deleted!');
+        }
 
     }
 
