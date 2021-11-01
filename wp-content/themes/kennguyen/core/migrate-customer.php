@@ -62,7 +62,8 @@ function my_plugin_create_db() {
             package VARCHAR(255),
             price FLOAT DEFAULT 0,
             sale_price FLOAT DEFAULT 0,
-            status INT DEFAULT 0);";
+            status INT DEFAULT 0,
+            bought_date DATE);";
 
         require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
         dbDelta($sql);

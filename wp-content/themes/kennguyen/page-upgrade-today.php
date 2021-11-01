@@ -71,7 +71,7 @@ get_header()
                             </div>
                             <div class="fz-22 mt-10">Full Acess</div>
                             <div class="fz-20 mt-15 price_detail">After 7 days,<br>$<?=  $va_options['kn_year_package_price']; ?>/month<br>(paid month)</div>
-                            <a class="button mt-20" href="<?php site_url() ?>/payment?package=year">JOIN NOW </a>
+                            <a class="button mt-20" href="<?php site_url() ?>/payment?package=yearly">JOIN NOW </a>
                         </div>
                         <div class="info_other toggle_parent">
                             <div class="toggle_content">
@@ -104,7 +104,7 @@ get_header()
                                         <dt>16 curated DIY projects (patterns + tutorials) </dt>
                                         <dd>$160 VALUE</dd>
                                     </dl>
-                                </div><a class="button mt-40" href="<?php site_url() ?>/payment?package=year">JOIN NOW</a>
+                                </div><a class="button mt-40" href="<?php site_url() ?>/payment?package=yearly">JOIN NOW</a>
                             </div>
                             <div class="toggle_btn">
                                 <div class="short">Xem thêm </div>
