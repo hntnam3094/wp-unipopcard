@@ -11,7 +11,7 @@
  */
 if ( !defined( 'ABSPATH' ) ) exit;
 //tạo hook active plugins
-register_activation_hook( __FILE__, 'my_plugin_create_db' );
+add_action('init', 'my_plugin_create_db');
 
 
 //tạo database từ hook
