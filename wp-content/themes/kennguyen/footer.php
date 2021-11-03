@@ -96,73 +96,94 @@
 <script src="<?php bloginfo('template_directory') ?>/common/js/bootstrap.min.js"></script>
 <script src="<?php bloginfo('template_directory') ?>/common/js/main.js"></script>
 <script src="<?php bloginfo('template_directory') ?>/common/js/custom.js"></script>
-<!--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>-->
-<script src="https://www.2checkout.com/checkout/api/2co.min.js"></script>
 <!-- Go to www.addthis.com/dashboard to customize your tools -->
 <!--<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-617ddd1be044758e"></script>-->
 <script>
-    // window.addEventListener('load', function() {
-    //     // Initialize the JS Payments SDK client.
-    //     let jsPaymentClient = new  TwoPayClient('251761074825');
+    // (function(document, src, libName, config) {
+    //     var script = document.createElement("script");
+    //     script.src = src;
+    //     script.async = true;
+    //     var firstScriptElement = document.getElementsByTagName("script")[0];
+    //     script.onload = function() {
+    //         for (var namespace in config) {
+    //             if (config.hasOwnProperty(namespace)) {
+    //                 window[libName].setup.setConfig(namespace, config[namespace]);
+    //             }
+    //         }
+    //         window[libName].register();
+    //         window[libName].cart.setTest(true);
+    //     };
     //
-    //     // Create the component that will hold the card fields.
-    //     let component = jsPaymentClient.components.create('card');
-    //
-    //     // Mount the card fields component in the desired HTML tag. This is where the iframe will be located.
-    //     component.mount('#card-element');
-    //
-    //     // Handle form submission.
-    //     document.getElementById('payment-form').addEventListener('submit', (event) => {
-    //         event.preventDefault();
-    //
-    //         // Extract the Name field value
-    //         const billingDetails = {
-    //             name: document.querySelector('#name').value
-    //         };
-    //
-    //         // Call the generate method using the component as the first parameter
-    //         // and the billing details as the second one
-    //         jsPaymentClient.tokens.generate(component, billingDetails).then((response) => {
-    //             console.log(response.token);
-    //         }).catch((error) => {
-    //             console.error(error);
-    //         });
-    //     });
-    // });
-    $(function () {
-        TCO.loadPubKey();
-        $("#payment-form").submit(function (e) {
-            tokenRequest();
-            return false;
+    //     firstScriptElement.parentNode.insertBefore(script, firstScriptElement);
+    // })(
+    //     document,
+    //     "https://secure.2checkout.com/checkout/client/twoCoInlineCart.js",
+    //     "TwoCoInlineCart",
+    //     {
+    //         app: { merchant: "251761074825" },
+    //         cart: { host: "https://secure.2checkout.com/checkout/buy?merchant=251761074825&tpl=one-column&prod=3TRROJJM4U&qty=1" }
+    //     }
+    // );
+    (function (document, src, libName, config) {
+        var script             = document.createElement('script');
+        script.src             = src;
+        script.async           = true;
+        var firstScriptElement = document.getElementsByTagName('script')[0];
+        script.onload          = function () {
+            for (var namespace in config) {
+                if (config.hasOwnProperty(namespace)) {
+                    window[libName].setup.setConfig(namespace, config[namespace]);
+                }
+            }
+            window[libName].register();
+        };
+
+        firstScriptElement.parentNode.insertBefore(script, firstScriptElement);
+    })(document,
+        'https://secure.2checkout.com/checkout/client/twoCoInlineCart.js',
+        'TwoCoInlineCart',{
+        "app":
+            {
+                "merchant":"251761074825",
+                "iframeLoad":"checkout"
+            },
+            "cart"
+                :{"host":"https:secure.2checkout.com","customization":"inline"}});
+
+
+    window.document.getElementById('buy-button').addEventListener('click', function() {
+        let idPackage = document.getElementById('id_package').value
+        let url = window.location.href
+        let data = {
+            'isCheckExistPackage' : true
+        }
+        $.ajax({
+            url:url,
+            method:'post',
+            data:data,
+            dataType:'json',
+            success:function(data){
+                console.log(data)
+                if (data.code == 201) {
+                    alert(data.message)
+                }
+               let urlRedirect = window.location.protocol + "//" + window.location.host + '/manager?id_package=' + idPackage
+                if (data.code == 200) {
+                    TwoCoInlineCart.products.add({
+                        code: "3TRROJJM4U"
+                    })
+                    TwoCoInlineCart.cart.setReturnMethod({
+                        type: 'redirect',
+                        url : urlRedirect
+                    });
+                    TwoCoInlineCart.cart.setTest(true)
+                    TwoCoInlineCart.cart.checkout()
+                }
+            }
         })
 
-    })
+    });
 
-    var tokenRequest = function () {
-        var args = {
-            sellerId: "251761074825",
-            publishableKey: "7B37BE41-5897-499F-9A70-7429DC2F7FF2",
-            ccNo: $('#creditCardNumber').val(),
-            cvv: $('#cvv').val(),
-            expMonth: $('#expiredMonth').val(),
-            expYear: $('#expiredYear').val(),
-        }
-        TCO.requestToken(successCallback, errorCallback, args);
-    }
-
-    var successCallback = function (data) {
-        var myForm = document.getElementById('payment-form')
-        myForm.token.value = data.response.token.token
-        myForm.submit()
-    }
-
-    var errorCallback = function (data) {
-        if (data.errorCode == 200) {
-            tokenRequest()
-        } else {
-            alert(data.errorMsg)
-        }
-    }
 
     $(function (){
         const urlParams = new URLSearchParams(window.location.search);
