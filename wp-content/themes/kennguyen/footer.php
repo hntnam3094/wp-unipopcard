@@ -167,14 +167,14 @@
                 if (data.code == 201) {
                     alert(data.message)
                 }
-
+               let urlRedirect = window.location.protocol + "//" + window.location.host + '/manager?id_package=' + idPackage
                 if (data.code == 200) {
                     TwoCoInlineCart.products.add({
                         code: "3TRROJJM4U"
                     })
                     TwoCoInlineCart.cart.setReturnMethod({
                         type: 'redirect',
-                        url : 'http://localhost/manager?id_package=' + idPackage
+                        url : urlRedirect
                     });
                     TwoCoInlineCart.cart.setTest(true)
                     TwoCoInlineCart.cart.checkout()
