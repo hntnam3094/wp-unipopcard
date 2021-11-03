@@ -202,11 +202,11 @@ get_header();
 
                                     if ($user->type_member != 0) {
                                         if ($user->type_member == 1) {
-                                            $level_membership = 'Monthly';
+                                            $level_membership = 'Monthly member';
                                         }
 
                                         if ($user->type_member == 2) {
-                                            $level_membership = 'Yearly';
+                                            $level_membership = 'Yearly member';
                                         }
                                     }
                                 }
