@@ -13,7 +13,6 @@ if ( !defined( 'ABSPATH' ) ) exit;
 //tạo hook active plugins
 add_action('init', 'my_plugin_create_db');
 
-
 //tạo database từ hook
 function my_plugin_create_db() {
     global $wpdb;
@@ -22,7 +21,6 @@ function my_plugin_create_db() {
     $table_customer = $wpdb->prefix . 'customer';
     $table_customer_dowload = $wpdb->prefix . 'customer_download';
     $table_order = $wpdb->prefix . 'order';
-
 
     if($wpdb->get_var("SHOW TABLES LIKE '$table_customer'" ) != $table_customer){
         $sql= "CREATE TABLE $table_customer (
