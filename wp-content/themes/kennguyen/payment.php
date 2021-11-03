@@ -81,16 +81,12 @@ if (!empty($_SESSION['user'])) {
                 $data['full_name'] = $user->first_name . ' ' . $user->last_name;
                 $data['email'] = $user->email;
                 $data['package'] = $_POST['id_package'] == 1 ? 'Monthly' : 'Yearly';
-                $data['card_number'] = $_POST['creditCardNumber'];
-                $data['card_exp_month'] = $_POST['expiredMonth'];
-                $data['card_exp_year'] = $_POST['expiredYear'];
-                $data['card_cvv'] = $_POST['cvv'];
                 $data['sale_price'] = $_POST['sale_price'];
                 $data['status'] = 1;
                 $insertRs = $wpdb->insert($table_order, $data);
                 if (isset($insertRs)) {
                     $data = [ 'member_ship' => 1,
-                        'type_member' => $_POST['id'],
+                        'type_member' => $_POST['id_package'],
                         'start_date' => $_POST['start_date'],
                         'end_date' => $_POST['end_date']];
 
@@ -109,7 +105,7 @@ if (!empty($_SESSION['user'])) {
                     $insertRs = $wpdb->insert($table_order, $data);
                     if (isset($insertRs)) {
                         $data = [ 'member_ship' => 1,
-                            'type_member' => $_POST['id'],
+                            'type_member' => $_POST['id_package'],
                             'start_date' => $_POST['start_date'],
                             'end_date' => $_POST['end_date']];
 
