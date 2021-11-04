@@ -84,12 +84,12 @@ if (isset($_POST)) {
                         </div>
                     <?php } else { ?>
                         <div class="w-100 d-flex justify-content-center align-items-center">
-                            <div class="mt-30 text-center position-absolute">
-                                <a class="btn_more" href="/login">
-                                    <span class="block main fz-22">LOGIN TO VIEW THIS COLLECTION</span>
-                                    <span class="block sub">Go to login</span>
-                                </a>
-                            </div>
+<!--                            <div class="mt-30 text-center position-absolute">-->
+<!--                                <a class="btn_more" href="/login">-->
+<!--                                    <span class="block main fz-22">LOGIN TO VIEW THIS COLLECTION</span>-->
+<!--                                    <span class="block sub">Go to login</span>-->
+<!--                                </a>-->
+<!--                            </div>-->
                             <img src="<?php bloginfo('template_directory') ?>/common/images/imageblock.png" alt=""/>
                         </div>
                     <?php } ?>

@@ -123,54 +123,93 @@ get_header()
                 <div class="col-12 col-lg-6">
                     <h2 class="ttl_main text-up fz-60">Have questions?<br>We’re here to<br>help you!</h2>
                     <div class="content pt-30">
-                        <div class="item toggle_parent mt-50">
-                            <div class="toggle_btn fz-24">Can I cancel at any time?</div>
-                            <div class="toggle_content">
-                                <div class="text">Yes. There are no contracts or hidden fees so you can cancel your monthly or yearly service at any time.</div>
-                            </div>
-                        </div>
-                        <div class="item toggle_parent mt-50">
-                            <div class="toggle_btn fz-24">Can I cancel at any time?</div>
-                            <div class="toggle_content">
-                                <div class="text">Yes. There are no contracts or hidden fees so you can cancel your monthly or yearly service at any time.</div>
-                            </div>
-                        </div>
-                        <div class="item toggle_parent mt-50">
-                            <div class="toggle_btn fz-24">Can I cancel at any time?</div>
-                            <div class="toggle_content">
-                                <div class="text">Yes. There are no contracts or hidden fees so you can cancel your monthly or yearly service at any time.</div>
-                            </div>
-                        </div>
+                        <?php
+                        $args = array(
+                            'post_status' => 'publish',
+                            'posts_per_page' => -1,
+                            'post_type'      => 'questionanswer',
+                        );
+                        $the_query = new WP_Query( $args );
+                        $countPosts = $the_query->found_posts;
+                        $firstListDataCount = round($countPosts / 2) > 0 ? round($countPosts / 2) - 1 : 1;
+                        $count = 0;
+                        ?>
+                        <?php if( $the_query->have_posts() ): ?>
+                            <?php while( $the_query->have_posts() ) : $the_query->the_post(); ?>
+                               <?php if ($firstListDataCount > $count) {?>
+                                <div class="item toggle_parent mt-50">
+                                    <div class="toggle_btn fz-24"><?= get_the_title()?></div>
+                                    <div class="toggle_content">
+                                        <div class="text"><?= get_the_content()?></div>
+                                    </div>
+                                </div>
+                                <?php } ?>
+                                <?php if ($firstListDataCount == $count) {
+                                    echo '</div>
+                                        </div>';
+                                    echo '<div class="col-12 col-lg-6">
+                                        <div class="content pt-100">';
+                                } ?>
+                                <?php if ($firstListDataCount <= $count) {?>
+                                    <div class="item toggle_parent mt-50">
+                                        <div class="toggle_btn fz-24"><?= get_the_title()?></div>
+                                        <div class="toggle_content">
+                                            <div class="text"><?= get_the_content()?></div>
+                                        </div>
+                                    </div>
+                                <?php }?>
+                                <?php $count++?>
+                            <?php endwhile; ?>
+                        <?php endif; ?>
+                        <?php wp_reset_query(); ?>
+<!--                        <div class="item toggle_parent mt-50">-->
+<!--                            <div class="toggle_btn fz-24">Can I cancel at any time?</div>-->
+<!--                            <div class="toggle_content">-->
+<!--                                <div class="text">Yes. There are no contracts or hidden fees so you can cancel your monthly or yearly service at any time.</div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <div class="item toggle_parent mt-50">-->
+<!--                            <div class="toggle_btn fz-24">Can I cancel at any time?</div>-->
+<!--                            <div class="toggle_content">-->
+<!--                                <div class="text">Yes. There are no contracts or hidden fees so you can cancel your monthly or yearly service at any time.</div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <div class="item toggle_parent mt-50">-->
+<!--                            <div class="toggle_btn fz-24">Can I cancel at any time?</div>-->
+<!--                            <div class="toggle_content">-->
+<!--                                <div class="text">Yes. There are no contracts or hidden fees so you can cancel your monthly or yearly service at any time.</div>-->
+<!--                            </div>-->
+<!--                        </div>-->
                     </div>
                 </div>
-                <div class="col-12 col-lg-6">
-                    <div class="content pt-100">
-                        <div class="item toggle_parent mt-50">
-                            <div class="toggle_btn fz-24">Can I cancel at any time?</div>
-                            <div class="toggle_content">
-                                <div class="text">Yes. There are no contracts or hidden fees so you can cancel your monthly or yearly service at any time.</div>
-                            </div>
-                        </div>
-                        <div class="item toggle_parent mt-50">
-                            <div class="toggle_btn fz-24">Can I cancel at any time?</div>
-                            <div class="toggle_content">
-                                <div class="text">Yes. There are no contracts or hidden fees so you can cancel your monthly or yearly service at any time.</div>
-                            </div>
-                        </div>
-                        <div class="item toggle_parent mt-50">
-                            <div class="toggle_btn fz-24">Can I cancel at any time?</div>
-                            <div class="toggle_content">
-                                <div class="text">Yes. There are no contracts or hidden fees so you can cancel your monthly or yearly service at any time.</div>
-                            </div>
-                        </div>
-                        <div class="item toggle_parent mt-50">
-                            <div class="toggle_btn fz-24">Can I cancel at any time?</div>
-                            <div class="toggle_content">
-                                <div class="text">Yes. There are no contracts or hidden fees so you can cancel your monthly or yearly service at any time.</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+<!--                <div class="col-12 col-lg-6">-->
+<!--                    <div class="content pt-100">-->
+<!--                        <div class="item toggle_parent mt-50">-->
+<!--                            <div class="toggle_btn fz-24">Can I cancel at any time?</div>-->
+<!--                            <div class="toggle_content">-->
+<!--                                <div class="text">Yes. There are no contracts or hidden fees so you can cancel your monthly or yearly service at any time.</div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <div class="item toggle_parent mt-50">-->
+<!--                            <div class="toggle_btn fz-24">Can I cancel at any time?</div>-->
+<!--                            <div class="toggle_content">-->
+<!--                                <div class="text">Yes. There are no contracts or hidden fees so you can cancel your monthly or yearly service at any time.</div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <div class="item toggle_parent mt-50">-->
+<!--                            <div class="toggle_btn fz-24">Can I cancel at any time?</div>-->
+<!--                            <div class="toggle_content">-->
+<!--                                <div class="text">Yes. There are no contracts or hidden fees so you can cancel your monthly or yearly service at any time.</div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                        <div class="item toggle_parent mt-50">-->
+<!--                            <div class="toggle_btn fz-24">Can I cancel at any time?</div>-->
+<!--                            <div class="toggle_content">-->
+<!--                                <div class="text">Yes. There are no contracts or hidden fees so you can cancel your monthly or yearly service at any time.</div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
             </div>
         </div>
     </section>

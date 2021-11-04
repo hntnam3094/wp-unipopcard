@@ -35,7 +35,7 @@
             </div>
           </div>
           <div class="content_main">
-            <div class="row">
+            <div class="row" id="listCollectionNew">
                 <?php
                 $category = get_query_var('category');
                 $keyword = get_query_var('q');
@@ -49,6 +49,7 @@
                     'post_type'      => array('craftcollection', 'craftacademy'),
                     'cat' => $category,
                     's'		=> $keyword,
+                    'showposts' => 11,
                     'orderby' => 'date',
                     'order' => 'DESC',
                 );
@@ -80,7 +81,12 @@
                 <?php wp_reset_query(); ?>
             </div>
           </div>
-          <div class="mt-40 text-center"> <a class="btn_more fz-20" href="/craftcollection">LOAD MORE </a></div>
+            <div class="text-center">
+                <div class="spinner-border" role="status" id="div-loading-data" style="display: none"></div>
+            </div>
+          <div class="mt-40 text-center">
+              <a class="btn_more fz-20" id="btn-load-more">LOAD MORE </a>
+          </div>
         </div>
       </section>
       <?php get_template_part('template-parts/home/slider'); ?>
