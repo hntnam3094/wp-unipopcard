@@ -20,75 +20,83 @@ if ($_POST) {
     $email = $wpdb->escape($_POST['email']);
     $password = $wpdb->escape($_POST['password']);
     $remember = $wpdb->escape($_POST['remember']);
+
     $queryResult = $wpdb->get_results(
         $wpdb->prepare(
             "SELECT * FROM {$table} 
                             WHERE email=%s 
-                            AND password=%s 
-                            AND active=%d",
-            $email, md5($password), 1));
+                            AND password=%s ",
+            $email, md5($password)));
+
 
     if (!empty($queryResult)) {
-        $_SESSION['user'] = $queryResult[0];
-        wp_redirect(site_url() . '/manager');
-        exit;
+        if ($queryResult[0]->active == 1) {
+            $_SESSION['user'] = $queryResult[0];
+            wp_redirect(site_url() . '/manager');
+            exit;
+        } else {
+            $login_message = '<p style="color: red">Active your account to login!</p>';
+        }
+
+    } else {
+        $login_message = '<p style="color: red">Wrong password or account!</p>';
     }
-    $login_message = '<p style="color: red">Wrong password or account!</p>';
+
 }
 
     // start login with google
-    try {
-        $clientId = '1019571594189-htjk66sgngbpo5c04c8vqjppp8ttoagb.apps.googleusercontent.com';
-        $clientSecret = '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';
-        $redirectUri = 'http://localhost:80/login/';
-
-        $client = new Google_Client();
-        $client->setClientId($clientId);
-        $client->setClientSecret($clientSecret);
-        $client->setRedirectUri($redirectUri);
-        $client->addScope('email');
-        $client->addScope('profile');
-
-        if (isset($_GET['code'])) {
-            $token = $client->fetchAccessTokenWithAuthCode($_GET['code']);
-            $client->setAccessToken($token['access_token']);
-
-            $google_oauth = new Google_Service_Oauth2($client);
-            $google_account_info = $google_oauth->userinfo->get();
-            $email =  $google_account_info->email;
-
-            $queryResult = $wpdb->get_results(
-                $wpdb->prepare("SELECT * FROM {$table} WHERE email=%s",$email));
-
-            if (!empty($queryResult)) {
-                $_SESSION['user'] = $queryResult[0];
-                wp_redirect(site_url() . '/manager');
-                exit;
-            } else {
-                $data = array();
-                $data['first_name'] = $google_account_info->familyName;
-                $data['last_name'] = $google_account_info->givenName;
-                $data['email'] = $email;
-                $data['password'] = md5($email);
-                $data['active'] = 1;
-                $data['trackingMd5'] = md5($email);
-
-                $insertRs = $wpdb->insert($table, $data);
-                if (isset($insertRs)) {
-                    $queryResultAfterInsert = $wpdb->get_results(
-                        $wpdb->prepare("SELECT * FROM {$table} WHERE email=%s",$email));
-                    if (!empty($queryResultAfterInsert)) {
-                        $_SESSION['user'] = $queryResultAfterInsert[0];
-                        wp_redirect(site_url() . '/manager');
-                        exit;
-                    }
-                }
-            }
-        }
-    }catch (Exception $exception) {
-        wp_redirect(site_url() . '/login');
-        exit;
-    }
+//    try {
+//        $clientId = '1019571594189-htjk66sgngbpo5c04c8vqjppp8ttoagb.apps.googleusercontent.com';
+//        $clientSecret = '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';
+//        $redirectUri = 'http://localhost:80/login/';
+//
+//        $client = new Google_Client();
+//        $client->setClientId($clientId);
+//        $client->setClientSecret($clientSecret);
+//        $client->setRedirectUri($redirectUri);
+//        $client->addScope('email');
+//        $client->addScope('profile');
+//
+//        if (isset($_GET['code'])) {
+//            $token = $client->fetchAccessTokenWithAuthCode($_GET['code']);
+//            $client->setAccessToken($token['access_token']);
+//
+//            $google_oauth = new Google_Service_Oauth2($client);
+//            $google_account_info = $google_oauth->userinfo->get();
+//            $email =  $google_account_info->email;
+//
+//            $queryResult = $wpdb->get_results(
+//                $wpdb->prepare("SELECT * FROM {$table} WHERE email=%s",$email));
+//
+//            if (!empty($queryResult)) {
+//                $_SESSION['user'] = $queryResult[0];
+//                wp_redirect(site_url() . '/manager');
+//                exit;
+//            } else {
+//                $data = array();
+//                $data['first_name'] = $google_account_info->familyName;
+//                $data['last_name'] = $google_account_info->givenName;
+//                $data['email'] = $email;
+//                $data['password'] = md5($email);
+//                $data['active'] = 1;
+//                $data['trackingMd5'] = md5($email);
+//
+//                $insertRs = $wpdb->insert($table, $data);
+//                if (isset($insertRs)) {
+//                    $queryResultAfterInsert = $wpdb->get_results(
+//                        $wpdb->prepare("SELECT * FROM {$table} WHERE email=%s",$email));
+//                    if (!empty($queryResultAfterInsert)) {
+//                        $_SESSION['user'] = $queryResultAfterInsert[0];
+//                        wp_redirect(site_url() . '/manager');
+//                        exit;
+//                    }
+//                }
+//            }
+//        }
+//    }catch (Exception $exception) {
+//        wp_redirect(site_url() . '/login');
+//        exit;
+//    }
 
 //    // end login with google
 

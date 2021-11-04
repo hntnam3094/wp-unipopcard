@@ -157,6 +157,23 @@
         let data = {
             'isCheckExistPackage' : true
         }
+        let package = {}
+        if (idPackage == 1) {
+            package = {
+                name: 'Monthly package',
+                quantity: 1,
+                price: 9,
+                type: 'digital'
+            }
+        } else {
+            package = {
+                name: 'Yearly package',
+                quantity: 1,
+                price: 99,
+                type: 'digital'
+            }
+        }
+
         $.ajax({
             url:url,
             method:'post',
@@ -167,15 +184,29 @@
                 if (data.code == 201) {
                     alert(data.message)
                 }
-               let urlRedirect = window.location.protocol + "//" + window.location.host + '/manager?id_package=' + idPackage
+               let urlRedirect = window.location.protocol + "//" + window.location.host + '/thank-you?id_package=' + idPackage
                 if (data.code == 200) {
-                    TwoCoInlineCart.products.add({
-                        code: "3TRROJJM4U"
-                    })
-                    TwoCoInlineCart.cart.setReturnMethod({
-                        type: 'redirect',
-                        url : urlRedirect
+                    TwoCoInlineCart.register()
+                    TwoCoInlineCart.setup.setMode('DYNAMIC');
+                    TwoCoInlineCart.cart.setCurrency('USD');
+
+                    TwoCoInlineCart.cart.setReset(true);
+
+                    TwoCoInlineCart.products.removeAll();
+                    TwoCoInlineCart.products.add(package);
+
+                    TwoCoInlineCart.events.subscribe('payment:finalized', function () {
+                        alert('Payment was finalized.');
+                        var iframe = document.getElementById("cart-iframe");
+                        var elmnt = iframe.contentWindow.document.getElementsByTagName("strong")[0];
+                        elmnt.style.display = "none";
                     });
+
+                    // TwoCoInlineCart.cart.setReturnMethod({
+                    //     type: 'redirect',
+                    //     url : urlRedirect
+                    // });
+
                     TwoCoInlineCart.cart.setTest(true)
                     TwoCoInlineCart.cart.checkout()
                 }
