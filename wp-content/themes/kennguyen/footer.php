@@ -194,14 +194,38 @@
 
 
     if (window.document.getElementById('buy-button')) {
-        window.document.getElementById('buy-button').addEventListener('click', function() {
-            TwoCoInlineCart.products.add({
-                code: "3TRROJJM4U"
-            })
+		window.document.getElementById('buy-button').addEventListener('click', function() {
+	        let idPackage = document.getElementById('id_package').value
+	        let url = window.location.href
+	        let data = {
+	            'isCheckExistPackage' : true
+	        }
+	        $.ajax({
+	            url:url,
+	            method:'post',
+	            data:data,
+	            dataType:'json',
+	            success:function(data){
+	                console.log(data)
+	                if (data.code == 201) {
+	                    alert(data.message)
+	                }
+	               let urlRedirect = window.location.protocol + "//" + window.location.host + '/manager?id_package=' + idPackage
+	                if (data.code == 200) {
+	                    TwoCoInlineCart.products.add({
+	                        code: "3TRROJJM4U"
+	                    })
+	                    TwoCoInlineCart.cart.setReturnMethod({
+	                        type: 'redirect',
+	                        url : urlRedirect
+	                    });
+	                    TwoCoInlineCart.cart.setTest(true)
+	                    TwoCoInlineCart.cart.checkout()
+	                }
+	            }
+	        })
 
-            TwoCoInlineCart.cart.setTest(true)
-            TwoCoInlineCart.cart.checkout()
-        });
+	    });
     }
 
 
