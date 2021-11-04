@@ -126,6 +126,49 @@ function create_custom_post_type_craft_academy()
 /* Kích hoạt hàm tạo custom post type */
 add_action('init', 'create_custom_post_type_craft_academy');
 
+function create_custom_post_type_manage_question_and_answer()
+{
+    /*
+     * Biến $label để chứa các text liên quan đến tên hiển thị của Post Type trong Admin
+     */
+    $label = array(
+        'name' => 'Manage Q&A', //Tên post type dạng số nhiều
+    );
+
+
+    /*
+     * Biến $args là những tham số quan trọng trong Post Type
+     */
+    $args = array(
+        'labels' => $label, //Gọi các label trong biến $label ở trên
+        'description' => 'Manage Q&A', //Mô tả của post type
+        'supports' => array(
+            'title',
+            'editor',
+            'custom-fields'
+        ), //Các tính năng được hỗ trợ trong post type
+        'taxonomies' => array(  ), //Các taxonomy được phép sử dụng để phân loại nội dung
+        'hierarchical' => false, //Cho phép phân cấp, nếu là false thì post type này giống như Post, true thì giống như Page
+        'public' => true, //Kích hoạt post type
+        'show_ui' => true, //Hiển thị khung quản trị như Post/Page
+        'show_in_menu' => true, //Hiển thị trên Admin Menu (tay trái)
+        'show_in_nav_menus' => true, //Hiển thị trong Appearance -> Menus
+        'show_in_admin_bar' => true, //Hiển thị trên thanh Admin bar màu đen.
+        'menu_position' => 4, //Thứ tự vị trí hiển thị trong menu (tay trái)
+        'menu_icon' => 'dashicons-admin-post', //Đường dẫn tới icon sẽ hiển thị
+        'can_export' => true, //Có thể export nội dung bằng Tools -> Export
+        'has_archive' => true, //Cho phép lưu trữ (month, date, year)
+        'exclude_from_search' => false, //Loại bỏ khỏi kết quả tìm kiếm
+        'publicly_queryable' => true, //Hiển thị các tham số trong query, phải đặt true
+        'capability_type' => 'post' //
+    );
+
+
+    register_post_type('questionanswer', $args); //Tạo post type với slug tên là craftcollection và các tham số trong biến $args ở trên
+}
+/* Kích hoạt hàm tạo custom post type */
+add_action('init', 'create_custom_post_type_manage_question_and_answer');
+
 // Alter the main query
 function add_craft_to_frontpage( $query ) {
     if ( is_home() && $query->is_main_query() ) {
@@ -458,3 +501,50 @@ function special_nav_class ($classes, $item) {
     return $classes;
 }
 
+add_action('wp_ajax_loadmore', 'get_post_loadmore');
+add_action('wp_ajax_nopriv_loadmore', 'get_post_loadmore');
+function get_post_loadmore() {
+    $offset = isset($_POST['offset']) ? (int)$_POST['offset'] : 0; // lấy dữ liệu phái client gởi
+    $category = isset($_POST['category']) ? (string)$_POST['category'] : '';
+    $keyword = isset($_POST['q']) ? (string)$_POST['q'] : '';
+    if (empty($category)) {
+        $category = 0;
+    } else {
+        $category = get_cat_ID($category);
+    }
+    $args = array(
+        'post_status' => array('free', 'sale'),
+        'post_type'      => array('craftcollection', 'craftacademy'),
+        'cat' => $category,
+        's'		=> $keyword,
+        'orderby' => 'date',
+        'order' => 'DESC',
+        'offset' => $offset,
+        'showposts' => 8,
+    );
+
+    $getposts = new WP_query($args);
+    global $wp_query; $wp_query->in_the_loop = true;
+    while ($getposts->have_posts()) : $getposts->the_post(); ?>
+        <div class="column col-6 col-md-3">
+            <a class="item block mt-40" href="<?= get_the_permalink() ?>">
+                <div class="images">
+                    <div class="imgDrop"> <?php echo get_the_post_thumbnail( get_the_ID() ); ?></div>
+                </div>
+                <div class="content" data-mh="content">
+                    <h4 class="text-up trim trim_2"><?php echo get_the_title();?></h4>
+                    <div class="desc">
+                        <?php $categories = get_the_category(get_the_ID());
+                        $listCategory = [];
+                        foreach($categories as $category){
+                            array_push($listCategory, $category->name);
+                        }
+                        echo implode(', ', $listCategory);
+                        ?>
+                    </div>
+                </div>
+            </a>
+        </div>
+    <?php endwhile; wp_reset_postdata();
+    die();
+}

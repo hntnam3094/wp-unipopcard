@@ -98,6 +98,48 @@
 <script src="<?php bloginfo('template_directory') ?>/common/js/custom.js"></script>
 <!-- Go to www.addthis.com/dashboard to customize your tools -->
 <!--<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-617ddd1be044758e"></script>-->
+
+<script>
+    $(document).ready(function(){
+        var offset = 11; // khái báo số lượng bài viết đã hiển thị
+        $('#btn-load-more').click(function(event) {
+            const queryString = window.location.search;
+            const urlParams = new URLSearchParams(queryString);
+            $.ajax({ // Hàm ajax
+                type : "post", //Phương thức truyền post hoặc get
+                dataType : "html", //Dạng dữ liệu trả về xml, json, script, or html
+                url : '<?php echo admin_url('admin-ajax.php');?>', // Nơi xử lý dữ liệu
+                data : {
+                    action: "loadmore", //Tên action, dữ liệu gởi lên cho server
+                    offset: offset, // gởi số lượng bài viết đã hiển thị cho server
+                    category: urlParams.get('category'),
+                    s: urlParams.get('q')
+                },
+                beforeSend: function(){
+                    // Có thể thực hiện công việc load hình ảnh quay quay trước khi đổ dữ liệu ra
+                    $('#btn-load-more').hide()
+                    $('#div-loading-data').show()
+                },
+                success: function(response) {
+                    $('#btn-load-more').show()
+                    $('#div-loading-data').hide()
+                    $('#listCollectionNew').append(response);
+                    offset = offset + 8; // tăng bài viết đã hiển thị
+                    if (response == '') {
+                        $('#btn-load-more').hide()
+                    }
+                },
+                error: function( jqXHR, textStatus, errorThrown ){
+                    //Làm gì đó khi có lỗi xảy ra
+                    console.log( 'The following error occured: ' + textStatus, errorThrown );
+                    $('#div-loading-data').hide()
+                    $('#btn-load-more').hide()
+                }
+            });
+        });
+    });
+</script>
+
 <script>
     // (function(document, src, libName, config) {
     //     var script = document.createElement("script");
@@ -151,38 +193,41 @@
                 :{"host":"https:secure.2checkout.com","customization":"inline"}});
 
 
-    window.document.getElementById('buy-button').addEventListener('click', function() {
-        let idPackage = document.getElementById('id_package').value
-        let url = window.location.href
-        let data = {
-            'isCheckExistPackage' : true
-        }
-        $.ajax({
-            url:url,
-            method:'post',
-            data:data,
-            dataType:'json',
-            success:function(data){
-                console.log(data)
-                if (data.code == 201) {
-                    alert(data.message)
-                }
-               let urlRedirect = window.location.protocol + "//" + window.location.host + '/manager?id_package=' + idPackage
-                if (data.code == 200) {
-                    TwoCoInlineCart.products.add({
-                        code: "3TRROJJM4U"
-                    })
-                    TwoCoInlineCart.cart.setReturnMethod({
-                        type: 'redirect',
-                        url : urlRedirect
-                    });
-                    TwoCoInlineCart.cart.setTest(true)
-                    TwoCoInlineCart.cart.checkout()
-                }
-            }
-        })
+    if (window.document.getElementById('buy-button')) {
+		window.document.getElementById('buy-button').addEventListener('click', function() {
+	        let idPackage = document.getElementById('id_package').value
+	        let url = window.location.href
+	        let data = {
+	            'isCheckExistPackage' : true
+	        }
+	        $.ajax({
+	            url:url,
+	            method:'post',
+	            data:data,
+	            dataType:'json',
+	            success:function(data){
+	                console.log(data)
+	                if (data.code == 201) {
+	                    alert(data.message)
+	                }
+	               let urlRedirect = window.location.protocol + "//" + window.location.host + '/manager?id_package=' + idPackage
+	                if (data.code == 200) {
+	                    TwoCoInlineCart.products.add({
+	                        code: "3TRROJJM4U"
+	                    })
+	                    TwoCoInlineCart.cart.setReturnMethod({
+	                        type: 'redirect',
+	                        url : urlRedirect
+	                    });
+	                    TwoCoInlineCart.cart.setTest(true)
+	                    TwoCoInlineCart.cart.checkout()
+	                }
+	            }
+	        })
 
-    });
+	    });
+    }
+
 
 
     $(function (){
