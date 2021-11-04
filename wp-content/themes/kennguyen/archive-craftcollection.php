@@ -2,6 +2,8 @@
 <?php $craftcollection = get_post_type_object( 'craftcollection' );
 $parentCategoryId = get_category_by_slug('craft-collection') !== null ? get_category_by_slug('craft-collection')->cat_ID : 0;
 $isShowPost = check_membership() == 1 ? '' : 'block';
+$year = date('Y');
+$month = date('n');
 ?>
 <main>
     <section class="category pt-50 pb-50">
@@ -53,6 +55,8 @@ $isShowPost = check_membership() == 1 ? '' : 'block';
                     $args = array(
                         'post_status' => 'free',
                         'post_type'      => 'craftcollection',
+                        'year' => $year,
+                        'monthnum' => $month,
                         'cat' => $categoryIdSelected
                     );
                     $the_query = new WP_Query( $args );
@@ -75,6 +79,9 @@ $isShowPost = check_membership() == 1 ? '' : 'block';
                     $args = array(
                         'post_status' => 'sale',
                         'post_type'      => 'craftcollection',
+                        'year' => $year,
+                        'monthnum' => $month,
+                        'cat' => $categoryIdSelected
                     );
                     $the_query = new WP_Query( $args );
                     ?>
@@ -110,9 +117,11 @@ $isShowPost = check_membership() == 1 ? '' : 'block';
                         );
                         $categories = get_categories( $args );
                         $listCategoriesShow = [];
+                        $listCatId = [];
                         foreach ( $categories as $category ) {
                             if (count(get_term_meta($category->term_id, 'show_category')) > 0 && get_term_meta($category->term_id, 'show_category')[0] == 'yes') {
                                 array_push($listCategoriesShow, $category->name);
+                                array_push($listCatId, $category->id);
                             }
                         }
                         echo date('F').' '.implode(' & ', $listCategoriesShow);
@@ -129,9 +138,10 @@ $isShowPost = check_membership() == 1 ? '' : 'block';
                         <?php
                         $args = array(
                             'post_status' => 'free',
-                            'posts_per_page' => -1,
                             'post_type'      => 'craftcollection',
-                            'showposts' => 5
+                            'cat' => $listCatId,
+                            'year' => $year,
+                            'monthnum' => $month,
                         );
                         $the_query = new WP_Query( $args );
                         ?>
@@ -149,9 +159,10 @@ $isShowPost = check_membership() == 1 ? '' : 'block';
                         <?php
                         $args = array(
                             'post_status' => 'sale',
-                            'posts_per_page' => -1,
                             'post_type'      => 'craftcollection',
-                            'showposts' => 5
+                            'cat' => $listCatId,
+                            'year' => $year,
+                            'monthnum' => $month,
                         );
                         $the_query = new WP_Query( $args );
                         ?>
@@ -183,9 +194,8 @@ $isShowPost = check_membership() == 1 ? '' : 'block';
                         <?php
                         $args = array(
                             'post_status' => 'free',
-                            'posts_per_page' => -1,
                             'post_type'      => 'craftcollection',
-                            'showposts' => 5
+                            'showposts' => 6
                         );
                         $the_query = new WP_Query( $args );
                         ?>

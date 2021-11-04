@@ -2,6 +2,8 @@
 <?php $craftacademy = get_post_type_object( 'craftacademy' );
 $parentCategoryId = get_category_by_slug('craft-academy') !== null ? get_category_by_slug('craft-academy')->cat_ID : 0;
 $isShowPost = check_membership() == 1 ? '' : 'block';
+$year = date('Y');
+$month = date('n');
 ?>
 <main>
     <section class="category pt-50 pb-50">
@@ -53,7 +55,9 @@ $isShowPost = check_membership() == 1 ? '' : 'block';
                     $args = array(
                         'post_status' => 'free',
                         'post_type'      => 'craftacademy',
-                        'cat' => $categoryIdSelected
+                        'cat' => $categoryIdSelected,
+                        'year' => $year,
+                        'monthnum' => $month
                     );
                     $the_query = new WP_Query( $args );
                     ?>
@@ -133,7 +137,9 @@ $isShowPost = check_membership() == 1 ? '' : 'block';
                             'post_status' => 'free',
                             'posts_per_page' => -1,
                             'post_type'      => 'craftacademy',
-                            'cat' => $listCatID
+                            'cat' => $listCatID,
+                            'year' => $year,
+                            'monthnum' => $month,
                         );
                         $the_query = new WP_Query( $args );
                         ?>
@@ -151,9 +157,10 @@ $isShowPost = check_membership() == 1 ? '' : 'block';
                         <?php
                         $args = array(
                             'post_status' => 'sale',
-                            'posts_per_page' => -1,
                             'post_type'      => 'craftacademy',
-                            'showposts' => 5
+                            'cat' => $listCatID,
+                            'year' => $year,
+                            'monthnum' => $month,
                         );
                         $the_query = new WP_Query( $args );
                         ?>
@@ -185,9 +192,8 @@ $isShowPost = check_membership() == 1 ? '' : 'block';
                         <?php
                         $args = array(
                             'post_status' => 'free',
-                            'posts_per_page' => -1,
                             'post_type'      => 'craftacademy',
-                            'showposts' => 5
+                            'showposts' => 6
                         );
                         $the_query = new WP_Query( $args );
                         ?>
