@@ -186,76 +186,78 @@
         'TwoCoInlineCart',{
         "app":
             {
-                "merchant":"251761074825",
+                "merchant":"<?= $va_options['kn_2co_account'] ?>",
                 "iframeLoad":"checkout"
             },
             "cart"
                 :{"host":"https:secure.2checkout.com","customization":"inline"}});
 
  if (window.document.getElementById('buy-button')) {
-    window.document.getElementById('buy-button').addEventListener('click', function() {
-        let idPackage = document.getElementById('id_package').value
-        let url = window.location.href
-        let data = {
-            'isCheckExistPackage' : true
-        }
-        let package = {}
-        if (idPackage == 1) {
-            package = {
-                name: 'Monthly package',
-                quantity: 1,
-                price: 9,
-                type: 'digital'
-            }
-        } else {
-            package = {
-                name: 'Yearly package',
-                quantity: 1,
-                price: 99,
-                type: 'digital'
-            }
-        }
+     window.document.getElementById('buy-button').addEventListener('click', function () {
+         let idPackage = document.getElementById('id_package').value
+         let url = window.location.href
+         let data = {
+             'isCheckExistPackage': true
+         }
+         let package = {}
+         if (idPackage == 1) {
+             package = {
+                 name: 'Monthly package',
+                 quantity: 1,
+                 price: '<?= $va_options['kn_monthly_package_sale_price'] ?>',
+                 type: 'digital'
+             }
+         } else {
+             package = {
+                 name: 'Yearly package',
+                 quantity: 1,
+                 price: '<?= $va_options['kn_year_package_sale_price'] ?>',
+                 type: 'digital'
+             }
+         }
 
-        $.ajax({
-            url:url,
-            method:'post',
-            data:data,
-            dataType:'json',
-            success:function(data){
-                console.log(data)
-                if (data.code == 201) {
-                    alert(data.message)
-                }
-               let urlRedirect = window.location.protocol + "//" + window.location.host + '/thank-you?id_package=' + idPackage
-                if (data.code == 200) {
-                    TwoCoInlineCart.register()
-                    TwoCoInlineCart.setup.setMode('DYNAMIC');
-                    TwoCoInlineCart.cart.setCurrency('USD');
+         $.ajax({
+             url: url,
+             method: 'post',
+             data: data,
+             dataType: 'json',
+             success: function (data) {
+                 console.log(data)
+                 if (data.code == 201) {
+                     alert(data.message)
+                 }
 
-                    TwoCoInlineCart.cart.setReset(true);
+                 if (data.code == 200) {
+                     TwoCoInlineCart.register()
+                     TwoCoInlineCart.setup.setMode('DYNAMIC');
+                     TwoCoInlineCart.cart.setCurrency('USD');
 
-                    TwoCoInlineCart.products.removeAll();
-                    TwoCoInlineCart.products.add(package);
+                     TwoCoInlineCart.cart.setReset(true);
 
-                    TwoCoInlineCart.events.subscribe('payment:finalized', function () {
-                        alert('Payment was finalized.');
-                        var iframe = document.getElementById("cart-iframe");
-                        var elmnt = iframe.contentWindow.document.getElementsByTagName("strong")[0];
-                        elmnt.style.display = "none";
-                    });
+                     TwoCoInlineCart.products.removeAll();
+                     TwoCoInlineCart.products.add(package);
+                     TwoCoInlineCart.billing.setEmail("<?= isset($_SESSION['user']) ? $_SESSION['user']->email : ''?>");
 
-                    // TwoCoInlineCart.cart.setReturnMethod({
-                    //     type: 'redirect',
-                    //     url : urlRedirect
-                    // });
+                     // let success = false
+                     // TwoCoInlineCart.events.subscribe('payment:finalized', function () {
+                     //
+                     // });
+                     let urlRedirect = window.location.protocol + "//" + window.location.host + '/thank-you?id_package=' + idPackage
+                     TwoCoInlineCart.cart.setReturnMethod({
+                         type: 'redirect',
+                         url : urlRedirect
+                     });
 
-                    TwoCoInlineCart.cart.setTest(true)
-                    TwoCoInlineCart.cart.checkout()
-                }
-            }
-        })
 
-}
+
+                     TwoCoInlineCart.cart.setTest(<?= $va_options['kn_2co_demo'] ?>)
+                     TwoCoInlineCart.cart.checkout()
+                 }
+             }
+         })
+
+     })
+ }
 
 
     $(function (){

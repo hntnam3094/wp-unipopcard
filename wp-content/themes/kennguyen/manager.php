@@ -62,14 +62,60 @@ get_header();
                                 <div class="fz-24"><?= $user->first_name .' '. $user->last_name ?></div>
                             </div>
                         </div>
+                        <?php
+                        if (isset($_SESSION['user'])) {
+                            $user = $_SESSION['user'];
+                            $today = date("Y-m-d");
+                            $expired_date = [];
+                            $level_membership = 'Not active';
+                            if (!empty($user->start_date) && !empty($user->end_date)) {
+                                if ($today >= $user->start_date && $today <= $user->end_date) {
+                                    $now = time();
+                                    $number_end = strtotime($user->end_date);
+                                    $days_left = $number_end - $now;
+                                    $total_days = round($days_left / (60 * 60 * 24));
+
+                                    $date_formate = date('l,F j, Y', strtotime($user->end_date));
+                                    $expired_date = [
+                                        'days_left' => $total_days,
+                                        'date_format' => $date_formate
+                                    ];
+                                } else {
+                                    $expired_date = [
+                                    ];
+                                }
+                            }
+
+                            if ($user->type_member != 0) {
+                                if ($user->type_member == 1) {
+                                    $level_membership = 'Monthly member';
+                                }
+
+                                if ($user->type_member == 2) {
+                                    $level_membership = 'Yearly member';
+                                }
+                            }
+                        }
+                        ?>
                         <div class="info_course">
                             <ul>
                                 <li class="mt-40"><a class="active" href="<?php site_url() ?>/manager">
                                         <div class="icon"> <img src="<?php bloginfo('template_directory') ?>/common/images/icon/acc_01.svg" alt=""/><img class="on" src="<?php bloginfo('template_directory') ?>/common/images/icon/acc_01_on.svg" alt=""/></div>
                                         <div class="txt">My Downloaded Projects</div></a></li>
-                                <li class="mt-40"><a href="<?php site_url() ?>/upgrade-today">
-                                        <div class="icon"> <img src="<?php bloginfo('template_directory') ?>/common/images/icon/acc_02.svg" alt=""/><img class="on" src="<?php bloginfo('template_directory') ?>/common/images/icon/acc_02_on.svg" alt=""/></div>
-                                        <div class="txt">Upgrade Today</div></a></li>
+                                <?php if (empty($expired_date)) {
+                                    ?>
+                                    <li class="mt-40"><a href="<?php site_url() ?>/upgrade-today">
+                                            <div class="icon"> <img src="<?php bloginfo('template_directory') ?>/common/images/icon/acc_02.svg" alt=""/><img class="on" src="<?php bloginfo('template_directory') ?>/common/images/icon/acc_02_on.svg" alt=""/></div>
+                                            <div class="txt">Upgrade Today</div></a></li>
+                                    <?php
+                                } else {
+                                    ?>
+                                    <li class="mt-40"><a href="<?php site_url() ?>/history">
+                                            <div class="icon"> <img src="<?php bloginfo('template_directory') ?>/common/images/icon/acc_03.svg" alt=""/><img class="on" src="<?php bloginfo('template_directory') ?>/common/images/icon/acc_02_on.svg" alt=""/></div>
+                                            <div class="txt">History order</div></a></li>
+                                    <?php
+                                }?>
+
                                 <li class="mt-40"><a href="<?php site_url() ?>/account">
                                         <div class="icon"> <img src="<?php bloginfo('template_directory') ?>/common/images/icon/acc_03.svg" alt=""/><img class="on" src="<?php bloginfo('template_directory') ?>/common/images/icon/acc_03_on.svg" alt=""/></div>
                                         <div class="txt">Account Settings</div></a></li>

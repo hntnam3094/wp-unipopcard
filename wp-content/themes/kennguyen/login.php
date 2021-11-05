@@ -16,10 +16,12 @@ $table = $wpdb->prefix . 'customer';
 $login_message = '';
 require_once 'vendor/autoload.php';
 if (empty($_SESSION['user'])) {
+    
 if ($_POST) {
     $email = $wpdb->escape($_POST['email']);
     $password = $wpdb->escape($_POST['password']);
     $remember = $wpdb->escape($_POST['remember']);
+
 
     $queryResult = $wpdb->get_results(
         $wpdb->prepare(
