@@ -69,17 +69,25 @@ if (!empty($_SESSION['user'])) {
                                                 <thead>
                                                 <tr>
                                                     <th scope="col">#</th>
-                                                    <th scope="col">Email</th>
+                                                    <th scope="col">Email/Name</th>
                                                     <th scope="col">Package</th>
                                                     <th scope="col">Bought date</th>
                                                 </tr>
                                                 </thead>
                                                 <tbody>
                                         <?php
+                                        function validateEmail($email) {
+                                            if(filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                                                return true;
+                                            }
+                                            else {
+                                                return false;
+                                            }
+                                        }
                                         foreach ($queryResult as $key =>$item) { ?>
                                                 <tr>
                                                     <th scope="row"><?= $key + 1 ?></th>
-                                                    <td><?= $item->email ?></td>
+                                                    <td><?= validateEmail($item->email) ? $item->email : $item->full_name ?></td>
                                                     <td><?= $item->package ?></td>
                                                     <td><?= $item->bought_date ?></td>
                                                 </tr>
