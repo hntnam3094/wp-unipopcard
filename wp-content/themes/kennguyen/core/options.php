@@ -206,12 +206,6 @@ if ( ! class_exists( 'VA_Theme_Options' ) ) {
                 'desc'   => __( 'All of settings for header on this theme.', 'upgrade_today' ),
                 'icon'   => 'el-icon-circle-arrow-right',
                 'fields' => array(
-                 array(
-                        'id' => 'kn_monthly_name',
-                        'type' => 'text',
-                        'title' => __('Tên hiển thị', 'vietanh'),
-                        'compiler' => true,
-                    ),
                     array(
                         'id' => 'section-month-start',
                         'type' => 'section',
@@ -261,7 +255,7 @@ if ( ! class_exists( 'VA_Theme_Options' ) ) {
                         'compiler' => true
                     ),
                     array(
-                        'id' => 'kn_year_package_title',
+                        'id' => 'kn_yearly_package_title',
                         'type' => 'text',
                         'title' => __('Title', 'vietanh'),
                         'compiler' => true,
@@ -275,12 +269,6 @@ if ( ! class_exists( 'VA_Theme_Options' ) ) {
                         'default' => '
                         After 365 days,<br>$8.88/month<br>(paid month)
                         '
-                    ),
-                    array(
-                        'id' => 'kn_yearly_name',
-                        'type' => 'text',
-                        'title' => __('Tên hiển thị', 'vietanh'),
-                        'compiler' => true,
                     ),
                     array(
                         'id' => 'kn_year_package_price',
