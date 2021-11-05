@@ -210,8 +210,8 @@ get_header()
 <div class="jumbotron text-center pt-50 pb50">
     <h1 class="display-3">Thank You!</h1>
     <p class="lead text-success"><strong><?= $message['text1'] ?></strong></p>
-    <p class="lead"><strong><?php if (!empty($message)) { ?>
-            Premium : <?= $packge['start_date'] ?>  ~  <?= $packge['end_date'] ?></strong></p>
+    <p class="lead"><?php if (!empty($message)) { ?>
+            <strong>Premium : <?= $packge['start_date'] ?>  ~  <?= $packge['end_date'] ?></strong></p>
             <?php } ?>
     <p class="lead"><?= $message['text2'] ?></p>
     <hr>

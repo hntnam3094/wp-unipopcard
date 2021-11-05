@@ -96,7 +96,15 @@ get_header();
                             <div class="summary-item"><span class="text">Total</span><span class="price">$<?= $packge['sale_price'] ?></span></div>
                             <div class="mt-10">
                                 <input id="id_package" name="id_package" type="hidden" value="<?= $packge['id'] ?>">
-                                <a href="#" class="btn btn-success btn-lg btn-block w-100"  pro-code="3TRROJJM4U" id="buy-button">Buy now!</a>
+                                <a href="#" class="btn btn-success btn-lg btn-block w-100"  pro-code="3TRROJJM4U" id="buy-button">PAYMENT</a>
+                            </div>
+                            <div style="font-size: 12px; line-height: 1; margin-top: 16px;font-style: italic;">
+                                <?php
+                                if (isset($_SESSION['user']) == false) { ?>
+                                    <p>You do not login, your email use to payment will become your account if payment successful!
+                                        <br> If this email is exist, we will update your Premium package!</p>
+                                <?php }
+                                ?>
                             </div>
                         </div>
                     </div>
