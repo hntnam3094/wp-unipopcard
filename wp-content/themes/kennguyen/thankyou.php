@@ -13,7 +13,7 @@ global $va_options;
 $message = [];
 $table = $wpdb->prefix . 'customer';
 $table_order = $wpdb->prefix . 'order';
-require './auth.php';
+include_once dirname( __FILE__ ).'./auth.php';
 if (!empty($_GET) && isset($_GET['refno'])) {
     //get order detail
     $orderReference = $_GET['refno'];
