@@ -6,16 +6,6 @@
  * @subpackage Kem_Nguyen
  * @since Ken Nguyen 1.0
  */
-get_header()
-?>
-<?php
-/**
- * Template Name: Manager page
- *
- * @package KenNguyen
- * @subpackage Kem_Nguyen
- * @since Ken Nguyen 1.0
- */
 
 if (!empty($_SESSION['user'])) {
     $user = $_SESSION['user'];
@@ -117,6 +107,3 @@ if (!empty($_SESSION['user'])) {
     exit;
 }
 ?>
-
-<?php get_footer() ?>
-
