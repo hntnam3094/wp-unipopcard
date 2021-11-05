@@ -24,7 +24,7 @@ if (isset($_GET['package'])) {
         $end_date = date("Y-m-d", strtotime("+1 month", strtotime($start_date)));
         $packge = [
           'id' => 1,
-          'package' => 'Monthly package',
+          'package' =>  $va_options['kn_monthly_package_title'],
           'start_date' => $start_date,
           'end_date' => $end_date,
           'price' => $va_options['kn_monthly_package_price'],
@@ -35,7 +35,7 @@ if (isset($_GET['package'])) {
         $end_date = date("Y-m-d", strtotime("+1 year", strtotime($start_date)));
         $packge = [
             'id' => 2,
-            'package' => 'Yearly package',
+            'package' => $va_options['kn_yearly_package_title'],
             'start_date' => $start_date,
             'end_date' => $end_date,
             'price' => $va_options['kn_year_package_price'],
@@ -96,7 +96,15 @@ get_header();
                             <div class="summary-item"><span class="text">Total</span><span class="price">$<?= $packge['sale_price'] ?></span></div>
                             <div class="mt-10">
                                 <input id="id_package" name="id_package" type="hidden" value="<?= $packge['id'] ?>">
-                                <a href="#" class="btn btn-success btn-lg btn-block w-100"  pro-code="3TRROJJM4U" id="buy-button">Buy now!</a>
+                                <a href="#" class="btn btn-success btn-lg btn-block w-100"  pro-code="3TRROJJM4U" id="buy-button">PAYMENT</a>
+                            </div>
+                            <div style="font-size: 12px; line-height: 1; margin-top: 16px;font-style: italic;">
+                                <?php
+                                if (isset($_SESSION['user']) == false) { ?>
+                                    <p>You do not login, your email use to payment will become your account if payment successful!
+                                        <br> If this email is exist, we will update your Premium package!</p>
+                                <?php }
+                                ?>
                             </div>
                         </div>
                     </div>
