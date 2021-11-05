@@ -13,103 +13,79 @@ get_header()
                 <div class="flexBox package center">
                     <div class="item_package text-center package_month">
                         <div class="info_main">
-                            <h3 class="ttl fz-31"><?= $va_options['kn_monthly_name']; ?></h3>
+                            <h3 class="ttl fz-31"><?=  $va_options['kn_monthly_package_title']; ?></h3>
                             <div class="price center midle flexBox mt-20">
                                 <div class="new fz-45"><?=  $va_options['kn_monthly_package_sale_price']; ?>$</div>
                                 <div class="old fz-22"><?=  $va_options['kn_monthly_package_price']; ?>$</div>
                             </div>
                             <div class="fz-22 mt-10">Full Acess</div>
-                            <div class="fz-20 mt-15 price_detail">After 7 days,<br>$<?=  $va_options['kn_monthly_package_price']; ?>/month<br>(paid month)</div>
+                            <div class="fz-20 mt-15 price_detail"><?=  $va_options['kn_monthly_package_detail']; ?></div>
                             <a class="button mt-20" href="<?php site_url() ?>/payment?package=monthly">JOIN NOW</a>
                         </div>
                         <div class="info_other toggle_parent">
                             <div class="toggle_content">
                                 <div class="list_detail mt-30 pt-15 pb-40">
-                                    <dl class="mt-20">
-                                        <dt>16 curated DIY projects (patterns + tutorials) </dt>
-                                        <dd>$160 VALUE</dd>
-                                    </dl>
-                                    <dl class="mt-20">
-                                        <dt>16 curated DIY projects (patterns + tutorials) </dt>
-                                        <dd>$160 VALUE</dd>
-                                    </dl>
-                                    <dl class="mt-20">
-                                        <dt>16 curated DIY projects (patterns + tutorials) </dt>
-                                        <dd>$160 VALUE</dd>
-                                    </dl>
-                                    <dl class="mt-20">
-                                        <dt>16 curated DIY projects (patterns + tutorials) </dt>
-                                        <dd>$160 VALUE</dd>
-                                    </dl>
-                                    <dl class="mt-20">
-                                        <dt>16 curated DIY projects (patterns + tutorials) </dt>
-                                        <dd>$160 VALUE</dd>
-                                    </dl>
-                                    <dl class="mt-20">
-                                        <dt>16 curated DIY projects (patterns + tutorials) </dt>
-                                        <dd>$160 VALUE</dd>
-                                    </dl>
-                                    <dl class="mt-20">
-                                        <dt>16 curated DIY projects (patterns + tutorials) </dt>
-                                        <dd>$160 VALUE</dd>
-                                    </dl>
+                                    <?php $args = array(
+                                        'post_type'      => 'packagecontent',
+                                    );
+                                    $the_query = new WP_Query( $args );
+                                    ?>
+                                    <?php if( $the_query->have_posts() ): ?>
+                                        <?php while( $the_query->have_posts() ) : $the_query->the_post(); ?>
+                                        <?php if(in_array('month', get_field('monthly_or_yearly_package'))){?>
+                                            <dl class="mt-20">
+                                                <dt><?= the_field('content')?></dt>
+                                                <dd><?= the_field('value')?></dd>
+                                            </dl>
+                                            <?php }?>
+                                        <?php endwhile; ?>
+                                    <?php endif; ?>
+                                    <?php wp_reset_query(); ?>
                                 </div><a class="button mt-40" href="<?php site_url() ?>/payment?package=monthly">JOIN NOW</a>
                             </div>
                             <div class="toggle_btn">
-                                <div class="short">Xem thêm </div>
+                                <div class="short">View more </div>
                                 <div class="long">
-                                    Thu gọn</div>
+                                    Collapse</div>
                             </div>
                         </div>
                     </div>
                     <div class="item_package text-center package_year">
                         <div class="info_main">
-                            <h3 class="ttl fz-31"><?= $va_options['kn_yearly_name']; ?></h3>
+                            <h3 class="ttl fz-31"><?=  $va_options['kn_year_package_title']; ?></h3>
                             <div class="price center midle flexBox mt-20">
                                 <div class="new fz-45"><?=  $va_options['kn_year_package_sale_price']; ?>$</div>
                                 <div class="old fz-22"><?=  $va_options['kn_year_package_price']; ?>$</div>
                             </div>
                             <div class="fz-22 mt-10">Full Acess</div>
-                            <div class="fz-20 mt-15 price_detail">After 7 days,<br>$<?=  $va_options['kn_year_package_price']; ?>/month<br>(paid month)</div>
+                            <div class="fz-20 mt-15 price_detail"><?=  $va_options['kn_year_package_detail']; ?></div>
                             <a class="button mt-20" href="<?php site_url() ?>/payment?package=yearly">JOIN NOW </a>
                         </div>
                         <div class="info_other toggle_parent">
                             <div class="toggle_content">
                                 <div class="list_detail mt-30 pt-15 pb-40">
-                                    <dl class="mt-20">
-                                        <dt>16 curated DIY projects (patterns + tutorials) </dt>
-                                        <dd>$160 VALUE</dd>
-                                    </dl>
-                                    <dl class="mt-20">
-                                        <dt>16 curated DIY projects (patterns + tutorials) </dt>
-                                        <dd>$160 VALUE</dd>
-                                    </dl>
-                                    <dl class="mt-20">
-                                        <dt>16 curated DIY projects (patterns + tutorials) </dt>
-                                        <dd>$160 VALUE</dd>
-                                    </dl>
-                                    <dl class="mt-20">
-                                        <dt>16 curated DIY projects (patterns + tutorials) </dt>
-                                        <dd>$160 VALUE</dd>
-                                    </dl>
-                                    <dl class="mt-20">
-                                        <dt>16 curated DIY projects (patterns + tutorials) </dt>
-                                        <dd>$160 VALUE</dd>
-                                    </dl>
-                                    <dl class="mt-20">
-                                        <dt>16 curated DIY projects (patterns + tutorials) </dt>
-                                        <dd>$160 VALUE</dd>
-                                    </dl>
-                                    <dl class="mt-20">
-                                        <dt>16 curated DIY projects (patterns + tutorials) </dt>
-                                        <dd>$160 VALUE</dd>
-                                    </dl>
+                                    <?php $args = array(
+                                        'post_type'      => 'packagecontent',
+                                    );
+                                    $the_query = new WP_Query( $args );
+                                    ?>
+                                    <?php if( $the_query->have_posts() ): ?>
+                                        <?php while( $the_query->have_posts() ) : $the_query->the_post(); ?>
+                                            <?php if(in_array('year', get_field('monthly_or_yearly_package'))){?>
+                                                <dl class="mt-20">
+                                                    <dt><?= the_field('content')?></dt>
+                                                    <dd><?= the_field('value')?></dd>
+                                                </dl>
+                                            <?php }?>
+                                        <?php endwhile; ?>
+                                    <?php endif; ?>
+                                    <?php wp_reset_query(); ?>
                                 </div><a class="button mt-40" href="<?php site_url() ?>/payment?package=yearly">JOIN NOW</a>
                             </div>
                             <div class="toggle_btn">
-                                <div class="short">Xem thêm </div>
+                                <div class="short">View more </div>
                                 <div class="long">
-                                    Thu gọn</div>
+                                    Collapse</div>
                             </div>
                         </div>
                     </div>

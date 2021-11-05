@@ -206,23 +206,75 @@ if ( ! class_exists( 'VA_Theme_Options' ) ) {
                 'desc'   => __( 'All of settings for header on this theme.', 'upgrade_today' ),
                 'icon'   => 'el-icon-circle-arrow-right',
                 'fields' => array(
-                    array(
+                 array(
                         'id' => 'kn_monthly_name',
                         'type' => 'text',
                         'title' => __('Tên hiển thị', 'vietanh'),
                         'compiler' => true,
                     ),
                     array(
+                        'id' => 'section-month-start',
+                        'type' => 'section',
+                        'title' => __('Month package', 'vietanh'),
+                        'compiler' => true
+                    ),
+                    array(
+                        'id' => 'kn_monthly_package_title',
+                        'type' => 'text',
+                        'title' => __('Title', 'vietanh'),
+                        'compiler' => true,
+                        'default' => 'Monthly membership'
+                    ),
+                    array(
+                        'id' => 'kn_monthly_package_detail',
+                        'type' => 'textarea',
+                        'title' => __('Detail package', 'vietanh'),
+                        'compiler' => true,
+                        'default' => '
+                        After 30 days,<br>$9.99/month<br>(paid month)
+                        '
+                    ),
+                    array(
                         'id' => 'kn_monthly_package_price',
                         'type' => 'text',
                         'title' => __('Giá gốc gói tháng', 'vietanh'),
                         'compiler' => true,
+                        'default' => '9.99'
                     ),
                     array(
                         'id' => 'kn_monthly_package_sale_price',
                         'type' => 'text',
                         'title' => __('Giá giảm gói tháng', 'vietanh'),
                         'compiler' => true,
+                        'default' => '3.33'
+                    ),
+                    array(
+                        'id' => 'kn_monthly_package_content_1',
+                        'type' => 'multi_text',
+                        'title' => __('Package content 1', 'vietanh'),
+                        'compiler' => true
+                    ),
+                    array(
+                        'id' => 'section-year-start',
+                        'type' => 'section',
+                        'title' => __('Year package', 'vietanh'),
+                        'compiler' => true
+                    ),
+                    array(
+                        'id' => 'kn_year_package_title',
+                        'type' => 'text',
+                        'title' => __('Title', 'vietanh'),
+                        'compiler' => true,
+                        'default' => 'Yearly membership'
+                    ),
+                    array(
+                        'id' => 'kn_year_package_detail',
+                        'type' => 'textarea',
+                        'title' => __('Detail package', 'vietanh'),
+                        'compiler' => true,
+                        'default' => '
+                        After 365 days,<br>$8.88/month<br>(paid month)
+                        '
                     ),
                     array(
                         'id' => 'kn_yearly_name',
@@ -235,16 +287,15 @@ if ( ! class_exists( 'VA_Theme_Options' ) ) {
                         'type' => 'text',
                         'title' => __('Giá gốc gói năm', 'vietanh'),
                         'compiler' => true,
+                        'default' => '8.88'
                     ),
                     array(
                         'id' => 'kn_year_package_sale_price',
                         'type' => 'text',
                         'title' => __('Giá giảm gói năm', 'vietanh'),
                         'compiler' => true,
-                    ),
-
-
-
+                        'default' => '2.22'
+                    )
                 )
             ); // end section
 
