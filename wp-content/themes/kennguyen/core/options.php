@@ -207,6 +207,12 @@ if ( ! class_exists( 'VA_Theme_Options' ) ) {
                 'icon'   => 'el-icon-circle-arrow-right',
                 'fields' => array(
                     array(
+                        'id' => 'kn_monthly_name',
+                        'type' => 'text',
+                        'title' => __('Tên hiển thị', 'vietanh'),
+                        'compiler' => true,
+                    ),
+                    array(
                         'id' => 'kn_monthly_package_price',
                         'type' => 'text',
                         'title' => __('Giá gốc gói tháng', 'vietanh'),
@@ -216,6 +222,12 @@ if ( ! class_exists( 'VA_Theme_Options' ) ) {
                         'id' => 'kn_monthly_package_sale_price',
                         'type' => 'text',
                         'title' => __('Giá giảm gói tháng', 'vietanh'),
+                        'compiler' => true,
+                    ),
+                    array(
+                        'id' => 'kn_yearly_name',
+                        'type' => 'text',
+                        'title' => __('Tên hiển thị', 'vietanh'),
                         'compiler' => true,
                     ),
                     array(

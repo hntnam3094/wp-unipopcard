@@ -16,17 +16,18 @@ $table_order = $wpdb->prefix . 'order';
 require_once dirname( __FILE__ ).'./auth.php';
 if (!empty($_GET) && isset($_GET['refno'])) {
     //get order detail
-    $orderReference = $_GET['refno'];
-
-    $jsonRpcRequest = array (
-        'method' => 'getOrder',
-        'params' => array($sessionID, $orderReference),
-        'id' => $i++,
-        'jsonrpc' => '2.0'
-    );
-
-    $dataOrder = callRPC((Object)$jsonRpcRequest, $host, true);
-    $emailOrder = $dataOrder->BillingDetails->Email;
+//    $orderReference = $_GET['refno'];
+//
+//    $jsonRpcRequest = array (
+//        'method' => 'getOrder',
+//        'params' => array($sessionID, $orderReference),
+//        'id' => $i++,
+//        'jsonrpc' => '2.0'
+//    );
+//    var_dump(123);
+//
+//    $dataOrder = callRPC((Object)$jsonRpcRequest, $host, true);
+//    $emailOrder = $dataOrder->BillingDetails->Email;
 
 //end get order detail
     $idPackage = $_GET['id_package'];

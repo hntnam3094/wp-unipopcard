@@ -13,7 +13,7 @@ get_header()
                 <div class="flexBox package center">
                     <div class="item_package text-center package_month">
                         <div class="info_main">
-                            <h3 class="ttl fz-31">monthly membership</h3>
+                            <h3 class="ttl fz-31"><?= $va_options['kn_monthly_name']; ?></h3>
                             <div class="price center midle flexBox mt-20">
                                 <div class="new fz-45"><?=  $va_options['kn_monthly_package_sale_price']; ?>$</div>
                                 <div class="old fz-22"><?=  $va_options['kn_monthly_package_price']; ?>$</div>
@@ -64,7 +64,7 @@ get_header()
                     </div>
                     <div class="item_package text-center package_year">
                         <div class="info_main">
-                            <h3 class="ttl fz-31">monthly membership</h3>
+                            <h3 class="ttl fz-31"><?= $va_options['kn_yearly_name']; ?></h3>
                             <div class="price center midle flexBox mt-20">
                                 <div class="new fz-45"><?=  $va_options['kn_year_package_sale_price']; ?>$</div>
                                 <div class="old fz-22"><?=  $va_options['kn_year_package_price']; ?>$</div>

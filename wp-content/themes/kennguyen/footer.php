@@ -202,14 +202,16 @@
          let package = {}
          if (idPackage == 1) {
              package = {
-                 name: 'Monthly package',
+                 name: '<?= $va_options['kn_monthly_name'] ?>',
+                 ShortDescription: '1',
                  quantity: 1,
                  price: '<?= $va_options['kn_monthly_package_sale_price'] ?>',
                  type: 'digital'
              }
          } else {
              package = {
-                 name: 'Yearly package',
+                 name: '<?= $va_options['kn_yearly_name'] ?>',
+                 ShortDescription: '2',
                  quantity: 1,
                  price: '<?= $va_options['kn_year_package_sale_price'] ?>',
                  type: 'digital'
@@ -228,7 +230,6 @@
                  }
 
                  if (data.code == 200) {
-                     TwoCoInlineCart.register()
                      TwoCoInlineCart.setup.setMode('DYNAMIC');
                      TwoCoInlineCart.cart.setCurrency('USD');
 
@@ -242,7 +243,7 @@
                      // TwoCoInlineCart.events.subscribe('payment:finalized', function () {
                      //
                      // });
-                     let urlRedirect = window.location.protocol + "//" + window.location.host + '/thank-you?id_package=' + idPackage
+                     let urlRedirect = window.location.protocol + "//" + window.location.host + '/thank-you'
                      TwoCoInlineCart.cart.setReturnMethod({
                          type: 'redirect',
                          url : urlRedirect

@@ -24,7 +24,7 @@ if (isset($_GET['package'])) {
         $end_date = date("Y-m-d", strtotime("+1 month", strtotime($start_date)));
         $packge = [
           'id' => 1,
-          'package' => 'Monthly package',
+          'package' =>  $va_options['kn_monthly_name'],
           'start_date' => $start_date,
           'end_date' => $end_date,
           'price' => $va_options['kn_monthly_package_price'],
@@ -35,7 +35,7 @@ if (isset($_GET['package'])) {
         $end_date = date("Y-m-d", strtotime("+1 year", strtotime($start_date)));
         $packge = [
             'id' => 2,
-            'package' => 'Yearly package',
+            'package' => $va_options['kn_yearly_name'],
             'start_date' => $start_date,
             'end_date' => $end_date,
             'price' => $va_options['kn_year_package_price'],
