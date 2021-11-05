@@ -48,7 +48,7 @@ if ( ! class_exists( 'VA_Theme_Options' ) ) {
 
             $this->setFacebookAppLogin();
 
-
+            $this->set2checkout();
 
             if ( ! isset( $this->args['opt_name'] ) ) { // No errors please
                 return;
@@ -389,6 +389,48 @@ if ( ! class_exists( 'VA_Theme_Options' ) ) {
                         'id' => 'kn_url_callback',
                         'type' => 'text',
                         'title' => __('Url Callback', 'vietanh'),
+                        'compiler' => true,
+                    )
+                )
+            ); // end section
+
+        }
+
+        public function set2checkout() {
+            // Home Section
+            $this->sections[] = array(
+                'title'  => __( 'Setting 2Checkout', 'vietanh' ),
+                'desc'   => __( 'All of settings for payment by 2Checkout.', 'vietanh' ),
+                'icon'   => 'el-icon-facebook',
+                'fields' => array(
+                    array(
+                        'id' => 'kn_2co_account',
+                        'type' => 'text',
+                        'title' => __('2Checkout Account', 'vietanh'),
+                        'compiler' => true,
+                    ),
+                    array(
+                        'id' => 'kn_2co_publish_key',
+                        'type' => 'text',
+                        'title' => __('2Checkout Publish Key', 'vietanh'),
+                        'compiler' => true,
+                    ),
+                    array(
+                        'id' => 'kn_2co_private_key',
+                        'type' => 'text',
+                        'title' => __('2Checkout Private Key', 'vietanh'),
+                        'compiler' => true,
+                    ),
+                    array(
+                        'id' => 'kn_2co_serect_word',
+                        'type' => 'text',
+                        'title' => __('2Checkout Serect Word', 'vietanh'),
+                        'compiler' => true,
+                    ),
+                    array(
+                        'id' => 'kn_2co_demo',
+                        'type' => 'checkbox',
+                        'title' => __('2Checkout Demo mode', 'vietanh'),
                         'compiler' => true,
                     )
                 )

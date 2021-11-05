@@ -411,10 +411,10 @@ function forgetPasswordSMTP($email, $password) {
     $mail->Password   = $va_options['kn_email_password'];
 
     $mail->IsHTML(true);
-    $mail->AddAddress($email, "Forgot password email for KenNguyen");
-    $mail->SetFrom($va_options['kn_email_from'], "Forgot password!!");
-    $mail->Subject = "Forgot password!!";
-    $content = "<b>Forgot password!</b><br>";
+    $mail->AddAddress($email, "Create new password for KenNguyen account");
+    $mail->SetFrom($va_options['kn_email_from'], "Create new password for KenNguyen account");
+    $mail->Subject = "Create new password for KenNguyen account!!";
+    $content = "<b>Create new password for KenNguyen account!</b><br>";
     $content .= "Your temporary password is:  <b>$password</b><br>";
     $content .= "Please change password after successful login!";
     $mail->MsgHTML($content);
