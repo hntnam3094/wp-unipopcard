@@ -13,26 +13,24 @@ global $va_options;
 $message = [];
 $table = $wpdb->prefix . 'customer';
 $table_order = $wpdb->prefix . 'order';
-include_once dirname( __FILE__ ).'./auth.php';
+include_once dirname( __FILE__ ).'/auth.php';
 if (!empty($_GET) && isset($_GET['refno'])) {
     //get order detail
     $orderReference = $_GET['refno'];
-    var_dump(dirname( __FILE__ ).'./auth.php');
-//
-//    $jsonRpcRequest = array (
-//        'method' => 'getOrder',
-//        'params' => array($sessionID, $orderReference),
-//        'id' => $i++,
-//        'jsonrpc' => '2.0'
-//    );
-//
-//    $dataOrder = callRPC((Object)$jsonRpcRequest, $host, true);
-    $emailOrder = '123321@gmail.com';
-//    $productName = $dataOrder->Items[0]->ProductDetails->Name;
+
+    $jsonRpcRequest = array (
+        'method' => 'getOrder',
+        'params' => array($sessionID, $orderReference),
+        'id' => $i++,
+        'jsonrpc' => '2.0'
+    );
+
+    $dataOrder = callRPC((Object)$jsonRpcRequest, $host, true);
+    $emailOrder = $dataOrder->BillingDetails->Email;
+    $productName = $dataOrder->Items[0]->ProductDetails->Name;
 
     $idPackage = $_GET['id_package'];
 //end get order detail
-    $user = $_SESSION['user'];
 
     $today = date("Y-m-d");
     $packge = [];
@@ -61,13 +59,14 @@ if (!empty($_GET) && isset($_GET['refno'])) {
         ];
     }
 
-    $queryResult = $wpdb->get_results(
+    $queryResultRefno = $wpdb->get_results(
         $wpdb->prepare(
             "SELECT * FROM {$table_order}
                             WHERE refno=%s ", $orderReference));
 
-    if (empty($queryResult)) {
+    if (empty($queryResultRefno) && $dataOrder != null ) {
         if (isset($_SESSION['user'])) {
+            $user = $_SESSION['user'];
             // create new order detail
             $dataOrder = array();
             $dataOrder['id_customer'] = $user->id;
