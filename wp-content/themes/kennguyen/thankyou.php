@@ -17,17 +17,18 @@ include_once dirname( __FILE__ ).'./auth.php';
 if (!empty($_GET) && isset($_GET['refno'])) {
     //get order detail
     $orderReference = $_GET['refno'];
-
-    $jsonRpcRequest = array (
-        'method' => 'getOrder',
-        'params' => array($sessionID, $orderReference),
-        'id' => $i++,
-        'jsonrpc' => '2.0'
-    );
-
-    $dataOrder = callRPC((Object)$jsonRpcRequest, $host, true);
-    $emailOrder = $dataOrder->BillingDetails->Email;
-    $productName = $dataOrder->Items[0]->ProductDetails->Name;
+    var_dump(dirname( __FILE__ ).'./auth.php');
+//
+//    $jsonRpcRequest = array (
+//        'method' => 'getOrder',
+//        'params' => array($sessionID, $orderReference),
+//        'id' => $i++,
+//        'jsonrpc' => '2.0'
+//    );
+//
+//    $dataOrder = callRPC((Object)$jsonRpcRequest, $host, true);
+    $emailOrder = '123321@gmail.com';
+//    $productName = $dataOrder->Items[0]->ProductDetails->Name;
 
     $idPackage = $_GET['id_package'];
 //end get order detail
@@ -65,7 +66,7 @@ if (!empty($_GET) && isset($_GET['refno'])) {
             "SELECT * FROM {$table_order}
                             WHERE refno=%s ", $orderReference));
 
-    if (empty($queryResult) && !empty($dataOrder)) {
+    if (empty($queryResult)) {
         if (isset($_SESSION['user'])) {
             // create new order detail
             $dataOrder = array();
