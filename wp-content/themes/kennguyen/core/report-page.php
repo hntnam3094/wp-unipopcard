@@ -1,8 +1,8 @@
 <?php
 add_action( 'admin_menu', 'my_admin_menu' );
 function my_admin_menu() {
-    add_menu_page( 'Pill management', 'Pills', 'manage_options', 'kn-pill', 'admin_pill_page', 'dashicons-tickets');
-    add_menu_page( 'Report management', 'Reports', 'manage_options', 'kn-report', 'admin_report_page', 'dashicons-tickets');
+    add_menu_page( 'Pill management', 'Pills', 'manage_options', 'kn-pill', 'admin_pill_page', 'dashicons-media-document');
+    add_menu_page( 'Report management', 'Reports', 'manage_options', 'kn-report', 'admin_report_page', 'dashicons-printer');
     wp_enqueue_script( 'google-charts', get_template_directory_uri() . '/js/google-charts.js', array(), '20151215', false );
 }
 
@@ -11,16 +11,14 @@ function admin_pill_page(){
 
     $from = $_GET['from'] ?? date('Y-m');
     $to = $_GET['to'] ?? date('Y-m');
-    $type = $_GET['type'] ?? 'day';
 
-    $query = "SELECT * FROM wp_order";
+    $query = 'SELECT * FROM wp_order WHERE DATE_FORMAT(wp_order.bought_date,"%Y-%m") >= "'.$from.'"AND DATE_FORMAT(wp_order.bought_date,"%Y-%m") <= "'.$to.'"';
     $total_query = "SELECT COUNT(1) FROM (${query}) AS combined_table";
     $total = $wpdb->get_var( $total_query );
     $items_per_page = 10;
     $page = isset( $_GET['cpage'] ) ? abs( (int) $_GET['cpage'] ) : 1;
     $offset = ( $page * $items_per_page ) - $items_per_page;
     $result = $wpdb->get_results( $query . " LIMIT ${offset}, ${items_per_page}" );
-
     $totalAmount = 0;
     ?>
     <div class="wrap">
@@ -33,18 +31,10 @@ function admin_pill_page(){
                 <input type="month" id="month-to" value="<?=$to?>">
             </div>
             <div class="alignleft actions">
-                <label>Report type</label>
-                <select style="float: unset" id="select-type-report">
-                    <option value="day" <?= $type == 'day' ? 'selected' : ''?>>Day</option>
-                    <option value="week" <?= $type == 'week' ? 'selected' : ''?>>Week</option>
-                    <option value="month" <?= $type == 'month' ? 'selected' : ''?>>Month</option>
-                    <option value="quarter" <?= $type == 'quarter' ? 'selected' : ''?>>Quarter</option>
-                    <option value="year" <?= $type == 'year' ? 'selected' : ''?>>Year</option>
-                </select>
                 <input type="submit" id="btn-report-submit" class="button action" value="Apply">
             </div>
         </div>
-        <table class="widefat fixed">
+        <table class="widefat fixed" style="margin-bottom: 15px;">
             <thead>
             <tr>
                 <th class="manage-column column-columnname" scope="col">No</th>
@@ -54,7 +44,7 @@ function admin_pill_page(){
                 <th class="manage-column column-columnname" scope="col">Bought date</th>
                 <th class="manage-column column-columnname num" scope="col">Price</th>
                 <th class="manage-column column-columnname num" scope="col">Sale price</th>
-
+                <th class="manage-column column-columnname num" scope="col">Ref.No</th>
             </tr>
             </thead>
 
@@ -71,6 +61,7 @@ function admin_pill_page(){
                     <td class="column-columnname"><?= $value->bought_date ?></td>
                     <td class="column-columnname num"><?= usd($value->price) ?></td>
                     <td class="column-columnname num"><?= usd($value->sale_price) ?></td>
+                    <td class="column-columnname num"><?= $value->refno ?></td>
                 </tr>
             <?php }?>
             </tbody>
@@ -83,17 +74,29 @@ function admin_pill_page(){
             </tr>
             </tfoot>
         </table>
-        <?php
-        echo paginate_links( array(
-            'base' => add_query_arg( 'cpage', '%#%' ),
-            'format' => '',
-            'prev_text' => __('&laquo;'),
-            'next_text' => __('&raquo;'),
-            'total' => ceil($total / $items_per_page),
-            'current' => $page
-        ));
-        ?>
+        <div style="text-align: right">
+            <?php
+            echo paginate_links( array(
+                'base' => add_query_arg( 'cpage', '%#%' ),
+                'format' => '',
+                'prev_text' => __('&laquo;'),
+                'next_text' => __('&raquo;'),
+                'total' => ceil($total / $items_per_page),
+                'current' => $page
+            ));
+            ?>
+        </div>
     </div>
+    <script>
+        document.getElementById('btn-report-submit').onclick = () => {
+            const urlParams = new URLSearchParams(window.location.search)
+            let monthFrom = document.getElementById('month-from')
+            let monthTo = document.getElementById('month-to')
+            urlParams.set('from', monthFrom.value);
+            urlParams.set('to', monthTo.value);
+            window.location.href='?' + urlParams.toString()
+        }
+    </script>
     <?php
 }
 

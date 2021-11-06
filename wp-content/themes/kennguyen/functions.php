@@ -687,6 +687,14 @@ function smashing_craft_column( $column, $post_id ) {
 add_action('admin_head', 'j0e_add_admin_styles');
 function j0e_add_admin_styles() {
     echo '<style>
+.page-numbers {
+    background-color: white;
+    padding: 6px;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: bold;
+}
+
 .column-craft_thumb {width: 60px;}
 .column-craft_type {text-align: center !important;}
 .craft-status-sale {
