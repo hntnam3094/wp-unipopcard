@@ -16,7 +16,7 @@ $table = $wpdb->prefix . 'customer';
 $login_message = '';
 require_once 'vendor/autoload.php';
 if (empty($_SESSION['user'])) {
-    
+
 if ($_POST) {
     $email = $wpdb->escape($_POST['email']);
     $password = $wpdb->escape($_POST['password']);
@@ -163,9 +163,9 @@ get_header();
                 </div>
                 <div class="col-6">
                     <div class="row">
-                        <div class="col-4"> <a href="#">Privacy Policy</a></div>
-                        <div class="col-4"> <a href="#">Privacy Policy</a></div>
-                        <div class="col-4"> <a href="#">Privacy Policy</a></div>
+                        <div class="col-4"> <a href="<?=$va_options['op1_link']?>"><?=$va_options['op1_title']?></a></div>
+                        <div class="col-4"> <a href="<?=$va_options['op2_link']?>"><?=$va_options['op2_title']?></a></div>
+                        <div class="col-4"> <a href="<?=$va_options['op3_link']?>"><?=$va_options['op3_title']?></a></div>
                     </div>
                 </div>
             </div>
