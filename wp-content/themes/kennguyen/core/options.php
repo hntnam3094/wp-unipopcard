@@ -255,7 +255,7 @@ if ( ! class_exists( 'VA_Theme_Options' ) ) {
                         'compiler' => true
                     ),
                     array(
-                        'id' => 'kn_year_package_title',
+                        'id' => 'kn_yearly_package_title',
                         'type' => 'text',
                         'title' => __('Title', 'vietanh'),
                         'compiler' => true,

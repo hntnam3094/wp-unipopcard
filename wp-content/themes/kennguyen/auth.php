@@ -25,7 +25,7 @@ function callRPC($Request, $host, $Debug = true) {
             return $Response->result;
         }
         if (!is_null($Response->error)) {
-            var_dump($Request->method, $Response->error);
+//            var_dump($Request->method, $Response->error);
         }
     } else {
         return null;
