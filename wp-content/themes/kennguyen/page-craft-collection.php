@@ -1,7 +1,15 @@
 <?php get_header(); ?>
-<?php $craftcollection = get_post_type_object( 'craftcollection' );
+<?php $craftcollection = get_post_type_object( 'craft' );
 $parentCategoryId = get_category_by_slug('craft-collection') !== null ? get_category_by_slug('craft-collection')->cat_ID : 0;
-$isShowPost = check_membership() == 1 ? '' : 'block';
+function getClassBlock($checkMembership) {
+    if (check_membership() == 1) {
+        return '';
+    }
+    if ($checkMembership) {
+        return 'block';
+    }
+    return '';
+}
 $year = date('Y');
 $month = date('n');
 ?>
@@ -40,7 +48,7 @@ $month = date('n');
                         }
                         echo '<div class="col-12 col-md-6 col-lg-3 item">  <a class="' . $active . '" href="?category=' . str_replace('&', '-and-', $category->name) . '">' . $category->name . '</a></div>';
                     }
-                        ?>
+                    ?>
                 </div>
             </div>
             <div class="course_main mt-10">
@@ -53,18 +61,21 @@ $month = date('n');
                     }
 
                     $args = array(
-                        'post_status' => 'free',
-                        'post_type'      => 'craftcollection',
+                        'post_status' => 'publish',
+                        'post_type'      => 'craft',
                         'year' => $year,
                         'monthnum' => $month,
-                        'cat' => $categoryIdSelected
+                        'cat' => $categoryIdSelected,
+                        'meta_key' => 'premium_membership',
+                        'orderby' => 'meta_value',
+                        'order' => 'ASC',
                     );
                     $the_query = new WP_Query( $args );
                     ?>
                     <?php if( $the_query->have_posts() ): ?>
                         <?php while( $the_query->have_posts() ) : $the_query->the_post(); ?>
                             <div class="col-6 col-md-4 col-lg-3">
-                                <a class="item mt-20" href="<?= get_the_permalink()?>">
+                                <a class="item mt-20 <?= getClassBlock(get_field('premium_membership'))  ?>" href="<?= get_the_permalink()?>">
                                     <div class="imgDrop">
                                         <?php echo get_the_post_thumbnail( get_the_id() ); ?>
                                     </div>
@@ -73,30 +84,6 @@ $month = date('n');
                         <?php endwhile; ?>
                     <?php endif; ?>
                     <?php wp_reset_query(); ?>
-
-
-                    <?php
-                    $args = array(
-                        'post_status' => 'sale',
-                        'post_type'      => 'craftcollection',
-                        'year' => $year,
-                        'monthnum' => $month,
-                        'cat' => $categoryIdSelected
-                    );
-                    $the_query = new WP_Query( $args );
-                    ?>
-                    <?php if( $the_query->have_posts() ): ?>
-                        <?php while( $the_query->have_posts() ) : $the_query->the_post(); ?>
-                            <div class="col-6 col-md-4 col-lg-3">
-                                <a class="item mt-20 <?= $isShowPost ?>" href="<?= get_the_permalink() ?>">
-                                    <div class="imgDrop"> <?php echo get_the_post_thumbnail( get_the_id() ); ?>
-                                    </div>
-                                </a>
-                            </div>
-                        <?php endwhile; ?>
-                    <?php endif; ?>
-                    <?php wp_reset_query(); ?>
-
                 </div>
                 <?php if (check_membership() != 1) {
                     echo '<div class="mt-30 text-center"> <a class="btn_more" href="/upgrade-today">
@@ -126,9 +113,9 @@ $month = date('n');
                         }
                         echo date('F').' '.implode(' & ', $listCategoriesShow);
                         ?>
-                        </h2>
+                    </h2>
                     <?php if (check_membership() != 1) {
-                       echo '<div class="text">
+                        echo '<div class="text">
                         <p>These designs are only available until the end of the month. <a href="/upgrade-today">Become a member</a> to download them today!</p>
                     </div>';
                     }?>
@@ -137,40 +124,24 @@ $month = date('n');
                     <div class="row">
                         <?php
                         $args = array(
-                            'post_status' => 'free',
-                            'post_type'      => 'craftcollection',
-                            'cat' => $listCatId,
+                            'post_status' => 'publish',
+                            'post_type'      => 'craft',
                             'year' => $year,
                             'monthnum' => $month,
+                            'cat' => $listCatId,
+                            'meta_key' => 'premium_membership',
+                            'orderby' => 'meta_value',
+                            'order' => 'ASC',
                         );
                         $the_query = new WP_Query( $args );
                         ?>
                         <?php if( $the_query->have_posts() ): ?>
                             <?php while( $the_query->have_posts() ) : $the_query->the_post(); ?>
-                                <div class="col-4 col-md-3 col-lg-2">
-                                    <a class="item mt-20" href="<?= get_the_permalink() ?>">
-                                        <div class="imgDrop"> <?php echo get_the_post_thumbnail( get_the_id() ); ?></div>
-                                    </a>
-                                </div>
-                            <?php endwhile; ?>
-                        <?php endif; ?>
-                        <?php wp_reset_query(); ?>
-
-                        <?php
-                        $args = array(
-                            'post_status' => 'sale',
-                            'post_type'      => 'craftcollection',
-                            'cat' => $listCatId,
-                            'year' => $year,
-                            'monthnum' => $month,
-                        );
-                        $the_query = new WP_Query( $args );
-                        ?>
-                        <?php if( $the_query->have_posts() ): ?>
-                            <?php while( $the_query->have_posts() ) : $the_query->the_post(); ?>
-                                <div class="col-4 col-md-3 col-lg-2">
-                                    <a class="item mt-20 <?= $isShowPost ?>" href="<?= get_the_permalink() ?>">
-                                        <div class="imgDrop"> <?php echo get_the_post_thumbnail( get_the_id() ); ?></div>
+                                <div class="col-6 col-md-4 col-lg-3">
+                                    <a class="item mt-20 <?= getClassBlock(get_field('premium_membership'))  ?>" href="<?= get_the_permalink()?>">
+                                        <div class="imgDrop">
+                                            <?php echo get_the_post_thumbnail( get_the_id() ); ?>
+                                        </div>
                                     </a>
                                 </div>
                             <?php endwhile; ?>
@@ -193,8 +164,10 @@ $month = date('n');
                     <div class="row">
                         <?php
                         $args = array(
-                            'post_status' => 'free',
-                            'post_type'      => 'craftcollection',
+                            'post_status' => 'publish',
+                            'post_type'      => 'craft',
+                            'meta_key' => 'premium_membership',
+                            'meta_value' => '0',
                             'showposts' => 6
                         );
                         $the_query = new WP_Query( $args );
