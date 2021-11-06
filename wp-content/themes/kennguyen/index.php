@@ -45,8 +45,8 @@
                     $category = get_cat_ID($category);
                 }
                 $args = array(
-                    'post_status' => array('free', 'sale'),
-                    'post_type'      => array('craftcollection', 'craftacademy'),
+                    'post_status' => 'publish',
+                    'post_type'      => 'craft',
                     'cat' => $category,
                     's'		=> $keyword,
                     'showposts' => 11,

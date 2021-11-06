@@ -1,6 +1,5 @@
 <?php get_header(); ?>
-<?php $craftcollection = get_post_type_object( 'craft' );
-$parentCategoryId = get_category_by_slug('craft-academy') !== null ? get_category_by_slug('craft-collection')->cat_ID : 0;
+<?php $parentCategoryId = get_category_by_slug('craft-academy') !== null ? get_category_by_slug('craft-academy')->cat_ID : 0;
 function getClassBlock($checkMembership) {
     if (check_membership() == 1) {
         return '';
@@ -12,13 +11,14 @@ function getClassBlock($checkMembership) {
 }
 $year = date('Y');
 $month = date('n');
+$listAllCatID = [];
 ?>
 <main>
     <section class="category pt-50 pb-50">
         <div class="wraper">
-            <h1 class="ttl_main fz-40 text-up"><?= $craftcollection->labels->name ?> </h1>
+            <h1 class="ttl_main fz-40 text-up">Craft academy </h1>
             <div class="heading">
-                <h2 class="ttl_sub fz-31 text-up mt-40">Your <?php echo date('F');?> CRAFT COLLECTION</h2>
+                <h2 class="ttl_sub fz-31 text-up mt-40">Your <?php echo date('F');?> CRAFT ACADEMY</h2>
                 <?php if (check_membership() != 1) {
                     echo '<div class="text">
                     <p>See a project you want to make?
@@ -46,6 +46,7 @@ $month = date('n');
                             $active = 'active';
                             $categoryNameSelected = $category->name;
                         }
+                        array_push($listAllCatID, $category->cat_ID);
                         echo '<div class="col-12 col-md-6 col-lg-3 item">  <a class="' . $active . '" href="?category=' . str_replace('&', '-and-', $category->name) . '">' . $category->name . '</a></div>';
                     }
                     ?>
@@ -108,7 +109,7 @@ $month = date('n');
                         foreach ( $categories as $category ) {
                             if (count(get_term_meta($category->term_id, 'show_category')) > 0 && get_term_meta($category->term_id, 'show_category')[0] == 'yes') {
                                 array_push($listCategoriesShow, $category->name);
-                                array_push($listCatId, $category->id);
+                                array_push($listCatId, $category->cat_ID);
                             }
                         }
                         echo date('F').' '.implode(' & ', $listCategoriesShow);
@@ -168,6 +169,7 @@ $month = date('n');
                             'post_type'      => 'craft',
                             'meta_key' => 'premium_membership',
                             'meta_value' => '0',
+                            'cat' => $listAllCatID,
                             'showposts' => 6
                         );
                         $the_query = new WP_Query( $args );

@@ -1,5 +1,5 @@
 <?php get_header(); ?>
-<?php $craftcollection = get_post_type_object( 'craftcollection' );
+<?php $craftcollection = get_post_type_object( 'craft' );
 $parentCategoryId = get_category_by_slug('craft-collection') !== null ? get_category_by_slug('craft-collection')->cat_ID : 0;
 function getClassBlock($checkMembership) {
     if (check_membership() == 1) {
@@ -62,7 +62,7 @@ $month = date('n');
 
                     $args = array(
                         'post_status' => 'publish',
-                        'post_type'      => 'craftcollection',
+                        'post_type'      => 'craft',
                         'year' => $year,
                         'monthnum' => $month,
                         'cat' => $categoryIdSelected,
@@ -125,7 +125,7 @@ $month = date('n');
                         <?php
                         $args = array(
                             'post_status' => 'publish',
-                            'post_type'      => 'craftcollection',
+                            'post_type'      => 'craft',
                             'year' => $year,
                             'monthnum' => $month,
                             'cat' => $listCatId,
@@ -165,7 +165,7 @@ $month = date('n');
                         <?php
                         $args = array(
                             'post_status' => 'publish',
-                            'post_type'      => 'craftcollection',
+                            'post_type'      => 'craft',
                             'meta_key' => 'premium_membership',
                             'meta_value' => '0',
                             'showposts' => 6

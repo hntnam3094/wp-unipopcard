@@ -23,7 +23,7 @@ if (isset($_POST)) {
         <div class="wraper">
             <div class="row">
                 <div class="col-12 col-lg-1">
-                    <?php if (check_membership() == 1 || get_post_status() == 'free') { ?>
+                    <?php if (check_membership() == 1 || get_post_meta(get_the_ID(), 'premium_membership', true) == 0) { ?>
                         <div class="shared_comment mt-100">
                             <div class="item">
                                 <div class="ttl">SHARE</div>
@@ -47,7 +47,7 @@ if (isset($_POST)) {
                 </div>
                 <div class="col-12 col-lg-8 content_main">
                     <div class="heading">
-                        <?php if (check_membership() == 1 || get_post_status() == 'free') { ?>
+                        <?php if (check_membership() == 1 || get_post_meta(get_the_ID(), 'premium_membership', true) == 0) { ?>
                             <h1 class="ttl_main fz-20 text-up text-center"><?= get_the_title()?></h1>
                         <?php } ?>
                         <?php if (check_membership() != 1) {
@@ -55,7 +55,7 @@ if (isset($_POST)) {
                         } ?>
                     </div>
 
-                    <?php if (check_membership() == 1 || get_post_status() == 'free') { ?>
+                    <?php if (check_membership() == 1 || get_post_meta(get_the_ID(), 'premium_membership', true) == 0) { ?>
                         <div class="boding mt-30">
                             <?= get_the_content()?>
                         </div>
@@ -101,7 +101,7 @@ if (isset($_POST)) {
                                     </a>
                                 </div>';
                     } ?>
-                    <?php if (check_membership() == 1 || get_post_status() == 'free') { ?>
+                    <?php if (check_membership() == 1 || get_post_meta(get_the_ID(), 'premium_membership', true) == 0) { ?>
                         <div class="comment mt-80 pb-30" id="comment">
                             <div class="fb-comments" data-href="https://developers.facebook.com/docs/plugins/comments#configurator" data-width="" data-numposts="5"></div>
                         </div>
@@ -129,16 +129,14 @@ if (isset($_POST)) {
                         } ?>
                     </div>
                     <?php
-                    if (check_membership() == 1 || get_post_status() == 'free') {
-                        $listStatus = ['free', 'sale'];
-                        if (get_post_status() == 'free') {
-                            $listStatus = ['free'];
-                        }
+                    if (check_membership() == 1 || get_post_meta(get_the_ID(), 'premium_membership', true) == 0) {
                     $args = array(
-                        'post_status' => $listStatus,
-                        'post_type'      => 'craftcollection',
+                        'post_status' => 'publish',
+                        'post_type'      => 'craft',
                         'cat' => wp_get_post_categories(get_the_ID()),
-                        'showposts' => 5
+                        'showposts' => 5,
+                        'meta_key' => 'premium_membership',
+                        'meta_value' => '0',
                     );
                     $currentId = get_the_ID();
                     $the_query = new WP_Query( $args );
