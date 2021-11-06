@@ -218,44 +218,68 @@
              }
          }
 
-         $.ajax({
-             url: url,
-             method: 'post',
-             data: data,
-             dataType: 'json',
-             success: function (data) {
-                 console.log(data)
-                 if (data.code == 201) {
-                     alert(data.message)
-                 }
+         TwoCoInlineCart.setup.setMode('DYNAMIC');
+         TwoCoInlineCart.cart.setCurrency('USD');
 
-                 if (data.code == 200) {
-                     TwoCoInlineCart.setup.setMode('DYNAMIC');
-                     TwoCoInlineCart.cart.setCurrency('USD');
+         TwoCoInlineCart.cart.setReset(true);
 
-                     TwoCoInlineCart.cart.setReset(true);
+         TwoCoInlineCart.products.removeAll();
+         TwoCoInlineCart.products.add(package);
+         TwoCoInlineCart.billing.setEmail("<?= isset($_SESSION['user']) ? $_SESSION['user']->email : ''?>");
 
-                     TwoCoInlineCart.products.removeAll();
-                     TwoCoInlineCart.products.add(package);
-                     TwoCoInlineCart.billing.setEmail("<?= isset($_SESSION['user']) ? $_SESSION['user']->email : ''?>");
-
-                     // let success = false
-                     // TwoCoInlineCart.events.subscribe('payment:finalized', function () {
-                     //
-                     // });
-                     let urlRedirect = window.location.protocol + "//" + window.location.host + '/thank-you?id_package=' + idPackage
-                     TwoCoInlineCart.cart.setReturnMethod({
-                         type: 'redirect',
-                         url : urlRedirect
-                     });
+         // let success = false
+         // TwoCoInlineCart.events.subscribe('payment:finalized', function () {
+         //
+         // });
+         let urlRedirect = window.location.protocol + "//" + window.location.host + '/thank-you?id_package=' + idPackage
+         TwoCoInlineCart.cart.setReturnMethod({
+             type: 'redirect',
+             url : urlRedirect
+         });
 
 
 
-                     TwoCoInlineCart.cart.setTest(<?= $va_options['kn_2co_demo'] ?>)
-                     TwoCoInlineCart.cart.checkout()
-                 }
-             }
-         })
+         TwoCoInlineCart.cart.setTest(<?= $va_options['kn_2co_demo'] ?>)
+         TwoCoInlineCart.cart.checkout()
+
+         //$.ajax({
+         //    url: url,
+         //    method: 'post',
+         //    data: data,
+         //    dataType: 'json',
+         //    success: function (data) {
+         //        console.log(data)
+         //        if (data.code == 201) {
+         //            alert(data.message)
+         //        }
+         //
+         //        if (data.code == 200) {
+         //            TwoCoInlineCart.setup.setMode('DYNAMIC');
+         //            TwoCoInlineCart.cart.setCurrency('USD');
+         //
+         //            TwoCoInlineCart.cart.setReset(true);
+         //
+         //            TwoCoInlineCart.products.removeAll();
+         //            TwoCoInlineCart.products.add(package);
+         //            TwoCoInlineCart.billing.setEmail("<?//= isset($_SESSION['user']) ? $_SESSION['user']->email : ''?>//");
+         //
+         //            // let success = false
+         //            // TwoCoInlineCart.events.subscribe('payment:finalized', function () {
+         //            //
+         //            // });
+         //            let urlRedirect = window.location.protocol + "//" + window.location.host + '/thank-you?id_package=' + idPackage
+         //            TwoCoInlineCart.cart.setReturnMethod({
+         //                type: 'redirect',
+         //                url : urlRedirect
+         //            });
+         //
+         //
+         //
+         //            TwoCoInlineCart.cart.setTest(<?//= $va_options['kn_2co_demo'] ?>//)
+         //            TwoCoInlineCart.cart.checkout()
+         //        }
+         //    }
+         //})
 
      })
  }

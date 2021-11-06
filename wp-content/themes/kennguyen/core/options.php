@@ -191,6 +191,63 @@ if ( ! class_exists( 'VA_Theme_Options' ) ) {
                             'title' => __('Link email', 'vietanh'),
                             'compiler' => true
                         ),
+                        array(
+                            'id' => 'section3-start',
+                            'type' => 'section',
+                            'title' => __('Link on sign up and login - option 1', 'vietanh'),
+                            'compiler' => true
+                        ),
+                        array(
+                            'id' => 'op1_title',
+                            'type' => 'text',
+                            'title' => __('Title', 'vietanh'),
+                            'compiler' => true
+                        ),
+                        array(
+                            'id' => 'op1_link',
+                            'type' => 'text',
+                            'title' => __('Link', 'vietanh'),
+                            'compiler' => true,
+                            'default'=>'#'
+                        ),
+                        array(
+                            'id' => 'section4-start',
+                            'type' => 'section',
+                            'title' => __('Link on sign up and login - option 2', 'vietanh'),
+                            'compiler' => true
+                        ),
+                        array(
+                            'id' => 'op2_title',
+                            'type' => 'text',
+                            'title' => __('Title', 'vietanh'),
+                            'compiler' => true
+                        ),
+                        array(
+                            'id' => 'op2_link',
+                            'type' => 'text',
+                            'title' => __('Link', 'vietanh'),
+                            'compiler' => true,
+                            'default'=>'#'
+                        ),
+                        array(
+                            'id' => 'section5-start',
+                            'type' => 'section',
+                            'title' => __('Link on sign up and login - option 3', 'vietanh'),
+                            'compiler' => true
+                        ),
+                        array(
+                            'id' => 'op3_title',
+                            'type' => 'text',
+                            'title' => __('Title', 'vietanh'),
+                            'compiler' => true
+                        ),
+                        array(
+                            'id' => 'op3_link',
+                            'type' => 'text',
+                            'title' => __('Link', 'vietanh'),
+                            'compiler' => true,
+                            'default'=>'#'
+                        ),
                     )
                 ); // end section
 

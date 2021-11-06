@@ -231,7 +231,8 @@ get_header();
                                             </div>
                                             <div class="col-12 col-md-7">
                                                 <div class="content">
-                                                    <p><?= $level_membership  ?><br><a href="<?php site_url() ?>/upgrade-today">Upgrade to the yearly plan </a>to get the best value for your membership!</p>
+                                                    <p><?= $level_membership  ?><br>
+                                                        <a href="<?php site_url() ?>/upgrade-today">Upgrade to the yearly plan </a>to get the best value for your membership!</p>
                                                 </div>
                                             </div>
                                         </div>
