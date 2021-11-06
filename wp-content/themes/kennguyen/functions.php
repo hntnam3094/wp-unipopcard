@@ -389,8 +389,8 @@ function activeAccountSMTP($email) {
     $mail->AddAddress($email, "Verify account register for KenNguyen!!");
     $mail->SetFrom($va_options['kn_email_from'], "Verify account register for KenNguyen!!");
     $mail->Subject = "Verify account register for KenNguyen!!";
-    $content = '<div style="width:100%"><div class="adM">
-                    </div><div style="max-width:600px"><div class="adM">
+    $content = '<div style="width:100%; background-color: #EEEEEE"><div class="adM">
+                    </div><div style="max-width:600px; margin: 0 auto"><div class="adM">
                         </div><table cellspacing="0" cellpadding="0" border="0" align="center" bgcolor="#eeeeee" width="100%" style="max-width:600px">
                             <tbody><tr>
                                 <td style="font-family:arial;font-size:12px;color:#333333;padding:10px 20px;text-align:center">
@@ -417,6 +417,7 @@ function activeAccountSMTP($email) {
                                                     </span>
                                                 </a>
                                             </td>
+                                          
                                          </tr>
                                         </tbody>
                                     </table>
@@ -496,8 +497,8 @@ function forgetPasswordSMTP($email, $password) {
     $mail->AddAddress($email, "Create new password for KenNguyen account");
     $mail->SetFrom($va_options['kn_email_from'], "Create new password for KenNguyen account");
     $mail->Subject = "Create new password for KenNguyen account!!";
-      $content = '<div style="width:100%"><div class="adM">
-                    </div><div style="max-width:600px"><div class="adM">
+      $content = '<div style="width:100%; background-color: #EEEEEE"><div class="adM">
+                    </div><div style="max-width:600px; margin: 0 auto"><div class="adM">
                         </div><table cellspacing="0" cellpadding="0" border="0" align="center" bgcolor="#eeeeee" width="100%" style="max-width:600px">
                             <tbody><tr>
                                 <td style="font-family:arial;font-size:12px;color:#333333;padding:10px 20px;text-align:center">
@@ -524,6 +525,7 @@ function forgetPasswordSMTP($email, $password) {
                                                     </span>
                                                 </a>
                                             </td>
+                                          
                                          </tr>
                                         </tbody>
                                     </table>

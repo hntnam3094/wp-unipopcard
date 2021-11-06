@@ -90,12 +90,13 @@ if (!empty($_GET) && isset($_GET['refno'])) {
                 ];
                 $where = ['id' => $user->id];
                 $results = $wpdb->update($table, $dataUser, $where);
-                
-                $message = [
-                    'text1' => 'Your account active package success!',
-                    'text2' => 'Please login agian to active your Premium package',
-                    'action' => 'logout'
-                ];
+                if ($results != 0) {
+                    $message = [
+                        'text1' => 'Your account active package success!',
+                        'text2' => 'Please login agian to active your Premium package',
+                        'action' => 'logout'
+                    ];
+                }
             }
         } else {
             $queryResult = $wpdb->get_results(
@@ -200,8 +201,6 @@ if (!empty($_GET) && isset($_GET['refno'])) {
             }
         }
     }
-
-
 }
 
 
