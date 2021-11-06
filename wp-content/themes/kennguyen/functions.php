@@ -370,9 +370,21 @@ add_action( 'init', 'wpabsolute_block_users_backend' );
 
 function activeAccountSMTP($email) {
     global $va_options;
+    global $wpdb;
+    $table = $wpdb->prefix . 'customer';
     $urlActive = site_url() . '/verify?token='. md5($email);
 
     $mail = new \PHPMailer\PHPMailer\PHPMailer(true);
+    $fullname = '';
+    $url = home_url();
+    $queryResult = $wpdb->get_results(
+        $wpdb->prepare(
+            "SELECT * FROM {$table}  WHERE email=%s",$email));
+
+    if (!empty($queryResult)) {
+        $fullname = $queryResult[0]->first_name . ' ' . $queryResult[0]->last_name;
+    }
+    $dear = !empty($fullname) ? $fullname : $email;
 
     $mail->IsSMTP();
     $mail->Mailer = "smtp";
@@ -385,11 +397,79 @@ function activeAccountSMTP($email) {
     $mail->Password   = $va_options['kn_email_password'];
 
     $mail->IsHTML(true);
-    $mail->AddAddress($email, "Veify email for KenNguyen");
-    $mail->SetFrom($va_options['kn_email_from'], "Verify account!!");
-    $mail->Subject = "Verify account!!";
-    $content = "<b>Click on the link below to activate your account!</b><br>";
-    $content .= "<a href='".$urlActive."'>Active account</a>";
+    $mail->AddAddress($email, "Verify account register for KenNguyen!!");
+    $mail->SetFrom($va_options['kn_email_from'], "Verify account register for KenNguyen!!");
+    $mail->Subject = "Verify account register for KenNguyen!!";
+    $content = '<div style="width:100%"><div class="adM">
+                    </div><div style="max-width:600px"><div class="adM">
+                        </div><table cellspacing="0" cellpadding="0" border="0" align="center" bgcolor="#eeeeee" width="100%" style="max-width:600px">
+                            <tbody><tr>
+                                <td style="font-family:arial;font-size:12px;color:#333333;padding:10px 20px;text-align:center">
+                                </td>
+                            </tr>
+                        </tbody></table>
+                        <table style="margin-left:0;border-collapse:collapse;background-color:#ffffff;width:100%;max-width:600px" cellspacing="0" cellpadding="0" border="0">
+                            <tbody>
+                            <tr>
+                                <td style="background-color:#ffffff">
+                                    <table cellspacing="0" cellpadding="0" border="0" align="center" bgcolor="#ffffff" width="100%" style="max-width:600px;border-bottom:1px solid #cccccc">
+                                       <tbody>
+                                         <tr>
+                                            <td style="padding:20px;text-align:left">
+                                                <span style="color:#000000;font-family:Arial;font-size:18px;font-weight:bold">
+                                                    <a href="'.$url.'" target="_blank" >
+                                                        KenNguyen
+                                                    </a>
+                                                </span>
+                                                <br>
+                                                <a href="'.$url.'" style="color:#000000;text-decoration:none" target="_blank">
+                                                    <span style="font-family:Arial;font-size:14px;font-weight:bold">
+                                                        Active register account for KenNguyen
+                                                    </span>
+                                                </a>
+                                            </td>
+                                         </tr>
+                                        </tbody>
+                                    </table>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <table cellspacing="0" cellpadding="0" border="0" style="width:100%">
+                                        <tbody>
+                                            <tr>
+                                                <td style="padding:20px">
+                
+                                                    <table cellspacing="0" cellpadding="0" border="0" align="center" bgcolor="#ffffff" width="100%" style="max-width:600px">
+                                                      <tbody>
+                                                          <tr>
+                                                            <td style="padding:20px 20px 15px;font-family:arial;font-size:12px;line-height:20px;color:#333333">
+                                                              Dear '.$dear.',
+                                                            </td>
+                                                          </tr>
+                                                          <tr style="border-bottom:10px solid #eeeeee">
+                                                            <td style="padding:0 20px 20px;font-family:arial;font-size:12px;line-height:20px;color:#333333;border-bottom:10px solid #eeeeee">
+                                                             Click on the link below to activate your account for <a href="'.$url.'" style="text-decoration:none!important;text-decoration:none;color:#0064c8" target="_blank" >'.$url.'</a>
+                                                             <br/><br/> 
+                                                             '.$urlActive.'
+                                                            <br><br>
+                                                              Thank you for use our services of <a href="'.$url.'" >KenNguyen</a> online products and services.
+                                                              <br>
+                                                            </td>
+                                                          </tr>
+                                                      </tbody>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </td>
+                            </tr>
+                        </tbody>
+                        </table><div class="yj6qo"></div><div class="adL">
+                    </div></div><div class="adL">
+                </div></div>';
+
     $mail->MsgHTML($content);
     $mail->Send();
 
@@ -397,8 +477,21 @@ function activeAccountSMTP($email) {
 add_action( 'active_account_email', 'activeAccountSMTP');
 
 function forgetPasswordSMTP($email, $password) {
+    global $wpdb;
     global $va_options;
+    $table = $wpdb->prefix . 'customer';
+
     $mail = new \PHPMailer\PHPMailer\PHPMailer(true);
+    $fullname = '';
+    $url = home_url();
+    $queryResult = $wpdb->get_results(
+        $wpdb->prepare(
+            "SELECT * FROM {$table}  WHERE email=%s",$email));
+
+    if (!empty($queryResult)) {
+        $fullname = $queryResult[0]->first_name . ' ' . $queryResult[0]->last_name;
+    }
+    $dear = !empty($fullname) ? $fullname : $email;
 
     $mail->IsSMTP();
     $mail->Mailer = "smtp";
@@ -414,9 +507,77 @@ function forgetPasswordSMTP($email, $password) {
     $mail->AddAddress($email, "Create new password for KenNguyen account");
     $mail->SetFrom($va_options['kn_email_from'], "Create new password for KenNguyen account");
     $mail->Subject = "Create new password for KenNguyen account!!";
-    $content = "<b>Create new password for KenNguyen account!</b><br>";
-    $content .= "Your temporary password is:  <b>$password</b><br>";
-    $content .= "Please change password after successful login!";
+      $content = '<div style="width:100%"><div class="adM">
+                    </div><div style="max-width:600px"><div class="adM">
+                        </div><table cellspacing="0" cellpadding="0" border="0" align="center" bgcolor="#eeeeee" width="100%" style="max-width:600px">
+                            <tbody><tr>
+                                <td style="font-family:arial;font-size:12px;color:#333333;padding:10px 20px;text-align:center">
+                                </td>
+                            </tr>
+                        </tbody></table>
+                        <table style="margin-left:0;border-collapse:collapse;background-color:#ffffff;width:100%;max-width:600px" cellspacing="0" cellpadding="0" border="0">
+                            <tbody>
+                            <tr>
+                                <td style="background-color:#ffffff">
+                                    <table cellspacing="0" cellpadding="0" border="0" align="center" bgcolor="#ffffff" width="100%" style="max-width:600px;border-bottom:1px solid #cccccc">
+                                       <tbody>
+                                         <tr>
+                                            <td style="padding:20px;text-align:left">
+                                                <span style="color:#000000;font-family:Arial;font-size:18px;font-weight:bold">
+                                                    <a href="'.$url.'" target="_blank" >
+                                                        KenNguyen
+                                                    </a>
+                                                </span>
+                                                <br>
+                                                <a href="'.$url.'" style="color:#000000;text-decoration:none" target="_blank">
+                                                    <span style="font-family:Arial;font-size:14px;font-weight:bold">
+                                                        Create new password for KenNguyen account!
+                                                    </span>
+                                                </a>
+                                            </td>
+                                         </tr>
+                                        </tbody>
+                                    </table>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <table cellspacing="0" cellpadding="0" border="0" style="width:100%">
+                                        <tbody>
+                                            <tr>
+                                                <td style="padding:20px">
+                
+                                                    <table cellspacing="0" cellpadding="0" border="0" align="center" bgcolor="#ffffff" width="100%" style="max-width:600px">
+                                                      <tbody>
+                                                          <tr>
+                                                            <td style="padding:20px 20px 15px;font-family:arial;font-size:12px;line-height:20px;color:#333333">
+                                                              Dear '.$dear.',
+                                                            </td>
+                                                          </tr>
+                                                          <tr style="border-bottom:10px solid #eeeeee">
+                                                            <td style="padding:0 20px 20px;font-family:arial;font-size:12px;line-height:20px;color:#333333;border-bottom:10px solid #eeeeee">
+                                                             This is new your password for <a href="'.$url.'" style="text-decoration:none!important;text-decoration:none;color:#0064c8" target="_blank" >'.$url.'</a>
+                                                             <br/>
+                                                              <strong style="font-size: 20px; background-color: #EEEEEE"> '.$password.'</strong>
+                                                              <br/> Please change your password when you login successful!
+                                                            <br><br>
+                                                              Thank you for use our services of <a href="'.$url.'" >KenNguyen</a> online products and services.
+                                                              <br>
+                                                            </td>
+                                                          </tr>
+                                                      </tbody>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </td>
+                            </tr>
+                        </tbody>
+                        </table><div class="yj6qo"></div><div class="adL">
+                    </div></div><div class="adL">
+                </div></div>';
+
     $mail->MsgHTML($content);
     $mail->Send();
 
