@@ -28,13 +28,13 @@ function so_37823371_menu_item_class ( $classes, $item, $args, $depth ){
     return $classes;
 }
 
-function create_custom_post_type_craft_collection()
+function create_custom_post_type_craft()
 {
     /*
      * Biến $label để chứa các text liên quan đến tên hiển thị của Post Type trong Admin
      */
     $label = array(
-        'name' => 'Craft collection', //Tên post type dạng số nhiều
+        'name' => 'Craft management', //Tên post type dạng số nhiều
     );
 
 
@@ -43,16 +43,11 @@ function create_custom_post_type_craft_collection()
      */
     $args = array(
         'labels' => $label, //Gọi các label trong biến $label ở trên
-        'description' => 'Craft collection', //Mô tả của post type
+        'description' => 'Craft management', //Mô tả của post type
         'supports' => array(
             'title',
             'editor',
-            'excerpt',
-            'author',
             'thumbnail',
-            'comments',
-            'trackbacks',
-            'revisions',
             'custom-fields'
         ), //Các tính năng được hỗ trợ trong post type
         'taxonomies' => array( 'category', 'post_tag' ), //Các taxonomy được phép sử dụng để phân loại nội dung
@@ -72,59 +67,53 @@ function create_custom_post_type_craft_collection()
     );
 
 
-    register_post_type('craftcollection', $args); //Tạo post type với slug tên là craftcollection và các tham số trong biến $args ở trên
+    register_post_type('craft', $args); //Tạo post type với slug tên là craftcollection và các tham số trong biến $args ở trên
 }
 /* Kích hoạt hàm tạo custom post type */
-add_action('init', 'create_custom_post_type_craft_collection');
+add_action('init', 'create_custom_post_type_craft');
 
-function create_custom_post_type_craft_academy()
-{
-    /*
-     * Biến $label để chứa các text liên quan đến tên hiển thị của Post Type trong Admin
-     */
-    $label = array(
-        'name' => 'Craft academy', //Tên post type dạng số nhiều
-    );
-
-
-    /*
-     * Biến $args là những tham số quan trọng trong Post Type
-     */
-    $args = array(
-        'labels' => $label, //Gọi các label trong biến $label ở trên
-        'description' => 'Craft academy', //Mô tả của post type
-        'supports' => array(
-            'title',
-            'editor',
-            'excerpt',
-            'author',
-            'thumbnail',
-            'comments',
-            'trackbacks',
-            'revisions',
-            'custom-fields'
-        ), //Các tính năng được hỗ trợ trong post type
-        'taxonomies' => array( 'category', 'post_tag' ), //Các taxonomy được phép sử dụng để phân loại nội dung
-        'hierarchical' => false, //Cho phép phân cấp, nếu là false thì post type này giống như Post, true thì giống như Page
-        'public' => true, //Kích hoạt post type
-        'show_ui' => true, //Hiển thị khung quản trị như Post/Page
-        'show_in_menu' => true, //Hiển thị trên Admin Menu (tay trái)
-        'show_in_nav_menus' => true, //Hiển thị trong Appearance -> Menus
-        'show_in_admin_bar' => true, //Hiển thị trên thanh Admin bar màu đen.
-        'menu_position' => 4, //Thứ tự vị trí hiển thị trong menu (tay trái)
-        'menu_icon' => 'dashicons-admin-post', //Đường dẫn tới icon sẽ hiển thị
-        'can_export' => true, //Có thể export nội dung bằng Tools -> Export
-        'has_archive' => true, //Cho phép lưu trữ (month, date, year)
-        'exclude_from_search' => false, //Loại bỏ khỏi kết quả tìm kiếm
-        'publicly_queryable' => true, //Hiển thị các tham số trong query, phải đặt true
-        'capability_type' => 'post' //
-    );
-
-
-    register_post_type('craftacademy', $args); //Tạo post type với slug tên là craftcollection và các tham số trong biến $args ở trên
-}
-/* Kích hoạt hàm tạo custom post type */
-add_action('init', 'create_custom_post_type_craft_academy');
+//function create_custom_post_type_craft_academy()
+//{
+//    /*
+//     * Biến $label để chứa các text liên quan đến tên hiển thị của Post Type trong Admin
+//     */
+//    $label = array(
+//        'name' => 'Craft academy', //Tên post type dạng số nhiều
+//    );
+//
+//
+//    /*
+//     * Biến $args là những tham số quan trọng trong Post Type
+//     */
+//    $args = array(
+//        'labels' => $label, //Gọi các label trong biến $label ở trên
+//        'description' => 'Craft academy', //Mô tả của post type
+//        'supports' => array(
+//            'title',
+//            'editor',
+//            'custom-fields'
+//        ), //Các tính năng được hỗ trợ trong post type
+//        'taxonomies' => array( 'category', 'post_tag' ), //Các taxonomy được phép sử dụng để phân loại nội dung
+//        'hierarchical' => false, //Cho phép phân cấp, nếu là false thì post type này giống như Post, true thì giống như Page
+//        'public' => true, //Kích hoạt post type
+//        'show_ui' => true, //Hiển thị khung quản trị như Post/Page
+//        'show_in_menu' => true, //Hiển thị trên Admin Menu (tay trái)
+//        'show_in_nav_menus' => true, //Hiển thị trong Appearance -> Menus
+//        'show_in_admin_bar' => true, //Hiển thị trên thanh Admin bar màu đen.
+//        'menu_position' => 4, //Thứ tự vị trí hiển thị trong menu (tay trái)
+//        'menu_icon' => 'dashicons-admin-post', //Đường dẫn tới icon sẽ hiển thị
+//        'can_export' => true, //Có thể export nội dung bằng Tools -> Export
+//        'has_archive' => true, //Cho phép lưu trữ (month, date, year)
+//        'exclude_from_search' => false, //Loại bỏ khỏi kết quả tìm kiếm
+//        'publicly_queryable' => true, //Hiển thị các tham số trong query, phải đặt true
+//        'capability_type' => 'post' //
+//    );
+//
+//
+//    register_post_type('craftacademy', $args); //Tạo post type với slug tên là craftcollection và các tham số trong biến $args ở trên
+//}
+///* Kích hoạt hàm tạo custom post type */
+//add_action('init', 'create_custom_post_type_craft_academy');
 
 function create_custom_post_type_manage_question_and_answer()
 {
@@ -215,7 +204,7 @@ add_action('init', 'create_custom_post_type_package_content');
 // Alter the main query
 function add_craft_to_frontpage( $query ) {
     if ( is_home() && $query->is_main_query() ) {
-        $query->set( 'post_type', array( 'post', 'craftacademy', 'craftcollection' ) );
+        $query->set( 'post_type', array( 'post','craft' ) );
     }
     return $query;
 }
@@ -264,88 +253,88 @@ add_action('init', 'custom_post_type_slider');
 
 
 // Registering custom post status
-function wpb_custom_post_status(){
-    register_post_status('free', array(
-        'label'                     => _x( 'Miễn phí', 'post' ),
-        'public'                    => true,
-        'exclude_from_search'       => true,
-        'show_in_admin_all_list'    => true,
-        'show_in_admin_status_list' => true,
-        'label_count'               => _n_noop( 'Miễn phí <span class="count">(%s)</span>', 'Miễn phí <span class="count">(%s)</span>' ),
-    ) );
-
-    register_post_status('sale', array(
-        'label'                     => _x( 'Đang bán', 'post' ),
-        'public'                    => true,
-        'exclude_from_search'       => true,
-        'show_in_admin_all_list'    => true,
-        'show_in_admin_status_list' => true,
-        'label_count'               => _n_noop( 'Đang bán <span class="count">(%s)</span>', 'Đang bán <span class="count">(%s)</span>' ),
-    ) );
-}
-add_action( 'init', 'wpb_custom_post_status' );
-
-
-add_action('admin_footer-post.php', 'wpb_append_post_status_list2');
-add_action('admin_footer-post-new.php', 'wpb_append_post_status_list2');
-function wpb_append_post_status_list2(){
-    global $post;
-    $complete = '';
-    $label = 'Free';
-    $value = 'free';
-    if($post->post_type == 'craftcollection' || $post->post_type == 'craftacademy'){
-
-        if($post->post_status == 'free'){
-            $complete = ' selected=\"selected\"';
-        }
-
-        $data = $complete ? $label : '';
-        echo '
-                <script>
-                jQuery(document).ready(function($){
-                    console.log("vàooo")
-                $("select#post_status").prepend("<option value=\"'.$value.'\" '.$complete.'>'.$label.'</option>");
-                $("#post-status-display").prepend("'.$data.'");
-                });
-                </script>
-                ';
-    }
-}
-
-// Using jQuery to add it to post status dropdown
-add_action('admin_footer-post.php', 'wpb_append_post_status_list');
-add_action('admin_footer-post-new.php', 'wpb_append_post_status_list');
-function wpb_append_post_status_list(){
-    global $post;
-    $complete = '';
-    $label = 'Sale';
-    $value = 'sale';
-    if($post->post_type == 'craftcollection' || $post->post_type == 'craftacademy'){
-        if($post->post_status == 'sale'){
-            $complete = ' selected=\"selected\"';
-        }
-        $data = $complete ? $label : '';
-        echo '
-                <script>
-                jQuery(document).ready(function($){
-                $("select#post_status").prepend("<option value=\"'.$value.'\" '.$complete.'>'.$label.'</option>");
-                $("#post-status-display").append("'.$data.'");
-                });
-                </script>
-                ';
-    }
-}
-
-add_action('admin_footer-edit.php','rudr_status_into_inline_edit');
-
-function rudr_status_into_inline_edit() { // ultra-simple example
-    echo "<script>
-	jQuery(document).ready( function($) {
-        $( 'select[name=\"_status\"]' ).prepend( '<option value=\"free\">Free</option>' );
-        $( 'select[name=\"_status\"]' ).prepend( '<option value=\"sale\">Sale</option>' );
-	});
-	</script>";
-}
+//function wpb_custom_post_status(){
+//    register_post_status('free', array(
+//        'label'                     => _x( 'Miễn phí', 'post' ),
+//        'public'                    => true,
+//        'exclude_from_search'       => true,
+//        'show_in_admin_all_list'    => true,
+//        'show_in_admin_status_list' => true,
+//        'label_count'               => _n_noop( 'Miễn phí <span class="count">(%s)</span>', 'Miễn phí <span class="count">(%s)</span>' ),
+//    ) );
+//
+//    register_post_status('sale', array(
+//        'label'                     => _x( 'Đang bán', 'post' ),
+//        'public'                    => true,
+//        'exclude_from_search'       => true,
+//        'show_in_admin_all_list'    => true,
+//        'show_in_admin_status_list' => true,
+//        'label_count'               => _n_noop( 'Đang bán <span class="count">(%s)</span>', 'Đang bán <span class="count">(%s)</span>' ),
+//    ) );
+//}
+//add_action( 'init', 'wpb_custom_post_status' );
+//
+//
+//add_action('admin_footer-post.php', 'wpb_append_post_status_list2');
+//add_action('admin_footer-post-new.php', 'wpb_append_post_status_list2');
+//function wpb_append_post_status_list2(){
+//    global $post;
+//    $complete = '';
+//    $label = 'Free';
+//    $value = 'free';
+//    if($post->post_type == 'craftcollection' || $post->post_type == 'craftacademy'){
+//
+//        if($post->post_status == 'free'){
+//            $complete = ' selected=\"selected\"';
+//        }
+//
+//        $data = $complete ? $label : '';
+//        echo '
+//                <script>
+//                jQuery(document).ready(function($){
+//                    console.log("vàooo")
+//                $("select#post_status").prepend("<option value=\"'.$value.'\" '.$complete.'>'.$label.'</option>");
+//                $("#post-status-display").prepend("'.$data.'");
+//                });
+//                </script>
+//                ';
+//    }
+//}
+//
+//// Using jQuery to add it to post status dropdown
+//add_action('admin_footer-post.php', 'wpb_append_post_status_list');
+//add_action('admin_footer-post-new.php', 'wpb_append_post_status_list');
+//function wpb_append_post_status_list(){
+//    global $post;
+//    $complete = '';
+//    $label = 'Sale';
+//    $value = 'sale';
+//    if($post->post_type == 'craftcollection' || $post->post_type == 'craftacademy'){
+//        if($post->post_status == 'sale'){
+//            $complete = ' selected=\"selected\"';
+//        }
+//        $data = $complete ? $label : '';
+//        echo '
+//                <script>
+//                jQuery(document).ready(function($){
+//                $("select#post_status").prepend("<option value=\"'.$value.'\" '.$complete.'>'.$label.'</option>");
+//                $("#post-status-display").append("'.$data.'");
+//                });
+//                </script>
+//                ';
+//    }
+//}
+//
+//add_action('admin_footer-edit.php','rudr_status_into_inline_edit');
+//
+//function rudr_status_into_inline_edit() { // ultra-simple example
+//    echo "<script>
+//	jQuery(document).ready( function($) {
+//        $( 'select[name=\"_status\"]' ).prepend( '<option value=\"free\">Free</option>' );
+//        $( 'select[name=\"_status\"]' ).prepend( '<option value=\"sale\">Sale</option>' );
+//	});
+//	</script>";
+//}
 
 function getRequest() {
     global $wp;
@@ -370,9 +359,21 @@ add_action( 'init', 'wpabsolute_block_users_backend' );
 
 function activeAccountSMTP($email) {
     global $va_options;
+    global $wpdb;
+    $table = $wpdb->prefix . 'customer';
     $urlActive = site_url() . '/verify?token='. md5($email);
 
     $mail = new \PHPMailer\PHPMailer\PHPMailer(true);
+    $fullname = '';
+    $url = home_url();
+    $queryResult = $wpdb->get_results(
+        $wpdb->prepare(
+            "SELECT * FROM {$table}  WHERE email=%s",$email));
+
+    if (!empty($queryResult)) {
+        $fullname = $queryResult[0]->first_name . ' ' . $queryResult[0]->last_name;
+    }
+    $dear = !empty($fullname) ? $fullname : $email;
 
     $mail->IsSMTP();
     $mail->Mailer = "smtp";
@@ -385,11 +386,79 @@ function activeAccountSMTP($email) {
     $mail->Password   = $va_options['kn_email_password'];
 
     $mail->IsHTML(true);
-    $mail->AddAddress($email, "Veify email for KenNguyen");
-    $mail->SetFrom($va_options['kn_email_from'], "Verify account!!");
-    $mail->Subject = "Verify account!!";
-    $content = "<b>Click on the link below to activate your account!</b><br>";
-    $content .= "<a href='".$urlActive."'>Active account</a>";
+    $mail->AddAddress($email, "Verify account register for KenNguyen!!");
+    $mail->SetFrom($va_options['kn_email_from'], "Verify account register for KenNguyen!!");
+    $mail->Subject = "Verify account register for KenNguyen!!";
+    $content = '<div style="width:100%"><div class="adM">
+                    </div><div style="max-width:600px"><div class="adM">
+                        </div><table cellspacing="0" cellpadding="0" border="0" align="center" bgcolor="#eeeeee" width="100%" style="max-width:600px">
+                            <tbody><tr>
+                                <td style="font-family:arial;font-size:12px;color:#333333;padding:10px 20px;text-align:center">
+                                </td>
+                            </tr>
+                        </tbody></table>
+                        <table style="margin-left:0;border-collapse:collapse;background-color:#ffffff;width:100%;max-width:600px" cellspacing="0" cellpadding="0" border="0">
+                            <tbody>
+                            <tr>
+                                <td style="background-color:#ffffff">
+                                    <table cellspacing="0" cellpadding="0" border="0" align="center" bgcolor="#ffffff" width="100%" style="max-width:600px;border-bottom:1px solid #cccccc">
+                                       <tbody>
+                                         <tr>
+                                            <td style="padding:20px;text-align:left">
+                                                <span style="color:#000000;font-family:Arial;font-size:18px;font-weight:bold">
+                                                    <a href="'.$url.'" target="_blank" >
+                                                        KenNguyen
+                                                    </a>
+                                                </span>
+                                                <br>
+                                                <a href="'.$url.'" style="color:#000000;text-decoration:none" target="_blank">
+                                                    <span style="font-family:Arial;font-size:14px;font-weight:bold">
+                                                        Active register account for KenNguyen
+                                                    </span>
+                                                </a>
+                                            </td>
+                                         </tr>
+                                        </tbody>
+                                    </table>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <table cellspacing="0" cellpadding="0" border="0" style="width:100%">
+                                        <tbody>
+                                            <tr>
+                                                <td style="padding:20px">
+                
+                                                    <table cellspacing="0" cellpadding="0" border="0" align="center" bgcolor="#ffffff" width="100%" style="max-width:600px">
+                                                      <tbody>
+                                                          <tr>
+                                                            <td style="padding:20px 20px 15px;font-family:arial;font-size:12px;line-height:20px;color:#333333">
+                                                              Dear '.$dear.',
+                                                            </td>
+                                                          </tr>
+                                                          <tr style="border-bottom:10px solid #eeeeee">
+                                                            <td style="padding:0 20px 20px;font-family:arial;font-size:12px;line-height:20px;color:#333333;border-bottom:10px solid #eeeeee">
+                                                             Click on the link below to activate your account for <a href="'.$url.'" style="text-decoration:none!important;text-decoration:none;color:#0064c8" target="_blank" >'.$url.'</a>
+                                                             <br/><br/> 
+                                                             '.$urlActive.'
+                                                            <br><br>
+                                                              Thank you for use our services of <a href="'.$url.'" >KenNguyen</a> online products and services.
+                                                              <br>
+                                                            </td>
+                                                          </tr>
+                                                      </tbody>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </td>
+                            </tr>
+                        </tbody>
+                        </table><div class="yj6qo"></div><div class="adL">
+                    </div></div><div class="adL">
+                </div></div>';
+
     $mail->MsgHTML($content);
     $mail->Send();
 
@@ -397,8 +466,21 @@ function activeAccountSMTP($email) {
 add_action( 'active_account_email', 'activeAccountSMTP');
 
 function forgetPasswordSMTP($email, $password) {
+    global $wpdb;
     global $va_options;
+    $table = $wpdb->prefix . 'customer';
+
     $mail = new \PHPMailer\PHPMailer\PHPMailer(true);
+    $fullname = '';
+    $url = home_url();
+    $queryResult = $wpdb->get_results(
+        $wpdb->prepare(
+            "SELECT * FROM {$table}  WHERE email=%s",$email));
+
+    if (!empty($queryResult)) {
+        $fullname = $queryResult[0]->first_name . ' ' . $queryResult[0]->last_name;
+    }
+    $dear = !empty($fullname) ? $fullname : $email;
 
     $mail->IsSMTP();
     $mail->Mailer = "smtp";
@@ -414,9 +496,77 @@ function forgetPasswordSMTP($email, $password) {
     $mail->AddAddress($email, "Create new password for KenNguyen account");
     $mail->SetFrom($va_options['kn_email_from'], "Create new password for KenNguyen account");
     $mail->Subject = "Create new password for KenNguyen account!!";
-    $content = "<b>Create new password for KenNguyen account!</b><br>";
-    $content .= "Your temporary password is:  <b>$password</b><br>";
-    $content .= "Please change password after successful login!";
+      $content = '<div style="width:100%"><div class="adM">
+                    </div><div style="max-width:600px"><div class="adM">
+                        </div><table cellspacing="0" cellpadding="0" border="0" align="center" bgcolor="#eeeeee" width="100%" style="max-width:600px">
+                            <tbody><tr>
+                                <td style="font-family:arial;font-size:12px;color:#333333;padding:10px 20px;text-align:center">
+                                </td>
+                            </tr>
+                        </tbody></table>
+                        <table style="margin-left:0;border-collapse:collapse;background-color:#ffffff;width:100%;max-width:600px" cellspacing="0" cellpadding="0" border="0">
+                            <tbody>
+                            <tr>
+                                <td style="background-color:#ffffff">
+                                    <table cellspacing="0" cellpadding="0" border="0" align="center" bgcolor="#ffffff" width="100%" style="max-width:600px;border-bottom:1px solid #cccccc">
+                                       <tbody>
+                                         <tr>
+                                            <td style="padding:20px;text-align:left">
+                                                <span style="color:#000000;font-family:Arial;font-size:18px;font-weight:bold">
+                                                    <a href="'.$url.'" target="_blank" >
+                                                        KenNguyen
+                                                    </a>
+                                                </span>
+                                                <br>
+                                                <a href="'.$url.'" style="color:#000000;text-decoration:none" target="_blank">
+                                                    <span style="font-family:Arial;font-size:14px;font-weight:bold">
+                                                        Create new password for KenNguyen account!
+                                                    </span>
+                                                </a>
+                                            </td>
+                                         </tr>
+                                        </tbody>
+                                    </table>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <table cellspacing="0" cellpadding="0" border="0" style="width:100%">
+                                        <tbody>
+                                            <tr>
+                                                <td style="padding:20px">
+                
+                                                    <table cellspacing="0" cellpadding="0" border="0" align="center" bgcolor="#ffffff" width="100%" style="max-width:600px">
+                                                      <tbody>
+                                                          <tr>
+                                                            <td style="padding:20px 20px 15px;font-family:arial;font-size:12px;line-height:20px;color:#333333">
+                                                              Dear '.$dear.',
+                                                            </td>
+                                                          </tr>
+                                                          <tr style="border-bottom:10px solid #eeeeee">
+                                                            <td style="padding:0 20px 20px;font-family:arial;font-size:12px;line-height:20px;color:#333333;border-bottom:10px solid #eeeeee">
+                                                             This is new your password for <a href="'.$url.'" style="text-decoration:none!important;text-decoration:none;color:#0064c8" target="_blank" >'.$url.'</a>
+                                                             <br/>
+                                                              <strong style="font-size: 20px; background-color: #EEEEEE"> '.$password.'</strong>
+                                                              <br/> Please change your password when you login successful!
+                                                            <br><br>
+                                                              Thank you for use our services of <a href="'.$url.'" >KenNguyen</a> online products and services.
+                                                              <br>
+                                                            </td>
+                                                          </tr>
+                                                      </tbody>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </td>
+                            </tr>
+                        </tbody>
+                        </table><div class="yj6qo"></div><div class="adL">
+                    </div></div><div class="adL">
+                </div></div>';
+
     $mail->MsgHTML($content);
     $mail->Send();
 
@@ -483,35 +633,83 @@ function add_get_val() {
 }
 
 // Add the custom columns to the book post type:
-add_filter( 'manage_craftacademy_posts_columns', 'set_custom_edit_craftacademy_columns' );
-function set_custom_edit_craftacademy_columns($columns) {
-    $columns['status'] = __( 'Status', 'smashing' );
-
-    return $columns;
-}
-
-add_action( 'manage_craftacademy_posts_custom_column', 'smashing_craftacademy_column', 10, 2);
-function smashing_craftacademy_column( $column, $post_id ) {
-    // Image column
-    if ( 'status' === $column ) {
-        echo get_post_status( $post_id);
-    }
-}
+//add_filter( 'manage_craftacademy_posts_columns', 'set_custom_edit_craftacademy_columns' );
+//function set_custom_edit_craftacademy_columns($columns) {
+//    $columns['status'] = __( 'Status', 'smashing' );
+//
+//    return $columns;
+//}
+//
+//add_action( 'manage_craftacademy_posts_custom_column', 'smashing_craftacademy_column', 10, 2);
+//function smashing_craftacademy_column( $column, $post_id ) {
+//    // Image column
+//    if ( 'status' === $column ) {
+//        echo get_post_status( $post_id);
+//    }
+//}
 
 // Add the custom columns to the book post type:
-add_filter( 'manage_craftcollection_posts_columns', 'set_custom_edit_craftcollection_columns' );
-function set_custom_edit_craftcollection_columns($columns) {
-    $columns['status'] = __( 'Status', 'smashing' );
+add_filter( 'manage_craft_posts_columns', 'set_custom_edit_craft_columns' );
+function set_custom_edit_craft_columns($columns) {
+    $columns['craft_type'] = __( 'Type', 'smashing' );
+    $columns['craft_thumb'] = __( 'Image', 'smashing' );
 
-    return $columns;
+    $n_columns = array();
+    $move = 'craft_thumb'; // which column to move
+    $before = 'title'; // move before this column
+
+    foreach($columns as $key => $value) {
+        if ($key==$before){
+            $n_columns[$move] = $move;
+        }
+        $n_columns[$key] = $value;
+    }
+    return $n_columns;
 }
 
-add_action( 'manage_craftcollection_posts_custom_column', 'smashing_craftcollection_column', 10, 2);
-function smashing_craftcollection_column( $column, $post_id ) {
+add_image_size( 'admin-craft-thumb-image', 60, 60, false );
+add_action( 'manage_craft_posts_custom_column', 'smashing_craft_column', 10, 2);
+function smashing_craft_column( $column, $post_id ) {
     // Image column
-    if ( 'status' === $column ) {
-        echo get_post_status( $post_id);
+    if ( 'craft_type' === $column ) {
+        if (get_field('premium_membership')) {
+            echo '<span class="craft-status craft-status-sale">Premium</span>';
+        } else {
+            echo '<span class="craft-status craft-status-free">Free</span>';
+        }
     }
+
+    if ( 'craft_thumb' === $column ) {
+        echo the_post_thumbnail('admin-craft-thumb-image');
+    }
+}
+
+add_action('admin_head', 'j0e_add_admin_styles');
+function j0e_add_admin_styles() {
+    echo '<style>
+.column-craft_thumb {width: 60px;}
+.column-craft_type {text-align: center !important;}
+.craft-status-sale {
+    background-color: #ffc107 !important;
+}
+.craft-status-free {
+    background-color: #28a745 !important;
+}
+.craft-status {
+    color: #fff;
+    background-color: #007bff;
+    padding-right: 0.6em;
+    padding-left: 0.6em;
+    border-radius: 10rem;
+    display: inline-block;
+    padding: 0.25em 0.4em;
+    font-weight: 700;
+    line-height: 1;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+}
+</style>';
 }
 
 function check_membership() {
@@ -556,8 +754,8 @@ function get_post_loadmore() {
         $category = get_cat_ID($category);
     }
     $args = array(
-        'post_status' => array('free', 'sale'),
-        'post_type'      => array('craftcollection', 'craftacademy'),
+        'post_status' => 'publish',
+        'post_type'      => array('craft'),
         'cat' => $category,
         's'		=> $keyword,
         'orderby' => 'date',
@@ -590,4 +788,38 @@ function get_post_loadmore() {
         </div>
     <?php endwhile; wp_reset_postdata();
     die();
+}
+
+add_filter( 'views_edit-craft', 'meta_views_wpse_94630', 10, 1 );
+
+function meta_views_wpse_94630( $views )
+{
+    $views['craftpremium'] = '<a href="edit.php?meta_data=premium_membership&meta_value=1&post_type=craft">Craft premium</a>';
+    $views['craftfree'] = '<a href="edit.php?meta_data=premium_membership&meta_value=0&post_type=craft">Craft free</a>';
+    return $views;
+}
+
+add_action( 'load-edit.php', 'load_custom_filter_wpse_94630' );
+
+function load_custom_filter_wpse_94630()
+{
+    global $typenow;
+
+    // Adjust the Post Type
+    if( 'craft' != $typenow )
+        return;
+
+    add_filter( 'posts_where' , 'posts_where_wpse_94630' );
+}
+
+function posts_where_wpse_94630( $where )
+{
+    global $wpdb;
+    if ( isset( $_GET[ 'meta_data' ] ) && !empty( $_GET[ 'meta_data' ] ))
+    {
+        $meta = esc_sql( $_GET['meta_data'] );
+        $metaValue = esc_sql( $_GET['meta_value'] );
+        $where .= " AND ID IN (SELECT post_id FROM $wpdb->postmeta WHERE meta_key='$meta' and meta_value='$metaValue' )";
+    }
+    return $where;
 }

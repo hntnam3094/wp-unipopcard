@@ -28,7 +28,8 @@ if (!empty($_GET) && isset($_GET['refno'])) {
     $dataOrder = callRPC((Object)$jsonRpcRequest, $host, true);
     $emailOrder = $dataOrder->BillingDetails->Email;
     $productName = $dataOrder->Items[0]->ProductDetails->Name;
-
+    $first_name = $dataOrder->BillingDetails->FirstName;
+    $last_name = $dataOrder->BillingDetails->LastName;
     $idPackage = $_GET['id_package'];
 //end get order detail
 
@@ -100,7 +101,7 @@ if (!empty($_GET) && isset($_GET['refno'])) {
         } else {
             $queryResult = $wpdb->get_results(
                 $wpdb->prepare(
-                    "SELECT * FROM {$table} 
+                    "SELECT * FROM {$table}
                             WHERE email=%s ", $emailOrder));
 
             if (empty($queryResult)) {
@@ -116,8 +117,8 @@ if (!empty($_GET) && isset($_GET['refno'])) {
 
                 //create new customer with random password + package
                 $data = array();
-                $data['first_name'] = '';
-                $data['last_name'] = '';
+                $data['first_name'] = $first_name;
+                $data['last_name'] = $last_name;
                 $data['email'] = $emailOrder;
                 $data['password'] = md5($random_pass);
                 $data['member_ship'] = 1;
@@ -132,7 +133,7 @@ if (!empty($_GET) && isset($_GET['refno'])) {
                     // get info of user by email
                     $queryResultInsert = $wpdb->get_results(
                         $wpdb->prepare(
-                            "SELECT * FROM {$table} 
+                            "SELECT * FROM {$table}
                             WHERE email=%s ", $emailOrder));
 
                     if (!empty($queryResultInsert)) {
@@ -161,7 +162,7 @@ if (!empty($_GET) && isset($_GET['refno'])) {
                 //get info of customer
                 $queryResultExist = $wpdb->get_results(
                     $wpdb->prepare(
-                        "SELECT * FROM {$table} 
+                        "SELECT * FROM {$table}
                             WHERE email=%s ", $emailOrder));
 
                 if (!empty($queryResultExist)) {
@@ -221,11 +222,11 @@ get_header()
         <?php
             if ($message['action'] == 'logout') { ?>
                 <a class="btn btn-danger" href="logout.html" data-bs-toggle="modal" data-bs-target="#modal_logout">
-                    Logout
+                    LOGOUT
                 </a>
         <?php    } else { ?>
                 <a class="btn btn-success" href="<?php site_url() ?>/login">
-                    login
+                    LOGIN
                 </a>
         <?php    }
         ?>

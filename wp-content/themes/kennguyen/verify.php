@@ -18,9 +18,33 @@
             $results = $wpdb->update( $table, $data, $where ); // Also works in this case.
 
             if ($results != 0) {
-                echo "<h5 style='color: green'>Kích hoạt tài khoản thành công!</h5>";
+                ?>
+                <div class="jumbotron text-center pt-50 pb50">
+                    <p class="lead text-success"><strong>Active account successful!</strong></p>
+                    <p>
+                        Having trouble? <a href="">Contact us</a>
+                    </p>
+                    <p class="lead">
+                        <a class="btn btn-success" href="<?php site_url() ?>/login">
+                            LOGIN
+                        </a>
+                    </p>
+                </div>
+                <?php
             } else {
-                echo "<h5 style='color: red'>Gặp lỗi khi kích hoạt tài khoản!Vui lòng kiểm tra lại email đã đăng ký!</h5>";
+                ?>
+                <div class="jumbotron text-center pt-50 pb50">
+                    <p class="lead text-danger"><strong>Active account do not success, please contact us to support your account</strong></p>
+                    <p>
+                        Having trouble? <a href="">Contact us</a>
+                    </p>
+                    <p class="lead">
+                        <a class="btn btn-success" href="<?php site_url() ?>/singup">
+                            SIGN UP
+                        </a>
+                    </p>
+                </div>
+<?php
             }
         }
         get_footer();
