@@ -191,7 +191,7 @@ get_header();
                                                 <input type="text" name="last_name" value="<?php echo isset($user->last_name) ? $user->last_name : ''?>"/>
                                             </div>
                                             <div class="group">
-                                                <input type="text" name="birth_day" value="<?php echo isset($user->birth_day) ? $user->birth_day : ''?>"/>
+                                                <input type="date" name="birth_day" value="<?php echo isset($user->birth_day) ? $user->birth_day : ''?>"/>
                                             </div>
                                             <div class="group">
                                                 <input type="mail" name="email" value="<?php echo isset($user->email) ? $user->email : ''?>" readonly/>
