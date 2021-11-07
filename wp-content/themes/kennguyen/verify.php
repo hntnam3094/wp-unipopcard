@@ -13,7 +13,7 @@
             global $wpdb;
             $table = $wpdb->prefix.'customer';
 
-            $data = [ 'active' => 1 ]; // NULL value.
+            $data = [ 'active' => 1, 'trackingMd5' => '' ]; // NULL value.
             $where = [ 'trackingMd5' => $token ]; // NULL value in WHERE clause.
             $results = $wpdb->update( $table, $data, $where ); // Also works in this case.
 

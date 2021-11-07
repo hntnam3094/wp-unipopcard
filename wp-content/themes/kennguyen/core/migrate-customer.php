@@ -29,7 +29,7 @@ function my_plugin_create_db() {
             password VARCHAR(255) NOT NULL,
             first_name VARCHAR(255),
             last_name VARCHAR(255),
-            birth_day VARCHAR(255),
+            birth_day DATE,
             member_ship INT DEFAULT 0,
             type_member INT DEFAULT 0,
             start_date DATE,
