@@ -1,7 +1,7 @@
 <?php
 add_action( 'admin_menu', 'my_admin_menu' );
 function my_admin_menu() {
-    add_menu_page( 'Pill management', 'Pills', 'manage_options', 'kn-pill', 'admin_pill_page', 'dashicons-media-document');
+    add_menu_page( 'Order management', 'Order', 'manage_options', 'kn-pill', 'admin_pill_page', 'dashicons-media-document');
     add_menu_page( 'Report management', 'Reports', 'manage_options', 'kn-report', 'admin_report_page', 'dashicons-printer');
     wp_enqueue_script( 'google-charts', get_template_directory_uri() . '/js/google-charts.js', array(), '20151215', false );
 }
