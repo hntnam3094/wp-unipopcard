@@ -283,7 +283,7 @@ function getQueryReport($type, $from, $to) {
                 WHERE DATE_FORMAT(v.start_date,"%Y-%m") >= "'.$from.'"
                 AND DATE_FORMAT(v.start_date,"%Y-%m-%d") <= "'.$to.'"
                 GROUP BY DATE(v.start_date)
-                ORDER BY v.start_date';
+                ORDER BY v.start_date DESC';
     }
 
     if ($type == 'week') {
