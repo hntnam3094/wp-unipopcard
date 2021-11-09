@@ -30,7 +30,7 @@
               </div>
             </div>
             <div class="search_project">
-              <input class="input" type="text" placeholder="Search..." id="input-search-data"/>
+              <input class="input" type="text" placeholder="Search..." id="input-search-data" onkeypress="handle(event)"/>
               <input class="submit" type="submit" id="btn-search-data"/>
             </div>
           </div>
