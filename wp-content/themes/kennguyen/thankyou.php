@@ -152,10 +152,10 @@ if (!empty($_GET) && isset($_GET['refno'])) {
                         $wpdb->insert($table_order, $dataOrder);
                         $message = [
                             'text1' => 'Your account active package success!',
-                            'text2' => 'Please check your email to get password for your account and login by your email <br><b>Email: '.$newUser->email.' </b> ',
+                            'text2' => 'Please check your email to get password for your account and login by your email',
                             'action' => 'login'
                         ];
-                        do_action('forget_password_email', $emailOrder, $random_pass);
+                        do_action('forget_password_email', $emailOrder, $random_pass, true);
                     }
                 }
             } else {

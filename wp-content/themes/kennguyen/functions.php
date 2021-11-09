@@ -456,7 +456,13 @@ function activeAccountSMTP($email) {
                                 </td>
                             </tr>
                         </tbody>
-                        </table><div class="yj6qo"></div><div class="adL">
+                        </table>
+                        <table cellspacing="0" cellpadding="0" border="0" align="center" bgcolor="#eeeeee" width="100%" style="max-width:600px">
+                            <tbody><tr>
+                                <td style="font-family:arial;font-size:12px;color:#333333;padding:10px 20px;text-align:center">
+                                </td>
+                            </tr>
+                        </tbody></table><div class="yj6qo"></div><div class="adL">
                     </div></div><div class="adL">
                 </div></div>';
 
@@ -466,7 +472,7 @@ function activeAccountSMTP($email) {
 }
 add_action( 'active_account_email', 'activeAccountSMTP');
 
-function forgetPasswordSMTP($email, $password) {
+function forgetPasswordSMTP($email, $password, $isNewAccount = false) {
     global $wpdb;
     global $va_options;
     $table = $wpdb->prefix . 'customer';
@@ -481,6 +487,11 @@ function forgetPasswordSMTP($email, $password) {
     if (!empty($queryResult)) {
         $fullname = $queryResult[0]->first_name . ' ' . $queryResult[0]->last_name;
     }
+    $startDate = $queryResult[0]->start_date;
+    $endDate = $queryResult[0]->end_date;
+    $member_package = $queryResult[0]->type_member == 1 ? $va_options['kn_monthly_package_title'] : $va_options['kn_yearly_package_title'];
+    $email_account = $queryResult[0]->email;
+
     $dear = !empty($fullname) ? $fullname : $email;
 
     $mail->IsSMTP();
@@ -494,10 +505,10 @@ function forgetPasswordSMTP($email, $password) {
     $mail->Password   = $va_options['kn_email_password'];
 
     $mail->IsHTML(true);
-    $mail->AddAddress($email, "Create new password for KenNguyen account");
-    $mail->SetFrom($va_options['kn_email_from'], "Create new password for KenNguyen account");
-    $mail->Subject = "Create new password for KenNguyen account!!";
-      $content = '<div style="width:100%; background-color: #EEEEEE"><div class="adM">
+    $mail->AddAddress($email, $isNewAccount ? "Successful payment at Ken Nguyen!" : "Create new password for KenNguyen account!");
+    $mail->SetFrom($va_options['kn_email_from'], $isNewAccount ? "Successful payment at Ken Nguyen!" : "Create new password for KenNguyen account!");
+    $mail->Subject = $isNewAccount ? "Successful payment at Ken Nguyen!" : "Create new password for KenNguyen account!";
+    $content = '<div style="width:100%; background-color: #EEEEEE"><div class="adM">
                     </div><div style="max-width:600px; margin: 0 auto"><div class="adM">
                         </div><table cellspacing="0" cellpadding="0" border="0" align="center" bgcolor="#eeeeee" width="100%" style="max-width:600px">
                             <tbody><tr>
@@ -565,15 +576,118 @@ function forgetPasswordSMTP($email, $password) {
                                 </td>
                             </tr>
                         </tbody>
-                        </table><div class="yj6qo"></div><div class="adL">
+                        </table>
+                        <table cellspacing="0" cellpadding="0" border="0" align="center" bgcolor="#eeeeee" width="100%" style="max-width:600px">
+                            <tbody><tr>
+                                <td style="font-family:arial;font-size:12px;color:#333333;padding:10px 20px;text-align:center">
+                                </td>
+                            </tr>
+                        </tbody></table><div class="yj6qo"></div><div class="adL">
                     </div></div><div class="adL">
                 </div></div>';
+
+    if ($isNewAccount) {
+        $content = '<div style="width:100%; background-color: #EEEEEE"><div class="adM">
+                    </div><div style="max-width:600px; margin: 0 auto"><div class="adM">
+                        </div><table cellspacing="0" cellpadding="0" border="0" align="center" bgcolor="#eeeeee" width="100%" style="max-width:600px">
+                            <tbody><tr>
+                                <td style="font-family:arial;font-size:12px;color:#333333;padding:10px 20px;text-align:center">
+                                </td>
+                            </tr>
+                        </tbody></table>
+                        <table style="margin-left:0;border-collapse:collapse;background-color:#ffffff;width:100%;max-width:600px" cellspacing="0" cellpadding="0" border="0">
+                            <tbody>
+                            <tr>
+                                <td style="background-color:#ffffff">
+                                    <table cellspacing="0" cellpadding="0" border="0" align="center" bgcolor="#ffffff" width="100%" style="max-width:600px;border-bottom:1px solid #cccccc">
+                                       <tbody>
+                                         <tr>
+                                            <td style="padding:20px;text-align:left">
+                                                <span style="color:#000000;font-family:Arial;font-size:18px;font-weight:bold">
+                                                    <a href="'.$url.'" target="_blank" >
+                                                        KenNguyen
+                                                    </a>
+                                                </span>
+                                                <br>
+                                                <a href="'.$url.'" style="color:#000000;text-decoration:none" target="_blank">
+                                                    <span style="font-family:Arial;font-size:14px;font-weight:bold">
+                                                        Successful payment at Ken Nguyen!
+                                                    </span>
+                                                </a>
+                                            </td>
+                                          
+                                         </tr>
+                                        </tbody>
+                                    </table>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <table cellspacing="0" cellpadding="0" border="0" style="width:100%">
+                                        <tbody>
+                                            <tr>
+                                                <td style="padding:20px">
+                
+                                                    <table cellspacing="0" cellpadding="0" border="0" align="center" bgcolor="#ffffff" width="100%" style="max-width:600px">
+                                                      <tbody>
+                                                          <tr>
+                                                            <td style="padding:20px 20px 15px;font-family:arial;font-size:12px;line-height:20px;color:#333333">
+                                                              Dear '.$dear.',
+                                                            </td>
+                                                          </tr>
+                                                          <tr >
+                                                              <td style="font-size: 17px; padding-left: 20px">
+                                                                You have successfully paid your account at '.$url.'
+                                                              </td>
+                                                          </tr>
+                                                          <tr >
+                                                           <td style="font-size: 17px; padding-left: 20px">
+                                                              Premium package: <b>'.$member_package.'</b>
+                                                              </td>
+                                                            </tr>
+                                                            <tr >
+                                                            <td style="font-size: 17px; padding-left: 20px">
+                                                                Used Time: From <b>'.$startDate.'</b> To <b>'.$endDate.'</b>
+                                                              </td>
+                                                            </tr>
+                                                            <br>
+                                                          <tr style="border-bottom:10px solid #eeeeee">
+                                                            <td style="padding:0 20px 20px;font-family:arial;font-size:12px;line-height:20px;color:#333333;border-bottom:10px solid #eeeeee">
+                                                             This is your email and password for <a href="'.$url.'" style="text-decoration:none!important;text-decoration:none;color:#0064c8" target="_blank" >'.$url.'</a>
+                                                             <br/>
+                                                              Email: <strong style="font-size: 13px; text-decoration: none; color: #333333"> '.$email_account.'</strong
+                                                             <br/>
+                                                              Password: <strong style="font-size: 13px;"> '.$password.'</strong
+                                                            <br><br>
+                                                              Thank you for use our services of <a href="'.$url.'" >KenNguyen</a> online products and services.
+                                                              <br>
+                                                            </td>
+                                                          </tr>
+                                                      </tbody>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </td>
+                            </tr>
+                        </tbody>
+                        </table>
+                        <table cellspacing="0" cellpadding="0" border="0" align="center" bgcolor="#eeeeee" width="100%" style="max-width:600px">
+                            <tbody><tr>
+                                <td style="font-family:arial;font-size:12px;color:#333333;padding:10px 20px;text-align:center">
+                                </td>
+                            </tr>
+                        </tbody></table><div class="yj6qo"></div><div class="adL">
+                    </div></div><div class="adL">
+                </div></div>';
+    }
 
     $mail->MsgHTML($content);
     $mail->Send();
 
 }
-add_action( 'forget_password_email', 'forgetPasswordSMTP', 10, 2);
+add_action( 'forget_password_email', 'forgetPasswordSMTP', 10, 3);
 
 function your_function()
 {
