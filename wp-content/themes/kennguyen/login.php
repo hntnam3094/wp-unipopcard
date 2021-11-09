@@ -16,12 +16,30 @@ $table = $wpdb->prefix . 'customer';
 $login_message = '';
 require_once 'vendor/autoload.php';
 if (empty($_SESSION['user'])) {
+    $cookieName = 'remember111';
+    $isCookie = false;
 
+    if (isset($_COOKIE[$cookieName])) {
+        $isCookie = !empty($_COOKIE[$cookieName]);
+        $accountCookie = json_decode(stripslashes($_COOKIE[$cookieName]));
+    }
 if ($_POST) {
+
     $email = $wpdb->escape($_POST['email']);
     $password = $wpdb->escape($_POST['password']);
     $remember = $wpdb->escape($_POST['remember']);
 
+    if (!empty($remember)) {
+        $value_cookie = [
+            'email' => $email,
+            'password' => $password
+        ];
+        $cookieStr = json_encode($value_cookie);
+        setcookie($cookieName, $cookieStr, time() + (86400 * 30), "/");
+    } else {
+        unset($_COOKIE[$cookieName]);
+        setcookie($cookieName, null, -1, '/');
+    }
 
     $queryResult = $wpdb->get_results(
         $wpdb->prepare(
@@ -135,13 +153,14 @@ get_header();
 <!--                    </a>-->
                     <div class="sub2 mt-70">Login with email</div>
                     <div class="group mt-20">
-                        <input id="email" name="email" class="input" type="mail" placeholder="Email"/>
+                        <input id="email" name="email" class="input" type="mail" placeholder="Email" value="<?= $isCookie ? $accountCookie->email : '' ?>"/>
                     </div>
                     <div class="group mt-20">
-                        <input id="password" name="password" class="input input_password" type="password" placeholder="Password"/><i class="toggle-password"></i>
+                        <input id="password" name="password" class="input input_password" type="password" placeholder="Password" value="<?= $isCookie ? $accountCookie->password : '' ?>"/>
+                        <i class="toggle-password"></i>
                     </div>
                     <div class="group mt-20 flexBox star midle">
-                        <input id="remember" type="checkbox" name="remember"/>
+                        <input id="remember" type="checkbox" <?= $isCookie ? 'checked' : '' ?> name="remember"/>
                         <label for="checbox">Remember me</label>
                     </div>
                     <?php echo $login_message?>
