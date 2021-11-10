@@ -947,3 +947,17 @@ function posts_where_wpse_94630( $where )
     }
     return $where;
 }
+
+function check_type_member() {
+    $type_member = 0;
+    if (isset($_SESSION['user'])) {
+        $user = $_SESSION['user'];
+        $today = date("Y-m-d");
+        if (!empty($user->start_date) && !empty($user->end_date)) {
+            if ($today >= $user->start_date && $today <= $user->end_date) {
+                $type_member = $user->type_member;
+            }
+        }
+    }
+    return $type_member;
+}

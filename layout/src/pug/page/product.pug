@@ -1,0 +1,76 @@
+extends ../include/_template.pug
+include ../include/_mixin
+
+block content
+    +body('', 'nav1', './')
+        section.course_detail.pt-40.pb-80 
+            .wraper
+                h1.ttl_main.fz-40.text-up PAPER FLOWERS
+                .row
+                    .col-12.col-lg-9
+                        .project
+                            .row 
+                                each item in [1,2,3,4,5,6,7,8,9,10,11,12,13]
+                                    .column.col-6.col-md-4 
+                                        a(href="detail.html").item.mt-40 
+                                            .images 
+                                                .imgDrop 
+                                                    img(src="common/images/product.png", alt="")
+                                            .content(data-mh='content')
+                                                h4.text-up.trim.trim_2 CHRISTMAS BOUQUET POP UP
+                                                .desc Category Christmas
+                            .mt-40.text-center 
+                                //- a.btn_more.fz-20(href="category.htnl") LOAD MORE
+                                #pagination.pagination
+                                    ul.page-numbers
+                                        li
+                                            a.prev.page-numbers(href='?paged=1') <
+                                        li
+                                            a.page-numbers(href='?paged=1') 1
+                                        li
+                                            span.page-numbers.current(aria-current='page') 2
+                                        li
+                                            a.page-numbers(href='?paged=3') 3
+                                        li
+                                            a.page-numbers(href='?paged=4') 4
+                                        li
+                                            a.page-numbers(href='?paged=5') 5
+                                        li
+                                            a.page-numbers(href='?paged=6') 6
+                                        li
+                                            a.page-numbers(href='?paged=7') 7
+                                        li
+                                            span.page-numbers.dots …
+                                        li
+                                            a.page-numbers(href='?paged=13') 13
+                                        li
+                                            a.next.page-numbers(href='?paged=3') >
+
+                    .col-12.col-lg-3.sidebar
+                        .footer
+                            ul.social.flexBox.midle
+                                each item in [1,2,3,4,5] 
+                                    li 
+                                        a(href="#") 
+                                            img(src=`common/images/social_0${item}.svg`, alt="")
+                            .text.mt-20
+                                p Join our email list to learn about new projects, discounts, and membership perks!
+                            .form_submit.pt-20 
+                                form(action="") 
+                                    input.input(type="text" placeholder='Your Email Adress')
+                                    input.submit(type="submit", value='JOIN NOW') 
+                        .list_category.mt-50
+                            h3.ttl.text-up.fz-22 CRAFT COLOECTION
+                            ul.list.mt-15
+                                each item in [1,2,3,4,5,6,7,8]
+                                    li 
+                                        a(href="#") PAPER DECOR
+                        .more_corse.mt-50.category
+                            h3.ttl.text-up.fz-22 MORE TO LOVE
+                            .course_main
+                                .row
+                                    each item in [1,2,3]
+                                        .col-4.col-lg-12
+                                            a(href="#").item.mt-20
+                                                .imgDrop 
+                                                    img(src="common/images/product_more.png", alt="") 

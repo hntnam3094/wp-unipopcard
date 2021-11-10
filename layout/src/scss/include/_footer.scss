@@ -3,6 +3,7 @@ footer {
 }
 .footer {
     .content_main {
+        display: block;
         @include max_991 {
             margin-bottom: 20px;
         }
@@ -11,6 +12,8 @@ footer {
         }
         .images {
             width: 50px;
+            float: left;
+            margin-right: 15px;
             @include min_767 {
                 width: 82px;
             }
@@ -91,7 +94,13 @@ footer {
         text-transform: uppercase;
         color: #000;
         li {
-            margin-top: 15px;
+            a {
+                display: block;
+                padding-top: 15px;
+                &:hover {
+                    color: $main;
+                }
+            }
         }
     }
     .social {

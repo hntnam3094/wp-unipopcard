@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="<?php bloginfo('template_directory') ?>/common/css/custom.css"/>
     <?php wp_head(); ?>
 </head>
-<body nav_active="nav_active" class="<?php do_action('get_request'); ?>" <?php body_class(); ?>>
+<body nav_active="nav_active" class="page_payment <?php do_action('get_request'); ?>" <?php body_class(); ?>>
 <?php wp_body_open(); ?>
 
 <header class="header active_search" id="header">

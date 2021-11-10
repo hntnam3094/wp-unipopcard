@@ -1,0 +1,102 @@
+extends ../include/_template.pug
+include ../include/_mixin
+
+block content
+    +body('page_payment', 'nav1', './')
+        section.payment.pt-50.pb-50
+            .wraper
+                form(action="")  
+                    .row.flexBox.center 
+                        .col-12.col-lg-8
+                            h1.ttl.fz-50.text-center Lorem Ipsum is Simply Dummy
+                            h2.fz-36.text-center.mt-15 Lorem Ipsum is Simply Dummy 
+                            .text.mt-20.text-center Lorem Ipsum is simply dummy text of:  the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of
+
+                    .row.mt-40 
+                        .col-12.col-lg-6
+                            .content_main
+                                .ttl_col Create Your Account
+                                .content 
+                                    h4.fz-24 Contact Information
+                                    .row.content_group
+                                        .col-12.col-md-6 
+                                            .group.icon.icon_name 
+                                                input.input(type="text", placeholder='First Name*')
+                                        .col-12.col-md-6
+                                            .group.icon.icon_name  
+                                                input.input(type="text", placeholder='Last Name*')
+                                        .col-12.col-md-12  
+                                            .group.icon.icon_mail
+                                                input.input(type="mail", placeholder='Email*')
+
+                                .content 
+                                    h4.fz-24 Payment Method
+                                    a.btn_paypal.block.text-center.mt-30(href="")
+                                        img(src="common/images/icon/btn_paypal.svg", alt="") 
+                                    .row.content_group
+                                        .col-12.col-md-12 
+                                            .group.icon.icon_name 
+                                                input.input(type="text", placeholder='Name on card')
+                                        .col-12.col-md-12
+                                            .group.icon.icon_card 
+                                                input.input(type="tel", placeholder='1234 1234 1234 1234')
+                                        .col-12.col-md-6  
+                                            .group.icon.icon_date
+                                                input.input(type="text", placeholder='MM / YY')
+                                        .col-12.col-md-6  
+                                            .group.icon.icon_key
+                                                input.input(type="text", placeholder='CVC')
+                                .content 
+                                    h4.fz-24 Order Summary
+                                    .mt-15
+                                    .item.bg_box.flexBox.space.mt-10 
+                                        .child_left KenNguyen Annual Membership
+                                        .child_right 
+                                            span.block $1.00
+                                            span.block Future Payments: $99.00 for each month, starling in 7 days
+                                    .item.bg_box.flexBox.space.mt-10 
+                                        .child_left 
+                                            span.fz-30 Total
+                                        .child_right 
+                                            .flexBox.midle.end 
+                                                span.mask USD 
+                                                span.fw_midle.fz-30 $1.00
+                                    .item.bg_box.mt-30.flexBox.space
+                                        input#check(type="radio")
+                                        label.label.text-center(for="check") By checking this box I confirm I've read and agreed to the Terms of Service, Privacy Policy & Cancellation Policy. I understand that by agreeing I also give my consent to receive further communications from KenNguyen - I Know I can opt-out from this at any given time.
+                                    .group.mt-30
+                                        input.btn_submit(type="submit", value='Complete Purchase')
+                                    .group.mt-30.text-center 
+                                        img(src="common/images/icon/card.svg", alt="")
+
+                        .col-12.col-lg-6 
+                            .content_right 
+                                .right_box 
+                                    .text 
+                                        p Lorem Ipsum is simply dummy text of:  the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy
+                                        p Lorem Ipsum is 
+                                    .img 
+                                        .imgDrop 
+                                            img(src="common/images/product_more.png", alt="")
+                                h2.ttl.fz-24.mt-30 Here's what you'll get:
+                                .img_main.mt-30
+                                    .imgDrop 
+                                        img(src="common/images/banner.png", alt="")
+                                .list_check.mt-30 
+                                    each item in [1,2,3,4,5]
+                                        .group.flexBox.space.mt-20 
+                                            input(type="checkbox" checked id=`list_check${item}`)
+                                            label(for=`list_check${item}`) Lorem Ipsum is simply dummy text of:  the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of
+                                h2.ttl.fz-24.mt-30 You'll ALSO get
+                                .list_check.mt-30 
+                                    each item in [6,7]
+                                        .group.flexBox.space.mt-20 
+                                            input(type="checkbox" checked id=`list_check${item}`)
+                                            label(for=`list_check${item}`) Lorem Ipsum is simply dummy text of:  the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of
+                                .right_box2.mt-30
+                                    .img 
+                                        .imgDrop 
+                                            img(src="common/images/product_more.png", alt="")
+                                    .text 
+                                        h4.ttl.fz-20 30-Day Money-Back Guarantee
+                                        .txt.mt-15 Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived
