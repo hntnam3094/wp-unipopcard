@@ -76,7 +76,7 @@ $args = array(
 $my_query = new WP_Query($args);
 $post   = get_post( 155 );
 $output =  apply_filters( 'the_content', $my_query->posts[0]->post_content);
- var_dump($output);
+var_dump($output);
 get_header();
 ?>
 <main>
@@ -85,7 +85,7 @@ get_header();
             <form action="">
                 <div class="row flexBox center">
                     <div class="col-12 col-lg-8">
-                        <h1 class="ttl fz-50 text-center"><?= $output ?>></h1>
+                        <h1 class="ttl fz-50 text-center">Lorem Ipsum is Simply Dummy</h1>
                         <h2 class="fz-36 text-center mt-15">Lorem Ipsum is Simply Dummy </h2>
                         <div class="text mt-20 text-center">Lorem Ipsum is simply dummy text of:  the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of</div>
                     </div>
@@ -98,8 +98,8 @@ get_header();
                                 <h4 class="fz-24">Order Summary</h4>
                                 <div class="mt-15"></div>
                                 <div class="item bg_box flexBox space mt-10">
-                                    <div class="child_left"><?= $packge['package'] ?>$</div>
-                                    <div class="child_right"> <span class="block"><?= $packge['sale_price'] ?></span><span class="block">Future Payments: <?= $packge['price'] ?>$ for each month, starling in 7 days</span></div>
+                                    <div class="child_left"><?= $packge['package'] ?></div>
+                                    <div class="child_right"> <span class="block"><?= $packge['sale_price'] ?>$</span><span class="block">Future Payments: <?= $packge['price'] ?>$ for each month, starling in 7 days</span></div>
                                 </div>
                                 <div class="item bg_box flexBox space mt-10">
                                     <div class="child_left"> <span class="fz-30">Total</span></div>
@@ -113,7 +113,7 @@ get_header();
                                 </div>
                                 <div class="group mt-30">
                                     <input id="id_package" name="id_package" type="hidden" value="<?= $packge['id'] ?>">
-                                    <a class="btn_submit"  pro-code="3TRROJJM4U" id="buy-button">Complete Purchase</a>
+                                    <a class="btn_submit" style="cursor: pointer"  pro-code="3TRROJJM4U" id="buy-button">Complete Purchase</a>
                                 </div>
                                 <div class="group mt-30 text-center"> <img src="<?php bloginfo('template_directory') ?>/common/images/icon/card.svg" alt=""/></div>
                             </div>

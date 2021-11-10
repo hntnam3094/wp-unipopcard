@@ -43,8 +43,13 @@ if ($_POST) {
 
             $insertRs = $wpdb->insert($table, $data);
             if (isset($insertRs)) {
-                $success = 'Sign Up Success! Please check your email to activate your account!';
                 do_action('active_account_email', $data['email']);
+                $_SESSION['register_email'] = $data['email'];
+
+                wp_redirect(site_url() . '/thanks-register');
+                exit;
+//                $success = 'Sign Up Success! Please check your email to activate your account!';
+
             } else {
                 $message = 'Registration failed!';
             }
