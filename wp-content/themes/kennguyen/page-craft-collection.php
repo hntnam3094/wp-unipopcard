@@ -1,5 +1,8 @@
 <?php get_header(); ?>
-<?php $parentCategoryId = get_category_by_slug('craft-collection') !== null ? get_category_by_slug('craft-collection')->cat_ID : 0;
+<?php
+$parentCategory = get_category_by_slug('craft-collection');
+$parentCategoryId = $parentCategory != null ? $parentCategory->cat_ID : 0;
+$parentCategorySlug = $parentCategory != null ? $parentCategory->slug : '';
 function getClassBlock($checkMembership) {
     if (check_membership() == 1) {
         return '';
@@ -47,7 +50,7 @@ $listAllCatID = [];
                             $categoryNameSelected = $category->name;
                         }
                         array_push($listAllCatID, $category->cat_ID);
-                        echo '<div class="col-12 col-md-6 col-lg-3 item">  <a class="' . $active . '" href="?category=' . str_replace('&', '-and-', $category->name) . '">' . $category->name . '</a></div>';
+                        echo '<div class="col-12 col-md-6 col-lg-3 item">  <a class="' . $active . '" href="/' .$parentCategorySlug.'/'. $category->slug . '">' . $category->name . '</a></div>';
                     }
                     ?>
                 </div>
