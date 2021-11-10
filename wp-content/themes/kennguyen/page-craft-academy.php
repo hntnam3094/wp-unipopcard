@@ -58,21 +58,22 @@ $listAllCatID = [];
             <div class="course_main mt-10">
                 <div class="row">
                     <?php
-                    if (empty($categoryNameSelected)) {
-                        $categoryIdSelected = 0;
-                    } else {
-                        $categoryIdSelected = get_cat_ID($categoryNameSelected);
-                    }
+//                    if (empty($categoryNameSelected)) {
+//                        $categoryIdSelected = 0;
+//                    } else {
+//                        $categoryIdSelected = get_cat_ID($categoryNameSelected);
+//                    }
 
                     $args = array(
                         'post_status' => 'publish',
                         'post_type'      => 'craft',
                         'year' => $year,
                         'monthnum' => $month,
-                        'cat' => $categoryIdSelected,
+                        'cat' => $listAllCatID,
                         'meta_key' => 'premium_membership',
                         'orderby' => 'meta_value',
                         'order' => 'ASC',
+                        'showposts' => 8
                     );
                     $the_query = new WP_Query( $args );
                     ?>
