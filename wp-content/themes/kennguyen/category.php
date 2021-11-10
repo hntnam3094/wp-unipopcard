@@ -141,10 +141,7 @@
                             <p>Join our email list to learn about new projects, discounts, and membership perks!</p>
                         </div>
                         <div class="form_submit pt-20">
-                            <form action="">
-                                <input class="input" type="text" placeholder="Your Email Adress"/>
-                                <input class="submit" type="submit" value="JOIN NOW"/>
-                            </form>
+                            <?php get_template_part('template-parts/order/form-email'); ?>
                         </div>
                     </div>
                     <div class="list_category mt-50">
