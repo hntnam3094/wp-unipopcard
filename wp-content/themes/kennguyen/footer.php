@@ -70,14 +70,7 @@
                         <div class="text mt-20">
                             <p>Join our email list to learn about new projects, discounts, and membership perks!</p>
                         </div>
-                        <?php if (check_membership() != 1) {
-                            echo '<div class="form_submit pt-20">
-                                        <form action="">
-                                            <input class="input" type="text" placeholder="Your Email Adress"/>
-                                            <input class="submit" type="submit" value="JOIN NOW"/>
-                                        </form>
-                                    </div>';
-                        } ?>
+                        <?php get_template_part('template-parts/order/form-email'); ?>
                     </div>
                 </div>
             </div>
