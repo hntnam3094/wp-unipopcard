@@ -83,11 +83,23 @@ if (!empty($_GET) && isset($_GET['refno'])) {
 
             if (isset($insertRs)) {
                 $dataUser = array();
-                $dataUser = [ 'member_ship' => 1,
-                    'type_member' => $idPackage,
-                    'start_date' => $packge['start_date'],
-                    'end_date' => $packge['end_date']
-                ];
+                if ($today >= $user->start_date && $today <= $user->end_date) {
+                    $endDate = date("Y-m-d",strtotime("+1 month",strtotime($user->end_date)));
+                    if ($idPackage == 2) {
+                        $endDate = date("Y-m-d",strtotime("+1 year",strtotime($user->end_date)));
+                    }
+                    $dataUser = [ 'member_ship' => 1,
+                        'type_member' => $idPackage,
+                        'start_date' => $packge['start_date'],
+                        'end_date' => $endDate
+                    ];
+                } else {
+                    $dataUser = [ 'member_ship' => 1,
+                        'type_member' => $idPackage,
+                        'start_date' => $packge['start_date'],
+                        'end_date' => $packge['end_date']
+                    ];
+                }
                 $where = ['id' => $user->id];
                 $results = $wpdb->update($table, $dataUser, $where);
                 if ($results != 0) {
@@ -182,11 +194,23 @@ if (!empty($_GET) && isset($_GET['refno'])) {
                     $insertRs = $wpdb->insert($table_order, $dataOrder);
                     if (isset($insertRs)) {
                         $dataUser = array();
-                        $dataUser = [ 'member_ship' => 1,
-                            'type_member' => $idPackage,
-                            'start_date' => $packge['start_date'],
-                            'end_date' => $packge['end_date']
-                        ];
+                        if ($today >= $existUser->start_date && $today <= $existUser->end_date) {
+                            $endDate = date("Y-m-d",strtotime("+1 month",strtotime($existUser->end_date)));
+                            if ($idPackage == 2) {
+                                $endDate = date("Y-m-d",strtotime("+1 year",strtotime($existUser->end_date)));
+                            }
+                            $dataUser = [ 'member_ship' => 1,
+                                'type_member' => $idPackage,
+                                'start_date' => $packge['start_date'],
+                                'end_date' => $endDate
+                            ];
+                        } else {
+                            $dataUser = [ 'member_ship' => 1,
+                                'type_member' => $idPackage,
+                                'start_date' => $packge['start_date'],
+                                'end_date' => $packge['end_date']
+                            ];
+                        }
                         $where = [ 'id' => $existUser->id ];
                         $results = $wpdb->update($table, $dataUser, $where);
                         if (isset($results)) {
@@ -203,6 +227,14 @@ if (!empty($_GET) && isset($_GET['refno'])) {
     }
 }
 
+$queryUser = $wpdb->get_results(
+    $wpdb->prepare(
+        "SELECT * FROM {$table}
+                            WHERE email=%s ", $emailOrder));
+$premium_account = [];
+if (!empty($queryUser)) {
+    $premium_account = $queryUser[0];
+}
 
 get_header()
 ?>
@@ -210,7 +242,8 @@ get_header()
     <h1 class="display-3">Thank You!</h1>
     <p class="lead text-success"><strong><?= $message['text1'] ?></strong></p>
     <p class="lead"><?php if (!empty($message)) { ?>
-            <strong>Premium : <?= $packge['start_date'] ?>  ~  <?= $packge['end_date'] ?></strong></p>
+            <strong>Premium : <?= !empty($premium_account->start_date) ? $premium_account->start_date : '' ?>
+                ~  <?= !empty($premium_account->end_date) ? $premium_account->end_date : '' ?></strong></p>
             <?php } ?>
     <p class="lead"><?= $message['text2'] ?></p>
     <hr>

@@ -339,7 +339,7 @@ add_action('init', 'custom_post_type_slider');
 function getRequest() {
     global $wp;
     $classes = '';
-    if ($wp->request == 'login' || $wp->request == 'singup' || $wp->request == 'forgot-pass')
+    if ($wp->request == 'login' || $wp->request == 'singup' || $wp->request == 'forgot-pass' || $wp->request == 'thanks-register')
     {
         $classes = 'action_page';
     }
@@ -361,7 +361,7 @@ function activeAccountSMTP($email) {
     global $va_options;
     global $wpdb;
     $table = $wpdb->prefix . 'customer';
-    $urlActive = site_url() . '/verify?token='. md5($email);
+    $urlActive = site_url() . '/thanks-register?token='. md5($email);
 
     $mail = new \PHPMailer\PHPMailer\PHPMailer(true);
     $fullname = '';
