@@ -35,11 +35,31 @@ header.header#header.active_search
                         .header_nav
                             .nav.flexBox.midle.space
                                 ul.flexBox.midle
-                                    li.nav-item(class=(nav_active === "nav1" ? "active" : undefined))
+                                    li.nav-item.dropdown.toggle_parent(class=(nav_active === "nav1" ? "active" : undefined))
                                         a.nav-link(href='category.html') CRAFT COLECTION
-                                    li.nav-item(class=(nav_active === "nav2" ? "active" : undefined))
-                                        a.nav-link(href='contact.html') CRAFT ACADEMY
-                                
+                                        .toggle_btn.icon_toggle
+                                            +icon_down
+                                        .sub_menu.toggle_content
+                                            .wraper
+                                                ul.flexBox
+                                                    li  
+                                                        a.active(href="product.html") PAPER FLOWERS
+                                                    each item in ['PAPER FLOWERS','PAPER','HOLIDAYS','WEDDING','SVG FILES','VIDEOS']
+                                                        li
+                                                            a(href="product.html")= item
+
+                                    li.nav-item.dropdown.toggle_parent(class=(nav_active === "nav2" ? "active" : undefined))
+                                        a.nav-link(href='category.html') CRAFT ACADEMY
+                                        .toggle_btn.icon_toggle
+                                            +icon_down
+                                        .sub_menu.toggle_content
+                                            .wraper
+                                                ul.flexBox
+                                                    li  
+                                                        a.active(href="product.html") PAPER FLOWERS
+                                                    each item in ['PAPER FLOWERS','PAPER','HOLIDAYS','WEDDING','SVG FILES','VIDEOS']
+                                                        li
+                                                            a(href="product.html")= item
                                 ul.flexBox.midle
                                     li.nav-item(class=(nav_active === "nav3" ? "active" : undefined))
                                         a.nav-link(href='#' target='_blank') SHOP
@@ -54,28 +74,32 @@ header.header#header.active_search
                                         a.nav-link(href='upgrade.html') UPGRADE TO DAY
                                     li.nav-item(class=(nav_active === "nav4" ? "active" : undefined))
                                         a.nav-link(href='news.html') MY CRAFT ROOM
-            .nav_setting.dropdown 
-                .btn_setting.dropdown-toggle(id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false")
-                    img(src="common/images/icon/icon_setting.svg", alt="") 
-                .dropdown-menu(aria-labelledby='dropdownMenu2')
-                    ul
-                        li
-                            a(href="login.html").dropdown-item
-                                i.icon 
-                                    img(src="common/images/icon/icon_login.png", alt="")
-                                |Login
-                        li
-                            a(href="singup.html").dropdown-item
-                                i.icon 
-                                    img(src="common/images/icon/icon_signup.png", alt="")
-                                |Sign up
-                        li
-                            a(href="manager.html").dropdown-item
-                                i.icon 
-                                    img(src="common/images/icon/icon_profile.png", alt="")
-                                |Profile manager
-                        li
-                            a(href="logout.html").dropdown-item(data-bs-toggle="modal" data-bs-target="#modal_logout")  
-                                i.icon 
-                                    img(src="common/images/icon/icon_logout.png", alt="")
-                                |Log out
+                                    li.nav-item.login 
+                                        a.nav-link.login_link(href="login.html") Login
+                                    li.nav-item.nav_setting 
+                                        a.nav-link(href='account.html')
+                                            .btn_setting
+                                                img(src="common/images/icon/icon_setting.svg", alt="") 
+                                            span Account Setting
+                                        //- .dropdown-menu(aria-labelledby='dropdownMenu2')
+                                            ul
+                                                li
+                                                    a(href="login.html").dropdown-item
+                                                        i.icon 
+                                                            img(src="common/images/icon/icon_login.png", alt="")
+                                                        |Login
+                                                li
+                                                    a(href="singup.html").dropdown-item
+                                                        i.icon 
+                                                            img(src="common/images/icon/icon_signup.png", alt="")
+                                                        |Sign up
+                                                li
+                                                    a(href="manager.html").dropdown-item
+                                                        i.icon 
+                                                            img(src="common/images/icon/icon_profile.png", alt="")
+                                                        |Profile manager
+                                                li
+                                                    a(href="logout.html").dropdown-item(data-bs-toggle="modal" data-bs-target="#modal_logout")  
+                                                        i.icon 
+                                                            img(src="common/images/icon/icon_logout.png", alt="")
+                                                        |Log out

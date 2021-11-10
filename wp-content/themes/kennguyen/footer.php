@@ -70,14 +70,7 @@
                         <div class="text mt-20">
                             <p>Join our email list to learn about new projects, discounts, and membership perks!</p>
                         </div>
-                        <?php if (check_membership() != 1) {
-                            echo '<div class="form_submit pt-20">
-                                        <form action="">
-                                            <input class="input" type="text" placeholder="Your Email Adress"/>
-                                            <input class="submit" type="submit" value="JOIN NOW"/>
-                                        </form>
-                                    </div>';
-                        } ?>
+                        <?php get_template_part('template-parts/order/form-email'); ?>
                     </div>
                 </div>
             </div>
@@ -195,52 +188,58 @@
  if (window.document.getElementById('buy-button')) {
      window.document.getElementById('buy-button').addEventListener('click', function () {
          let idPackage = document.getElementById('id_package').value
-         let url = window.location.href
-         let data = {
-             'isCheckExistPackage': true
-         }
-         let package = {}
-         if (idPackage == 1) {
-             package = {
-                 name: '<?= $va_options['kn_monthly_package_title'] ?>',
-                 ShortDescription: '1',
-                 quantity: 1,
-                 price: '<?= $va_options['kn_monthly_package_sale_price'] ?>',
-                 type: 'digital'
+         let checkKen = document.getElementById('check-payment').checked
+         if (checkKen) {
+             let url = window.location.href
+             let data = {
+                 'isCheckExistPackage': true
              }
+             let package = {}
+             if (idPackage == 1) {
+                 package = {
+                     name: '<?= $va_options['kn_monthly_package_title'] ?>',
+                     ShortDescription: '1',
+                     quantity: 1,
+                     price: '<?= $va_options['kn_monthly_package_sale_price'] ?>',
+                     type: 'digital'
+                 }
+             } else {
+                 package = {
+                     name: '<?= $va_options['kn_yearly_package_title'] ?>',
+                     ShortDescription: '2',
+                     quantity: 1,
+                     price: '<?= $va_options['kn_year_package_sale_price'] ?>',
+                     type: 'digital'
+                 }
+             }
+
+             TwoCoInlineCart.setup.setMode('DYNAMIC');
+             TwoCoInlineCart.cart.setCurrency('USD');
+
+             TwoCoInlineCart.cart.setReset(true);
+
+             TwoCoInlineCart.products.removeAll();
+             TwoCoInlineCart.products.add(package);
+             TwoCoInlineCart.billing.setEmail("<?= isset($_SESSION['user']) ? $_SESSION['user']->email : ''?>");
+
+             // let success = false
+             // TwoCoInlineCart.events.subscribe('payment:finalized', function () {
+             //
+             // });
+             let urlRedirect = window.location.protocol + "//" + window.location.host + '/thank-you?id_package=' + idPackage
+             TwoCoInlineCart.cart.setReturnMethod({
+                 type: 'redirect',
+                 url : urlRedirect
+             });
+
+
+
+             TwoCoInlineCart.cart.setTest(<?= $va_options['kn_2co_demo'] ?>)
+             TwoCoInlineCart.cart.checkout()
          } else {
-             package = {
-                 name: '<?= $va_options['kn_yearly_package_title'] ?>',
-                 ShortDescription: '2',
-                 quantity: 1,
-                 price: '<?= $va_options['kn_year_package_sale_price'] ?>',
-                 type: 'digital'
-             }
+             alert('Please, read and agreed to the Terms of Service, Privacy Policy & Cancellation Policy')
          }
 
-         TwoCoInlineCart.setup.setMode('DYNAMIC');
-         TwoCoInlineCart.cart.setCurrency('USD');
-
-         TwoCoInlineCart.cart.setReset(true);
-
-         TwoCoInlineCart.products.removeAll();
-         TwoCoInlineCart.products.add(package);
-         TwoCoInlineCart.billing.setEmail("<?= isset($_SESSION['user']) ? $_SESSION['user']->email : ''?>");
-
-         // let success = false
-         // TwoCoInlineCart.events.subscribe('payment:finalized', function () {
-         //
-         // });
-         let urlRedirect = window.location.protocol + "//" + window.location.host + '/thank-you?id_package=' + idPackage
-         TwoCoInlineCart.cart.setReturnMethod({
-             type: 'redirect',
-             url : urlRedirect
-         });
-
-
-
-         TwoCoInlineCart.cart.setTest(<?= $va_options['kn_2co_demo'] ?>)
-         TwoCoInlineCart.cart.checkout()
 
          //$.ajax({
          //    url: url,

@@ -1,5 +1,8 @@
 <?php get_header(); ?>
-<?php $parentCategoryId = get_category_by_slug('craft-academy') !== null ? get_category_by_slug('craft-academy')->cat_ID : 0;
+<?php
+$parentCategory = get_category_by_slug('craft-academy');
+$parentCategoryId = $parentCategory != null ? $parentCategory->cat_ID : 0;
+$parentCategorySlug = $parentCategory != null ? $parentCategory->slug : '';
 function getClassBlock($checkMembership) {
     if (check_membership() == 1) {
         return '';
@@ -47,7 +50,7 @@ $listAllCatID = [];
                             $categoryNameSelected = $category->name;
                         }
                         array_push($listAllCatID, $category->cat_ID);
-                        echo '<div class="col-12 col-md-6 col-lg-3 item">  <a class="' . $active . '" href="?category=' . str_replace('&', '-and-', $category->name) . '">' . $category->name . '</a></div>';
+                        echo '<div class="col-12 col-md-6 col-lg-3 item">  <a class="' . $active . '" href="/' .$parentCategorySlug.'/'. $category->slug . '">' . $category->name . '</a></div>';
                     }
                     ?>
                 </div>
@@ -55,21 +58,22 @@ $listAllCatID = [];
             <div class="course_main mt-10">
                 <div class="row">
                     <?php
-                    if (empty($categoryNameSelected)) {
-                        $categoryIdSelected = 0;
-                    } else {
-                        $categoryIdSelected = get_cat_ID($categoryNameSelected);
-                    }
+//                    if (empty($categoryNameSelected)) {
+//                        $categoryIdSelected = 0;
+//                    } else {
+//                        $categoryIdSelected = get_cat_ID($categoryNameSelected);
+//                    }
 
                     $args = array(
                         'post_status' => 'publish',
                         'post_type'      => 'craft',
                         'year' => $year,
                         'monthnum' => $month,
-                        'cat' => $categoryIdSelected,
+                        'cat' => $listAllCatID,
                         'meta_key' => 'premium_membership',
                         'orderby' => 'meta_value',
                         'order' => 'ASC',
+                        'showposts' => 8
                     );
                     $the_query = new WP_Query( $args );
                     ?>

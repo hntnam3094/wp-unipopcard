@@ -18,18 +18,20 @@
 //     font-style: normal;
 // }
 
-// @font-face {
-//     font-family: 'Neue Haas Unica';
-//     src: url('../fonts/NeueHaasUnica-Medium.eot');
-//     src: local('Neue Haas Unica Medium'), local('../fonts/NeueHaasUnica-Medium'),
-//         url('../fonts/NeueHaasUnica-Medium.eot?#iefix') format('embedded-opentype'),
-//         url('../fonts/NeueHaasUnica-Medium.woff2') format('woff2'),
-//         url('../fonts/NeueHaasUnica-Medium.woff') format('woff'),
-//         url('../fonts/NeueHaasUnica-Medium.ttf') format('truetype');
-//     font-weight: 500;
-//     font-style: normal;
-// }
-
+@font-face {
+    font-family: 'Neue Haas Unica 500';
+    src: url('../fonts/NeueHaasUnica-Medium.eot');
+    src: local('Neue Haas Unica Medium'), local('../fonts/NeueHaasUnica-Medium'),
+        url('../fonts/NeueHaasUnica-Medium.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/NeueHaasUnica-Medium.woff2') format('woff2'),
+        url('../fonts/NeueHaasUnica-Medium.woff') format('woff'),
+        url('../fonts/NeueHaasUnica-Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+}
+.fw_midle {
+    font-family: 'Neue Haas Unica 500';
+}
 // @font-face {
 //     font-family: 'Neue Haas Unica';
 //     src: url('../fonts/NeueHaasUnica-BoldItalic.eot');
@@ -672,11 +674,14 @@ img {
     .input {
         height: 40px;
         line-height: 40px;
-        padding: 10px 20px;
+        padding: 12px 20px 8px;
         border-radius: 50px;
-        border: 1px solid $blue;
-        margin-top: 8px;
+        border: 1px solid rgba(88, 88, 88, 0.2);
         width: 100%;
+        margin-top: 10px;
+        @include min_991 {
+            margin-top: 25px;
+        }
         &.textarea {
             height: 120px;
             border-radius: 20px;
@@ -685,12 +690,12 @@ img {
         }
         &::placeholder {
             font-size: 14px;
-            opacity: 0.7;
+            opacity: 0.5;
         }
         &:focus {
             outline: none;
             box-shadow: 0;
-            border-color: $green2;
+            border-color: $blue;
         }
     }
     .submit {
@@ -772,5 +777,29 @@ img {
     &:hover {
         color: #fff;
         background: $main;
+    }
+}
+.pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .page-numbers {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        .page-numbers {
+            color: #b0bec9;
+            width: 30px;
+            line-height: 30px;
+            text-align: center;
+            &.current {
+                color: $main;
+            }
+            &.prev, &.next {
+                font-size: 24px;
+                color: #585858;
+                width: 50px;
+            }
+        }
     }
 }

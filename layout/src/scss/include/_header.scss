@@ -7,6 +7,7 @@
     background: rgba(255,255,255,.8);
     transition: all .3s;
     color: #1b2550;
+    font-family: 'Neue Haas Unica Bold';
     border-bottom: 1px solid #d9d8d8;
     box-shadow: 1.85px 2.36px 4px rgba(165, 167, 168, 0.35);
     .logo {
@@ -147,7 +148,6 @@
                 border-radius: 0;
                 border: none;
                 padding: 0;
-                
                 .dropdown-item {
                     display: flex;
                     align-items: center;
@@ -170,25 +170,41 @@
         
     }
     .nav_setting {
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        right: 0;
-        @include max_767 {
-            right: 20px;
-        }
-        @include max_991 {
-            right: 30px;
+        // position: absolute;
+        // top: 50%;
+        // transform: translateY(-50%);
+        // right: 0;
+        // @include max_767 {
+        //     right: 20px;
+        // }
+        // @include max_991 {
+        //     right: 30px;
+        // }
+        position: relative;
+        top: -2px;
+        a {
+            display: flex;
+            align-items: center;
+            &:before {
+                display: none;
+            }
+            @include min_991 {
+                padding: 0!important;
+            }
+            span {
+                @include min_991 {
+                    display: none!important;
+                }
+            }
         }
         .btn_setting {
             width: 40px;
             height: 40px;
             cursor: pointer;
             display: flex;
-            justify-content: flex-end;
             align-items: center;
-            &:after {
-                display: none;
+            @include min_991 {
+                justify-content: center;
             }
         }
         .dropdown-menu {
@@ -237,12 +253,24 @@
             }
         }
     }
-    &-right {
-        position: relative;
-        width: 100%;
-        @include min_991 {
-            padding-right: 40px;
+    .login_link {
+        width: 115px;
+        border-radius: 15.2px;
+        background: #333;
+        text-align: center;
+        color: #fff!important;
+        display: inline-block!important;
+        padding: 10px 5px 4px!important;
+        &:before {
+            display: none;
         }
+    }
+    &-right {
+        // position: relative;
+        width: 100%;
+        // @include min_991 {
+        //     padding-right: 40px;
+        // }
     }
     .modal-dialog {
         @include min_991 {
@@ -283,7 +311,7 @@
                 overflow: auto;
                 align-content: flex-start;
                 display: block;
-                padding: 100px 15px;
+                padding: 80px 15px 30px;
                 max-width: 500px;
                 margin: auto;
             }
@@ -293,7 +321,16 @@
             &>ul>li {
                 @include max_991 {
                     width: 100%;
-                    border-bottom: 1px solid rgba(0, 0, 0, .5);           
+                    border-bottom: 1px solid rgba(0, 0, 0, .5);    
+                    &.login {
+                        border: none;
+                        margin-top: 15px;
+                        a {
+                            padding: 12px 10px 8px!important;
+                            width: 100%;
+                            border-radius: 50px;
+                        }
+                    }       
                 }
                 &:last-child {
                     @include max_991 {
@@ -322,14 +359,14 @@
                     &:before {
                         position: absolute;
                         content: "";
-                        bottom: -1px;
+                        bottom: 0;
                         left: 0;
                         right: 0;
-                        height: 3px;
+                        height: 2px;
                         background: #333;
                         width: 0%;
                         transition: all .3s;
-                        max-width: 30px;
+                        // max-width: 30px;
                         margin: auto;
                     }
                     &.nav_btn {
@@ -384,6 +421,7 @@
                         top: 50%;
                         transform: translateY(-50%);
                         right: 0;
+                        display: none;
                     }
                     svg {
                         width: 8px;
@@ -411,6 +449,23 @@
                 @include min_991 {
                     align-items: center;
                 }
+                &>a {
+                    display: flex;
+                    align-items: center;
+                    &:after {
+                        content: "";
+                        display: block;
+                        width: 8px;
+                        height: 10px;
+                        margin-left: 5px;
+                        background-image: url(../images/icon/icon_down2.svg);
+                        background-size: 100%;
+                        background-repeat: no-repeat;
+                        @include max_991 {
+                            display: none;
+                        }
+                    }
+                }
                 .icon_toggle {
                     width: 10px;
                     @include max_991 {
@@ -433,6 +488,16 @@
                         width: 100%;
                         display: none;
                         background: rgba(255,255,255,0.05);
+                        ul {
+                            @include max_991 {
+                                display: block;
+                                li {
+                                    a {
+                                        padding-left: 0;
+                                    }
+                                }
+                            }
+                        }
                     }
                     @include min_991 {
                         display: block!important;
@@ -441,31 +506,36 @@
             }
             
             li {
-                position: relative;
-                &>.sub_menu {
+                position: static;
+                .sub_menu {
                     @include max_991 {
                         border-top: 1px solid rgba(0,0,0,.3);
                     }
                     @include min_991 {
-                        width: 250px;
+                        width: 100%;
                         white-space: nowrap;
-                        padding: 10px 25px;
+                        // padding: 10px 25px;
                         position: absolute;
-                        top: calc(100% + 30px);
+                        top: 100%;
                         left: 0;
                         color: #444;
                         background: #fff;
                         transition: all .3s;
                         z-index: 10;
-                        box-shadow: 0px 3px 20px rgba(0, 0, 0, 0.16);
+                        box-shadow: 1.85px 2.36px 10px rgba(165, 167, 168, 0.22);
                         text-transform: uppercase;
                         font-size: 12px;
                         opacity: 0;
                         pointer-events: none;
+                        transform: translateY(0%);
                     }
-                    &>li {
+                    li {
                         &+li {
-                            border-top: 1px solid rgba(0,0,0,.08);
+                            @include max_991 {border-top: 1px solid rgba(0,0,0,.08);
+                            }
+                            @include min_991 {
+                                margin-left: 40px;
+                            }
                         }
                         &>a {
                             display: block;
@@ -478,30 +548,41 @@
                             transition: all .4s;
                             color: #333;
                             font-size: 14px;
+                            font-family: 'Neue Haas Unica';
                             @include min_991 {
-                                padding: 10px 0;
                                 color: #444;
-                            }
-                            &:hover, &.active {
-                                padding-left: 8px;
-                                color: $main;
+                                font-size: 13px;
+                                letter-spacing: 0.02em;
+                                line-height: 15.6px;
+                                padding: 18px 0 15px;
                                 &:before {
-                                    opacity: 1;
+                                    position: absolute;
+                                    content: "";
+                                    bottom: 0;
+                                    left: 0;
+                                    right: 0;
+                                    height: 2px;
+                                    background: #333;
+                                    width: 0%;
+                                    transition: all .3s;
+                                    // max-width: 30px;
+                                    margin: auto;
                                 }
                             }
-                        }
-                    }
-                    .sub_menu {
-                        @include min_991 {
-                            transform: translateX(100%) translateY(-50px);
-                            left: -5px;
+                            &:hover, &.active {
+                                // color: $main;
+                                &:before {
+                                    opacity: 1;
+                                    width: 100%;
+                                }
+                            }
                         }
                     }
                 }
                 &:hover {
                     &>.sub_menu {
                         @include min_991 {
-                            top: 100%;
+                            // transform: translateY(0);
                             opacity: 1;
                             pointer-events: inherit;
                         }
@@ -522,10 +603,10 @@
         z-index: 9999;
         width: 60px;
         @include max_991 {
-            right: 70px;
+            right: 0;
         }
         @include max_767 {
-            right: 50px;
+            right: 0;
         }
         &:focus {
             outline: 0!important;
@@ -610,6 +691,7 @@
                 max-width: 100%;
                 margin: 0;
                 pointer-events: inherit;
+                position: static;
             }
         }
     }

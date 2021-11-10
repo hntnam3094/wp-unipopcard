@@ -54,8 +54,15 @@
 }
 .project {
     position: relative;
-    background: rgba(176,190,201,.05);
-    border: 1px solid rgba(176,190,201,.1);
+    &.project_home {
+        background: rgba(176,190,201,.05);
+        border: 1px solid rgba(176,190,201,.1);
+    }
+    &:not(.project_home) {
+        @include min_991 {
+            margin-top: -30px;
+        }
+    }
     .heading {
         .ttl_main {
             @include max_767 {
@@ -127,9 +134,21 @@
         .sort {
             .dropdown-toggle {
                 padding: 10px 0;
+                font-size: 12px;
+                letter-spacing: 0.06em;
+                line-height: 19px;
+                
                 @include max_767 {
                     font-size: 12px;
                 }
+            }
+            .dropdown-menu {
+                border-radius: 0;
+            }
+            a {
+                padding: 10px 30px;
+                font-size: 12px;
+                line-height: 19px;
             }
         }
     }

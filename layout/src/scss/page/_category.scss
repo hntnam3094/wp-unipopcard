@@ -17,9 +17,9 @@
         }
     }
     .tab_category {
-        .item {
+        .tab {
             margin: 5px 0;
-            a {
+            span {
                 display: block;
                 font-size: 22px;
                 letter-spacing: 0.08em;
@@ -27,32 +27,26 @@
                 padding: 18px 5px 12px;
                 border-radius: 3px;
                 transition: all .3s;
-                &:not(:hover) {
-                    opacity: 0.5;
-                }
-                &.active {
-                    opacity: 1;
-                }
             }
-            &:nth-child(4n+1) {
-                a {
+            &.item_01 {
+                span {
                     background: #ff7890;
                     color: #fff;
                 }
             }
-            &:nth-child(4n+2) {
-                a {
+            &.item_02 {
+                span {
                     background: #5e7cff;
                     color: #fff;
                 }
             }
-            &:nth-child(4n+3) {
-                a {
+            &.item_03 {
+                span {
                     background: #ffd045;
                 }
             }
-            &:nth-child(4n+4) {
-                a {
+            &.item_04 {
+                span {
                     background: #52ff71;
                 }
             }
@@ -252,6 +246,34 @@
                     &+li {
                         margin-left: 15px;
                     }
+                }
+            }
+        }
+        .list_category {
+            ul {
+                list-style: disc;
+                padding-left: 25px;
+                @include min_767 {
+                    padding-left: 40px;
+                }
+                li {
+                    a {
+                        display: block;
+                        font-size: 12px;
+                        padding: 6px 0;
+                        &:hover {
+                            color: $main;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .project {
+        .column {
+            &:nth-child(-n+4) {
+                @include min_991 {
+                    width: 50%;
                 }
             }
         }

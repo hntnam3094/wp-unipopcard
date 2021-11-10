@@ -1,8 +1,3 @@
-.header_nav .nav>ul>li>a {
-    display: block !important;
-    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out;
-}
-
 .manager_member .summary{
     height: 100%;
     padding: 30px;
@@ -60,4 +55,138 @@
 
 .btn-2checkout {
     width: 100%;
+}
+
+.category .heading .ttl_sub {
+    border-bottom: 1px solid #ccc;
+    color: #585858;
+    padding-bottom: 8px;
+    margin-bottom: 8px
+}
+
+@media (min-width:768px) {
+    .category .heading .ttl_sub {
+        padding-bottom: 15px;
+        margin-bottom: 15px
+    }
+}
+
+.category .heading .text a,
+.category .heading .text span {
+    color: #c41320
+}
+
+.category .tab_category .item {
+    margin: 5px 0
+}
+
+.category .tab_category .item a {
+    display: block;
+    font-size: 22px;
+    letter-spacing: .08em;
+    text-align: center;
+    padding: 18px 5px 12px;
+    border-radius: 3px;
+    transition: all .3s
+}
+
+.category .tab_category .item a:not(:hover) {
+
+}
+
+.category .tab_category .item a {
+    opacity: 1
+}
+
+.category .tab_category .item:nth-child(4n+1) a {
+    background: #ff7890;
+    color: #fff
+}
+
+.category .tab_category .item:nth-child(4n+2) a {
+    background: #5e7cff;
+    color: #fff
+}
+
+.category .tab_category .item:nth-child(4n+3) a {
+    background: #ffd045
+}
+
+.category .tab_category .item:nth-child(4n+4) a {
+    background: #52ff71
+}
+
+.category .course_main .item {
+    position: relative;
+    display: block;
+    transition: all .2s
+}
+
+.category .course_main .item:before {
+    position: absolute;
+    content: "";
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #000;
+    opacity: 0;
+    transition: all .2s;
+    pointer-events: none;
+    z-index: 1
+}
+
+.category .course_main .item .imgDrop {
+    padding-top: 100%;
+    border-radius: 3px
+}
+
+.category .course_main .item.block {
+    pointer-events: none
+}
+
+.category .course_main .item.block:before {
+    background: #b0bec9;
+    opacity: .5
+}
+
+.category .course_main .item.block:after {
+    position: absolute;
+    content: "";
+    margin: auto;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-image: url(../images/icon/icon_lock.svg);
+    background-size: 100%;
+    background-repeat: no-repeat;
+    z-index: 2;
+    width: 15px;
+    height: 25px
+}
+
+@media (min-width:768px) {
+    .category .course_main .item.block:after {
+        width: 26px;
+        height: 35px
+    }
+}
+
+.category .course_main .item:not(.block):hover {
+    transform: scale(1.02);
+    box-shadow: 0 0 8px 3px rgba(0, 0, 0, .3)
+}
+
+.category .course_main .item:not(.block):hover:before {
+    opacity: .1
+}
+
+.category .btn_more {
+    padding: 14px 30px 10px
+}
+
+.category .btn_more span {
+    line-height: 1.3em
 }

@@ -1,0 +1,44 @@
+extends ../include/_template.pug
+include ../include/_mixin
+
+block content
+    +body('action_page', 'nav1', './')
+        section.action_account 
+            .bg.imgDrop
+                img(src="common/images/bg.png", alt="")
+            .wraper
+                .form_action 
+                    a.logo_form(href="index.html")
+                        img(src="common/images/logo.svg", alt="").imgAutp 
+                    a.btn_close(href="index.html") 
+                        img(src="common/images/icon/icon_close.svg", alt="")
+                    form(action="") 
+                        .sub2.mt-40.fz-18 Thank you!
+                        p.text.mt-10 We've sent an email to <br>kennguyen@unipopcards.com. <br>It contains instructions on how to change your password.
+                        .content_back.flexBox.center.mt-50.space.pb-50 
+                            a(href="#").item 
+                                .icon 
+                                    img(src="common/images/icon/thanks_01.svg", alt="")
+                                .txt Check your email and click the link
+                            a(href="#").item 
+                                .icon 
+                                    img(src="common/images/icon/thanks_02.svg", alt="")
+                                .txt Check your email and click the link
+                            a(href="#").item 
+                                .icon 
+                                    img(src="common/images/icon/thanks_03.svg", alt="")
+                                .txt Check your email and click the link
+        section.footing.pt-20.pb-20 
+            .wraper 
+                .row 
+                    .col-6 
+                        address © 2021 KenNguyen. All rights reserved.
+                    .col-6 
+                        .row 
+                            .col-4 
+                                a(href="#") Privacy Policy
+                            .col-4 
+                                a(href="#") Privacy Policy
+                            .col-4 
+                                a(href="#") Privacy Policy
+
