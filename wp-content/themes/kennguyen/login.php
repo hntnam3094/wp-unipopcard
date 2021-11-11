@@ -127,7 +127,6 @@ if ($_POST) {
     ]);
 
     $helper = $fb->getRedirectLoginHelper();
-
     $login_url = $helper->getLoginUrl($va_options['kn_url_callback']);
 
 get_header();
@@ -160,7 +159,7 @@ get_header();
                         <i class="toggle-password"></i>
                     </div>
                     <div class="group mt-20 flexBox star midle">
-                        <input id="remember" type="checkbox" <?= $isCookie ? 'checked' : '' ?> name="remember"/>
+                        <input id="checbox" type="checkbox" <?= $isCookie ? 'checked' : '' ?> name="remember"/>
                         <label for="checbox">Remember me</label>
                     </div>
                     <?php echo $login_message?>

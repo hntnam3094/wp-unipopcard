@@ -61,8 +61,9 @@ function my_plugin_create_db() {
             price FLOAT DEFAULT 0,
             sale_price FLOAT DEFAULT 0,
             status INT DEFAULT 0,
-            bought_date DATE
-            refno VARCHAR(50));";
+            bought_date DATETIME ,
+            refno VARCHAR(50),
+            orderData LONGTEXT);";
 
         require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
         dbDelta($sql);

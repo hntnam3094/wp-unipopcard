@@ -27,6 +27,9 @@ if (!empty($_GET) && isset($_GET['refno'])) {
 
     $dataOrder = callRPC((Object)$jsonRpcRequest, $host, true);
     $emailOrder = $dataOrder->BillingDetails->Email;
+    $idOrder = $_GET['merchartno'];
+    $orderData = json_encode($dataOrder);
+
     $productName = $dataOrder->Items[0]->ProductDetails->Name;
     $first_name = $dataOrder->BillingDetails->FirstName;
     $last_name = $dataOrder->BillingDetails->LastName;
@@ -65,23 +68,22 @@ if (!empty($_GET) && isset($_GET['refno'])) {
             "SELECT * FROM {$table_order}
                             WHERE refno=%s ", $orderReference));
 
-    if (empty($queryResultRefno) && $dataOrder != null ) {
+    $queryOrder = $wpdb->get_results(
+        $wpdb->prepare(
+            "SELECT * FROM {$table_order} 
+                            WHERE id=%d ", $idOrder));
+    if (empty($queryResult) && $dataOrder != null && !empty($queryOrder)) {
         if (isset($_SESSION['user'])) {
             $user = $_SESSION['user'];
             // create new order detail
             $dataOrder = array();
             $dataOrder['id_customer'] = $user->id;
-            $dataOrder['email'] = $user->email;
-            $dataOrder['full_name'] = $user->first_name . ' ' . $user->last_name;
-            $dataOrder['package'] = $idPackage == 1 ? 'Monthly' : 'Yearly';
-            $dataOrder['price'] = $packge['price'];
-            $dataOrder['sale_price'] = $packge['sale_price'];
             $dataOrder['status'] = 1;
-            $dataOrder['bought_date'] = $today;
             $dataOrder['refno'] = $orderReference;
-            $insertRs = $wpdb->insert($table_order, $dataOrder);
+            $dataOrder['orderData'] = $orderData;
+            $insertRs = $wpdb->update($table_order, $dataOrder, ['id' => $idOrder]);
 
-            if (isset($insertRs)) {
+            if ($insertRs) {
                 $dataUser = array();
                 if ($today >= $user->start_date && $today <= $user->end_date) {
                     $endDate = date("Y-m-d",strtotime("+1 month",strtotime($user->end_date)));
@@ -153,15 +155,11 @@ if (!empty($_GET) && isset($_GET['refno'])) {
                         // create new order detail
                         $dataOrder = array();
                         $dataOrder['id_customer'] = $newUser->id;
-                        $dataOrder['email'] = $newUser->email;
-                        $dataOrder['full_name'] = $newUser->first_name . ' ' . $newUser->last_name;
-                        $dataOrder['package'] = $idPackage == 1 ? 'Monthly' : 'Yearly';
-                        $dataOrder['price'] = $packge['price'];
-                        $dataOrder['sale_price'] = $packge['sale_price'];
                         $dataOrder['status'] = 1;
-                        $dataOrder['bought_date'] = $today;
                         $dataOrder['refno'] = $orderReference;
-                        $wpdb->insert($table_order, $dataOrder);
+                        $dataOrder['orderData'] = $orderData;
+                        $insertRs = $wpdb->update($table_order, $dataOrder, ['id' => $idOrder]);
+
                         $message = [
                             'text1' => 'Your account active package success!',
                             'text2' => 'Please check your email to get password for your account and login by your email',
@@ -175,24 +173,19 @@ if (!empty($_GET) && isset($_GET['refno'])) {
                 $queryResultExist = $wpdb->get_results(
                     $wpdb->prepare(
                         "SELECT * FROM {$table}
-                            WHERE email=%s ", $emailOrder));
+                            WHERE email=%s ", $queryOrder[0]->email));
 
                 if (!empty($queryResultExist)) {
                     $existUser = $queryResultExist[0];
                     // create new order detail
                     $dataOrder = array();
                     $dataOrder['id_customer'] = $existUser->id;
-                    $dataOrder['email'] = $existUser->email;
-                    $dataOrder['full_name'] = $existUser->first_name . ' ' . $existUser->last_name;
-                    $dataOrder['package'] = $idPackage == 1 ? 'Monthly' : 'Yearly';
-                    $dataOrder['price'] = $packge['price'];
-                    $dataOrder['sale_price'] = $packge['sale_price'];
                     $dataOrder['status'] = 1;
-                    $dataOrder['bought_date'] = $today;
                     $dataOrder['refno'] = $orderReference;
+                    $dataOrder['orderData'] = $orderData;
+                    $insertRs = $wpdb->update($table_order, $dataOrder, ['id' => $idOrder]);
 
-                    $insertRs = $wpdb->insert($table_order, $dataOrder);
-                    if (isset($insertRs)) {
+                    if ($insertRs) {
                         $dataUser = array();
                         if ($today >= $existUser->start_date && $today <= $existUser->end_date) {
                             $endDate = date("Y-m-d",strtotime("+1 month",strtotime($existUser->end_date)));
@@ -226,11 +219,19 @@ if (!empty($_GET) && isset($_GET['refno'])) {
         }
     }
 }
-
-$queryUser = $wpdb->get_results(
-    $wpdb->prepare(
-        "SELECT * FROM {$table}
+$queryUser = [];
+if (isset($_SESSION['user'])) {
+    $queryUser = $wpdb->get_results(
+        $wpdb->prepare(
+            "SELECT * FROM {$table}
+                            WHERE email=%s ", $user->email));
+} else {
+    $queryUser = $wpdb->get_results(
+        $wpdb->prepare(
+            "SELECT * FROM {$table}
                             WHERE email=%s ", $emailOrder));
+}
+
 $premium_account = [];
 if (!empty($queryUser)) {
     $premium_account = $queryUser[0];
