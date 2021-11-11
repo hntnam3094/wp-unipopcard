@@ -172,6 +172,10 @@
         width: 26px;
         height: 35px
     }
+    .project .item.block .images .imgDrop:before {
+        width: 26px !important;
+        height: 35px !important;
+    }
 }
 
 .category .course_main .item:not(.block):hover {
@@ -189,4 +193,34 @@
 
 .category .btn_more span {
     line-height: 1.3em
+}
+
+.project .item.block .images .imgDrop:before {
+    position: absolute;
+    content: "";
+    margin: auto;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-image: url(../images/icon/icon_lock.svg);
+    background-size: 100%;
+    background-repeat: no-repeat;
+    z-index: 2;
+    width: 15px;
+    height: 25px;
+}
+
+.project .item.block {
+    pointer-events: none
+}
+
+.project .item.block .images {
+    background: #b0bec9;
+    opacity: .5
+}
+
+.project .item {
+    position: relative;
 }

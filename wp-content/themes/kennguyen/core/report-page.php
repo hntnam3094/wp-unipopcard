@@ -43,7 +43,7 @@ function admin_pill_page(){
                 <th class="manage-column column-columnname" scope="col">Package</th>
                 <th class="manage-column column-columnname" scope="col">Bought date</th>
                 <th class="manage-column column-columnname num" scope="col">Price</th>
-                <th class="manage-column column-columnname num" scope="col">Sale price</th>
+                <th class="manage-column column-columnname num" scope="col">Status</th>
                 <th class="manage-column column-columnname num" scope="col">Ref.No</th>
             </tr>
             </thead>
@@ -59,8 +59,8 @@ function admin_pill_page(){
                     <td class="column-columnname"><?= $value->email ?></td>
                     <td class="column-columnname"><?= $value->package ?></td>
                     <td class="column-columnname"><?= $value->bought_date ?></td>
-                    <td class="column-columnname num"><?= usd($value->price) ?></td>
                     <td class="column-columnname num"><?= usd($value->sale_price) ?></td>
+                    <td class="column-columnname num"><?= $value->status == 1 ? '<span class="craft-status craft-status-free">Paid</span>' : '<span class="craft-status craft-status-sale">Unpaid</span>' ?></td>
                     <td class="column-columnname num"><?= $value->refno ?></td>
                 </tr>
             <?php }?>
@@ -68,10 +68,10 @@ function admin_pill_page(){
 
             <tfoot>
             <tr>
-                <th class="manage-column column-cb check-column" scope="col" colspan="5"></th>
+                <th class="manage-column column-cb check-column" scope="col" colspan="4"></th>
                 <th class="manage-column column-columnname" scope="col" style="text-align: right"><strong>Total</strong></th>
                 <th class="manage-column column-columnname num" scope="col"><?= usd($totalAmount) ?></th>
-                <th class="manage-column column-cb check-column" scope="col" colspan="1"></th>
+                <th class="manage-column column-cb check-column" scope="col" colspan="2"></th>
             </tr>
             </tfoot>
         </table>
