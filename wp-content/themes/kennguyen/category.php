@@ -172,19 +172,37 @@ function getClassBlock($checkMembership) {
                             ?>
                         </ul>
                     </div>
-                    <div class="more_corse mt-50 category">
-                        <h3 class="ttl text-up fz-22">MORE TO LOVE</h3>
-                        <div class="course_main">
-                            <div class="row">
-                                <div class="col-4 col-lg-12"><a class="item mt-20" href="#">
-                                        <div class="imgDrop"> <img src="common/images/product_more.png" alt=""/></div></a></div>
-                                <div class="col-4 col-lg-12"><a class="item mt-20" href="#">
-                                        <div class="imgDrop"> <img src="common/images/product_more.png" alt=""/></div></a></div>
-                                <div class="col-4 col-lg-12"><a class="item mt-20" href="#">
-                                        <div class="imgDrop"> <img src="common/images/product_more.png" alt=""/></div></a></div>
+                    <?php
+                        $args = array(
+                            'post_status' => 'publish',
+                            'post_type'      => 'craft',
+                            'showposts' => 3
+                        );
+                        $currentId = get_the_ID();
+                        $the_query = new WP_Query( $args );
+                        ?>
+                        <?php if( $the_query->have_posts() ): ?>
+                            <div class="more_corse mt-50 category">
+                                <h3 class="ttl text-up fz-22">MORE TO LOVE</h3>
+                                <div class="course_main">
+                                    <div class="row">
+                                        <?php while( $the_query->have_posts() ) : $the_query->the_post();
+                                            if (get_the_ID() != $currentId) {
+                                                echo '<div class="col-4 col-lg-12">
+                                                    <a class="item mt-20 '. getClassBlock(get_field('premium_membership')) .'" href="'.get_the_permalink().'">
+                                                        <div class="imgDrop">
+                                                            '.get_the_post_thumbnail( get_the_id() ).'
+                                                        </div>
+                                                    </a>
+                                                </div>';
+                                            }
+                                            ?>
+                                        <?php endwhile; ?>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
+                        <?php endif; ?>
+                    <?php wp_reset_query(); ?>
                 </div>
             </div>
         </div>

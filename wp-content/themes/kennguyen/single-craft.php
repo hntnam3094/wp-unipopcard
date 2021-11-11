@@ -17,6 +17,16 @@ if (isset($_POST)) {
         }
     }
 }
+
+function getClassBlock($checkMembership) {
+    if (check_membership() == 1) {
+        return '';
+    }
+    if ($checkMembership) {
+        return 'block';
+    }
+    return '';
+}
 ?>
 <main>
     <section class="course_detail pt-40 pb-40">
@@ -122,14 +132,11 @@ if (isset($_POST)) {
                         <?php get_template_part('template-parts/order/form-email'); ?>
                     </div>
                     <?php
-                    if (check_membership() == 1 || get_post_meta(get_the_ID(), 'premium_membership', true) == 0) {
                     $args = array(
                         'post_status' => 'publish',
                         'post_type'      => 'craft',
                         'cat' => wp_get_post_categories(get_the_ID()),
-                        'showposts' => 5,
-                        'meta_key' => 'premium_membership',
-                        'meta_value' => '0',
+                        'showposts' => 5
                     );
                     $currentId = get_the_ID();
                     $the_query = new WP_Query( $args );
@@ -142,7 +149,7 @@ if (isset($_POST)) {
                                     <?php while( $the_query->have_posts() ) : $the_query->the_post();
                                         if (get_the_ID() != $currentId) {
                                             echo '<div class="col-4 col-lg-12">
-                                                    <a class="item mt-20" href="'.get_the_permalink().'">
+                                                    <a class="item mt-20 '. getClassBlock(get_field('premium_membership')) .'" href="'.get_the_permalink().'">
                                                         <div class="imgDrop">
                                                             '.get_the_post_thumbnail( get_the_id() ).'
                                                         </div>
@@ -155,7 +162,6 @@ if (isset($_POST)) {
                             </div>
                         </div>
                     <?php endif; ?>
-                    <?php } ?>
                     <?php wp_reset_query(); ?>
                 </div>
             </div>

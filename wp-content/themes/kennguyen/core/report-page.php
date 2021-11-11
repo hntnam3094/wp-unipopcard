@@ -11,8 +11,13 @@ function admin_pill_page(){
 
     $from = $_GET['from'] ?? date('Y-m');
     $to = $_GET['to'] ?? date('Y-m');
-
-    $query = 'SELECT * FROM wp_order WHERE DATE_FORMAT(wp_order.bought_date,"%Y-%m") >= "'.$from.'"AND DATE_FORMAT(wp_order.bought_date,"%Y-%m") <= "'.$to.'"';
+    $status = $_GET['status'] ?? '';
+    $statusQuery = '';
+    if ($status !== '' && $status !== 'all') {
+        $statusQuery = ' AND wp_order.status = "'.($status == 'unpaid' ? 0 : 1).'"';
+    }
+    $query = 'SELECT * FROM wp_order WHERE DATE_FORMAT(wp_order.bought_date,"%Y-%m") >= "'.$from.'"AND DATE_FORMAT(wp_order.bought_date,"%Y-%m") <= "'.$to.'"'.$statusQuery;
+    var_dump($query);
     $total_query = "SELECT COUNT(1) FROM (${query}) AS combined_table";
     $total = $wpdb->get_var( $total_query );
     $items_per_page = 10;
@@ -31,6 +36,12 @@ function admin_pill_page(){
                 <input type="month" id="month-to" value="<?=$to?>">
             </div>
             <div class="alignleft actions">
+                <label>Status</label>
+                <select style="float: unset" id="select-status-report">
+                    <option value="all" <?= $status == 'all' ? 'selected' : ''?>>All</option>
+                    <option value="paid" <?= $status == 'paid' ? 'selected' : ''?>>Paid</option>
+                    <option value="unpaid" <?= $status == 'unpaid' ? 'selected' : ''?>>Unpaid</option>
+                </select>
                 <input type="submit" id="btn-report-submit" class="button action" value="Apply">
             </div>
         </div>
@@ -93,8 +104,10 @@ function admin_pill_page(){
             const urlParams = new URLSearchParams(window.location.search)
             let monthFrom = document.getElementById('month-from')
             let monthTo = document.getElementById('month-to')
+            let status = document.getElementById('select-status-report')
             urlParams.set('from', monthFrom.value);
             urlParams.set('to', monthTo.value);
+            urlParams.set('status', status.value);
             window.location.href='?' + urlParams.toString()
         }
     </script>
@@ -279,7 +292,7 @@ function getQueryReport($type, $from, $to) {
                     (SELECT 0 t2 UNION SELECT 1 UNION SELECT 2 UNION SELECT 3 UNION SELECT 4 UNION SELECT 5 UNION SELECT 6 UNION SELECT 7 UNION SELECT 8 UNION SELECT 9) t2,
                     (SELECT 0 t3 UNION SELECT 1 UNION SELECT 2 UNION SELECT 3 UNION SELECT 4 UNION SELECT 5 UNION SELECT 6 UNION SELECT 7 UNION SELECT 8 UNION SELECT 9) t3,
                     (SELECT 0 t4 UNION SELECT 1 UNION SELECT 2 UNION SELECT 3 UNION SELECT 4 UNION SELECT 5 UNION SELECT 6 UNION SELECT 7 UNION SELECT 8 UNION SELECT 9) t4
-                ) v1) v ON v.start_date = wp_order.bought_date
+                ) v1) v ON v.start_date = DATE_FORMAT(wp_order.bought_date,"%Y-%m-%d") AND wp_order.status = 1
                 WHERE DATE_FORMAT(v.start_date,"%Y-%m") >= "'.$from.'"
                 AND DATE_FORMAT(v.start_date,"%Y-%m-%d") <= "'.$to.'"
                 GROUP BY DATE(v.start_date)
@@ -301,7 +314,7 @@ function getQueryReport($type, $from, $to) {
                     (SELECT 0 t2 UNION SELECT 1 UNION SELECT 2 UNION SELECT 3 UNION SELECT 4 UNION SELECT 5 UNION SELECT 6 UNION SELECT 7 UNION SELECT 8 UNION SELECT 9) t2,
                     (SELECT 0 t3 UNION SELECT 1 UNION SELECT 2 UNION SELECT 3 UNION SELECT 4 UNION SELECT 5 UNION SELECT 6 UNION SELECT 7 UNION SELECT 8 UNION SELECT 9) t3,
                     (SELECT 0 t4 UNION SELECT 1 UNION SELECT 2 UNION SELECT 3 UNION SELECT 4 UNION SELECT 5 UNION SELECT 6 UNION SELECT 7 UNION SELECT 8 UNION SELECT 9) t4
-                ) v1) v ON v.start_date = wp_order.bought_date
+                ) v1) v ON v.start_date = DATE_FORMAT(wp_order.bought_date,"%Y-%m-%d") AND wp_order.status = 1
                 WHERE DATE_FORMAT(v.start_date,"%Y-%m") >= "'.$from.'"
                 AND DATE_FORMAT(v.start_date,"%Y-%m-%d") <= "'.$to.'"
                 GROUP BY WEEK(v.start_date, 1), YEAR(v.start_date)
@@ -322,7 +335,7 @@ function getQueryReport($type, $from, $to) {
                     (SELECT 0 t2 UNION SELECT 1 UNION SELECT 2 UNION SELECT 3 UNION SELECT 4 UNION SELECT 5 UNION SELECT 6 UNION SELECT 7 UNION SELECT 8 UNION SELECT 9) t2,
                     (SELECT 0 t3 UNION SELECT 1 UNION SELECT 2 UNION SELECT 3 UNION SELECT 4 UNION SELECT 5 UNION SELECT 6 UNION SELECT 7 UNION SELECT 8 UNION SELECT 9) t3,
                     (SELECT 0 t4 UNION SELECT 1 UNION SELECT 2 UNION SELECT 3 UNION SELECT 4 UNION SELECT 5 UNION SELECT 6 UNION SELECT 7 UNION SELECT 8 UNION SELECT 9) t4
-                ) v1) v ON v.start_date = wp_order.bought_date
+                ) v1) v ON v.start_date = DATE_FORMAT(wp_order.bought_date,"%Y-%m-%d") AND wp_order.status = 1
                 WHERE DATE_FORMAT(v.start_date,"%Y-%m") >= "'.$from.'"
                 AND DATE_FORMAT(v.start_date,"%Y-%m-%d") <= "'.$to.'"
                 GROUP BY MONTH(v.start_date), YEAR(v.start_date)
@@ -344,7 +357,7 @@ function getQueryReport($type, $from, $to) {
                     (SELECT 0 t2 UNION SELECT 1 UNION SELECT 2 UNION SELECT 3 UNION SELECT 4 UNION SELECT 5 UNION SELECT 6 UNION SELECT 7 UNION SELECT 8 UNION SELECT 9) t2,
                     (SELECT 0 t3 UNION SELECT 1 UNION SELECT 2 UNION SELECT 3 UNION SELECT 4 UNION SELECT 5 UNION SELECT 6 UNION SELECT 7 UNION SELECT 8 UNION SELECT 9) t3,
                     (SELECT 0 t4 UNION SELECT 1 UNION SELECT 2 UNION SELECT 3 UNION SELECT 4 UNION SELECT 5 UNION SELECT 6 UNION SELECT 7 UNION SELECT 8 UNION SELECT 9) t4
-                ) v1) v ON v.start_date = wp_order.bought_date
+                ) v1) v ON v.start_date = DATE_FORMAT(wp_order.bought_date,"%Y-%m-%d") AND wp_order.status = 1
                 WHERE DATE_FORMAT(v.start_date,"%Y-%m") >= "'.$from.'"
                 AND DATE_FORMAT(v.start_date,"%Y-%m-%d") <= "'.$to.'"
                 GROUP BY QUARTER(v.start_date), YEAR(v.start_date)
@@ -365,7 +378,7 @@ function getQueryReport($type, $from, $to) {
                     (SELECT 0 t2 UNION SELECT 1 UNION SELECT 2 UNION SELECT 3 UNION SELECT 4 UNION SELECT 5 UNION SELECT 6 UNION SELECT 7 UNION SELECT 8 UNION SELECT 9) t2,
                     (SELECT 0 t3 UNION SELECT 1 UNION SELECT 2 UNION SELECT 3 UNION SELECT 4 UNION SELECT 5 UNION SELECT 6 UNION SELECT 7 UNION SELECT 8 UNION SELECT 9) t3,
                     (SELECT 0 t4 UNION SELECT 1 UNION SELECT 2 UNION SELECT 3 UNION SELECT 4 UNION SELECT 5 UNION SELECT 6 UNION SELECT 7 UNION SELECT 8 UNION SELECT 9) t4
-                ) v1) v ON v.start_date = wp_order.bought_date
+                ) v1) v ON v.start_date = DATE_FORMAT(wp_order.bought_date,"%Y-%m-%d") AND wp_order.status = 1
                 WHERE DATE_FORMAT(v.start_date,"%Y-%m") >= "'.$from.'"
                 AND DATE_FORMAT(v.start_date,"%Y-%m-%d") <= "'.$to.'"
                 GROUP BY YEAR(v.start_date)
