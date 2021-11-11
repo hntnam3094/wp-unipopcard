@@ -1,4 +1,15 @@
 <?php get_header(); ?>
+<?php
+function getClassBlock($checkMembership) {
+    if (check_membership() == 1) {
+        return '';
+    }
+    if ($checkMembership) {
+        return 'block';
+    }
+    return '';
+}
+?>
     <main>
         <?php get_template_part('template-parts/home/banner'); ?>
         <?php get_template_part('template-parts/home/video'); ?>
@@ -58,7 +69,7 @@
                 <?php if( $the_query->have_posts() ): ?>
                     <?php while( $the_query->have_posts() ) : $the_query->the_post(); ?>
                         <div class="column col-6 col-md-3">
-                            <a class="item block mt-40" href="<?= get_the_permalink() ?>">
+                            <a class="item mt-40 <?= getClassBlock(get_field('premium_membership'))  ?>" href="<?= get_the_permalink() ?>">
                                 <div class="images">
                                     <div class="imgDrop"> <?php echo get_the_post_thumbnail( get_the_ID() ); ?></div>
                                 </div>

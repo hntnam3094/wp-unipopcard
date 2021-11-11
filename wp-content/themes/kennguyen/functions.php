@@ -5,7 +5,7 @@ if (!session_id()) {
 require_once dirname( __FILE__ ).'/core/init.php';
 
 function theme_setup() {
-    register_nav_menu('left-menu',__( 'Menu trái' ));
+//    register_nav_menu('left-menu',__( 'Menu trái' ));
     register_nav_menu('right-menu',__( 'Menu phải' ));
     register_nav_menu('footer-about',__( 'Footer column about' ));
     register_nav_menu('footer-resources',__( 'Footer column resources' ));
@@ -961,3 +961,32 @@ function check_type_member() {
     }
     return $type_member;
 }
+
+function ajax_request_register_guest_email() {
+
+    // The $_REQUEST contains all the data sent via AJAX from the Javascript call
+    if ( isset($_REQUEST) ) {
+        global $wpdb;
+        $table = $wpdb->prefix .'guest_email';
+        $data = array(
+            'email'    => $_REQUEST['guest_email']
+        );
+
+        $query = 'SELECT * FROM wp_guest_email where email like "'.$_POST['guest_email'].'"';
+        $total_query = "SELECT COUNT(1) FROM (${query}) AS totalEmail";
+        $total = $wpdb->get_var( $total_query );
+        if ($total == 0) {
+            $wpdb->insert( $table, $data );
+            echo 'Thank you for your information. We will contact you shortly.';
+        } else {
+            echo 'Your email is registered. We will contact you shortly.';
+        }
+    }
+
+    // Always die in functions echoing AJAX content
+    wp_die();
+}
+
+// This bit is a special action hook that works with the WordPress AJAX functionality.
+add_action( 'wp_ajax_ajax_request_register_guest_email', 'ajax_request_register_guest_email' );
+add_action("wp_ajax_nopriv_ajax_request_register_guest_email", "ajax_request_register_guest_email");

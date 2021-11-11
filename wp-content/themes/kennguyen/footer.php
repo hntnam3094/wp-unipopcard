@@ -14,6 +14,19 @@
         </div>
     </div>
 </div>
+<div class="modal fade" id="modal_thanks_guest_email" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body text-center">
+<!--                <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>-->
+                <div class="pt-30" id="result-register-guest-email">Thank you for your infomation. We will contact you shortly.</div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn_cancel" type="button" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
 <?php if( function_exists('slbd_display_widgets') ) { echo slbd_display_widgets(); } ?>
 <footer class="footer pt-40 pb-30">
     <div class="wraper">
@@ -318,6 +331,52 @@
             }
         }
     }
+</script>
+<script>
+    function validateEmail(email) {
+        const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return re.test(email);
+    }
+
+    $("form input[type=submit]").click(function(e) {
+        e.preventDefault();
+        console.log()
+        let email = $("input[name=guest_email]").val()
+        if (validateEmail(email)) {
+            $('.submit-loading-email').show()
+            $('.submit-form-email').hide()
+            // This does the ajax request (The Call).
+            $.ajax({
+                method: 'POST',
+                url: '<?php echo admin_url('admin-ajax.php');?>', // Since WP 2.8 ajaxurl is always defined and points to admin-ajax.php
+                data: {
+                    'action':'ajax_request_register_guest_email', // This is our PHP function below
+                    'guest_email' : email // This is the variable we are sending via AJAX
+                },
+                success:function(data) {
+                    $("#result-register-guest-email").html(data)
+                    $("#modal_thanks_guest_email").modal("show");
+                    $('.submit-loading-email').hide()
+                    $('.submit-form-email').show()
+                    $("input[name=guest_email]").val('')
+                },
+                error: function(errorThrown){
+                    $('.submit-loading-email').hide()
+                    $('.submit-form-email').show()
+                    //window.alert(errorThrown);
+                }
+            });
+        } else {
+            if (email == '') {
+                $("#result-register-guest-email").html(`Please enter email !`)
+            } else {
+                $("#result-register-guest-email").html(`Your email: ${email} <br/> Invalid email format e.g. admin@kennguyen.com ! <br/> Please enter the correct format !`)
+            }
+            $("#modal_thanks_guest_email").modal("show");
+        }
+
+    });
+
 </script>
 <?php wp_footer(); ?>
 
