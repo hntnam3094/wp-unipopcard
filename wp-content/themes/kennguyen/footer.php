@@ -360,7 +360,7 @@
         return re.test(email);
     }
 
-    $("form input[name=guest_email]").click(function(e) {
+    $("form input[name=submit-form-guest-email]").click(function(e) {
         e.preventDefault();
 
         let email = $("input[name=guest_email]").val()
