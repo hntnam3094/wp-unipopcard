@@ -340,8 +340,11 @@
 
     $("form input[type=submit]").click(function(e) {
         e.preventDefault();
-        console.log()
+
         let email = $("input[name=guest_email]").val()
+        if($(this).length > 0 && $(this)[0].offsetParent.length > 0) {
+            email = $(this)[0].offsetParent[0].value;
+        }
         if (validateEmail(email)) {
             $('.submit-loading-email').show()
             $('.submit-form-email').hide()
