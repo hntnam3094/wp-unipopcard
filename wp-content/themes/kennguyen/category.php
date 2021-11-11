@@ -1,6 +1,16 @@
 <?php get_header(); ?>
 <?php global $va_options?>
-<?php $currentCategory = get_queried_object(); ?>
+<?php $currentCategory = get_queried_object();
+function getClassBlock($checkMembership) {
+    if (check_membership() == 1) {
+        return '';
+    }
+    if ($checkMembership) {
+        return 'block';
+    }
+    return '';
+}
+?>
 <main>
     <section class="course_detail pt-40 pb-80">
         <div class="wraper">
@@ -8,7 +18,7 @@
             <div class="row">
                 <div class="col-12 col-lg-9">
                     <div class="project">
-                        <div class="row">
+                        <div class="row list-course">
                             <?php
                             $paged = ( get_query_var( 'page' ) ) ? get_query_var( 'page' ) : 1;
                             $args = array(
@@ -27,7 +37,7 @@
                                 <?php while( $the_query->have_posts() ) : $the_query->the_post(); ?>
 
                                     <div class="column col-6 col-md-4">
-                                        <a class="item mt-40" href="<?= get_the_permalink()?>">
+                                        <a class="item mt-40 <?= getClassBlock(get_field('premium_membership'))  ?>" href="<?= get_the_permalink()?>">
                                             <div class="images">
                                                 <div class="imgDrop"> <img src="<?= get_the_post_thumbnail( get_the_id() ) ?>" alt=""/></div>
                                             </div>
