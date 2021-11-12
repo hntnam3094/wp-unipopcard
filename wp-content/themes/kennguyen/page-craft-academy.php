@@ -57,10 +57,7 @@ $listAllCatID = [];
                                     'post_type'      => 'craft',
                                     'year' => $year,
                                     'monthnum' => $month,
-                                    'cat' => $category->cat_ID,
-                                    'meta_key' => 'premium_membership',
-                                    'orderby' => 'meta_value',
-                                    'order' => 'ASC',
+                                    'cat' => $category->cat_ID
                                 );
                                 $the_query = new WP_Query( $args );
                                 ?>
