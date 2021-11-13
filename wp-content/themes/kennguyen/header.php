@@ -19,7 +19,7 @@
 </head>
 <body nav_active="nav_active" class="page_payment <?php do_action('get_request'); ?>" <?php body_class(); ?>>
 <?php wp_body_open(); ?>
-
+<?php global $va_options?>
 <header class="header active_search" id="header">
     <?php do_action('block_user_login'); ?>
     <div class="header-top">
@@ -30,7 +30,7 @@
     <div class="header-bottom">
         <div class="wraper flexBox space midle bottom">
             <a class="logo" href="/">
-                <img class="imgAuto" src="<?php bloginfo('template_directory') ?>/common/images/logo_new.jpg" alt=""/>
+                <img class="imgAuto" src="<?= $va_options['kn_logo']['url'] !== '' ? $va_options['kn_logo']['url'] : bloginfo('template_directory').'/common/images/logo.svg' ?>" alt=""/>
             </a>
             <div class="header-right flexBox midle end">
                 <nav class="navbar navbar-expand-lg modal fade collapse" id="navbarSupportedContent" navbar-collapsetabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

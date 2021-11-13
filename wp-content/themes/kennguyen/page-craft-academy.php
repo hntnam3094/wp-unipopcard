@@ -57,7 +57,8 @@ $listAllCatID = [];
                                     'post_type'      => 'craft',
                                     'year' => $year,
                                     'monthnum' => $month,
-                                    'cat' => $category->cat_ID
+                                    'cat' => $category->cat_ID,
+                                    'showposts' => 4
                                 );
                                 $the_query = new WP_Query( $args );
                                 ?>
