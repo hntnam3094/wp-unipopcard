@@ -48,6 +48,8 @@ if ( ! class_exists( 'VA_Theme_Options' ) ) {
 
             $this->setFacebookAppLogin();
 
+            $this->setGoogleLogin();
+
             $this->set2checkout();
 
             if ( ! isset( $this->args['opt_name'] ) ) { // No errors please
@@ -453,12 +455,36 @@ if ( ! class_exists( 'VA_Theme_Options' ) ) {
 
         }
 
+        public function setGoogleLogin() {
+            // Home Section
+            $this->sections[] = array(
+                'title'  => __( 'Setting Login with Google', 'vietanh' ),
+                'desc'   => __( 'All of settings for login with Google.', 'vietanh' ),
+                'icon'   => 'el-icon-certificate',
+                'fields' => array(
+                    array(
+                        'id' => 'kn_client_id',
+                        'type' => 'text',
+                        'title' => __('Client ID', 'vietanh'),
+                        'compiler' => true,
+                    ),
+                    array(
+                        'id' => 'kn_client_serect',
+                        'type' => 'text',
+                        'title' => __('Client Serect', 'vietanh'),
+                        'compiler' => true,
+                    )
+                )
+            ); // end section
+
+        }
+
         public function set2checkout() {
             // Home Section
             $this->sections[] = array(
                 'title'  => __( 'Setting 2Checkout', 'vietanh' ),
                 'desc'   => __( 'All of settings for payment by 2Checkout.', 'vietanh' ),
-                'icon'   => 'el-icon-facebook',
+                'icon'   => 'el-icon-credit-card',
                 'fields' => array(
                     array(
                         'id' => 'kn_2co_account',
