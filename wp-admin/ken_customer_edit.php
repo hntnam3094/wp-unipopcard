@@ -187,7 +187,7 @@ if (!empty($queryResult)) {
                     </tr>
                     <tr class="user-first-name-wrap">
                         <th><label for="first_name">Birthday</label></th>
-                        <td><input type="text" name="birth_day" id="birth_day" value="" class="regular-text" /></td>
+                        <td><input type="date" name="birth_day" id="birth_day" value="" class="regular-text" /></td>
                     </tr>
                     <tr class="user-first-name-wrap">
                         <th><label for="first_name">Membership</label></th>
