@@ -19,6 +19,10 @@ add_action('init', 'theme_setup');
 //custom hide menu in admin
 function hide_menu() {
     remove_menu_page( 'edit.php' ); //Posts
+
+    if (!DEV_ENVIRONMENT) {
+        remove_menu_page( 'edit.php?post_type=acf-field-group' ); //Posts
+    }
 }
 add_action('admin_head', 'hide_menu');
 
