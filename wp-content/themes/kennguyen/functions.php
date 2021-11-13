@@ -803,6 +803,9 @@ function smashing_craft_column( $column, $post_id ) {
 add_action('admin_head', 'j0e_add_admin_styles');
 function j0e_add_admin_styles() {
     echo '<style>
+.redux-action_bar > * {
+    margin-left: 5px !important;
+}
 .page-numbers {
     background-color: white;
     padding: 6px;

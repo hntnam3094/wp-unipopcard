@@ -176,7 +176,9 @@ function getClassBlock($checkMembership) {
                         $args = array(
                             'post_status' => 'publish',
                             'post_type'      => 'craft',
-                            'showposts' => 3
+                            'meta_key' => 'craft_featured',
+                            'meta_value' => 1,
+                            'showposts' => 5
                         );
                         $currentId = get_the_ID();
                         $the_query = new WP_Query( $args );

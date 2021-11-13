@@ -38,6 +38,8 @@ if ( ! class_exists( 'VA_Theme_Options' ) ) {
 
 
             // Create the sections and fields
+            $this->setSectionsSettingGeneral();
+
             $this->setSectionsSettingHome();
 
             $this->setSections();
@@ -71,8 +73,8 @@ if ( ! class_exists( 'VA_Theme_Options' ) ) {
                 'display_name' => $theme->get('Name'), // Thiết lập tên theme hiển thị trong Theme Options
                 'menu_type' => 'menu',
                 'allow_sub_menu' => true,
-                'menu_title' => __('Settings', 'vietanh'),
-                'page_title' => __('Settings', 'vietanh'),
+                'menu_title' => __('General setting', 'vietanh'),
+                'page_title' => __('General setting', 'vietanh'),
                 'dev_mode' => false,
                 'customizer' => true,
                 'menu_icon' => '', // Đường dẫn icon của menu option
@@ -141,7 +143,7 @@ if ( ! class_exists( 'VA_Theme_Options' ) ) {
             $this->sections[] = array(
                 'title'  => __( 'Setting footer', 'vietanh' ),
                 'desc'   => __( 'All of settings for header on this theme.', 'vietanh' ),
-                    'icon'   => 'el-icon-circle-arrow-right',
+                    'icon'   => 'el-icon-cog',
                     'fields' => array(
                         array(
                             'id' => 'kn_avatar',
@@ -254,14 +256,38 @@ if ( ! class_exists( 'VA_Theme_Options' ) ) {
 
         }
 
+        public function setSectionsSettingGeneral() {
+            // Home Section
+            $this->sections[] = array(
+                'title'  => __( 'Setting general', 'vietanh' ),
+                'desc'   => __( 'All of settings for ken nguyen theme.', 'vietanh' ),
+                'icon'   => 'el-icon-cog',
+                'fields' => array(
+                    array(
+                        'id' => 'kn_logo',
+                        'type' => 'media',
+                        'title' => __('Logo', 'vietanh'),
+                        'compiler' => true,
+                        'desc' => __('Cho phép dùng đuôi: jpg,png,gif', 'vietanh')
+                    ),
+//                    array(
+//                        'id' => 'kn_logo_2checkout',
+//                        'type' => 'media',
+//                        'title' => __('Logo for 2checkout', 'vietanh'),
+//                        'compiler' => true,
+//                        'desc' => __('Cho phép dùng đuôi: jpg,png,gif', 'vietanh')
+//                    )
+                )
+            ); // end section
+
+        }
+
         public function setPayment() {
             // Home Section
             $this->sections[] = array(
-                'title'  => __( 'Upgrade today', 'upgrade_today' ),
+                'title'  => __( 'Setting upgrade today page', 'upgrade_today' ),
                 'desc'   => __( 'All of settings for package payment.', 'upgrade_today' ),
-                'icon'   => 'el-icon-home',
-                'desc'   => __( 'All of settings for header on this theme.', 'upgrade_today' ),
-                'icon'   => 'el-icon-circle-arrow-right',
+                'icon'   => 'el-icon-cog',
                 'fields' => array(
                     array(
                         'id' => 'section-month-start',
@@ -350,9 +376,9 @@ if ( ! class_exists( 'VA_Theme_Options' ) ) {
         public function setEmailSetting() {
             // Home Section
             $this->sections[] = array(
-                'title'  => __( 'Email setting', 'upgrade_today' ),
+                'title'  => __( 'Setting email', 'upgrade_today' ),
                 'desc'   => __( 'All of settings for email.', 'email_setting' ),
-                'icon'   => 'el-icon-list-alt',
+                'icon'   => 'el-icon-cog',
                 'fields' => array(
                     array(
                         'id' => 'kn_email_from',
@@ -458,7 +484,7 @@ if ( ! class_exists( 'VA_Theme_Options' ) ) {
             $this->sections[] = array(
                 'title'  => __( 'Setting 2Checkout', 'vietanh' ),
                 'desc'   => __( 'All of settings for payment by 2Checkout.', 'vietanh' ),
-                'icon'   => 'el-icon-facebook',
+                'icon'   => 'el-icon-credit-card',
                 'fields' => array(
                     array(
                         'id' => 'kn_2co_account',
