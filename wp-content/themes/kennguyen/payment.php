@@ -187,9 +187,9 @@ get_header();
             <form action="">
                 <div class="row flexBox center">
                     <div class="col-12 col-lg-8">
-                        <h1 class="ttl fz-50 text-center"><?= the_field('main_title') ?></h1>
-                        <h2 class="fz-36 text-center mt-15"><?= the_field('sub_title') ?></h2>
-                        <div class="text mt-20 text-center"><?= the_field('summary') ?></div>
+                        <h1 class="ttl fz-50 text-center"><?= get_field('main_title') ?></h1>
+                        <h2 class="fz-36 text-center mt-15"><?= get_field('sub_title') ?></h2>
+                        <div class="text mt-20 text-center"><?= get_field('summary') ?></div>
                     </div>
                 </div>
                 <div class="row mt-40">
@@ -279,7 +279,7 @@ get_header();
                                     <div class="imgDrop"> <img src="<?= get_field('group_1')['group_image'] ?>" alt=""/></div>
                                 </div>
                             </div>
-                            <h2 class="ttl fz-24 mt-30"><?= get_field('group_2')['group_text'] ?></h2>
+                            <h2 class="ttl fz-24 mt-30"><?= get_field('group_2')['group_title_1'] ?></h2>
                             <div class="img_main mt-30">
                                 <div class="imgDrop"> <img src="<?= get_field('group_2')['group_image'] ?>" alt=""/></div>
                             </div>
@@ -294,7 +294,7 @@ get_header();
                                  <?php }
                                     ?>
                             </div>
-                            <h2 class="ttl fz-24 mt-30"><?= the_field('box_left_title__2') ?></h2>
+                            <h2 class="ttl fz-24 mt-30"><?= get_field('group_2')['group_title_2'] ?></h2>
                             <div class="list_check mt-30">
                                 <?php if (get_field('list_content_2'))
                                     foreach (get_field('list_content_2') as $key => $item) {
