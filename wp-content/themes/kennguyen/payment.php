@@ -286,10 +286,11 @@ get_header();
                             <div class="list_check mt-30">
                                 <?php if (get_field('list_content_1'))
                                             foreach (get_field('list_content_1') as $key => $item) {
+                                                $idKey = 'list_check' . $key;
                                                 ?>
                                                 <div class="group flexBox space mt-20">
-                                                    <input type="checkbox" checked="checked" id="list_check1"/>
-                                                    <label for="list_check1"><?= $item['content_text'] ?></label>
+                                                    <input type="checkbox" checked="checked" id="<?= $idKey ?>"/>
+                                                    <label for="<?= $idKey ?>"><?= $item['content_text'] ?></label>
                                                 </div>
                                  <?php }
                                     ?>
@@ -298,10 +299,12 @@ get_header();
                             <div class="list_check mt-30">
                                 <?php if (get_field('list_content_2'))
                                     foreach (get_field('list_content_2') as $key => $item) {
+                                        $keytmp = $key + count(get_field('list_content_1'));
+                                        $idKey = 'list_check' . $keytmp;
                                         ?>
                                         <div class="group flexBox space mt-20">
-                                            <input type="checkbox" checked="checked" id="list_check1"/>
-                                            <label for="list_check1"><?= $item['content_text'] ?></label>
+                                            <input type="checkbox" checked="checked" id="<?= $idKey ?>"/>
+                                            <label for="<?= $idKey ?>"><?= $item['content_text'] ?></label>
                                         </div>
                                     <?php }
                                 ?>
