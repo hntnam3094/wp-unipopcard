@@ -271,57 +271,48 @@ get_header();
                         <div class="content_right">
                             <div class="right_box">
                                 <div class="text">
-                                    <p><?= the_field('box_text_1') ?></p>
+
+                                    <p><?= get_field('group_1')['group_text'] ?></p>
 
                                 </div>
                                 <div class="img">
-                                    <div class="imgDrop"> <img src="<?= the_field('box_image_1') ?>" alt=""/></div>
+                                    <div class="imgDrop"> <img src="<?= get_field('group_1')['group_image'] ?>" alt=""/></div>
                                 </div>
                             </div>
-                            <h2 class="ttl fz-24 mt-30"><?= the_field('box_left_title_1') ?></h2>
+                            <h2 class="ttl fz-24 mt-30"><?= get_field('group_2')['group_text'] ?></h2>
                             <div class="img_main mt-30">
-                                <div class="imgDrop"> <img src="<?= the_field('left_main_image') ?>" alt=""/></div>
+                                <div class="imgDrop"> <img src="<?= get_field('group_2')['group_image'] ?>" alt=""/></div>
                             </div>
                             <div class="list_check mt-30">
-                                <div class="group flexBox space mt-20">
-                                    <input type="checkbox" checked="checked" id="list_check1"/>
-                                    <label for="list_check1"><?= the_field('content_1') ?></label>
-                                </div>
-                                <div class="group flexBox space mt-20">
-                                    <input type="checkbox" checked="checked" id="list_check2"/>
-                                    <label for="list_check2"><?= the_field('content_2') ?></label>
-                                </div>
-                                <div class="group flexBox space mt-20">
-                                    <input type="checkbox" checked="checked" id="list_check3"/>
-                                    <label for="list_check3"><?= the_field('content_3') ?></label>
-                                </div>
-                                <div class="group flexBox space mt-20">
-                                    <input type="checkbox" checked="checked" id="list_check4"/>
-                                    <label for="list_check4"><?= the_field('content_4') ?></label>
-                                </div>
-                                <div class="group flexBox space mt-20">
-                                    <input type="checkbox" checked="checked" id="list_check5"/>
-                                    <label for="list_check5"><?= the_field('content_5') ?></label>
-                                </div>
+                                <?php if (get_field('list_content_1'))
+                                            foreach (get_field('list_content_1') as $key => $item) {
+                                                ?>
+                                                <div class="group flexBox space mt-20">
+                                                    <input type="checkbox" checked="checked" id="list_check1"/>
+                                                    <label for="list_check1"><?= $item['content_text'] ?></label>
+                                                </div>
+                                 <?php }
+                                    ?>
                             </div>
                             <h2 class="ttl fz-24 mt-30"><?= the_field('box_left_title__2') ?></h2>
                             <div class="list_check mt-30">
-                                <div class="group flexBox space mt-20">
-                                    <input type="checkbox" checked="checked" id="list_check6"/>
-                                    <label for="list_check6"><?= the_field('content_6') ?></label>
-                                </div>
-                                <div class="group flexBox space mt-20">
-                                    <input type="checkbox" checked="checked" id="list_check7"/>
-                                    <label for="list_check7"><?= the_field('content_7') ?></label>
-                                </div>
+                                <?php if (get_field('list_content_2'))
+                                    foreach (get_field('list_content_2') as $key => $item) {
+                                        ?>
+                                        <div class="group flexBox space mt-20">
+                                            <input type="checkbox" checked="checked" id="list_check1"/>
+                                            <label for="list_check1"><?= $item['content_text'] ?></label>
+                                        </div>
+                                    <?php }
+                                ?>
                             </div>
                             <div class="right_box2 mt-30">
                                 <div class="img">
-                                    <div class="imgDrop"> <img src="<?= the_field('box_image_2') ?>" alt=""/></div>
+                                    <div class="imgDrop"> <img src="<?= get_field('group_3')['group_image'] ?>" alt=""/></div>
                                 </div>
                                 <div class="text">
-                                    <h4 class="ttl fz-20"><?= the_field('box_text_3') ?></h4>
-                                    <div class="txt mt-15"><?= the_field('box_text_2') ?></div>
+                                    <h4 class="ttl fz-20"><?= get_field('group_3')['group_title'] ?></h4>
+                                    <div class="txt mt-15"><?= get_field('group_3')['group_text'] ?></div>
                                 </div>
                             </div>
                         </div>
