@@ -189,7 +189,7 @@ get_header();
                     <div class="col-12 col-lg-8">
                         <h1 class="ttl fz-50 text-center"><?= get_field('main_title') ?></h1>
                         <h2 class="fz-36 text-center mt-15"><?= get_field('sub_title') ?></h2>
-                        <div class="text mt-20 text-center"><?= get_field('summary') ?></div>
+                        <div class="text mt-20 text-center"><?= nl2br(get_field('summary')) ?></div>
                     </div>
                 </div>
                 <div class="row mt-40">
@@ -272,7 +272,7 @@ get_header();
                             <div class="right_box">
                                 <div class="text">
 
-                                    <p><?= get_field('group_1')['group_text'] ?></p>
+                                    <p><?= nl2br(get_field('group_1')['group_text']) ?></p>
 
                                 </div>
                                 <div class="img">
@@ -312,7 +312,7 @@ get_header();
                                 </div>
                                 <div class="text">
                                     <h4 class="ttl fz-20"><?= get_field('group_3')['group_title'] ?></h4>
-                                    <div class="txt mt-15"><?= get_field('group_3')['group_text'] ?></div>
+                                    <div class="txt mt-15"><?= nl2br(get_field('group_3')['group_text']) ?></div>
                                 </div>
                             </div>
                         </div>
