@@ -30,7 +30,7 @@
     <div class="header-bottom">
         <div class="wraper flexBox space midle bottom">
             <a class="logo" href="/">
-                <img class="imgAuto" src="<?php bloginfo('template_directory') ?>/common/images/logo.svg" alt=""/>
+                <img class="imgAuto" src="<?php bloginfo('template_directory') ?>/common/images/logo_new.jpg" alt=""/>
             </a>
             <div class="header-right flexBox midle end">
                 <nav class="navbar navbar-expand-lg modal fade collapse" id="navbarSupportedContent" navbar-collapsetabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

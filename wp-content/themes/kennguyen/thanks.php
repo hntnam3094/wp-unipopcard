@@ -26,7 +26,7 @@ if (isset($token)) {
     <section class="action_account">
         <div class="bg imgDrop"><img src="<?php bloginfo('template_directory') ?>/common/images/bg.png" alt=""/></div>
         <div class="wraper">
-            <div class="form_action"> <a class="logo_form" href="index.html"><img class="imgAutp" src="<?php bloginfo('template_directory') ?>/common/images/logo.svg" alt=""/></a><a class="btn_close" href="index.html"> <img src="<?php bloginfo('template_directory') ?>/common/images/icon/icon_close.svg" alt=""/></a>
+            <div class="form_action"> <a class="logo_form" href="index.html"><img class="imgAutp" src="<?php bloginfo('template_directory') ?>/common/images/logo_new.jpg" alt=""/></a><a class="btn_close" href="index.html"> <img src="<?php bloginfo('template_directory') ?>/common/images/icon/icon_close.svg" alt=""/></a>
                 <form action="">
                     <div class="sub2 mt-40 fz-18">Thank you!</div>
                     <?php if (isset($token) && $results == 0) { ?>
