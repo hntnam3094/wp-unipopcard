@@ -49,7 +49,7 @@ get_header();
     <section class="action_account">
         <div class="bg imgDrop"><img src="<?php bloginfo('template_directory') ?>/common/images/bg.png" alt=""/></div>
         <div class="wraper">
-            <div class="form_action"> <a class="logo_form" href="<?php site_url() ?>/index"><img class="imgAutp" src="<?= $va_options['kn_logo']['url'] !== '' ? $va_options['kn_logo']['url'] : bloginfo('template_directory').'/common/images/logo.svg' ?>" alt=""/></a><a class="btn_close" href="<?php site_url() ?>/index"> <img src="<?php bloginfo('template_directory') ?>/common/images/icon/icon_close.svg" alt=""/></a>
+            <div class="form_action"> <a class="logo_form" href="<?php site_url() ?>/index"><img class="imgAutp" src="<?= isset($va_options['kn_logo']) && $va_options['kn_logo']['url'] !== '' ? $va_options['kn_logo']['url'] : bloginfo('template_directory').'/common/images/logo.svg' ?>" alt=""/></a><a class="btn_close" href="<?php site_url() ?>/index"> <img src="<?php bloginfo('template_directory') ?>/common/images/icon/icon_close.svg" alt=""/></a>
                 <form action="" method="post">
                     <div class="sub2 mt-40 fz-18">Change password?</div>
                     <?php echo $message?>
