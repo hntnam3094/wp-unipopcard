@@ -199,7 +199,10 @@
                 :{"host":"https:secure.2checkout.com","customization":"inline"}});
 
 
-    let idPackage = document.getElementById('id_package').value
+    let idPackage = document.getElementById('id_package')
+    if (idPackage) {
+        idPackage = document.getElementById('id_package').value
+    }
     let package = {}
     if (idPackage == 1) {
         package = {
