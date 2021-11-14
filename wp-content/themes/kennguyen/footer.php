@@ -245,8 +245,8 @@
                     }
                 }
 
-                $('#total_price_1').text(package['price'])
-                $('#total_price_2').text(package['price'])
+                $('#total_price_1').text(package['price'] + '$')
+                $('#total_price_2').text('$ ' + package['price'])
             }
         })
     })
@@ -281,7 +281,6 @@
                              if (data.price) {
                                  package['price'] = data.price
                              }
-
                              TwoCoInlineCart.setup.setMode('DYNAMIC');
                              TwoCoInlineCart.cart.setCurrency('USD');
 

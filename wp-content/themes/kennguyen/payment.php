@@ -251,7 +251,7 @@ get_header();
                                 <div class="item bg_box flexBox space mt-10">
                                     <div class="child_left"> <span class="fz-30">Total</span></div>
                                     <div class="child_right">
-                                        <div class="flexBox midle end"> <span class="mask">USD </span><span id="total_price_2" class="fw_midle fz-30"><?= $packge['sale_price'] ?></span></div>
+                                        <div class="flexBox midle end"> <span class="mask">USD </span><span id="total_price_2" class="fw_midle fz-30">$ <?= $packge['sale_price'] ?></span></div>
                                     </div>
                                     <span id="message" style="font-size: 9px;color: red;font-style: italic;"></span>
                                 </div>
@@ -272,16 +272,16 @@ get_header();
                             <div class="right_box">
                                 <div class="text">
 
-                                    <p><?= nl2br(get_field('group_1')['group_text']) ?></p>
+                                    <p><?= isset(get_field('group_1')['group_text']) ? nl2br(get_field('group_1')['group_text']) : '' ?></p>
 
                                 </div>
                                 <div class="img">
-                                    <div class="imgDrop"> <img src="<?= get_field('group_1')['group_image'] ?>" alt=""/></div>
+                                    <div class="imgDrop"> <img src="<?= isset(get_field('group_1')['group_image']) ? get_field('group_1')['group_image'] : '' ?>" alt=""/></div>
                                 </div>
                             </div>
-                            <h2 class="ttl fz-24 mt-30"><?= get_field('group_2')['group_title_1'] ?></h2>
+                            <h2 class="ttl fz-24 mt-30"><?= isset(get_field('group_2')['group_title_1']) ? get_field('group_2')['group_title_1'] : '' ?></h2>
                             <div class="img_main mt-30">
-                                <div class="imgDrop"> <img src="<?= get_field('group_2')['group_image'] ?>" alt=""/></div>
+                                <div class="imgDrop"> <img src="<?= isset(get_field('group_2')['group_image']) ? get_field('group_2')['group_image'] : '' ?>" alt=""/></div>
                             </div>
                             <div class="list_check mt-30">
                                 <?php if (get_field('list_content_1'))
@@ -311,11 +311,11 @@ get_header();
                             </div>
                             <div class="right_box2 mt-30">
                                 <div class="img">
-                                    <div class="imgDrop"> <img src="<?= get_field('group_3')['group_image'] ?>" alt=""/></div>
+                                    <div class="imgDrop"> <img src="<?= isset(get_field('group_3')['group_image']) ? get_field('group_3')['group_image'] : '' ?>" alt=""/></div>
                                 </div>
                                 <div class="text">
-                                    <h4 class="ttl fz-20"><?= get_field('group_3')['group_title'] ?></h4>
-                                    <div class="txt mt-15"><?= nl2br(get_field('group_3')['group_text']) ?></div>
+                                    <h4 class="ttl fz-20"><?= isset(get_field('group_3')['group_title']) ? get_field('group_3')['group_title'] : '' ?></h4>
+                                    <div class="txt mt-15"><?= isset(get_field('group_3')['group_text']) ? nl2br(get_field('group_3')['group_text']) : '' ?></div>
                                 </div>
                             </div>
                         </div>
