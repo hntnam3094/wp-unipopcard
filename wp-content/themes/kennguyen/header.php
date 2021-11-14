@@ -37,11 +37,13 @@
                     <div class="modal-dialog">
                         <div class="header_nav">
                             <div class="nav flexBox midle space">
-                                <?php $currentCategory = get_queried_object(); ?>
+                                <?php $currentCategory = get_queried_object();?>
                                 <ul class="flexBox midle">
-                                    <?php $parentCategoryCollection = get_category_by_slug('craft-collection');?>
+                                    <?php $parentCategoryCollection = get_category_by_slug('craft-collection');
+                                    $checkParentMenuActive = $currentCategory->post_name == $parentCategoryCollection->slug;
+                                    ?>
 
-                                    <li class="nav-item dropdown toggle_parent <?= $currentCategory->parent == $parentCategoryCollection->cat_ID ? 'active' : ''?>">
+                                    <li class="nav-item dropdown toggle_parent <?= $currentCategory->parent == $parentCategoryCollection->cat_ID || $checkParentMenuActive ? 'active' : ''?>">
                                         <a class="nav-link" href="/<?=$parentCategoryCollection->slug?>"><?= $parentCategoryCollection->name ?></a>
                                         <div class="toggle_btn icon_toggle">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="14" height="9" viewBox="0 0 14 9" fill="none">
@@ -69,9 +71,11 @@
                                         </div>
                                     </li>
 
-                                    <?php $parentCategoryCollection = get_category_by_slug('craft-academy');?>
+                                    <?php $parentCategoryCollection = get_category_by_slug('craft-academy');
+                                    $checkParentMenuActive = $currentCategory->post_name == $parentCategoryCollection->slug;
+                                    ?>
 
-                                    <li class="nav-item dropdown toggle_parent <?= $currentCategory->parent == $parentCategoryCollection->cat_ID ? 'active' : ''?>">
+                                    <li class="nav-item dropdown toggle_parent <?= $currentCategory->parent == $parentCategoryCollection->cat_ID || $checkParentMenuActive ? 'active' : ''?>">
                                         <a class="nav-link" href="/<?=$parentCategoryCollection->slug?>"><?= $parentCategoryCollection->name ?></a>
                                         <div class="toggle_btn icon_toggle">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="14" height="9" viewBox="0 0 14 9" fill="none">
