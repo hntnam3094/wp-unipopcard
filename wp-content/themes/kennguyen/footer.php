@@ -335,7 +335,6 @@
             }
         })
         $('#btn-share-pinterest').on('click', () => {
-            console.log('vàooo', $('#at4-share .at-svc-pinterest_share'))
             if ($('#at-share-dock .at-svc-pinterest_share').length > 0) {
                 $('#at-share-dock .at-svc-pinterest_share')[0].click()
             }

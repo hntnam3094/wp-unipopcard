@@ -18,6 +18,14 @@
     <link rel="stylesheet" href="<?php bloginfo('template_directory') ?>/common/css/styles.css"/>
     <link rel="stylesheet" href="<?php bloginfo('template_directory') ?>/common/css/custom.css"/>
     <?php wp_head(); ?>
+    <style>
+        #at4-share {
+            display: none;
+        }
+        #at-share-dock {
+            display: none;
+        }
+    </style>
 </head>
 <body nav_active="nav_active" class="page_payment <?php do_action('get_request'); ?>" <?php body_class(); ?>>
 <div id="fb-root"></div>
