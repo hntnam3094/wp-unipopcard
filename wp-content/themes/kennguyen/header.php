@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+<?php global $va_options;?>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
     <title>Ken Nguyen</title>
     <meta name="description" content="test"/>
     <meta name="keywords" content="test"/>
+    <meta property="fb:app_id" content="<?= $va_options['kn_app_id'] ?>" />
     <meta property="og:title" content="test"/>
     <meta property="og:image" content="<?php bloginfo('template_directory') ?>/common/images/banner_01.jpg"/>
     <meta property="og:site_name" content="test"/>
@@ -18,8 +20,9 @@
     <?php wp_head(); ?>
 </head>
 <body nav_active="nav_active" class="page_payment <?php do_action('get_request'); ?>" <?php body_class(); ?>>
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v12.0&appId=<?= $va_options['kn_app_id'] ?>" nonce="vtHh10Cd"></script>
 <?php wp_body_open(); ?>
-<?php global $va_options;?>
 <header class="header active_search" id="header">
     <?php do_action('block_user_login'); ?>
     <div class="header-top">

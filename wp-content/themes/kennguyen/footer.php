@@ -90,8 +90,7 @@
         </div>
     </div>
 </footer>
-<div id="fb-root"></div>
-<script async="" defer="" crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&amp;version=v12.0" nonce="EsXrjZVa"></script>
+
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 <!--<script src="--><?php //bloginfo('template_directory') ?><!--/common/js/jquery.min.js"></script>-->
 <script src="<?php bloginfo('template_directory') ?>/common/js/select_custom.js"></script>

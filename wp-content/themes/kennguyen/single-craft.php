@@ -113,7 +113,7 @@ function getClassBlock($checkMembership) {
                     } ?>
                     <?php if (check_membership() == 1 || get_post_meta(get_the_ID(), 'premium_membership', true) == 0) { ?>
                         <div class="comment mt-80 pb-30" id="comment">
-                            <div class="fb-comments" data-href="https://developers.facebook.com/docs/plugins/comments#configurator" data-width="100%" data-numposts="5"></div>
+                            <div class="fb-comments" data-href="<?php the_permalink(); ?>" data-width="100%" data-numposts="10" data-order-by="social" data-colorscheme="light"></div>
                         </div>
                     <?php } ?>
                 </div>
