@@ -1,7 +1,7 @@
 <?php
 
-if(file_exists('wp-env.php')){
-    require_once ('wp-env.php');
+if(file_exists(ABSPATH.'wp-env.php')){
+    require_once (ABSPATH.'wp-env.php');
 }
 
 /**
