@@ -31,7 +31,7 @@ global $va_options;
                 <form action="">
                     <div class="sub2 mt-40 fz-18">Thank you!</div>
                     <?php if (isset($token) && $results == 0) { ?>
-                        <p style="color:#c41320" class="text mt-10">Your account is not active! Plase contact us to support your account</p>
+                        <p style="color:#c41320" class="text mt-10">Your account is actived! Plase contact us to support your account</p>
                     <?php } if (isset($token) && $results != 0) { ?>
                         <p style="color:green" class="text mt-10">Your account active is success!</p>
                     <?php } if (!isset($token)) { ?>

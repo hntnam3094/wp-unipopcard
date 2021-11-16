@@ -343,7 +343,7 @@ add_action('init', 'custom_post_type_slider');
 function getRequest() {
     global $wp;
     $classes = '';
-    if ($wp->request == 'login' || $wp->request == 'singup' || $wp->request == 'forgot-pass' || $wp->request == 'thanks-register')
+    if ($wp->request == 'login' || $wp->request == 'singup' || $wp->request == 'forgot-pass' || $wp->request == 'thanks-register' || $wp->request == 'payment')
     {
         $classes = 'action_page';
     }
@@ -443,7 +443,7 @@ function activeAccountSMTP($email) {
                                                           </tr>
                                                           <tr style="border-bottom:10px solid #eeeeee">
                                                             <td style="padding:0 20px 20px;font-family:arial;font-size:12px;line-height:20px;color:#333333;border-bottom:10px solid #eeeeee">
-                                                             Click on the link below to activate your account for <a href="'.$url.'" style="text-decoration:none!important;text-decoration:none;color:#0064c8" target="_blank" >'.$url.'</a>
+                                                             Click on the link below to activate your account for <a href="'.$url.'" style="font-weight: bold;color: #333;font-style: italic;text-decoration: none" target="_blank" >KenNguyen</a>
                                                              <br/><br/> 
                                                              '.$urlActive.'
                                                             <br><br>
@@ -562,7 +562,7 @@ function forgetPasswordSMTP($email, $password, $isNewAccount = false) {
                                                           </tr>
                                                           <tr style="border-bottom:10px solid #eeeeee">
                                                             <td style="padding:0 20px 20px;font-family:arial;font-size:12px;line-height:20px;color:#333333;border-bottom:10px solid #eeeeee">
-                                                             This is new your password for <a href="'.$url.'" style="text-decoration:none!important;text-decoration:none;color:#0064c8" target="_blank" >'.$url.'</a>
+                                                             This is new your password for <a href="'.$url.'" style="font-weight: bold;color: #333;font-style: italic;text-decoration: none" target="_blank" >KenNguyen</a>
                                                              <br/>
                                                               <strong style="font-size: 20px; background-color: #EEEEEE"> '.$password.'</strong>
                                                               <br/> Please change your password when you login successful!
