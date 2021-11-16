@@ -1,4 +1,9 @@
 <?php
+
+if(file_exists('wp-env.php')){
+    require_once ('wp-env.php');
+}
+
 /**
  * The base configuration for WordPress
  *
