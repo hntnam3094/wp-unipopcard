@@ -7,7 +7,7 @@
  * @since Ken Nguyen 1.0
  */
 
-if (!isset($_SESSION['user'])) {
+if (isset($_SESSION['user'])) {
 $user = $_SESSION['user'];
 $active = '';
 $password_message = '';
