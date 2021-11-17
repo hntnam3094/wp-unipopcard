@@ -202,9 +202,7 @@ class Customer_Table extends WP_List_Table
         global $wpdb;
         $table = $wpdb->prefix . 'customer';
         $result = [];
-        $result = $wpdb->get_results(
-            $wpdb->prepare(
-                "SELECT * FROM {$table} "));
+        $result = $wpdb->get_results("SELECT * FROM {$table}");
 
         if (!empty($_POST) && isset($_POST['s'])) {
 
@@ -260,8 +258,8 @@ class Customer_Table extends WP_List_Table
     private function sort_data( $a, $b )
     {
         // Set defaults
-        $orderby = 'email';
-        $order = 'asc';
+        $orderby = 'id';
+        $order = 'desc';
 
         // If orderby is set, use this as the sort column
         if(!empty($_GET['orderby']))
