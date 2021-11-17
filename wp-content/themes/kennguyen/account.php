@@ -8,7 +8,7 @@
  */
 
 ob_start();
-if (!empty($_SESSION['user'])) {
+if (!isset($_SESSION['user'])) {
 $user = $_SESSION['user'];
 $active = '';
 $password_message = '';
