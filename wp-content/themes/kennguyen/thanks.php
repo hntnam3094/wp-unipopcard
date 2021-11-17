@@ -33,7 +33,8 @@ global $va_options;
                     <?php if (isset($token) && $results == 0) { ?>
                         <p style="color:#c41320" class="text mt-10">Your account is actived! Plase contact us to support your account</p>
                     <?php } if (isset($token) && $results != 0) { ?>
-                        <p style="color:green" class="text mt-10">Your account active is success!</p>
+                        <p style="color:green; margin-bottom: 10px" class="text mt-10">Your account active is success!</p>
+                        <a class="text login--thanks" style="color: #0d6efd;" href="<?php site_url() ?>/login">Log in</a>
                     <?php } if (!isset($token)) { ?>
                         <p class="text mt-10">We've sent an email to <br><?= isset($_SESSION['register_email']) ? $_SESSION['register_email'] : 'Email' ?> <br>It contains instructions on how to change your password.</p>
                     <?php } ?>
@@ -66,6 +67,11 @@ global $va_options;
         </div>
     </section>
 </main>
+<style>
+    .login--thanks:hover {
+        text-decoration: underline;
+    }
+</style>
 <?php
 get_footer();
 ?>
