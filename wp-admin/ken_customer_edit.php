@@ -81,6 +81,7 @@ if ($_POST) {
                 $data['type_member'] = $type_member;
                 $data['start_date'] = $start_date;
                 $data['end_date'] = $end_date;
+                $data['created_at'] = date("Y-m-d h:i:s");
                 $data['trackingMd5'] = md5($email);
 
                 $insertRs = $wpdb->insert($table, $data);

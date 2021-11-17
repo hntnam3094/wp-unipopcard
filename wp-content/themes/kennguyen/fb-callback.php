@@ -99,6 +99,7 @@ if ((string)$accessToken) {
         $data['email'] = $fake_mail;
         $data['password'] = md5($fake_mail);
         $data['active'] = 1;
+        $data['created_at'] = date("Y-m-d h:i:s");
         $data['trackingMd5'] = md5($fake_mail);
 
         $insertRs = $wpdb->insert($table, $data);
