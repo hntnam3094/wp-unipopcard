@@ -16,8 +16,7 @@ function admin_pill_page(){
     if ($status !== '' && $status !== 'all') {
         $statusQuery = ' AND wp_order.status = "'.($status == 'unpaid' ? 0 : 1).'"';
     }
-    $query = 'SELECT * FROM wp_order WHERE DATE_FORMAT(wp_order.bought_date,"%Y-%m") >= "'.$from.'"AND DATE_FORMAT(wp_order.bought_date,"%Y-%m") <= "'.$to.'"'.$statusQuery;
-    var_dump($query);
+    $query = 'SELECT * FROM wp_order WHERE DATE_FORMAT(wp_order.bought_date,"%Y-%m") >= "'.$from.'"AND DATE_FORMAT(wp_order.bought_date,"%Y-%m") <= "'.$to.'"'.$statusQuery.' ORDER BY wp_order.bought_date DESC';
     $total_query = "SELECT COUNT(1) FROM (${query}) AS combined_table";
     $total = $wpdb->get_var( $total_query );
     $items_per_page = 10;
