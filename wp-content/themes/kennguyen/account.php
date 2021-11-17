@@ -98,11 +98,11 @@ get_header();
                             </div>
                         </div>
                         <?php
+                        $expired_date = [];
+                        $level_membership = 'Not active';
                         if (isset($_SESSION['user'])) {
                             $user = $_SESSION['user'];
                             $today = date("Y-m-d");
-                            $expired_date = [];
-                            $level_membership = 'Not active';
                             if (!empty($user->start_date) && !empty($user->end_date)) {
                                 if ($today >= $user->start_date && $today <= $user->end_date) {
                                     $now = time();
