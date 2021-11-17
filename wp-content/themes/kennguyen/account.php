@@ -7,7 +7,6 @@
  * @since Ken Nguyen 1.0
  */
 
-ob_start();
 if (!isset($_SESSION['user'])) {
 $user = $_SESSION['user'];
 $active = '';
