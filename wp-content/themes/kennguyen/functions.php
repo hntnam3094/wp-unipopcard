@@ -1011,3 +1011,8 @@ function ajax_request_register_guest_email() {
 // This bit is a special action hook that works with the WordPress AJAX functionality.
 add_action( 'wp_ajax_ajax_request_register_guest_email', 'ajax_request_register_guest_email' );
 add_action("wp_ajax_nopriv_ajax_request_register_guest_email", "ajax_request_register_guest_email");
+
+function default_timezone () {
+    date_default_timezone_set('Asia/Ho_Chi_Minh');
+}
+add_action('init', 'default_timezone');

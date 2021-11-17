@@ -100,6 +100,7 @@ if ($_POST) {
                 $data['email'] = $email;
                 $data['password'] = md5($email);
                 $data['active'] = 1;
+                $data['created_at'] = date("Y-m-d h:i:s");
                 $data['trackingMd5'] = md5($email);
 
                 $insertRs = $wpdb->insert($table, $data);
