@@ -128,6 +128,16 @@ if (!empty($_POST) && isset($_POST['isCreateOrder'])) {
             wp_send_json($return);
         }
     } else {
+        $email = $_POST['email'];
+        $queryResult = $wpdb->get_results(
+            $wpdb->prepare(
+                "SELECT * FROM {$table} WHERE email=%s",$email));
+
+        if (empty($queryResult)) {
+            $data['email'] = $email;
+            $insertRs = $wpdb->update($table, $data, ['id' => $user->id]);
+        }
+
         $order = [
             'id_customer' => 0,
             'email' => $_POST['email'] ?? '',
@@ -211,7 +221,7 @@ get_header();
                                     </div>
                                     <div class="col-12 col-md-12">
                                         <div class="group icon icon_mail">
-                                            <input id="payment_email" class="input" type="mail" placeholder="Email*" value="<?= isset($user->email) ? $user->email : '' ?>" <?= isset($_SESSION['user']) ?  validateEmail($user->email) ? '' : 'readonly' : '' ?>/>
+                                            <input id="payment_email" class="input" type="mail" placeholder="Email*" value="<?= isset($user->email) ? $user->email : '' ?>" <?= isset($_SESSION['user']) ?  validateEmail($user->email) ? 'readonly' : '' : '' ?>/>
                                         </div>
                                     </div>
                                     <?php
@@ -227,16 +237,6 @@ get_header();
                                                 so please enter the correct email address.
                                             </span>
                                         <?php
-                                    } else {
-                                        ?>
-                                        <span style="font-size: 11px;font-style: italic;
-                                                line-height: 1;
-                                                max-width: 400px;
-                                                text-align: center;
-                                                margin: 0 auto;
-                                                margin-top: 10px;"><?= validateEmail($user->email) ? '' : 'Since you are logged in with facebook, you cannot edit this box'  ?>
-                                            </span>
-                                    <?php
                                     }
                                     ?>
                                 </div>

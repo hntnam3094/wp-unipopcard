@@ -85,12 +85,17 @@ if ($_POST) {
             $google_oauth = new Google_Service_Oauth2($client);
             $google_account_info = $google_oauth->userinfo->get();
             $email =  $google_account_info->email;
+            $id_gg = $google_account_info->id;
 
             $queryResult = $wpdb->get_results(
                 $wpdb->prepare("SELECT * FROM {$table} WHERE email=%s",$email));
 
             if (!empty($queryResult)) {
                 $_SESSION['user'] = $queryResult[0];
+                if (empty($queryResult[0]->id_google)) {
+                    $data['id_google'] = $id_gg;
+                    $insertRs = $wpdb->update($table, $data, ['email' => $email]);
+                }
                 wp_redirect(site_url() . '/manager');
                 exit;
             } else {
@@ -102,6 +107,7 @@ if ($_POST) {
                 $data['active'] = 1;
                 $data['created_at'] = date("Y-m-d h:i:s");
                 $data['trackingMd5'] = md5($email);
+                $data['id_google'] = $id_gg;
 
                 $insertRs = $wpdb->insert($table, $data);
                 if (isset($insertRs)) {
@@ -130,7 +136,8 @@ if ($_POST) {
     ]);
 
     $helper = $fb->getRedirectLoginHelper();
-    $login_url = $helper->getLoginUrl($va_options['kn_url_callback']);
+    $permissions = ['email', 'public_profile']; // optional
+    $login_url = $helper->getLoginUrl($va_options['kn_url_callback'], $permissions);
 
 get_header();
 ?>
@@ -142,13 +149,13 @@ get_header();
                 <form method="post" action="">
                     <div class="sub1">Don’t have an account? <a href="<?php site_url() ?>/singup">Sign up</a></div>
                     <div class="sub2 mt-20 fz-18">Welcome back</div>
-                    <a class="btn_acction btn_fb mt-20" href="<?= $login_url ?>">
+                    <a class="btn_acction btn_fb mt-20" scope="public_profile, email" href="<?= $login_url ?>">
                                 <span class="icon">
                                     <img src="<?php bloginfo('template_directory') ?>/common/images/icon/icon_fb.svg" alt=""/>
                                 </span>
                         <span class="text">Login with Facebook</span>
                     </a>
-                    <a class="btn_acction btn_gg mt-20" href="<?= $client->createAuthUrl() ?>">
+                    <a class="btn_acction btn_gg mt-20"  href="<?= $client->createAuthUrl() ?>">
                                 <span class="icon">
                                     <img src="<?php bloginfo('template_directory') ?>/common/images/icon/icon_gg.svg" alt=""/>
                                 </span>
