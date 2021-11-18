@@ -169,7 +169,7 @@
                                                 $li = '<li class="nav-item"><a class="nav-link" href="'.$navItem->url.'" title="'.$navItem->title.'">START FOR 1$ </a></li>';
                                             }
                                             if ($arr[3] == 'my-craft-room') {
-                                                $li = '<li class="nav-item login"> <a class="nav-link login_link" href="'.$loginUrl.'">Login</a></li>';
+                                                $li = '<li class="nav-item login"> <a class="nav-link login_link" href="'.$navItem->url.'">Login</a></li>';
                                             }
                                             echo $li;
 
