@@ -36,7 +36,9 @@ function my_plugin_create_db() {
             end_date DATE,
             active INT DEFAULT 0,
             created_at DATETIME,
-            trackingMd5 VARCHAR(500));";
+            trackingMd5 VARCHAR(500),
+            id_google VARCHAR(500),
+            id_facebook VARCHAR(500));";
 
         require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
         dbDelta($sql);

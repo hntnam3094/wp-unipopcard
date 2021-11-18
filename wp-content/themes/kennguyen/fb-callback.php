@@ -7,9 +7,6 @@
  * @since Ken Nguyen 1.0
  */
 
-if(!session_id()) {
-    session_start();
-}
 global $wpdb;
 global $va_options;
 $table = $wpdb->prefix . 'customer';
@@ -61,8 +58,6 @@ $oAuth2Client = $fb->getOAuth2Client();
 $tokenMetadata = $oAuth2Client->debugToken($accessToken);
 echo '<h3>Metadata</h3>';
 var_dump($tokenMetadata);
-var_dump((string)$accessToken);
-var_dump($accessToken);
 
 // Validation (these will throw FacebookSDKException's when they fail)
 //$tokenMetadata->validateAppId((string)$va_options['kn_app_id']);
@@ -85,34 +80,56 @@ if (! $accessToken->isLongLived()) {
 }
 
 if ((string)$accessToken) {
-    $response = $fb->get('/me?fields=id,first_name,last_name,name',(string)$accessToken);
+    $response = $fb->get('/me?fields=id,first_name,last_name,name,email',(string)$accessToken);
     $me = $response->getGraphUser();
-    $fake_mail = $me->getId();
+    $email = $me->getEmail();
+
     $queryResult = $wpdb->get_results(
-        $wpdb->prepare("SELECT * FROM {$table} WHERE email=%s", $fake_mail));
+        $wpdb->prepare("SELECT * FROM {$table} WHERE id_facebook=%s", $me->getId()));
 
     if (!empty($queryResult)) {
         $_SESSION['user'] = $queryResult[0];
+        if (empty($queryResult[0]->id_facebook)) {
+            $data['id_facebook'] = $me->getId();
+            $insertRs = $wpdb->update($table, $data, ['email' => $email]);
+        }
         wp_redirect(site_url() . '/manager');
         exit;
     } else {
-        $data = array();
-        $data['first_name'] = $me->getFirstName();
-        $data['last_name'] = $me->getLastName();
-        $data['email'] = $fake_mail;
-        $data['password'] = md5($fake_mail);
-        $data['active'] = 1;
-        $data['created_at'] = date("Y-m-d h:i:s");
-        $data['trackingMd5'] = md5($fake_mail);
+        $queryResultEmail = $wpdb->get_results(
+            $wpdb->prepare("SELECT * FROM {$table} WHERE email=%s", $email));
+        if (!empty($queryResultEmail)) {
+            $_SESSION['user'] = $queryResultEmail[0];
+            if (empty($queryResultEmail[0]->id_facebook)) {
+                $data['id_facebook'] = $me->getId();
+                $insertRs = $wpdb->update($table, $data, ['email' => $email]);
+            }
+            wp_redirect(site_url() . '/manager');
+            exit;
+        } else {
+            $data = array();
+            $data['first_name'] = $me->getFirstName();
+            $data['last_name'] = $me->getLastName();
+            $data['email'] = '';
+            $data['password'] = '';
+            $data['active'] = 1;
+            $data['created_at'] = date("Y-m-d h:i:s");
+            $data['trackingMd5'] = md5($email);
+            $data['id_facebook'] = $me->getId();
 
-        $insertRs = $wpdb->insert($table, $data);
-        if (isset($insertRs)) {
-            $queryResultAfterInsert = $wpdb->get_results(
-                $wpdb->prepare("SELECT * FROM {$table} WHERE email=%s",$fake_mail));
-            if (!empty($queryResultAfterInsert)) {
-                $_SESSION['user'] = $queryResultAfterInsert[0];
-                wp_redirect(site_url() . '/manager');
-                exit;
+            if (!empty($email)) {
+                $data['email'] = $email;
+            }
+
+            $insertRs = $wpdb->insert($table, $data);
+            if (isset($insertRs)) {
+                $queryResultAfterInsert = $wpdb->get_results(
+                    $wpdb->prepare("SELECT * FROM {$table} WHERE id_facebook=%s",$me->getId()));
+                if (!empty($queryResultAfterInsert)) {
+                    $_SESSION['user'] = $queryResultAfterInsert[0];
+                    wp_redirect(site_url() . '/manager');
+                    exit;
+                }
             }
         }
     }
