@@ -195,7 +195,7 @@
                 "iframeLoad":"checkout"
             },
             "cart"
-                :{"host":"https:secure.2checkout.com","customization":"inline"}});
+                :{"host":"https://secure.2checkout.com","customization":"inline"}});
 
 
     let idPackage = document.getElementById('id_package')
@@ -304,7 +304,7 @@
 
 
 
-                             TwoCoInlineCart.cart.setTest(<?= $va_options['kn_2co_demo'] ?>)
+                             TwoCoInlineCart.cart.setTest(<?= $va_options['kn_2co_demo'] == 1 ? 'true' : 'false' ?>)
                              TwoCoInlineCart.cart.checkout()
                          }
                      }
