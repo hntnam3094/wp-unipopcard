@@ -304,7 +304,7 @@
 
 
 
-                             TwoCoInlineCart.cart.setTest(<?= $va_options['kn_2co_demo'] ?>)
+                             TwoCoInlineCart.cart.setTest(<?= $va_options['kn_2co_demo'] == 1 ? 'true' : 'false' ?>)
                              TwoCoInlineCart.cart.checkout()
                          }
                      }
