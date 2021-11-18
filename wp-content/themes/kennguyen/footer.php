@@ -195,7 +195,7 @@
                 "iframeLoad":"checkout"
             },
             "cart"
-                :{"host":"https:secure.2checkout.com","customization":"inline"}});
+                :{"host":"https://secure.2checkout.com","customization":"inline"}});
 
 
     let idPackage = document.getElementById('id_package')
