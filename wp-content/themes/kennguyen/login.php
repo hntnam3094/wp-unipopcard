@@ -55,7 +55,7 @@ if ($_POST) {
             wp_redirect(site_url() . '/manager');
             exit;
         } else {
-            $login_message = '<p style="color: red">Active your account to login!</p>';
+            $login_message = '<p style="color: red">Your account is not active <br> Please active your account or contact us!</p>';
         }
 
     } else {

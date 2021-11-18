@@ -11,7 +11,7 @@
                 <?php if( $the_query->have_posts() ): ?>
                     <?php while( $the_query->have_posts() ) : $the_query->the_post(); ?>
                         <div class="item">
-                            <a class="video" href="<?= the_field('url')?>">
+                            <a class="video" href="<?= the_field('url')?>" target="_blank">
                                 <div class="imgDrop"><?= get_the_post_thumbnail( get_the_id() ); ?></div>
                                 <h4 class="ttl mt-15 text-center"><?= get_the_title()?></h4>
                             </a>

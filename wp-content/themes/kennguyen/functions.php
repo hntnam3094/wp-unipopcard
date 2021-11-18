@@ -562,7 +562,7 @@ function forgetPasswordSMTP($email, $password, $isNewAccount = false) {
                                                           </tr>
                                                           <tr style="border-bottom:10px solid #eeeeee">
                                                             <td style="padding:0 20px 20px;font-family:arial;font-size:12px;line-height:20px;color:#333333;border-bottom:10px solid #eeeeee">
-                                                             This is new your password for <a href="'.$url.'" style="font-weight: bold;color: #333;font-style: italic;text-decoration: none" target="_blank" >KenNguyen</a>
+                                                             This is new your password for '.$url.'
                                                              <br/>
                                                               <strong style="font-size: 20px; background-color: #EEEEEE"> '.$password.'</strong>
                                                               <br/> Please change your password when you login successful!

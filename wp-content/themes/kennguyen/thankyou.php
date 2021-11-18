@@ -35,7 +35,6 @@ if (!empty($_GET) && isset($_GET['refno'])) {
     $last_name = $dataOrder->BillingDetails->LastName;
     $idPackage = $_GET['id_package'];
 //end get order detail
-    $user = $_SESSION['user'];
 
     $today = date("Y-m-d");
     $packge = [];
@@ -64,9 +63,9 @@ if (!empty($_GET) && isset($_GET['refno'])) {
         ];
     }
 
-    $queryResult = $wpdb->get_results(
+    $queryResultRefno = $wpdb->get_results(
         $wpdb->prepare(
-            "SELECT * FROM {$table_order} 
+            "SELECT * FROM {$table_order}
                             WHERE refno=%s ", $orderReference));
 
     $queryOrder = $wpdb->get_results(
@@ -75,6 +74,7 @@ if (!empty($_GET) && isset($_GET['refno'])) {
                             WHERE id=%d ", $idOrder));
     if (empty($queryResult) && $dataOrder != null && !empty($queryOrder)) {
         if (isset($_SESSION['user'])) {
+            $user = $_SESSION['user'];
             // create new order detail
             $dataOrder = array();
             $dataOrder['id_customer'] = $user->id;

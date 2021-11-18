@@ -14,7 +14,7 @@ global $wpdb;
 global $va_options;
 $table = $wpdb->prefix . 'customer';
 require_once 'vendor/autoload.php';
-
+$appId = $va_options['kn_app_id'];
 $fb = new \Facebook\Facebook([
     'app_id' => $va_options['kn_app_id'],
     'app_secret' => $va_options['kn_app_serect'],
@@ -63,7 +63,7 @@ echo '<h3>Metadata</h3>';
 var_dump($tokenMetadata);
 
 // Validation (these will throw FacebookSDKException's when they fail)
-$tokenMetadata->validateAppId('3185286311726449');
+$tokenMetadata->validateAppId((string)$va_options['kn_app_id']);
 // If you know the user ID this access token belongs to, you can validate it here
 //$tokenMetadata->validateUserId('123');
 $tokenMetadata->validateExpiration();
