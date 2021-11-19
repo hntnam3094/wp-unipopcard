@@ -165,7 +165,9 @@ class Customer_Table extends WP_List_Table
             'last_name'        => 'Last Name',
             'birth_day'    => 'Birth day',
             'member_ship'      => 'Membership',
-            'type_member'      => 'Type member'
+            'type_member'      => 'Type member',
+            'created_at'     => 'Join date',
+            'trackingMd5'    => 'Expired'
         );
 
         return $columns;
@@ -243,6 +245,8 @@ class Customer_Table extends WP_List_Table
             case 'birth_day':
             case 'member_ship':
             case 'type_member':
+            case 'created_at':
+            case 'trackingMd5';
                 return $item[ $column_name ];
 
             default:
@@ -334,9 +338,16 @@ class Customer_Table extends WP_List_Table
         return $member;
     }
 
-    function column_id($item)
+    function column_trackingMd5($item)
     {
-
+        $now = time();
+        $number_end = strtotime($item['end_date']);
+        $days_left = $number_end - $now;
+        $total_days = round($days_left / (60 * 60 * 24));
+        if ($days_left < 0) {
+            $total_days = 0;
+        }
+        return $total_days . ' days';
     }
 
 //    function get_bulk_actions() {
