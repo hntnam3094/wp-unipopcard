@@ -31,8 +31,6 @@ if (!empty($_GET) && isset($_GET['refno'])) {
     $orderData = json_encode($dataOrder);
 
     $productName = $dataOrder->Items[0]->ProductDetails->Name;
-    $first_name = $dataOrder->BillingDetails->FirstName;
-    $last_name = $dataOrder->BillingDetails->LastName;
     $idPackage = $_GET['id_package'];
 //end get order detail
 
@@ -104,11 +102,20 @@ if (!empty($_GET) && isset($_GET['refno'])) {
                 }
                 $where = ['id' => $user->id];
                 $results = $wpdb->update($table, $dataUser, $where);
+
                 if ($results != 0) {
+                    $queryResultExist = $wpdb->get_results(
+                        $wpdb->prepare(
+                            "SELECT * FROM {$table}
+                            WHERE id=%s ", $user->id));
+
+                    if (!empty($queryResultExist)) {
+                        $_SESSION['user'] = $queryResultExist[0];
+                    }
                     $message = [
                         'text1' => 'Your account active package success!',
-                        'text2' => 'Please login agian to active your Premium package',
-                        'action' => 'logout'
+                        'text2' => 'Enjoy your Premium time!',
+                        'action' => 'home'
                     ];
                 }
             }
@@ -128,6 +135,14 @@ if (!empty($_GET) && isset($_GET['refno'])) {
                 }
 
                 $random_pass = implode($pass);
+                $queryResult = $wpdb->get_results(
+                    $wpdb->prepare(
+                        "SELECT * FROM {$table_order}
+                                            WHERE id=%d ", $idOrder));
+                $fullname_split = explode(" ",$queryResult[0]->full_name);
+
+                $first_name = $fullname_split[0];
+                $last_name = $fullname_split[1];
 
                 //create new customer with random password + package
                 $data = array();
@@ -140,6 +155,7 @@ if (!empty($_GET) && isset($_GET['refno'])) {
                 $data['start_date'] = $packge['start_date'];
                 $data['end_date'] = $packge['end_date'];
                 $data['active'] = 1;
+                $data['created_at'] = date("Y-m-d h:i:s");
                 $data['trackingMd5'] = md5($emailOrder);
 
                 $insertRs = $wpdb->insert($table, $data);
@@ -219,18 +235,16 @@ if (!empty($_GET) && isset($_GET['refno'])) {
         }
     }
 }
-$queryUser = [];
+
+
+$mail = $emailOrder;
 if (isset($_SESSION['user'])) {
-    $queryUser = $wpdb->get_results(
-        $wpdb->prepare(
-            "SELECT * FROM {$table}
-                            WHERE email=%s ", $user->email));
-} else {
-    $queryUser = $wpdb->get_results(
-        $wpdb->prepare(
-            "SELECT * FROM {$table}
-                            WHERE email=%s ", $emailOrder));
+    $mail = $user->email;
 }
+$queryUser = $wpdb->get_results(
+    $wpdb->prepare(
+        "SELECT * FROM {$table}
+                            WHERE email=%s ", $mail));
 
 $premium_account = [];
 if (!empty($queryUser)) {
@@ -253,9 +267,9 @@ get_header()
     </p>
     <p class="lead">
         <?php
-            if ($message['action'] == 'logout') { ?>
-                <a class="btn btn-danger" href="logout.html" data-bs-toggle="modal" data-bs-target="#modal_logout">
-                    LOGOUT
+            if ($message['action'] == 'home') { ?>
+                <a class="btn btn-success" href="<?= home_url() ?>">
+                    HOME
                 </a>
         <?php    } else { ?>
                 <a class="btn btn-success" href="<?php site_url() ?>/login">
