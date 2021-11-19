@@ -142,14 +142,11 @@ get_header();
                                             </div>
                                         </a>
                                     </div>
-                            <?php    }
-                            } else {
-                                ?>
+                            <?php    } } else {?>
                             <div class="column col-6 col-md-4 pt-5">
                                 <p>You don't download anything yet!</p>
                             </div>
-                                <?php
-                            }?>
+                                <?php}?>
                             <?php
                                 if ($limit == count($arrayPost)) { ?>
                                     <div class="mt-40 text-center">
