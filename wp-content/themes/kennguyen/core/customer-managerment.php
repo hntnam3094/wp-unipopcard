@@ -344,6 +344,9 @@ class Customer_Table extends WP_List_Table
         $number_end = strtotime($item['end_date']);
         $days_left = $number_end - $now;
         $total_days = round($days_left / (60 * 60 * 24));
+        if ($days_left < 0) {
+            $total_days = 0;
+        }
         return $total_days . ' days';
     }
 
