@@ -237,14 +237,18 @@ if (!empty($_GET) && isset($_GET['refno'])) {
 }
 
 
-$mail = $emailOrder;
+$queryUser = [];
 if (isset($_SESSION['user'])) {
-    $mail = $user->email;
+    $queryUser = $wpdb->get_results(
+        $wpdb->prepare(
+            "SELECT * FROM {$table}
+                            WHERE id=%d ", $user->id));
+} else {
+    $queryUser = $wpdb->get_results(
+        $wpdb->prepare(
+            "SELECT * FROM {$table}
+                            WHERE email=%s ", $emailOrder));
 }
-$queryUser = $wpdb->get_results(
-    $wpdb->prepare(
-        "SELECT * FROM {$table}
-                            WHERE email=%s ", $mail));
 
 $premium_account = [];
 if (!empty($queryUser)) {

@@ -127,7 +127,7 @@ get_header();
                     <div class="course_my pt-40 pb-50">
                         <h1 class="ttl_main fz-20 text-center text-up">My Downloaded Projects</h1>
                         <div class="row">
-                            <?php if (isset($arrayPost)) {
+                            <?php if (isset($arrayPost) && count($arrayPost) > 0) {
                                 foreach ($arrayPost as $post) { ?>
                                     <div class="column col-6 col-md-4">
                                         <a class="item mt-30" href="<?= $post['url'] ?>">
@@ -143,7 +143,13 @@ get_header();
                                         </a>
                                     </div>
                             <?php    }
-                            } ?>
+                            } else {
+                                ?>
+                            <div class="column col-6 col-md-4 pt-5">
+                                <p>You don't download anything yet!</p>
+                            </div>
+                                <?php
+                            }?>
                             <?php
                                 if ($limit == count($arrayPost)) { ?>
                                     <div class="mt-40 text-center">
