@@ -1,8 +1,8 @@
 <?php
 
-//if(file_exists(ABSPATH.'wp-env.php')){
-//    require_once (ABSPATH.'wp-env.php');
-//}
+if(file_exists(ABSPATH.'wp-env.php')){
+    require_once (ABSPATH.'wp-env.php');
+}
 
 /**
  * The base configuration for WordPress
@@ -25,16 +25,16 @@
 
 // ** MySQL settings - You can get this info from your web host ** //
 /** The name of the database for WordPress */
-define( 'DB_NAME', 'hoangva1_kennguyen' );
+define( 'DB_NAME', 'vinaweb_ken' );
 
 /** MySQL database username */
-define( 'DB_USER', 'hoangva1_kennguyen' );
+define( 'DB_USER', 'vinaweb_test' );
 
 /** MySQL database password */
-define( 'DB_PASSWORD', '113114115@' );
+define( 'DB_PASSWORD', 'Test@12345' );
 
 /** MySQL hostname */
-define( 'DB_HOST', '45.252.250.36' );
+define( 'DB_HOST', 'localhost' );
 
 /** Database charset to use in creating database tables. */
 define( 'DB_CHARSET', 'utf8mb4' );
@@ -97,7 +97,7 @@ define( 'WP_DEBUG', false );
 
 /** Absolute path to the WordPress directory. */
 if ( ! defined( 'ABSPATH' ) ) {
-    define( 'ABSPATH', __DIR__ . '/' );
+	define( 'ABSPATH', __DIR__ . '/' );
 }
 
 /** Sets up WordPress vars and included files. */
