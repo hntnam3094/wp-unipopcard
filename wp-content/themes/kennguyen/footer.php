@@ -198,28 +198,20 @@
                 :{"host":"https://secure.2checkout.com","customization":"inline"}});
 
 
-    let idPackage = document.getElementById('id_package')
-    if (idPackage) {
-        idPackage = document.getElementById('id_package').value
-    }
+    // let idPackage = document.getElementById('id_package')
+    // if (idPackage) {
+    //     idPackage = document.getElementById('id_package').value
+    // }
+
     let package = {}
-    if (idPackage == 1) {
-        package = {
-            name: '<?= $va_options['kn_monthly_package_title'] ?>',
-            ShortDescription: '1',
-            quantity: 1,
-            price: '<?= $va_options['kn_monthly_package_sale_price'] ?>',
-            type: 'digital'
-        }
-    } else {
-        package = {
-            name: '<?= $va_options['kn_yearly_package_title'] ?>',
-            ShortDescription: '2',
-            quantity: 1,
-            price: '<?= $va_options['kn_year_package_sale_price'] ?>',
-            type: 'digital'
-        }
+    package = {
+        name: '<?= get_the_title($_SESSION['packageId']) ?>',
+        ShortDescription: '1',
+        quantity: 1,
+        price: '<?= get_field('sale_price', $_SESSION['packageId']) ?>',
+        type: 'digital'
     }
+
     $(document).delegate('#payment_email', 'change', function () {
         let url = window.location.href
         let Email = document.getElementById('payment_email').value
@@ -232,19 +224,11 @@
             success: function (data) {
                 if (data.code == 201) {
                     $('#message').text('Your email has been paid before, so you will not be able to continue to receive the offer')
-                    if (idPackage == 1) {
-                        package['price'] = '<?= $va_options['kn_monthly_package_price'] ?>'
-                    } else {
-                        package['price'] = '<?= $va_options['kn_year_package_price'] ?>'
-                    }
+                    package['price'] = '<?= get_field('price', $_SESSION['packageId']) ?>'
                 }
                 if (data.code == 200) {
                     $('#message').text('')
-                    if (idPackage == 1) {
-                        package['price'] = '<?= $va_options['kn_monthly_package_sale_price'] ?>'
-                    } else {
-                        package['price'] = '<?= $va_options['kn_year_package_sale_price'] ?>'
-                    }
+                    package['price'] = '<?= get_field('sale_price', $_SESSION['packageId']) ?>'
                 }
 
                 $('#total_price_1').text(package['price'] + '$')
@@ -263,21 +247,20 @@
              alert('Please enter full contact information')
          } else {
              let checkKen = document.getElementById('check-payment').checked
+             let data = {
+                 'email' : Email,
+                 'full_name': firstName +' '+ lastName,
+                 'price': '<?= get_field('price', $_SESSION['packageId']) ?>',
+                 'sale_price': package['price'],
+                 'isCreateOrder': true
+             }
              if (checkKen) {
                  let url = window.location.href
-                 let data = {
-                     'email' : Email,
-                     'full_name': firstName +' '+ lastName,
-                     'package': idPackage == 1 ? 'Monthly' : 'Yearly',
-                     'price': idPackage == 1 ? '<?= $va_options['kn_monthly_package_price'] ?>' : '<?= $va_options['kn_year_package_price'] ?>',
-                     'sale_price': package['price'],
-                     'isCreateOrder': true
-                 }
                  $.ajax({
                      url: url,
                      method: 'post',
                      data: data,
-                     dataType: 'json',
+                     dataType: "json",
                      success: function (data) {
                          if (data.code == 200) {
                              if (data.price) {
@@ -292,11 +275,7 @@
                              TwoCoInlineCart.products.add(package);
                              TwoCoInlineCart.billing.setEmail(Email);
 
-                             // let success = false
-                             // TwoCoInlineCart.events.subscribe('payment:finalized', function () {
-                             //
-                             // });
-                             let urlRedirect = window.location.protocol + "//" + window.location.host + '/thank-you?id_package=' + idPackage + '&merchartno=' + data.idOrder
+                             let urlRedirect = window.location.protocol + "//" + window.location.host + '/thank-you?id_package=' + '<?= $_SESSION['packageId'] ?>' + '&merchartno=' + data.idOrder
                              TwoCoInlineCart.cart.setReturnMethod({
                                  type: 'redirect',
                                  url : urlRedirect

@@ -22,29 +22,24 @@ global $va_options;
 
 $packge = [];
 if (isset($_GET['package'])) {
-    if ($_GET['package'] == 'monthly') {
-        $start_date = date("Y-m-d");
-        $end_date = date("Y-m-d", strtotime("+1 month", strtotime($start_date)));
-        $packge = [
-          'id' => 1,
-          'package' =>  $va_options['kn_monthly_package_title'],
-          'start_date' => $start_date,
-          'end_date' => $end_date,
-          'price' => $va_options['kn_monthly_package_price'],
-          'sale_price' => $va_options['kn_monthly_package_sale_price']
-        ];
-    } else {
-        $start_date = date("Y-m-d");
-        $end_date = date("Y-m-d", strtotime("+1 year", strtotime($start_date)));
-        $packge = [
-            'id' => 2,
-            'package' => $va_options['kn_yearly_package_title'],
-            'start_date' => $start_date,
-            'end_date' => $end_date,
-            'price' => $va_options['kn_year_package_price'],
-            'sale_price' => $va_options['kn_year_package_sale_price']
-        ];
-    }
+    $args = [
+        'post_type'      => 'package',
+        'posts_per_page' => 1,
+        'post_name__in'  => $_GET['package']
+    ];
+    $_SESSION['packageId'] = get_the_ID();
+    $q = get_posts( $args );
+    $month = "+".get_field('expired', get_the_ID())." month";
+    $start_date = date("Y-m-d");
+    $end_date = date("Y-m-d", strtotime($month, strtotime($start_date)));
+    $packge = [
+        'id' => 1,
+        'package' =>  get_the_title(),
+        'start_date' => $start_date,
+        'end_date' => $end_date,
+        'price' => get_field('price', get_the_ID()),
+        'sale_price' => get_field('sale_price', get_the_ID())
+    ];
 }
 
 if (!empty($_POST) && isset($_POST['isCheckExist'])) {
@@ -82,21 +77,11 @@ if (isset($_SESSION['user'])) {
     if (!empty($queryResult)) {
         $packge['sale_price'] = $packge['price'];
     } else {
-        if ($packge['id'] == 1) {
-            $messageSale = $va_options['kn_monthly_package_detail'];
-        } else {
-            $messageSale = $va_options['kn_year_package_detail'];
-        }
+        $messageSale = get_field('description', get_the_ID());
     }
 } else {
-    if ($packge['id'] == 1) {
-        $messageSale = $va_options['kn_monthly_package_detail'];
-    } else {
-        $messageSale = $va_options['kn_year_package_detail'];
-    }
+    $messageSale = get_field('description', get_the_ID());
 }
-
-
 
 if (!empty($_POST) && isset($_POST['isCreateOrder'])) {
     if (!isset($_SESSION['user'])) {
@@ -104,7 +89,7 @@ if (!empty($_POST) && isset($_POST['isCreateOrder'])) {
             'id_customer' => 0,
             'email' => $_POST['email'] ?? '',
             'full_name' => $_POST['full_name'] ?? '',
-            'package' => $_POST['package'] ?? '',
+            'package' => get_the_title() ?? '',
             'price' => $_POST['price'] ?? '',
             'sale_price' => $_POST['sale_price'] ?? '',
             'status' => 0,
@@ -142,7 +127,7 @@ if (!empty($_POST) && isset($_POST['isCreateOrder'])) {
             'id_customer' => 0,
             'email' => $_POST['email'] ?? '',
             'full_name' => $_POST['full_name'] ?? '',
-            'package' => $_POST['package'] ?? '',
+            'package' => get_the_title() ?? '',
             'price' => $_POST['price'] ?? 0,
             'sale_price' => $_POST['sale_price'] ?? 0,
             'status' => 0,
@@ -176,7 +161,6 @@ if (!empty($_POST) && isset($_POST['isCreateOrder'])) {
             wp_send_json($return);
         }
     }
-
 }
 
 
@@ -190,6 +174,7 @@ function validateEmail($email) {
 }
 
 get_header();
+$paymentID = 155;
 ?>
 <main>
     <section class="payment pt-50 pb-50">
@@ -197,9 +182,9 @@ get_header();
             <form action="">
                 <div class="row flexBox center">
                     <div class="col-12 col-lg-8">
-                        <h1 class="ttl fz-50 text-center"><?= get_field('main_title') ?></h1>
-                        <h2 class="fz-36 text-center mt-15"><?= get_field('sub_title') ?></h2>
-                        <div class="text mt-20 text-center"><?= nl2br(get_field('summary')) ?></div>
+                        <h1 class="ttl fz-50 text-center"><?= get_field('main_title', $paymentID) ?></h1>
+                        <h2 class="fz-36 text-center mt-15"><?= get_field('sub_title', $paymentID) ?></h2>
+                        <div class="text mt-20 text-center"><?= nl2br(get_field('summary', $paymentID)) ?></div>
                     </div>
                 </div>
                 <div class="row mt-40">
@@ -260,7 +245,7 @@ get_header();
                                     <label class="label text-center" for="check">By checking this box I confirm I've read and agreed to the Terms of Service, Privacy Policy & Cancellation Policy. I understand that by agreeing I also give my consent to receive further communications from KenNguyen - I Know I can opt-out from this at any given time.</label>
                                 </div>
                                 <div class="group mt-30">
-                                    <input id="id_package" name="id_package" type="hidden" value="<?= $packge['id'] ?>">
+                                    <input id="id_package" name="id_package" type="hidden" value="<?= get_the_ID() ?>">
                                     <a class="btn_submit" style="cursor: pointer"  pro-code="3TRROJJM4U" id="buy-button">PAYMENT</a>
                                 </div>
                                 <div class="group mt-30 text-center"> <img src="<?php bloginfo('template_directory') ?>/common/images/icon/card.svg" alt=""/></div>
@@ -272,20 +257,20 @@ get_header();
                             <div class="right_box">
                                 <div class="text">
 
-                                    <p><?= isset(get_field('group_1')['group_text']) ? nl2br(get_field('group_1')['group_text']) : '' ?></p>
+                                    <p><?= isset(get_field('group_1', $paymentID)['group_text']) ? nl2br(get_field('group_1', $paymentID)['group_text']) : '' ?></p>
 
                                 </div>
                                 <div class="img">
-                                    <div class="imgDrop"> <img src="<?= isset(get_field('group_1')['group_image']) ? get_field('group_1')['group_image'] : '' ?>" alt=""/></div>
+                                    <div class="imgDrop"> <img src="<?= isset(get_field('group_1', $paymentID)['group_image']) ? get_field('group_1', $paymentID)['group_image'] : '' ?>" alt=""/></div>
                                 </div>
                             </div>
-                            <h2 class="ttl fz-24 mt-30"><?= isset(get_field('group_2')['group_title_1']) ? get_field('group_2')['group_title_1'] : '' ?></h2>
+                            <h2 class="ttl fz-24 mt-30"><?= isset(get_field('group_2', $paymentID)['group_title_1']) ? get_field('group_2', $paymentID)['group_title_1'] : '' ?></h2>
                             <div class="img_main mt-30">
-                                <div class="imgDrop"> <img src="<?= isset(get_field('group_2')['group_image']) ? get_field('group_2')['group_image'] : '' ?>" alt=""/></div>
+                                <div class="imgDrop"> <img src="<?= isset(get_field('group_2', $paymentID)['group_image']) ? get_field('group_2', $paymentID)['group_image'] : '' ?>" alt=""/></div>
                             </div>
                             <div class="list_check mt-30">
-                                <?php if (get_field('list_content_1'))
-                                            foreach (get_field('list_content_1') as $key => $item) {
+                                <?php if (get_field('list_content_1', $paymentID))
+                                            foreach (get_field('list_content_1', $paymentID) as $key => $item) {
                                                 $idKey = 'list_check' . $key;
                                                 ?>
                                                 <div class="group flexBox space mt-20">
@@ -295,11 +280,11 @@ get_header();
                                  <?php }
                                     ?>
                             </div>
-                            <h2 class="ttl fz-24 mt-30"><?= get_field('group_2')['group_title_2'] ?></h2>
+                            <h2 class="ttl fz-24 mt-30"><?= get_field('group_2', $paymentID)['group_title_2'] ?></h2>
                             <div class="list_check mt-30">
-                                <?php if (get_field('list_content_2'))
-                                    foreach (get_field('list_content_2') as $key => $item) {
-                                        $keytmp = $key + count(get_field('list_content_1'));
+                                <?php if (get_field('list_content_2', $paymentID))
+                                    foreach (get_field('list_content_2', $paymentID) as $key => $item) {
+                                        $keytmp = $key + count(get_field('list_content_1', $paymentID));
                                         $idKey = 'list_check' . $keytmp;
                                         ?>
                                         <div class="group flexBox space mt-20">
@@ -311,11 +296,11 @@ get_header();
                             </div>
                             <div class="right_box2 mt-30">
                                 <div class="img">
-                                    <div class="imgDrop"> <img src="<?= isset(get_field('group_3')['group_image']) ? get_field('group_3')['group_image'] : '' ?>" alt=""/></div>
+                                    <div class="imgDrop"> <img src="<?= isset(get_field('group_3', $paymentID)['group_image']) ? get_field('group_3', $paymentID)['group_image'] : '' ?>" alt=""/></div>
                                 </div>
                                 <div class="text">
-                                    <h4 class="ttl fz-20"><?= isset(get_field('group_3')['group_title']) ? get_field('group_3')['group_title'] : '' ?></h4>
-                                    <div class="txt mt-15"><?= isset(get_field('group_3')['group_text']) ? nl2br(get_field('group_3')['group_text']) : '' ?></div>
+                                    <h4 class="ttl fz-20"><?= isset(get_field('group_3', $paymentID)['group_title']) ? get_field('group_3', $paymentID)['group_title'] : '' ?></h4>
+                                    <div class="txt mt-15"><?= isset(get_field('group_3', $paymentID)['group_text']) ? nl2br(get_field('group_3', $paymentID)['group_text']) : '' ?></div>
                                 </div>
                             </div>
                         </div>
