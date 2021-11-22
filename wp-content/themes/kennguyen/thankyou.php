@@ -35,29 +35,23 @@ if (!empty($_GET) && isset($_GET['refno'])) {
 //end get order detail
 
     $today = date("Y-m-d");
+    $monthExpired = "+".get_field('expired', $idPackage)." month";
+    $typeMember = 1;
+    if (get_field('expired', $idPackage) >= 12) {
+        $typeMember = 2;
+    }
     $packge = [];
 
-    if ($idPackage == 1) {
+    if ($idPackage) {
         $start_date = date("Y-m-d");
-        $end_date = date("Y-m-d", strtotime("+1 month", strtotime($start_date)));
+        $end_date = date("Y-m-d", strtotime($monthExpired, strtotime($start_date)));
         $packge = [
             'id' => 1,
-            'package' => $va_options['kn_monthly_package_title'],
+            'package' => get_the_title(),
             'start_date' => $start_date,
             'end_date' => $end_date,
-            'price' => $va_options['kn_monthly_package_price'],
-            'sale_price' => $va_options['kn_monthly_package_sale_price']
-        ];
-    } else {
-        $start_date = date("Y-m-d");
-        $end_date = date("Y-m-d", strtotime("+1 year", strtotime($start_date)));
-        $packge = [
-            'id' => 2,
-            'package' => $va_options['kn_yearly_package_title'],
-            'start_date' => $start_date,
-            'end_date' => $end_date,
-            'price' => $va_options['kn_year_package_price'],
-            'sale_price' => $va_options['kn_year_package_sale_price']
+            'price' => get_field('price', $idPackage),
+            'sale_price' => get_field('sale_price', $idPackage)
         ];
     }
 
@@ -84,18 +78,15 @@ if (!empty($_GET) && isset($_GET['refno'])) {
             if ($insertRs) {
                 $dataUser = array();
                 if ($today >= $user->start_date && $today <= $user->end_date) {
-                    $endDate = date("Y-m-d",strtotime("+1 month",strtotime($user->end_date)));
-                    if ($idPackage == 2) {
-                        $endDate = date("Y-m-d",strtotime("+1 year",strtotime($user->end_date)));
-                    }
+                    $endDate = date("Y-m-d",strtotime($monthExpired,strtotime($user->end_date)));
                     $dataUser = [ 'member_ship' => 1,
-                        'type_member' => $idPackage,
+                        'type_member' => $typeMember,
                         'start_date' => $packge['start_date'],
                         'end_date' => $endDate
                     ];
                 } else {
                     $dataUser = [ 'member_ship' => 1,
-                        'type_member' => $idPackage,
+                        'type_member' => $typeMember,
                         'start_date' => $packge['start_date'],
                         'end_date' => $packge['end_date']
                     ];
@@ -151,7 +142,7 @@ if (!empty($_GET) && isset($_GET['refno'])) {
                 $data['email'] = $emailOrder;
                 $data['password'] = md5($random_pass);
                 $data['member_ship'] = 1;
-                $data['type_member'] = $idPackage;
+                $data['type_member'] = $typeMember;
                 $data['start_date'] = $packge['start_date'];
                 $data['end_date'] = $packge['end_date'];
                 $data['active'] = 1;
@@ -204,18 +195,15 @@ if (!empty($_GET) && isset($_GET['refno'])) {
                     if ($insertRs) {
                         $dataUser = array();
                         if ($today >= $existUser->start_date && $today <= $existUser->end_date) {
-                            $endDate = date("Y-m-d",strtotime("+1 month",strtotime($existUser->end_date)));
-                            if ($idPackage == 2) {
-                                $endDate = date("Y-m-d",strtotime("+1 year",strtotime($existUser->end_date)));
-                            }
+                            $endDate = date("Y-m-d",strtotime($monthExpired,strtotime($existUser->end_date)));
                             $dataUser = [ 'member_ship' => 1,
-                                'type_member' => $idPackage,
+                                'type_member' => $typeMember,
                                 'start_date' => $packge['start_date'],
                                 'end_date' => $endDate
                             ];
                         } else {
                             $dataUser = [ 'member_ship' => 1,
-                                'type_member' => $idPackage,
+                                'type_member' => $typeMember,
                                 'start_date' => $packge['start_date'],
                                 'end_date' => $packge['end_date']
                             ];
