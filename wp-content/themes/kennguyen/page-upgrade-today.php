@@ -1,5 +1,21 @@
 <?php
 global $va_options;
+include_once dirname( __FILE__ ).'/auth.php';
+
+$SearchOptions = new stdClass();
+$SearchOptions->Enabled = True;
+$SearchOptions->Limit = '10';
+$SearchOptions->Page = '10';
+
+$jsonRpcRequest = array (
+    'jsonrpc' => '2.0',
+    'id' => $i++,
+    'method' => 'searchProducts',
+    'params' => array($sessionID, $SearchOptions)
+);
+$data = callRPC((Object)$jsonRpcRequest, $host, true);
+var_dump($data->Items);
+
 get_header()
 ?>
 <main>

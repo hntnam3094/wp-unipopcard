@@ -266,13 +266,17 @@
                              if (data.price) {
                                  package['price'] = data.price
                              }
-                             TwoCoInlineCart.setup.setMode('DYNAMIC');
+                             // TwoCoInlineCart.setup.setMode('DYNAMIC');
                              TwoCoInlineCart.cart.setCurrency('USD');
 
                              TwoCoInlineCart.cart.setReset(true);
 
                              TwoCoInlineCart.products.removeAll();
-                             TwoCoInlineCart.products.add(package);
+                             // TwoCoInlineCart.products.add(package);
+                             TwoCoInlineCart.products.add({
+                                 code: "TTO1OUPY55"
+                             });
+
                              TwoCoInlineCart.billing.setEmail(Email);
 
                              let urlRedirect = window.location.protocol + "//" + window.location.host + '/thank-you?id_package=' + '<?= $_SESSION['packageId'] ?>' + '&merchartno=' + data.idOrder
