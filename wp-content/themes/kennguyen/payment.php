@@ -21,24 +21,45 @@ global $va_options;
 
 
 $packge = [];
-if (isset($_GET['package'])) {
-    $args = [
-        'post_type'      => 'package',
-        'posts_per_page' => 1,
-        'post_name__in'  => $_GET['package']
-    ];
-    $_SESSION['packageId'] = get_the_ID();
-    $q = get_posts( $args );
-    $month = "+".get_field('expired', get_the_ID())." month";
+$getProduct = '';
+if (isset($_GET['package_code'])) {
+//    $args = [
+//        'post_type'      => 'package',
+//        'posts_per_page' => 1,
+//        'post_name__in'  => $_GET['package']
+//    ];
+//    $_SESSION['packageId'] = get_the_ID();
+//    $q = get_posts( $args );
+//    $month = "+".get_field('expired', get_the_ID())." month";
+//    $start_date = date("Y-m-d");
+//    $end_date = date("Y-m-d", strtotime($month, strtotime($start_date)));
+//    $packge = [
+//        'id' => 1,
+//        'package' =>  get_the_title(),
+//        'start_date' => $start_date,
+//        'end_date' => $end_date,
+//        'price' => get_field('price', get_the_ID()),
+//        'sale_price' => get_field('sale_price', get_the_ID())
+//    ];
+    include_once dirname( __FILE__ ).'/auth.php';
+    $jsonRpcRequest = array (
+        'jsonrpc' => '2.0',
+        'id' => $i++,
+        'method' => 'getProductByCode',
+        'params' => array($sessionID, $_GET['package_code'])
+    );
+    $getProduct = callRPC((Object)$jsonRpcRequest, $host, true);
+
+    $month = "+".$getProduct->SubscriptionInformation->BillingCycle." month";
     $start_date = date("Y-m-d");
     $end_date = date("Y-m-d", strtotime($month, strtotime($start_date)));
     $packge = [
         'id' => 1,
-        'package' =>  get_the_title(),
+        'package' =>  $getProduct->ProductName,
         'start_date' => $start_date,
         'end_date' => $end_date,
-        'price' => get_field('price', get_the_ID()),
-        'sale_price' => get_field('sale_price', get_the_ID())
+        'price' => $getProduct->PricingConfigurations[0]->Prices->Renewal[0]->Amount,
+        'sale_price' => $getProduct->PricingConfigurations[0]->Prices->Regular[0]->Amount
     ];
 }
 
@@ -77,10 +98,10 @@ if (isset($_SESSION['user'])) {
     if (!empty($queryResult)) {
         $packge['sale_price'] = $packge['price'];
     } else {
-        $messageSale = get_field('description', get_the_ID());
+        $messageSale = $getProduct->ShortDescription;
     }
 } else {
-    $messageSale = get_field('description', get_the_ID());
+    $messageSale = $getProduct->ShortDescription;
 }
 
 if (!empty($_POST) && isset($_POST['isCreateOrder'])) {
@@ -89,7 +110,7 @@ if (!empty($_POST) && isset($_POST['isCreateOrder'])) {
             'id_customer' => 0,
             'email' => $_POST['email'] ?? '',
             'full_name' => $_POST['full_name'] ?? '',
-            'package' => get_the_title() ?? '',
+            'package' => $getProduct->ProductName ?? '',
             'price' => $_POST['price'] ?? '',
             'sale_price' => $_POST['sale_price'] ?? '',
             'status' => 0,
@@ -127,7 +148,7 @@ if (!empty($_POST) && isset($_POST['isCreateOrder'])) {
             'id_customer' => 0,
             'email' => $_POST['email'] ?? '',
             'full_name' => $_POST['full_name'] ?? '',
-            'package' => get_the_title() ?? '',
+            'package' => $getProduct->ProductName ?? '',
             'price' => $_POST['price'] ?? 0,
             'sale_price' => $_POST['sale_price'] ?? 0,
             'status' => 0,
@@ -245,7 +266,7 @@ $paymentID = 155;
                                     <label class="label text-center" for="check">By checking this box I confirm I've read and agreed to the Terms of Service, Privacy Policy & Cancellation Policy. I understand that by agreeing I also give my consent to receive further communications from KenNguyen - I Know I can opt-out from this at any given time.</label>
                                 </div>
                                 <div class="group mt-30">
-                                    <input id="id_package" name="id_package" type="hidden" value="<?= get_the_ID() ?>">
+                                    <input id="id_package" name="id_package" type="hidden" value="<?= $getProduct->ProductCode ?>">
                                     <a class="btn_submit" style="cursor: pointer"  pro-code="3TRROJJM4U" id="buy-button">PAYMENT</a>
                                 </div>
                                 <div class="group mt-30 text-center"> <img src="<?php bloginfo('template_directory') ?>/common/images/icon/card.svg" alt=""/></div>
