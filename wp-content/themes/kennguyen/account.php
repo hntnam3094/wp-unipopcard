@@ -272,8 +272,8 @@ get_header();
                                                 'jsonrpc' => '2.0');
 
                                             $data = callRPC((Object)$jsonRpcRequest, $host, true);
-                                            $status = $data->Status;
-                                            if ($status != 'DISABLED') { ?>
+                                            $status = $data->RecurringEnabled;
+                                            if ($data->Status != 'DISABLED' && $status) { ?>
                                                 <div class="info">
                                                     <form class="form_edit" action="" method="post">
                                                         <div class="group">
