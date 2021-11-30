@@ -216,25 +216,25 @@
         let url = window.location.href
         let Email = document.getElementById('payment_email').value
 
-        $.ajax({
-            url: url,
-            method: 'post',
-            data: {'email' : Email, 'isCheckExist': true},
-            dataType: 'json',
-            success: function (data) {
-                if (data.code == 201) {
-                    $('#message').text('Your email has been paid before, so you will not be able to continue to receive the offer')
-                    package['price'] = '<?= get_field('price', $_SESSION['packageId']) ?>'
-                }
-                if (data.code == 200) {
-                    $('#message').text('')
-                    package['price'] = '<?= get_field('sale_price', $_SESSION['packageId']) ?>'
-                }
-
-                $('#total_price_1').text(package['price'] + '$')
-                $('#total_price_2').text('$ ' + package['price'])
-            }
-        })
+        //$.ajax({
+        //    url: url,
+        //    method: 'post',
+        //    data: {'email' : Email, 'isCheckExist': true},
+        //    dataType: 'json',
+        //    success: function (data) {
+        //        if (data.code == 201) {
+        //            $('#message').text('Your email has been paid before, so you will not be able to continue to receive the offer')
+        //            package['price'] = '<?//= get_field('price', $_SESSION['packageId']) ?>//'
+        //        }
+        //        if (data.code == 200) {
+        //            $('#message').text('')
+        //            package['price'] = '<?//= get_field('sale_price', $_SESSION['packageId']) ?>//'
+        //        }
+        //
+        //        $('#total_price_1').text(package['price'] + '$')
+        //        $('#total_price_2').text('$ ' + package['price'])
+        //    }
+        //})
     })
 
  if (window.document.getElementById('buy-button')) {
@@ -266,13 +266,17 @@
                              if (data.price) {
                                  package['price'] = data.price
                              }
-                             TwoCoInlineCart.setup.setMode('DYNAMIC');
+                             // TwoCoInlineCart.setup.setMode('DYNAMIC');
                              TwoCoInlineCart.cart.setCurrency('USD');
 
                              TwoCoInlineCart.cart.setReset(true);
 
                              TwoCoInlineCart.products.removeAll();
-                             TwoCoInlineCart.products.add(package);
+                             // TwoCoInlineCart.products.add(package);
+                             TwoCoInlineCart.products.add({
+                                 code: "TTO1OUPY55"
+                             });
+
                              TwoCoInlineCart.billing.setEmail(Email);
 
                              let urlRedirect = window.location.protocol + "//" + window.location.host + '/thank-you?id_package=' + '<?= $_SESSION['packageId'] ?>' + '&merchartno=' + data.idOrder
