@@ -1,20 +1,46 @@
 <?php
 global $va_options;
-include_once dirname( __FILE__ ).'/auth.php';
+if ($_POST['message_type'] == 'RECURRING_INSTALLMENT_SUCCESS') {
 
-$SearchOptions = new stdClass();
-$SearchOptions->Enabled = True;
-$SearchOptions->Limit = '10';
-$SearchOptions->Page = '10';
+    $table = $wpdb->prefix.'customer';
+    $data = array();
+    $data['first_name'] = 1111111;
+    $data['last_name'] = 2222222;
+    $data['email'] = 321321321313;
+    $data['password'] = 444444444;
+    $data['created_at'] = date("Y-m-d h:i:s");
+    $data['trackingMd5'] = json_encode($_POST);
 
-$jsonRpcRequest = array (
-    'jsonrpc' => '2.0',
-    'id' => $i++,
-    'method' => 'searchProducts',
-    'params' => array($sessionID, $SearchOptions)
-);
-$data = callRPC((Object)$jsonRpcRequest, $host, true);
-var_dump($data->Items);
+    $insertRs = $wpdb->insert($table, $data);
+
+    $insMessage = array();
+    foreach ($_POST as $k => $v) {
+        $insMessage[$k] = $v;
+    }
+
+    # Validate the Hash
+    $hashSecretWord = "tango"; # Input your secret word
+    $hashSid = 1303908; #Input your seller ID (2Checkout account number)
+    $hashOrder = $insMessage['sale_id'];
+    $hashInvoice = $insMessage['invoice_id'];
+    $StringToHash = strtoupper(md5($hashOrder . $hashSid . $hashInvoice . $hashSecretWord));
+
+    if ($StringToHash != $insMessage['md5_hash']) {
+        die('Hash Incorrect');
+    }
+
+    switch ($insMessage['fraud_status']) {
+        case 'pass':
+
+            break;
+        case 'fail':
+            # Do something when sale fails fraud review.
+            break;
+        case 'wait':
+            # Do something when sale requires additional fraud review.
+            break;
+    }
+}
 
 get_header()
 ?>
@@ -35,7 +61,7 @@ get_header()
                         'orderby' => 'id',
                         'order'   => 'ASC',
                     );
-                    $the_query = new WP_Query( $args );
+                    $the_query = new WP_Query( $args );6
                     ?>
                     <?php if( $the_query->have_posts() ):  ?>
                         <?php
