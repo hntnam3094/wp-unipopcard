@@ -42,6 +42,18 @@ if ($_POST['message_type'] == 'RECURRING_INSTALLMENT_SUCCESS') {
     }
 }
 
+include_once dirname( __FILE__ ).'/auth.php';
+
+$SearchOptions = new stdClass();
+$SearchOptions->Enabled = True;
+
+$jsonRpcRequest = array (
+    'jsonrpc' => '2.0',
+    'id' => $i++,
+    'method' => 'searchProducts',
+    'params' => array($sessionID, $SearchOptions)
+);
+$listProducts = callRPC((Object)$jsonRpcRequest, $host, true);
 get_header()
 ?>
 <main>
@@ -53,51 +65,37 @@ get_header()
         <div class="content_main mt-30 pt-100 pb-100">
             <div class="wraper">
                 <div class="flexBox package center">
-                    <?php
-                    $args = array(
-                        'post_status' => 'publish',
-                        'posts_per_page' => -1,
-                        'post_type'      => 'package',
-                        'orderby' => 'id',
-                        'order'   => 'ASC',
-                    );
-                    $the_query = new WP_Query( $args );6
-                    ?>
-                    <?php if( $the_query->have_posts() ):  ?>
+                    <?php if( $listProducts ):  ?>
                         <?php
                         $i = 1;
-                        while( $the_query->have_posts() ) : $the_query->the_post();
-                            $slug = basename(get_permalink(get_the_ID()));
-                            $i++;
-
+                        foreach ($listProducts->Items as $key => $item) {
+                            $productCode = $item->ProductCode;
+                            $productName = $item->ProductName;
+                            $isFeatured = $item->ProductGroup->Name == 'Is featured';
+                            $shortDescription = $item->ShortDescription;
+                            $longDescription = $item->LongDescription;
+                            $regularAmount = $item->PricingConfigurations[0]->Prices->Regular[0]->Amount;
+                            $renewalAmount = $item->PricingConfigurations[0]->Prices->Renewal[0]->Amount;
+                            $billingCycle = $item->SubscriptionInformation->BillingCycle;
+                            $unitCycle = $item->SubscriptionInformation->BillingCycleUnits;
                         ?>
-                            <div style="margin-bottom: 30px" class="item_package text-center <?= $i % 2 == 0 ? 'package_month' : 'package_year' ?>">
+                            <div style="margin-bottom: 30px" class="item_package text-center <?= !$isFeatured ? 'package_month' : 'package_year' ?>">
                                 <div class="info_main">
-                                    <h3 class="ttl fz-31"><?=  get_the_title() ?></h3>
+                                    <h3 class="ttl fz-31"><?=  $productName ?></h3>
                                     <div class="price center midle flexBox mt-20">
-                                        <div class="new fz-45"><?=  get_field('sale_price', get_the_ID()) ?>$</div>
-                                        <div class="old fz-22"><?=  get_field('price', get_the_ID()) ?>$</div>
+                                        <div class="new fz-45"><?=  $regularAmount ?>$</div>
+                                        <?php if($renewalAmount) { ?>
+                                        <div class="old fz-22"><?=  $renewalAmount ?>$</div>
+                                        <?php } ?>
                                     </div>
-                                    <div class="fz-22 mt-10">Full Acess</div>
-                                    <div class="fz-20 mt-15 price_detail"><?=  get_field('description', get_the_ID()) ?></div>
-                                    <a class="button mt-20" href="<?php site_url() ?>/payment?package=<?= $slug ?>">JOIN NOW</a>
+                                    <?= $shortDescription ?>
+                                    <a class="button mt-20" href="<?php site_url() ?>/payment?package_code=<?= $productCode ?>">JOIN NOW</a>
                                 </div>
                                 <div class="info_other toggle_parent">
                                     <div class="toggle_content">
                                         <div class="list_detail mt-30 pt-15 pb-40">
-                                            <?php
-                                                if (!empty(get_field('content_package', get_the_ID())['content_package_item'])) {
-                                                    foreach (get_field('content_package', get_the_ID())['content_package_item'] as $key => $item) {
-                                                        ?>
-                                                        <dl class="mt-20">
-                                                            <dt><?= $item['content'] ?></dt>
-                                                            <dd><?= $item['value'] ?></dd>
-                                                        </dl>
-                                                        <?php
-                                                    }
-                                                }
-                                            ?>
-                                        </div><a class="button mt-40" href="<?php site_url() ?>/payment?package=<?= $slug ?>">JOIN NOW</a>
+                                            <?= $longDescription ?>
+                                        </div><a class="button mt-40" href="<?php site_url() ?>/payment?package_code=<?= $productCode ?>">JOIN NOW</a>
                                     </div>
                                     <div class="toggle_btn">
                                         <div class="short">View more </div>
@@ -106,7 +104,7 @@ get_header()
                                     </div>
                                 </div>
                             </div>
-                        <?php endwhile; ?>
+                        <?php } ?>
                     <?php endif; ?>
 <!--                    <div class="item_package text-center package_month">-->
 <!--                        <div class="info_main">-->

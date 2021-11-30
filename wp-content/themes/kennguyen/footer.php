@@ -216,25 +216,25 @@
         let url = window.location.href
         let Email = document.getElementById('payment_email').value
 
-        $.ajax({
-            url: url,
-            method: 'post',
-            data: {'email' : Email, 'isCheckExist': true},
-            dataType: 'json',
-            success: function (data) {
-                if (data.code == 201) {
-                    $('#message').text('Your email has been paid before, so you will not be able to continue to receive the offer')
-                    package['price'] = '<?= get_field('price', $_SESSION['packageId']) ?>'
-                }
-                if (data.code == 200) {
-                    $('#message').text('')
-                    package['price'] = '<?= get_field('sale_price', $_SESSION['packageId']) ?>'
-                }
-
-                $('#total_price_1').text(package['price'] + '$')
-                $('#total_price_2').text('$ ' + package['price'])
-            }
-        })
+        //$.ajax({
+        //    url: url,
+        //    method: 'post',
+        //    data: {'email' : Email, 'isCheckExist': true},
+        //    dataType: 'json',
+        //    success: function (data) {
+        //        if (data.code == 201) {
+        //            $('#message').text('Your email has been paid before, so you will not be able to continue to receive the offer')
+        //            package['price'] = '<?//= get_field('price', $_SESSION['packageId']) ?>//'
+        //        }
+        //        if (data.code == 200) {
+        //            $('#message').text('')
+        //            package['price'] = '<?//= get_field('sale_price', $_SESSION['packageId']) ?>//'
+        //        }
+        //
+        //        $('#total_price_1').text(package['price'] + '$')
+        //        $('#total_price_2').text('$ ' + package['price'])
+        //    }
+        //})
     })
 
  if (window.document.getElementById('buy-button')) {
