@@ -88,19 +88,19 @@ if (!empty($_POST) && isset($_POST['isCheckExist'])) {
 
 
 $user = [];
-$messageSale = '';
+$messageSale = $getProduct->ShortDescription;
 if (isset($_SESSION['user'])) {
     $user = $_SESSION['user'];
 
-    $queryResult = $wpdb->get_results(
-        $wpdb->prepare(
-            "SELECT * FROM {$table_order} WHERE email=%s AND status=%d ",$user->email, 1));
-
-    if (!empty($queryResult)) {
-        $packge['sale_price'] = $packge['price'];
-    } else {
-        $messageSale = $getProduct->ShortDescription;
-    }
+//    $queryResult = $wpdb->get_results(
+//        $wpdb->prepare(
+//            "SELECT * FROM {$table_order} WHERE email=%s AND status=%d ",$user->email, 1));
+//
+//    if (!empty($queryResult)) {
+//        $packge['sale_price'] = $packge['price'];
+//    } else {
+//        $messageSale = $getProduct->ShortDescription;
+//    }
 } else {
     $messageSale = $getProduct->ShortDescription;
 }

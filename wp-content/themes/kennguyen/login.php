@@ -52,7 +52,7 @@ if ($_POST) {
     if (!empty($queryResult)) {
         if ($queryResult[0]->active == 1) {
             $_SESSION['user'] = $queryResult[0];
-            wp_redirect(site_url() . '/manager');
+            wp_redirect(site_url() . '/my-craft-room');
             exit;
         } else {
             $login_message = '<p style="color: red">Your account is not active <br> Please active your account or contact us!</p>';
@@ -96,7 +96,7 @@ if ($_POST) {
                     $data['id_google'] = $id_gg;
                     $insertRs = $wpdb->update($table, $data, ['email' => $email]);
                 }
-                wp_redirect(site_url() . '/manager');
+                wp_redirect(site_url() . '/my-craft-room');
                 exit;
             } else {
                 $data = array();
@@ -115,7 +115,7 @@ if ($_POST) {
                         $wpdb->prepare("SELECT * FROM {$table} WHERE email=%s",$email));
                     if (!empty($queryResultAfterInsert)) {
                         $_SESSION['user'] = $queryResultAfterInsert[0];
-                        wp_redirect(site_url() . '/manager');
+                        wp_redirect(site_url() . '/my-craft-room');
                         exit;
                     }
                 }
@@ -204,7 +204,7 @@ get_header();
 
 <?php get_footer();
 } else {
-    wp_redirect(site_url() . '/manager');
+    wp_redirect(site_url() . '/my-craft-room');
     exit;
 }
 ?>

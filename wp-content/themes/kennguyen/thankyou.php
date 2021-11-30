@@ -90,7 +90,6 @@ if ($_POST['message_type'] == 'RECURRING_INSTALLMENT_SUCCESS') {
 
             $dataUser = array();
             $dataUser = [
-                'start_date' => $start_date,
                 'end_date' => $end_date
             ];
             if ($today >= $existUser->start_date && $today <= $existUser->end_date) {
@@ -182,13 +181,6 @@ if (!empty($_GET) && isset($_GET['refno'])) {
     if (empty($queryResult) && $dataOrder != null && !empty($queryOrder)) {
         if (isset($_SESSION['user'])) {
             $user = $_SESSION['user'];
-            $jsonRpcRequestCancel = array (
-                'method' => 'cancelSubscription',
-                'params' => array($sessionID, $user->subNo),
-                'id' => $i++,
-                'jsonrpc' => '2.0');
-
-            callRPC((Object)$jsonRpcRequestCancel, $host, true);
 
             // create new order detail
             $dataOrder = array();
@@ -199,6 +191,14 @@ if (!empty($_GET) && isset($_GET['refno'])) {
             $insertRs = $wpdb->update($table_order, $dataOrder, ['id' => $idOrder]);
 
             if ($insertRs) {
+                $jsonRpcRequestCancel = array (
+                    'method' => 'cancelSubscription',
+                    'params' => array($sessionID, $user->subNo),
+                    'id' => $i++,
+                    'jsonrpc' => '2.0');
+
+                callRPC((Object)$jsonRpcRequestCancel, $host, true);
+
                 $dataUser = array();
                 $dataUser = [ 'member_ship' => 1,
                     'type_member' => $typeMember,
@@ -208,6 +208,7 @@ if (!empty($_GET) && isset($_GET['refno'])) {
                 ];
                 if ($today >= $user->start_date && $today <= $user->end_date) {
                     $endDate = date("Y-m-d",strtotime($monthExpired,strtotime($user->end_date)));
+                    $dataUser['start_date'] = $user->start_date;
                     $dataUser['end_date'] = $endDate;
                 }
                 $where = ['id' => $user->id];
@@ -270,6 +271,7 @@ if (!empty($_GET) && isset($_GET['refno'])) {
                 $data['trackingMd5'] = md5($emailOrder);
 
                 $insertRs = $wpdb->insert($table, $data);
+
                 if (isset($insertRs)) {
                     // get info of user by email
                     $queryResultInsert = $wpdb->get_results(
@@ -305,15 +307,6 @@ if (!empty($_GET) && isset($_GET['refno'])) {
                 if (!empty($queryResultExist)) {
                     $existUser = $queryResultExist[0];
 
-                    $jsonRpcRequestCancel = array (
-                        'method' => 'cancelSubscription',
-                        'params' => array($sessionID, $existUser->subNo),
-                        'id' => $i++,
-                        'jsonrpc' => '2.0');
-
-                    callRPC((Object)$jsonRpcRequestCancel, $host, true);
-
-
                     // create new order detail
                     $dataOrder = array();
                     $dataOrder['id_customer'] = $existUser->id;
@@ -323,6 +316,14 @@ if (!empty($_GET) && isset($_GET['refno'])) {
                     $insertRs = $wpdb->update($table_order, $dataOrder, ['id' => $idOrder]);
 
                     if ($insertRs) {
+                        $jsonRpcRequestCancel = array (
+                            'method' => 'cancelSubscription',
+                            'params' => array($sessionID, $existUser->subNo),
+                            'id' => $i++,
+                            'jsonrpc' => '2.0');
+
+                        callRPC((Object)$jsonRpcRequestCancel, $host, true);
+
                         $dataUser = array();
                         $dataUser = [ 'member_ship' => 1,
                             'type_member' => $typeMember,
@@ -330,8 +331,10 @@ if (!empty($_GET) && isset($_GET['refno'])) {
                             'end_date' => $packge['end_date'],
                             'subNo' => $subscriptionRef
                         ];
+
                         if ($today >= $existUser->start_date && $today <= $existUser->end_date) {
                             $endDate = date("Y-m-d",strtotime($monthExpired,strtotime($existUser->end_date)));
+                            $dataUser['start_date'] = $existUser->start_date;
                             $dataUser['end_date'] = $endDate;
                         }
 
@@ -376,9 +379,9 @@ get_header()
     <h1 class="display-3">Thank You!</h1>
     <p class="lead text-success"><strong><?= $message['text1'] ?></strong></p>
     <p class="lead"><?php if (!empty($message)) { ?>
-            <strong>Premium : <?= !empty($premium_account->start_date) ? $premium_account->start_date : '' ?>
-                ~  <?= !empty($premium_account->end_date) ? $premium_account->end_date : '' ?></strong></p>
-            <?php } ?>
+        <strong>Premium : <?= !empty($premium_account->start_date) ? $premium_account->start_date : '' ?>
+            ~  <?= !empty($premium_account->end_date) ? $premium_account->end_date : '' ?></strong></p>
+    <?php } ?>
     <p class="lead"><?= $message['text2'] ?></p>
     <hr>
     <p>
@@ -386,14 +389,14 @@ get_header()
     </p>
     <p class="lead">
         <?php
-            if ($message['action'] == 'home') { ?>
-                <a class="btn btn-success" href="<?= home_url() ?>">
-                    HOME
-                </a>
+        if ($message['action'] == 'home') { ?>
+            <a class="btn btn-success" href="<?= home_url() ?>">
+                HOME
+            </a>
         <?php    } else { ?>
-                <a class="btn btn-success" href="<?php site_url() ?>/login">
-                    LOGIN
-                </a>
+            <a class="btn btn-success" href="<?php site_url() ?>/login">
+                LOGIN
+            </a>
         <?php    }
         ?>
 

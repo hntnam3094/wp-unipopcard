@@ -7,6 +7,7 @@
  * @since Ken Nguyen 1.0
  */
 
+include_once dirname( __FILE__ ).'/auth.php';
 if (isset($_SESSION['user'])) {
 $user = $_SESSION['user'];
 $active = '';
@@ -24,6 +25,17 @@ if ($_POST) {
     $old_password = $wpdb->escape($_POST['old_password']);
     $new_password = $wpdb->escape($_POST['new_password']);
     $new_password_confirm = $wpdb->escape($_POST['new_password_confirm']);
+
+    if (isset($_POST['subsciptionNo'])) {
+        $active = 'membership';
+        $jsonRpcRequestCancel = array (
+            'method' => 'cancelSubscription',
+            'params' => array($sessionID, $_POST['subsciptionNo']),
+            'id' => $i++,
+            'jsonrpc' => '2.0');
+
+        callRPC((Object)$jsonRpcRequestCancel, $host, true);
+    }
 
     if (isset($_POST['old_password'])) {
         $active = 'password';
@@ -55,7 +67,8 @@ if ($_POST) {
                 }
             }
         }
-    } else {
+    }
+    if (isset($_POST['first_name']) || isset($_POST['last_name']) || isset($_POST['birth_day']) || isset($_POST['email'])){
         $active = 'infomartion';
 
         $data = [ 'first_name' => $first_name,
@@ -133,7 +146,7 @@ get_header();
                         ?>
                         <div class="info_course">
                             <ul>
-                                <li class="mt-40"><a href="<?php site_url() ?>/manager">
+                                <li class="mt-40"><a href="<?php site_url() ?>/my-craft-room">
                                         <div class="icon"> <img src="<?php bloginfo('template_directory') ?>/common/images/icon/acc_01.svg" alt=""/><img class="on" src="<?php bloginfo('template_directory') ?>/common/images/icon/acc_01_on.svg" alt=""/></div>
                                         <div class="txt">My Downloaded Projects</div></a></li>
                                 <?php if (empty($expired_date)) {
@@ -221,7 +234,7 @@ get_header();
                                         </form>
                                     </div>
                                 </div>
-                                <div class="tab-pane fade" id="tab03" role="tabpanel" aria-labelledby="tab03-tab">
+                                <div class="tab-pane fade <?= $active == 'membership' ? 'show active' : '' ?>" id="tab03" role="tabpanel" aria-labelledby="tab03-tab">
                                     <h2 class="ttl_sub fz-22">Membership Details</h2>
                                     <div class="info mt-30">
                                         <div class="row">
@@ -251,6 +264,27 @@ get_header();
                                                     </div>
                                                <?php }?>
                                             </div>
+                                            <?php
+                                            $jsonRpcRequest = array (
+                                                'method' => 'getSubscription',
+                                                'params' => array($sessionID, $user->subNo),
+                                                'id' => $i++,
+                                                'jsonrpc' => '2.0');
+
+                                            $data = callRPC((Object)$jsonRpcRequest, $host, true);
+                                            $status = $data->Status;
+                                            if ($status != 'DISABLED') { ?>
+                                                <div class="info">
+                                                    <form class="form_edit" action="" method="post">
+                                                        <div class="group">
+                                                            <input type="hidden" name="subsciptionNo" value="<?= $user->subNo ?>"/>
+                                                            <input class="btn_submit" type="submit" onclick="return confirm('Do you wanna cancel renewal?')" value="Cancel renewal"/>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                           <?php }
+                                            ?>
+
                                         </div>
                                     </div>
                                 </div>

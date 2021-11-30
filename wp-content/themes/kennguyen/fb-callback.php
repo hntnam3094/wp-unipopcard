@@ -93,7 +93,7 @@ if ((string)$accessToken) {
             $data['id_facebook'] = $me->getId();
             $insertRs = $wpdb->update($table, $data, ['email' => $email]);
         }
-        wp_redirect(site_url() . '/manager');
+        wp_redirect(site_url() . '/my-craft-room');
         exit;
     } else {
         $queryResultEmail = $wpdb->get_results(
@@ -104,7 +104,7 @@ if ((string)$accessToken) {
                 $data['id_facebook'] = $me->getId();
                 $insertRs = $wpdb->update($table, $data, ['email' => $email]);
             }
-            wp_redirect(site_url() . '/manager');
+            wp_redirect(site_url() . '/my-craft-room');
             exit;
         } else {
             $data = array();
@@ -127,7 +127,7 @@ if ((string)$accessToken) {
                     $wpdb->prepare("SELECT * FROM {$table} WHERE id_facebook=%s",$me->getId()));
                 if (!empty($queryResultAfterInsert)) {
                     $_SESSION['user'] = $queryResultAfterInsert[0];
-                    wp_redirect(site_url() . '/manager');
+                    wp_redirect(site_url() . '/my-craft-room');
                     exit;
                 }
             }
