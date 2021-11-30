@@ -41,6 +41,7 @@ if (isset($_GET['package_code'])) {
 //        'price' => get_field('price', get_the_ID()),
 //        'sale_price' => get_field('sale_price', get_the_ID())
 //    ];
+
     include_once dirname( __FILE__ ).'/auth.php';
     $jsonRpcRequest = array (
         'jsonrpc' => '2.0',
@@ -111,8 +112,8 @@ if (!empty($_POST) && isset($_POST['isCreateOrder'])) {
             'email' => $_POST['email'] ?? '',
             'full_name' => $_POST['full_name'] ?? '',
             'package' => $getProduct->ProductName ?? '',
-            'price' => $_POST['price'] ?? '',
-            'sale_price' => $_POST['sale_price'] ?? '',
+            'price' => $packge['price'] ?? '',
+            'sale_price' => $packge['sale_price'] ?? '',
             'status' => 0,
             'bought_date' => date("Y-m-d H:i:s"),
             'refno' => '',
@@ -149,28 +150,26 @@ if (!empty($_POST) && isset($_POST['isCreateOrder'])) {
             'email' => $_POST['email'] ?? '',
             'full_name' => $_POST['full_name'] ?? '',
             'package' => $getProduct->ProductName ?? '',
-            'price' => $_POST['price'] ?? 0,
-            'sale_price' => $_POST['sale_price'] ?? 0,
+            'price' => $packge['price'] ?? 0,
+            'sale_price' => $packge['sale_price'] ?? 0,
             'status' => 0,
             'bought_date' => date("Y-m-d H:i:s"),
             'refno' => '',
         ];
 
-        $queryResult1 = $wpdb->get_results(
-            $wpdb->prepare(
-                "SELECT * FROM {$table_order} WHERE email=%s AND status=%d ",$user->email, 1));
-
-        if (!empty($queryResult1)) {
-            $order['sale_price'] = $packge['price'];
-        }
-
+//        $queryResult1 = $wpdb->get_results(
+//            $wpdb->prepare(
+//                "SELECT * FROM {$table_order} WHERE email=%s AND status=%d ",$user->email, 1));
+//
+//        if (!empty($queryResult1)) {
+//            $order['sale_price'] = $packge['price'];
+//        }
 
         $insertRs = $wpdb->insert($table_order, $order);
         if (isset($insertRs)) {
             $return = array(
                 'message' => 'Successful!',
                 'idOrder' => $wpdb->insert_id,
-                'price' => $order['sale_price'],
                 'code' => 200
             );
             wp_send_json($return);
@@ -266,7 +265,7 @@ $paymentID = 155;
                                     <label class="label text-center" for="check">By checking this box I confirm I've read and agreed to the Terms of Service, Privacy Policy & Cancellation Policy. I understand that by agreeing I also give my consent to receive further communications from KenNguyen - I Know I can opt-out from this at any given time.</label>
                                 </div>
                                 <div class="group mt-30">
-                                    <input id="id_package" name="id_package" type="hidden" value="<?= $getProduct->ProductCode ?>">
+                                    <input id="id_package_code" name="id_package" type="hidden" value="<?= $getProduct->ProductCode ?>">
                                     <a class="btn_submit" style="cursor: pointer"  pro-code="3TRROJJM4U" id="buy-button">PAYMENT</a>
                                 </div>
                                 <div class="group mt-30 text-center"> <img src="<?php bloginfo('template_directory') ?>/common/images/icon/card.svg" alt=""/></div>
