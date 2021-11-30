@@ -50,14 +50,14 @@ if (isset($_GET['package_code'])) {
     );
     $getProduct = callRPC((Object)$jsonRpcRequest, $host, true);
 
-    $month = "+".$getProduct->SubscriptionInformation->BillingCycle." month";
-    $start_date = date("Y-m-d");
-    $end_date = date("Y-m-d", strtotime($month, strtotime($start_date)));
+//    $month = "+".$getProduct->SubscriptionInformation->BillingCycle." month";
+//    $start_date = date("Y-m-d");
+//    $end_date = date("Y-m-d", strtotime($month, strtotime($start_date)));
     $packge = [
         'id' => 1,
         'package' =>  $getProduct->ProductName,
-        'start_date' => $start_date,
-        'end_date' => $end_date,
+//        'start_date' => $start_date,
+//        'end_date' => $end_date,
         'price' => $getProduct->PricingConfigurations[0]->Prices->Renewal[0]->Amount,
         'sale_price' => $getProduct->PricingConfigurations[0]->Prices->Regular[0]->Amount
     ];
@@ -252,7 +252,7 @@ $paymentID = 155;
                                 <div class="mt-15"></div>
                                 <div class="item bg_box flexBox space mt-10">
                                     <div class="child_left"><?= $packge['package'] ?></div>
-                                    <div class="child_right"> <span id="total_price_1" class="block"><?= $packge['sale_price'] ?>$</span><span class="block"><?= trim($messageSale) ?></span></div>
+                                    <div class="child_right"> <span id="total_price_1" class="block"><?= $packge['sale_price'] ?>$</span><span class="block"><?= trim(str_replace('fz-20 mt-15 price_detail','',str_replace('fz-22 mt-10','',$messageSale))) ?></span></div>
                                 </div>
                                 <div class="item bg_box flexBox space mt-10">
                                     <div class="child_left"> <span class="fz-30">Total</span></div>

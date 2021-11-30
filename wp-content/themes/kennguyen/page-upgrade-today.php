@@ -42,14 +42,11 @@ get_header()
                                     <h3 class="ttl fz-31"><?=  $productName ?></h3>
                                     <div class="price center midle flexBox mt-20">
                                         <div class="new fz-45"><?=  $regularAmount ?>$</div>
+                                        <?php if($renewalAmount) { ?>
                                         <div class="old fz-22"><?=  $renewalAmount ?>$</div>
+                                        <?php } ?>
                                     </div>
                                     <?= $shortDescription ?>
-                                    <?php
-
-                                    echo 'After 30 days,
-$9.99/month
-(paid month)'?>
                                     <a class="button mt-20" href="<?php site_url() ?>/payment?package_code=<?= $productCode ?>">JOIN NOW</a>
                                 </div>
                                 <div class="info_other toggle_parent">
