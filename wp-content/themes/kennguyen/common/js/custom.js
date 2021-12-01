@@ -12,7 +12,7 @@ var Download = {
         let customerId = $('.download-item').attr('data-iduser')
         let postId = $('.download-item').attr('data-idpost')
         let url = window.location.href
-        $(document).delegate('', 'click', function () {
+        $(document).delegate('.download-item', 'click', function () {
             if (customerId != '' && postId != '') {
                 let data = {
                     'customerId': customerId,
