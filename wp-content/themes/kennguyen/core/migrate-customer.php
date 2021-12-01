@@ -36,6 +36,7 @@ function my_plugin_create_db() {
             end_date DATE,
             active INT DEFAULT 0,
             created_at DATETIME,
+            subNo VARCHAR(50),
             trackingMd5 VARCHAR(500),
             id_google VARCHAR(500),
             id_facebook VARCHAR(500));";

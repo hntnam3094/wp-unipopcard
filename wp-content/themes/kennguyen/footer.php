@@ -242,6 +242,9 @@
          let firstName = document.getElementById('payment_first_name').value
          let lastName = document.getElementById('payment_last_name').value
          let Email = document.getElementById('payment_email').value
+         let code = document.getElementById('id_package_code').value
+         let overlay = document.getElementsByClassName('loading-overlay')[0]
+         overlay.classList.toggle('is-active')
 
          if (firstName == '' || lastName == '' || Email == '') {
              alert('Please enter full contact information')
@@ -250,8 +253,6 @@
              let data = {
                  'email' : Email,
                  'full_name': firstName +' '+ lastName,
-                 'price': '<?= get_field('price', $_SESSION['packageId']) ?>',
-                 'sale_price': package['price'],
                  'isCreateOrder': true
              }
              if (checkKen) {
@@ -263,9 +264,7 @@
                      dataType: "json",
                      success: function (data) {
                          if (data.code == 200) {
-                             if (data.price) {
-                                 package['price'] = data.price
-                             }
+                             overlay.classList.remove('is-active')
                              // TwoCoInlineCart.setup.setMode('DYNAMIC');
                              TwoCoInlineCart.cart.setCurrency('USD');
 
@@ -274,12 +273,12 @@
                              TwoCoInlineCart.products.removeAll();
                              // TwoCoInlineCart.products.add(package);
                              TwoCoInlineCart.products.add({
-                                 code: "TTO1OUPY55"
+                                 code: code
                              });
 
                              TwoCoInlineCart.billing.setEmail(Email);
 
-                             let urlRedirect = window.location.protocol + "//" + window.location.host + '/thank-you?id_package=' + '<?= $_SESSION['packageId'] ?>' + '&merchartno=' + data.idOrder
+                             let urlRedirect = window.location.protocol + "//" + window.location.host + '/thank-you?merchartno=' + data.idOrder
                              TwoCoInlineCart.cart.setReturnMethod({
                                  type: 'redirect',
                                  url : urlRedirect

@@ -35,7 +35,7 @@ if (!empty($_SESSION['user'])) {
                             </div>
                             <div class="info_course">
                                 <ul>
-                                    <li class="mt-40"><a href="<?php site_url() ?>/manager">
+                                    <li class="mt-40"><a href="<?php site_url() ?>/my-craft-room">
                                             <div class="icon"> <img src="<?php bloginfo('template_directory') ?>/common/images/icon/acc_01.svg" alt=""/><img class="on" src="<?php bloginfo('template_directory') ?>/common/images/icon/acc_01_on.svg" alt=""/></div>
                                             <div class="txt">My Downloaded Projects</div></a></li>
                                     <li class="mt-40"><a class="active" href="<?php site_url() ?>/history">

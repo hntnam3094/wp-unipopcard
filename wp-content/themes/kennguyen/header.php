@@ -171,10 +171,10 @@
                                             if ($arr[3] == 'my-craft-room') {
                                                 $li = '<li class="nav-item login"> <a class="nav-link login_link" href="'.$loginUrl.'">Login</a></li>';
                                             }
-                                            if ($arr[3] == 'upgrade-today') {
-                                                $title = str_replace('$_MONEY',$va_options['kn_monthly_package_sale_price'] . '$', $navItem->title);
-                                                $li = '<li class="nav-item"><a href="'.$navItem->url.'" title="'.$title.'">'.$title.'</a></li>';
-                                            }
+//                                            if ($arr[3] == 'upgrade-today') {
+//                                                $title = str_replace('$_MONEY',$va_options['kn_monthly_package_sale_price'] . '$', $navItem->title);
+//                                                $li = '<li class="nav-item"><a href="'.$navItem->url.'" title="'.$title.'">'.$title.'</a></li>';
+//                                            }
                                             echo $li;
 
                                         }
