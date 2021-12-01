@@ -243,6 +243,9 @@
          let lastName = document.getElementById('payment_last_name').value
          let Email = document.getElementById('payment_email').value
          let code = document.getElementById('id_package_code').value
+         let overlay = document.getElementsByClassName('loading-overlay')[0]
+         overlay.classList.toggle('is-active')
+
          if (firstName == '' || lastName == '' || Email == '') {
              alert('Please enter full contact information')
          } else {
@@ -261,6 +264,7 @@
                      dataType: "json",
                      success: function (data) {
                          if (data.code == 200) {
+                             overlay.classList.remove('is-active')
                              // TwoCoInlineCart.setup.setMode('DYNAMIC');
                              TwoCoInlineCart.cart.setCurrency('USD');
 
