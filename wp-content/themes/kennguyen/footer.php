@@ -91,8 +91,8 @@
     </div>
 </footer>
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-<!--<script src="--><?php //bloginfo('template_directory') ?><!--/common/js/jquery.min.js"></script>-->
+<!--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>-->
+<script src="<?php bloginfo('template_directory') ?>/common/js/jquery.min.js"></script>
 <script src="<?php bloginfo('template_directory') ?>/common/js/select_custom.js"></script>
 <script src="<?php bloginfo('template_directory') ?>/common/js/jquery.matchHeight-min.js"></script>
 <script src="<?php bloginfo('template_directory') ?>/common/js/owl.carousel.js"></script>
@@ -239,12 +239,13 @@
 
  if (window.document.getElementById('buy-button')) {
      window.document.getElementById('buy-button').addEventListener('click', function () {
+
          let firstName = document.getElementById('payment_first_name').value
          let lastName = document.getElementById('payment_last_name').value
          let Email = document.getElementById('payment_email').value
          let code = document.getElementById('id_package_code').value
          let overlay = document.getElementsByClassName('loading-overlay')[0]
-         overlay.classList.toggle('is-active')
+
 
          if (firstName == '' || lastName == '' || Email == '') {
              alert('Please enter full contact information')
@@ -256,6 +257,7 @@
                  'isCreateOrder': true
              }
              if (checkKen) {
+                 overlay.classList.toggle('is-active')
                  let url = window.location.href
                  $.ajax({
                      url: url,
