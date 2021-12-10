@@ -125,9 +125,22 @@ function admin_report_page(){
         $to = date("Y-m-t", strtotime($to));
     }
 
-    $query = getQueryReport($type, $from, $to);
+    $listPackage = $wpdb->get_results( 'SELECT DISTINCT package FROM wp_order' );
+
+    $listPackageName = [];
+    $listPackageVariable = [];
+
+    foreach ($listPackage as $item) {
+        $package = $item->package;
+        $variable = str_replace(' ','_', strtolower($package));
+        array_push($listPackageName, $package);
+        array_push($listPackageVariable, $variable);
+    }
+
+    $query = getQueryReport($type, $from, $to, $listPackage);
     $page = isset( $_GET['cpage'] ) ? abs( (int) $_GET['cpage'] ) : 1;
     $result = $wpdb->get_results( $query );
+
     ?>
     <div class="wrap">
         <h2>Report management</h2>
@@ -156,8 +169,10 @@ function admin_report_page(){
                 <tr>
                     <th class="manage-column column-columnname" scope="col">No</th>
                     <th class="manage-column column-columnname" scope="col">Timeline</th>
-                    <th class="manage-column column-columnname num" scope="col">Package month income</th>
-                    <th class="manage-column column-columnname num" scope="col">Package year income</th>
+                    <?php foreach ($listPackage as $item) {
+                        $package = $item->package;
+                        echo '<th class="manage-column column-columnname num" scope="col">'.$package.'</th>';
+                    }?>
                     <th class="manage-column column-columnname num" scope="col">Total</th>
                 </tr>
                 </thead>
@@ -166,45 +181,38 @@ function admin_report_page(){
                 <?php
                 $start = $items_per_page * ($page - 1);
                 $no = $start == 0 ? 1 : $start;
-                $totalMonthIncome = 0;
-                $totalYearIncome = 0;
-                $totalIncome = 0;
+                $arrayListTotalPrice = [];
                 foreach ($result as $value) {
-                    $income = $value->incomeMonth + $value->incomeYear;
-                    $totalMonthIncome += $value->incomeMonth;
-                    $totalYearIncome += $value->incomeYear;
-                    $totalIncome += $income;
+                    $income = 0
                     ?>
                     <tr class="alternate">
                         <td class="column-columnname"><?= $no++ ?></td>
                         <td class="column-columnname"><?= $value->timeLine ?></td>
-                        <td class="column-columnname num"><?= usd($value->incomeMonth) ?></td>
-                        <td class="column-columnname num"><?= usd($value->incomeYear) ?></td>
+                        <?php foreach ($listPackage as $item) {
+                            $variable = str_replace(' ','_', strtolower($item->package));
+                            $income += $value->{$variable};
+                            $arrayListTotalPrice[$item->package] += $value->{$variable};
+                            echo '<td class="column-columnname num">'.usd($value->{$variable}).'</td>';
+                        }?>
                         <td class="column-columnname num"><?= usd($income) ?></td>
                     </tr>
-                <?php }?>
+                <?php } ?>
                 </tbody>
 
                 <tfoot style="position: sticky; bottom: -1px; background-color: white">
                 <tr>
                     <th class="manage-column column-columnname" scope="col" colspan="2" style="text-align: right"><strong>Total</strong></th>
-                    <th class="manage-column column-columnname num" scope="col"><?= usd($totalMonthIncome) ?></th>
-                    <th class="manage-column column-columnname num" scope="col"><?= usd($totalYearIncome) ?></th>
-                    <th class="manage-column column-columnname num" scope="col"><?= usd($totalIncome) ?></th>
+                    <?php
+                    $totalPrice = 0;
+                    foreach ($arrayListTotalPrice as $value) {
+                        $totalPrice += $value;
+                        echo '<th class="manage-column column-columnname num" scope="col">'.$value.'</th>';
+                    }?>
+                    <th class="manage-column column-columnname num" scope="col"><?= usd($totalPrice) ?></th>
                 </tr>
                 </tfoot>
             </table>
         </div>
-        <?php
-//        echo paginate_links( array(
-//            'base' => add_query_arg( 'cpage', '%#%' ),
-//            'format' => '',
-//            'prev_text' => __('&laquo;'),
-//            'next_text' => __('&raquo;'),
-//            'total' => ceil($total / $items_per_page),
-//            'current' => $page
-//        ));
-        ?>
         <div id="columnchart_material" style="height: 500px; margin-top: 15px"></div>
         <div id="piechart" style="margin-top: 15px"></div>
     </div>
@@ -212,13 +220,23 @@ function admin_report_page(){
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
     <?php
-    $dataColumnChart = [['Timeline', 'Package month', 'Package year']];
+    $listPackageForColumnChart = ['Timeline'];
+    foreach ($listPackage as $item) {
+        array_push($listPackageForColumnChart, $item->package);
+    }
+    $dataColumnChart = [$listPackageForColumnChart];
     foreach ($result as $value) {
-        array_push($dataColumnChart, [$value->timeLine, $value->incomeMonth, $value->incomeYear]);
+        $packageDataColumn = [];
+        array_push($packageDataColumn, $value->timeLine);
+        foreach ($listPackageVariable as $key) {
+            array_push($packageDataColumn, (float)$value->{$key});
+        }
+        array_push($dataColumnChart, $packageDataColumn);
     }
     $dataPieChart = [['Package', 'Income']];
-    array_push($dataPieChart, ['Package month', $totalMonthIncome]);
-    array_push($dataPieChart, ['Package year', $totalYearIncome]);
+    foreach ($arrayListTotalPrice as $key => $value) {
+        array_push($dataPieChart, [$key, (float)$value]);
+    }
     ?>
 
     <script type="text/javascript">
@@ -276,10 +294,16 @@ function admin_report_page(){
     <?php
 }
 
-function getQueryReport($type, $from, $to) {
+function getQueryReport($type, $from, $to, $listPackage) {
+    $selectQuery = 'SELECT ';
+    foreach ($listPackage as $item) {
+        $package = $item->package;
+        $variable = str_replace(' ','_', strtolower($package));
+        $selectQuery .= 'ROUND(SUM(if(wp_order.package like "'.$package.'", wp_order.sale_price, 0)), 2) AS '.$variable.',';
+    }
+
     if ($type == 'day') {
-        return 'SELECT ROUND(SUM(if(wp_order.package like "Monthly", wp_order.sale_price, 0)), 2) AS incomeMonth,
-			ROUND(SUM(if(wp_order.package like "Yearly", wp_order.sale_price, 0)), 2) AS incomeYear,
+        return $selectQuery.'
                 DATE_FORMAT(v.start_date,"%d/%m/%Y") AS "timeLine"
                 FROM wp_order
                 RIGHT JOIN (
@@ -299,8 +323,7 @@ function getQueryReport($type, $from, $to) {
     }
 
     if ($type == 'week') {
-        return 'SELECT ROUND(SUM(if(wp_order.package like "Monthly", wp_order.sale_price, 0)), 2) AS incomeMonth,
-			ROUND(SUM(if(wp_order.package like "Yearly", wp_order.sale_price, 0)), 2) AS incomeYear,
+        return $selectQuery.'
                 CONCAT(DATE_FORMAT(DATE(v.start_date + INTERVAL ( - WEEKDAY(v.start_date)) DAY),"%d/%m/%Y")," ~ ",
                 DATE_FORMAT(DATE(v.start_date + INTERVAL (6 - WEEKDAY(v.start_date)) DAY),"%d/%m/%Y")) AS timeLine
                 FROM wp_order
@@ -321,8 +344,7 @@ function getQueryReport($type, $from, $to) {
     }
 
     if ($type == 'month') {
-        return 'SELECT ROUND(SUM(if(wp_order.package like "Monthly", wp_order.sale_price, 0)), 2) AS incomeMonth,
-			ROUND(SUM(if(wp_order.package like "Yearly", wp_order.sale_price, 0)), 2) AS incomeYear,
+        return $selectQuery.'
                 DATE_FORMAT(v.start_date,"%m/%Y") AS "timeLine"
                 FROM wp_order
                 RIGHT JOIN (
@@ -342,8 +364,7 @@ function getQueryReport($type, $from, $to) {
     }
 
     if ($type == 'quarter') {
-        return 'SELECT ROUND(SUM(if(wp_order.package like "Monthly", wp_order.sale_price, 0)), 2) AS incomeMonth,
-			ROUND(SUM(if(wp_order.package like "Yearly", wp_order.sale_price, 0)), 2) AS incomeYear,
+        return $selectQuery.'
                 CONCAT(DATE_FORMAT(MAKEDATE(YEAR(v.start_date), 1) + INTERVAL QUARTER(v.start_date) QUARTER - INTERVAL 1 QUARTER,"%d/%m/%Y")," ~ ",
                 DATE_FORMAT(MAKEDATE(YEAR(v.start_date), 1) + INTERVAL QUARTER(v.start_date) QUARTER - INTERVAL 1 DAY,"%d/%m/%Y")) AS timeLine
                 FROM wp_order
@@ -364,8 +385,7 @@ function getQueryReport($type, $from, $to) {
     }
 
     if ($type == 'year') {
-        return 'SELECT ROUND(SUM(if(wp_order.package like "Monthly", wp_order.sale_price, 0)), 2) AS incomeMonth,
-			ROUND(SUM(if(wp_order.package like "Yearly", wp_order.sale_price, 0)), 2) AS incomeYear,
+        return $selectQuery.'
                 DATE_FORMAT(v.start_date,"%Y") AS "timeLine"
                 FROM wp_order
                 RIGHT JOIN (
