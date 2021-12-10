@@ -44,7 +44,7 @@ if ( ! class_exists( 'VA_Theme_Options' ) ) {
 
             $this->setSections();
 
-            $this->setPayment();
+            //$this->setPayment();
 
             $this->setEmailSetting();
 

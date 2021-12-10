@@ -203,7 +203,7 @@ function create_custom_post_type_package()
     register_post_type('package', $args); //Tạo post type với slug tên là craftcollection và các tham số trong biến $args ở trên
 }
 /* Kích hoạt hàm tạo custom post type */
-add_action('init', 'create_custom_post_type_package');
+//add_action('init', 'create_custom_post_type_package');
 
 
 function create_custom_post_type_package_content()
@@ -246,7 +246,7 @@ function create_custom_post_type_package_content()
     register_post_type('packagecontent', $args); //Tạo post type với slug tên là craftcollection và các tham số trong biến $args ở trên
 }
 /* Kích hoạt hàm tạo custom post type */
-add_action('init', 'create_custom_post_type_package_content');
+//add_action('init', 'create_custom_post_type_package_content');
 
 // Alter the main query
 function add_craft_to_frontpage( $query ) {
