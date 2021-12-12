@@ -29,11 +29,20 @@ get_header()
                         foreach ($listProducts->Items as $key => $item) {
                             $productCode = $item->ProductCode;
                             $productName = $item->ProductName;
-                            $isFeatured = $item->ProductGroup->Name == 'Is featured';
+                            $isFeatured = '';
+                            if (isset($item->ProductGroup)) {
+                                $isFeatured = $item->ProductGroup->Name == 'Is featured';
+                            }
                             $shortDescription = $item->ShortDescription;
                             $longDescription = $item->LongDescription;
-                            $regularAmount = $item->PricingConfigurations[0]->Prices->Regular[0]->Amount;
-                            $renewalAmount = $item->PricingConfigurations[0]->Prices->Renewal[0]->Amount;
+                            $regularAmount = 0;
+                            if (isset($item->PricingConfigurations[0]) && isset($item->PricingConfigurations[0]->Prices->Regular[0])) {
+                                $regularAmount = $item->PricingConfigurations[0]->Prices->Regular[0]->Amount;
+                            }
+                            $renewalAmount = 0;
+                            if (isset($item->PricingConfigurations[0]) && isset($item->PricingConfigurations[0]->Prices->Renewal[0])) {
+                                $renewalAmount = $item->PricingConfigurations[0]->Prices->Renewal[0]->Amount;
+                            }
                             $billingCycle = $item->SubscriptionInformation->BillingCycle;
                             $unitCycle = $item->SubscriptionInformation->BillingCycleUnits;
                         ?>
