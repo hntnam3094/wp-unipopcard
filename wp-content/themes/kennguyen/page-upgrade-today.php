@@ -43,8 +43,8 @@ get_header()
                             if (isset($item->PricingConfigurations[0]) && isset($item->PricingConfigurations[0]->Prices->Renewal[0])) {
                                 $renewalAmount = $item->PricingConfigurations[0]->Prices->Renewal[0]->Amount;
                             }
-                            $billingCycle = $item->SubscriptionInformation->BillingCycle;
-                            $unitCycle = $item->SubscriptionInformation->BillingCycleUnits;
+                            //$billingCycle = $item->SubscriptionInformation->BillingCycle;
+                            //$unitCycle = $item->SubscriptionInformation->BillingCycleUnits;
                         ?>
                             <div style="margin-bottom: 30px" class="item_package text-center <?= !$isFeatured ? 'package_month' : 'package_year' ?>">
                                 <div class="info_main">
