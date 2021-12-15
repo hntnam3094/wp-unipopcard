@@ -899,9 +899,8 @@ function j0e_add_admin_styles() {
 }
 
 function check_membership() {
-    $isMember = -1;
+    $isMember = 0;
     if (isset($_SESSION['user'])) {
-        $isMember = 0;
         $user = $_SESSION['user'];
         $today = date("Y-m-d");
         if (!empty($user->start_date) && !empty($user->end_date)) {
