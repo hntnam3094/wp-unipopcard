@@ -454,7 +454,7 @@ function activeAccountSMTP($email) {
                                             <td style="padding:20px;text-align:left">
                                                 <span style="color:#000000;font-family:Arial;font-size:18px;font-weight:bold">
                                                     <a href="'.$url.'" target="_blank" >
-                                                        KenNguyen
+                                                        <img style="width:120px"  src="'.getLogoBase64().'" alt="Logo">
                                                     </a>
                                                 </span>
                                                 <br>
@@ -519,6 +519,13 @@ function activeAccountSMTP($email) {
 }
 add_action( 'active_account_email', 'activeAccountSMTP');
 
+function getLogoBase64() {
+    $path = isset($va_options['kn_logo']) && $va_options['kn_logo']['url'] !== '' ? $va_options['kn_logo']['url'] : get_template_directory_uri() . '/common/images/logo_new.jpg';
+    $type = pathinfo($path, PATHINFO_EXTENSION);
+    $data = file_get_contents($path);
+    $base64 = 'data:image/' . $type . ';base64,' . base64_encode($data);
+    return $base64;
+}
 function forgetPasswordSMTP($email, $password, $isNewAccount = false) {
     global $wpdb;
     global $va_options;
@@ -573,7 +580,7 @@ function forgetPasswordSMTP($email, $password, $isNewAccount = false) {
                                             <td style="padding:20px;text-align:left">
                                                 <span style="color:#000000;font-family:Arial;font-size:18px;font-weight:bold">
                                                     <a href="'.$url.'" target="_blank" >
-                                                        KenNguyen
+                                                       <img style="width:120px"  src="'.getLogoBase64().'" alt="Logo">
                                                     </a>
                                                 </span>
                                                 <br>
@@ -652,7 +659,7 @@ function forgetPasswordSMTP($email, $password, $isNewAccount = false) {
                                             <td style="padding:20px;text-align:left">
                                                 <span style="color:#000000;font-family:Arial;font-size:18px;font-weight:bold">
                                                     <a href="'.$url.'" target="_blank" >
-                                                        KenNguyen
+                                                        <img style="width:120px"  src="'.getLogoBase64().'" alt="Logo">
                                                     </a>
                                                 </span>
                                                 <br>
@@ -887,13 +894,14 @@ function j0e_add_admin_styles() {
 }
 
 function check_membership() {
-    $isMember = 0;
+    $isMember = -1;
     if (isset($_SESSION['user'])) {
+        $isMember = 0;
         $user = $_SESSION['user'];
         $today = date("Y-m-d");
         if (!empty($user->start_date) && !empty($user->end_date)) {
             if ($today >= $user->start_date && $today <= $user->end_date) {
-                $isMember = 1;
+                $isMember = $user->type_member;
             }
         }
     }
@@ -996,20 +1004,6 @@ function posts_where_wpse_94630( $where )
         $where .= " AND ID IN (SELECT post_id FROM $wpdb->postmeta WHERE meta_key='$meta' and meta_value='$metaValue' )";
     }
     return $where;
-}
-
-function check_type_member() {
-    $type_member = 0;
-    if (isset($_SESSION['user'])) {
-        $user = $_SESSION['user'];
-        $today = date("Y-m-d");
-        if (!empty($user->start_date) && !empty($user->end_date)) {
-            if ($today >= $user->start_date && $today <= $user->end_date) {
-                $type_member = $user->type_member;
-            }
-        }
-    }
-    return $type_member;
 }
 
 function check_second_order() {
