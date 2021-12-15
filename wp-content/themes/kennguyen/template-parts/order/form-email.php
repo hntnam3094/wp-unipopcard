@@ -1,5 +1,5 @@
 <?php
-if (check_membership() != 1) {
+if (check_membership() < 1) {
     echo '<div class="form_submit pt-20 text-center">
                                         <form method="post" class="submit-form-email">
                                             <input class="input" name="guest_email" type="text" placeholder="Your Email Adress"/>

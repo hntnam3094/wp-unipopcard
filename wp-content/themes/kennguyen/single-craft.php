@@ -18,14 +18,11 @@ if (isset($_POST)) {
     }
 }
 
-function getClassBlock($checkMembership) {
-    if (check_membership() == 1) {
+function getClassBlock($typeAccount) {
+    if (check_membership() >= $typeAccount) {
         return '';
     }
-    if ($checkMembership) {
-        return 'block';
-    }
-    return '';
+    return 'block';
 }
 ?>
 <main>
@@ -33,7 +30,8 @@ function getClassBlock($checkMembership) {
         <div class="wraper">
             <div class="row">
                 <div class="col-12 col-lg-1">
-                    <?php if (check_membership() == 1 || get_post_meta(get_the_ID(), 'premium_membership', true) == 0) { ?>
+                    <?php
+                    if (check_membership() >= get_post_meta(get_the_ID(), 'type_account', true)) { ?>
                         <div class="shared_comment mt-100">
                             <div class="item">
                                 <div class="ttl">SHARE</div>
@@ -57,15 +55,16 @@ function getClassBlock($checkMembership) {
                 </div>
                 <div class="col-12 col-lg-8 content_main">
                     <div class="heading">
-                        <?php if (check_membership() == 1 || get_post_meta(get_the_ID(), 'premium_membership', true) == 0) { ?>
+                        <?php
+                        if (check_membership() >= get_post_meta(get_the_ID(), 'type_account', true)) { ?>
                             <h1 class="ttl_main fz-20 text-up text-center"><?= get_the_title()?></h1>
                         <?php } ?>
-                        <?php if (check_membership() != 1) {
+                        <?php if (check_membership() < 1) {
                             echo '<div class="mt-30 text-center"> <a class="btn_more" href="/upgrade-today"><span class="block main fz-22">You Can Make This!</span><span class="block sub">BECOME A MEMBER  </span></a></div>';
                         } ?>
                     </div>
 
-                    <?php if (check_membership() == 1 || get_post_meta(get_the_ID(), 'premium_membership', true) == 0) { ?>
+                    <?php if (check_membership() >= get_post_meta(get_the_ID(), 'type_account', true)) { ?>
                         <div class="boding mt-30">
                             <?= get_the_content()?>
                         </div>
@@ -76,10 +75,9 @@ function getClassBlock($checkMembership) {
                                 $user = null;
                                 if (isset($_SESSION['user'])) {
                                     $user = $_SESSION['user'];
-                                }
-                                if( $rows ) {
-                                    foreach( $rows as $row ) {
-                                        echo '
+                                    if( $rows ) {
+                                        foreach( $rows as $row ) {
+                                            echo '
                                     <li data-iduser="'.$user->id.'" data-idpost="'.get_the_ID().'" class="mt-20 download-item">
                                         <a href="'.$row['file']['url'].'" download>
                                             <span class="txt trim trim_1">'.$row['file_name'].'</span>
@@ -87,6 +85,18 @@ function getClassBlock($checkMembership) {
                                         </a>
                                     </li>
                                     ';
+                                        }
+                                    }
+                                } else {
+                                if( $rows ) {
+                                    foreach( $rows as $row ) {
+                                        echo '<li class="mt-20 download-item">
+                                            <a href="/login" >
+                                                <span class="txt trim trim_1">'.$row['file_name'].'</span>
+                                                <span class="button">Login to download</span>
+                                            </a>
+                                        </li>';
+                                        }
                                     }
                                 }
                                 ?>
@@ -103,7 +113,7 @@ function getClassBlock($checkMembership) {
                             <img src="<?php bloginfo('template_directory') ?>/common/images/imageblock.png" alt=""/>
                         </div>
                     <?php } ?>
-                    <?php if (check_membership() != 1) {
+                    <?php if (check_membership() < 1) {
                         echo '<div class="mt-50 text-center">
                                     <a class="btn_more" href="/upgrade-today">
                                         <span class="block main fz-22">You Can Make This!</span>
@@ -111,7 +121,7 @@ function getClassBlock($checkMembership) {
                                     </a>
                                 </div>';
                     } ?>
-                    <?php if (check_membership() == 1 || get_post_meta(get_the_ID(), 'premium_membership', true) == 0) { ?>
+                    <?php if (check_membership() >= get_post_meta(get_the_ID(), 'type_account', true)) { ?>
                         <div class="comment mt-80 pb-30" id="comment">
                             <div class="fb-comments" data-href="<?php the_permalink(); ?>" data-width="100%" data-numposts="10" data-order-by="social" data-colorscheme="light"></div>
                         </div>
@@ -149,7 +159,7 @@ function getClassBlock($checkMembership) {
                                     <?php while( $the_query->have_posts() ) : $the_query->the_post();
                                         if (get_the_ID() != $currentId) {
                                             echo '<div class="col-4 col-lg-12">
-                                                    <a class="item mt-20 '. getClassBlock(get_field('premium_membership')) .'" href="'.get_the_permalink().'">
+                                                    <a class="item mt-20 '. getClassBlock(get_field('type_account')) .'" href="'.get_the_permalink().'">
                                                         <div class="imgDrop">
                                                             '.get_the_post_thumbnail( get_the_id() ).'
                                                         </div>
