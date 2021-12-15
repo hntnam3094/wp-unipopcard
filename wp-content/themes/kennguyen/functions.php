@@ -454,7 +454,7 @@ function activeAccountSMTP($email) {
                                             <td style="padding:20px;text-align:left">
                                                 <span style="color:#000000;font-family:Arial;font-size:18px;font-weight:bold">
                                                     <a href="'.$url.'" target="_blank" >
-                                                        KenNguyen
+                                                        <img style="width:120px"  src="'.getLogoBase64().'" alt="Logo">
                                                     </a>
                                                 </span>
                                                 <br>
@@ -519,6 +519,13 @@ function activeAccountSMTP($email) {
 }
 add_action( 'active_account_email', 'activeAccountSMTP');
 
+function getLogoBase64() {
+    $path = isset($va_options['kn_logo']) && $va_options['kn_logo']['url'] !== '' ? $va_options['kn_logo']['url'] : get_template_directory_uri() . '/common/images/logo_new.jpg';
+    $type = pathinfo($path, PATHINFO_EXTENSION);
+    $data = file_get_contents($path);
+    $base64 = 'data:image/' . $type . ';base64,' . base64_encode($data);
+    return $base64;
+}
 function forgetPasswordSMTP($email, $password, $isNewAccount = false) {
     global $wpdb;
     global $va_options;
@@ -573,7 +580,7 @@ function forgetPasswordSMTP($email, $password, $isNewAccount = false) {
                                             <td style="padding:20px;text-align:left">
                                                 <span style="color:#000000;font-family:Arial;font-size:18px;font-weight:bold">
                                                     <a href="'.$url.'" target="_blank" >
-                                                        KenNguyen
+                                                       <img style="width:120px"  src="'.getLogoBase64().'" alt="Logo">
                                                     </a>
                                                 </span>
                                                 <br>
@@ -652,7 +659,7 @@ function forgetPasswordSMTP($email, $password, $isNewAccount = false) {
                                             <td style="padding:20px;text-align:left">
                                                 <span style="color:#000000;font-family:Arial;font-size:18px;font-weight:bold">
                                                     <a href="'.$url.'" target="_blank" >
-                                                        KenNguyen
+                                                        <img style="width:120px"  src="'.getLogoBase64().'" alt="Logo">
                                                     </a>
                                                 </span>
                                                 <br>
@@ -835,10 +842,12 @@ add_action( 'manage_craft_posts_custom_column', 'smashing_craft_column', 10, 2);
 function smashing_craft_column( $column, $post_id ) {
     // Image column
     if ( 'craft_type' === $column ) {
-        if (get_field('premium_membership')) {
-            echo '<span class="craft-status craft-status-sale">Premium</span>';
-        } else {
+        if (get_field('type_account') == 0) {
             echo '<span class="craft-status craft-status-free">Free</span>';
+        } else if (get_field('type_account') == 1) {
+            echo '<span class="craft-status craft-status-sale">Monthly</span>';
+        } else if (get_field('type_account') == 2){
+            echo '<span class="craft-status craft-status-yearly">Yearly</span>';
         }
     }
 
@@ -869,6 +878,9 @@ function j0e_add_admin_styles() {
 .craft-status-free {
     background-color: #28a745 !important;
 }
+.craft-status-yearly {
+    background-color: #bb2124 !important;
+}
 .craft-status {
     color: #fff;
     background-color: #007bff;
@@ -887,13 +899,14 @@ function j0e_add_admin_styles() {
 }
 
 function check_membership() {
-    $isMember = 0;
+    $isMember = -1;
     if (isset($_SESSION['user'])) {
+        $isMember = 0;
         $user = $_SESSION['user'];
         $today = date("Y-m-d");
         if (!empty($user->start_date) && !empty($user->end_date)) {
             if ($today >= $user->start_date && $today <= $user->end_date) {
-                $isMember = 1;
+                $isMember = $user->type_member;
             }
         }
     }
@@ -968,8 +981,9 @@ add_filter( 'views_edit-craft', 'meta_views_wpse_94630', 10, 1 );
 
 function meta_views_wpse_94630( $views )
 {
-    $views['craftpremium'] = '<a href="edit.php?meta_data=premium_membership&meta_value=1&post_type=craft">Craft premium</a>';
-    $views['craftfree'] = '<a href="edit.php?meta_data=premium_membership&meta_value=0&post_type=craft">Craft free</a>';
+    $views['craftfree'] = '<a href="edit.php?meta_data=type_account&meta_value=0&post_type=craft">Craft free</a>';
+    $views['craftmonthly'] = '<a href="edit.php?meta_data=type_account&meta_value=1&post_type=craft">Craft for member monthly</a>';
+    $views['craftyearly'] = '<a href="edit.php?meta_data=type_account&meta_value=2&post_type=craft">Craft for member yearly</a>';
     return $views;
 }
 
@@ -996,20 +1010,6 @@ function posts_where_wpse_94630( $where )
         $where .= " AND ID IN (SELECT post_id FROM $wpdb->postmeta WHERE meta_key='$meta' and meta_value='$metaValue' )";
     }
     return $where;
-}
-
-function check_type_member() {
-    $type_member = 0;
-    if (isset($_SESSION['user'])) {
-        $user = $_SESSION['user'];
-        $today = date("Y-m-d");
-        if (!empty($user->start_date) && !empty($user->end_date)) {
-            if ($today >= $user->start_date && $today <= $user->end_date) {
-                $type_member = $user->type_member;
-            }
-        }
-    }
-    return $type_member;
 }
 
 function check_second_order() {

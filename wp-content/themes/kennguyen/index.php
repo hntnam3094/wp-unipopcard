@@ -1,13 +1,10 @@
 <?php get_header(); ?>
 <?php
-function getClassBlock($checkMembership) {
-    if (check_membership() == 1) {
+function getClassBlock($typeAccount) {
+    if (check_membership() >= $typeAccount) {
         return '';
     }
-    if ($checkMembership) {
-        return 'block';
-    }
-    return '';
+    return 'block';
 }
 ?>
     <main>
@@ -69,7 +66,7 @@ function getClassBlock($checkMembership) {
                 <?php if( $the_query->have_posts() ): ?>
                     <?php while( $the_query->have_posts() ) : $the_query->the_post(); ?>
                         <div class="column col-6 col-md-3">
-                            <a class="item mt-40 <?= getClassBlock(get_field('premium_membership'))  ?>" href="<?= get_the_permalink() ?>">
+                            <a class="item mt-40 <?= getClassBlock(get_field('type_account'))  ?>" href="<?= get_the_permalink() ?>">
                                 <div class="images">
                                     <div class="imgDrop"> <?php echo get_the_post_thumbnail( get_the_ID() ); ?></div>
                                 </div>

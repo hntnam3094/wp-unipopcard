@@ -133,7 +133,7 @@
                                 ?>
                                 <ul class="flexBox midle">
                                     <?php if (isset($_SESSION['user'])) {
-                                        if (check_type_member() == 2) {
+                                        if (check_membership() == 2) {
                                             foreach ( $primaryNav as $navItem ) {
                                                 $li = '<li class="nav-item"><a href="'.$navItem->url.'" title="'.$navItem->title.'">'.$navItem->title.'</a></li>';
                                                 $arr = explode('/', $navItem->url);
