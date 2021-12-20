@@ -44,6 +44,8 @@ if ( ! class_exists( 'VA_Theme_Options' ) ) {
 
             $this->setSections();
 
+            //$this->setSectionsSettingLeftMenu();
+
             //$this->setPayment();
 
             $this->setEmailSetting();
@@ -272,6 +274,20 @@ if ( ! class_exists( 'VA_Theme_Options' ) ) {
                         'compiler' => true,
                         'desc' => __('Cho phép dùng đuôi: jpg,png,gif', 'vietanh')
                     ),
+                    array(
+                        'id' => 'kn_favicon',
+                        'type' => 'media',
+                        'title' => __('Favicon', 'vietanh'),
+                        'compiler' => true,
+                        'desc' => __('Cho phép dùng đuôi: jpg,png,gif', 'vietanh')
+                    ),
+                    array(
+                        'id' => 'kn_page_title',
+                        'type' => 'text',
+                        'title' => __('Page title', 'vietanh'),
+                        'compiler' => true,
+                        'default' => 'Ken Nguyen'
+                    )
 //                    array(
 //                        'id' => 'kn_logo_2checkout',
 //                        'type' => 'media',
@@ -279,6 +295,34 @@ if ( ! class_exists( 'VA_Theme_Options' ) ) {
 //                        'compiler' => true,
 //                        'desc' => __('Cho phép dùng đuôi: jpg,png,gif', 'vietanh')
 //                    )
+                )
+            ); // end section
+
+        }
+
+        public function setSectionsSettingLeftMenu() {
+            // Home Section
+            $this->sections[] = array(
+                'title'  => __( 'Left menu settings', 'vietanh' ),
+                'desc'   => __( 'Setting slug category for left menu (Craft collection, Academy collection).', 'vietanh' ),
+                'icon'   => 'el-icon-cog',
+                'fields' => array(
+                    array(
+                        'id' => 'kn_slug_craft_collection',
+                        'type' => 'text',
+                        'title' => __('Craft collection category slug', 'vietanh'),
+                        'compiler' => true,
+                        'default' => 'craft-collection',
+                        'desc' => __('Input your craft collection category slug', 'vietanh')
+                    ),
+                    array(
+                        'id' => 'kn_slug_craft_academy',
+                        'type' => 'text',
+                        'title' => __('Craft academy category slug', 'vietanh'),
+                        'compiler' => true,
+                        'default' => 'craft-academy',
+                        'desc' => __('Input your craft academy category slug', 'vietanh')
+                    ),
                 )
             ); // end section
 
@@ -428,7 +472,14 @@ if ( ! class_exists( 'VA_Theme_Options' ) ) {
                     array(
                         'id' => 'kn_banner',
                         'type' => 'media',
-                        'title' => __('Banner', 'vietanh'),
+                        'title' => __('Banner desktop', 'vietanh'),
+                        'compiler' => true,
+                        'desc' => __('Cho phép dùng đuôi: jpg,png,gif', 'vietanh')
+                    ),
+                    array(
+                        'id' => 'kn_banner_mobile',
+                        'type' => 'media',
+                        'title' => __('Banner mobile', 'vietanh'),
                         'compiler' => true,
                         'desc' => __('Cho phép dùng đuôi: jpg,png,gif', 'vietanh')
                     ),

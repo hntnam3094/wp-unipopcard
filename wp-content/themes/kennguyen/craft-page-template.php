@@ -6,11 +6,9 @@
  * @subpackage Kem_Nguyen
  * @since Ken Nguyen 1.0
  */
-?>
-<?php get_header(); ?>
-<?php global $va_options;
-    global $post;?>
-<?php
+
+get_header();
+global $va_options, $post;
 $parentCategory = get_category_by_slug($post->post_name);
 $parentCategoryId = $parentCategory != null ? $parentCategory->cat_ID : 0;
 $parentCategorySlug = $parentCategory != null ? $parentCategory->slug : '';
