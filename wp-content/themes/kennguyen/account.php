@@ -244,7 +244,11 @@ get_header();
                                             <div class="col-12 col-md-7">
                                                 <div class="content">
                                                     <p><?= $level_membership  ?><br>
+                                                        <?php
+                                                            if (check_membership() != 2) { ?>
                                                         <a href="<?php site_url() ?>/upgrade-today">Upgrade to the yearly plan </a>to get the best value for your membership!</p>
+                                                        <?php    }
+                                                        ?>
                                                 </div>
                                             </div>
                                         </div>

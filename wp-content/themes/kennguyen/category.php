@@ -23,10 +23,7 @@ function getClassBlock($typeAccount) {
                                 'post_type'      => 'craft',
                                 'cat' => $currentCategory->cat_ID,
                                 'posts_per_page' => 13,
-                                'paged' => $paged,
-                                'meta_key' => 'type_account',
-                                'orderby' => 'meta_value',
-                                'order' => 'ASC',
+                                'paged' => $paged
                             );
                             $the_query = new WP_Query( $args );
                             ?>

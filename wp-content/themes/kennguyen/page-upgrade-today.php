@@ -56,13 +56,13 @@ get_header()
                                         <?php } ?>
                                     </div>
                                     <?= $shortDescription ?>
-                                    <a class="button mt-20" href="<?php site_url() ?>/payment?package_code=<?= $productCode ?>">JOIN NOW</a>
+                                    <a class="button mt-20" href="<?php site_url() ?>/payment?package_code=<?= $productCode ?>" target="_blank">JOIN NOW</a>
                                 </div>
                                 <div class="info_other toggle_parent">
                                     <div class="toggle_content">
                                         <div class="list_detail mt-30 pt-15 pb-40">
                                             <?= $longDescription ?>
-                                        </div><a class="button mt-40" href="<?php site_url() ?>/payment?package_code=<?= $productCode ?>">JOIN NOW</a>
+                                        </div><a class="button mt-40" href="<?php site_url() ?>/payment?package_code=<?= $productCode ?>" target="_blank">JOIN NOW</a>
                                     </div>
                                     <div class="toggle_btn">
                                         <div class="short">View more </div>

@@ -8,7 +8,7 @@
  */
 
 session_unset();
-wp_redirect( site_url() . '/login' );
+wp_redirect( site_url() . '/' );
 exit;
 ?>
 
