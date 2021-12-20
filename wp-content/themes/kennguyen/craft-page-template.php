@@ -1,6 +1,17 @@
-<?php get_header(); ?>
 <?php
-$parentCategory = get_category_by_slug('craft-collection');
+/**
+ * Template Name: Craft page template
+ *
+ * @package KenNguyen
+ * @subpackage Kem_Nguyen
+ * @since Ken Nguyen 1.0
+ */
+?>
+<?php get_header(); ?>
+<?php global $va_options;
+    global $post;?>
+<?php
+$parentCategory = get_category_by_slug($post->post_name);
 $parentCategoryId = $parentCategory != null ? $parentCategory->cat_ID : 0;
 $parentCategorySlug = $parentCategory != null ? $parentCategory->slug : '';
 function getClassBlock($typeAccount) {
@@ -16,9 +27,9 @@ $listAllCatID = [];
 <main>
     <section class="category pt-50 pb-50">
         <div class="wraper">
-            <h1 class="ttl_main fz-40 text-up">Craft collection</h1>
+            <h1 class="ttl_main fz-40 text-up">Craft academy </h1>
             <div class="heading">
-                <h2 class="ttl_sub fz-31 text-up mt-40">Your <?php echo date('F');?> CRAFT COLLECTION</h2>
+                <h2 class="ttl_sub fz-31 text-up mt-40">Your <?php echo date('F');?> CRAFT ACADEMY</h2>
                 <?php if (check_membership() < 1) {
                     echo '<div class="text">
                     <p>See a project you want to make?
@@ -42,7 +53,7 @@ $listAllCatID = [];
                         if ($count == 5) {
                             $count = 1;
                         }
-                    ?>
+                        ?>
                         <div class="col-12 col-lg-3 mt-30">
                             <div class="row tab_category">
                                 <div class="col-12 tab item_0<?=$count++?>"><span><?= $category->name?> </span></div>
@@ -118,11 +129,7 @@ $listAllCatID = [];
                             'post_type'      => 'craft',
                             'year' => $year,
                             'monthnum' => $month,
-                            'cat' => $listCatId,
-                            'meta_key' => 'type_account',
-                            'orderby' => 'meta_value',
-                            'order' => 'ASC',
-                            'showposts' => 8
+                            'cat' => $listCatId
                         );
                         $the_query = new WP_Query( $args );
                         ?>
