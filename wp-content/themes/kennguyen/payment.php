@@ -350,5 +350,21 @@ $paymentID = 155;
             </form>
         </div>
     </section>
+    <section class="footing pt-20 pb-20">
+        <div class="wraper">
+            <div class="row">
+                <div class="col-6">
+                    <address>© 2021 KenNguyen. All rights reserved.</address>
+                </div>
+                <div class="col-6">
+                    <div class="row">
+                        <div class="col-4"> <a href="<?=$va_options['op1_link']?>"><?=$va_options['op1_title']?></a></div>
+                        <div class="col-4"> <a href="<?=$va_options['op2_link']?>"><?=$va_options['op2_title']?></a></div>
+                        <div class="col-4"> <a href="<?=$va_options['op3_link']?>"><?=$va_options['op3_title']?></a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 </main>
 <?php get_footer();?>
