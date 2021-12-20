@@ -110,7 +110,7 @@
                                     <?php if (isset($_SESSION['user'])) {
                                         if (check_membership() == 2) {
                                             foreach ( $primaryNav as $navItem ) {
-                                                $li = '<li class="nav-item"><a href="'.$navItem->url.'" title="'.$navItem->title.'">'.$navItem->title.'</a></li>';
+                                                $li = '<li class="nav-item"><a class="nav-link" href="'.$navItem->url.'" title="'.$navItem->title.'">'.$navItem->title.'</a></li>';
                                                 $arr = explode('/', $navItem->url);
                                                 if ($arr[3] == 'upgrade-today') {
                                                     $li = '';
@@ -119,10 +119,10 @@
                                             }
                                         } else {
                                             foreach ( $primaryNav as $navItem ) {
-                                                $li = '<li class="nav-item"><a href="'.$navItem->url.'" title="'.$navItem->title.'">'.$navItem->title.'</a></li>';
+                                                $li = '<li class="nav-item"><a class="nav-link" href="'.$navItem->url.'" title="'.$navItem->title.'">'.$navItem->title.'</a></li>';
                                                 $arr = explode('/', $navItem->url);
                                                 if ($arr[3] == 'upgrade-today') {
-                                                    $li = '<li class="nav-item"><a href="'.$navItem->url.'" title="UPGRADE TODAY">UPGRADE TODAY</a></li>';
+                                                    $li = '<li class="nav-item"><a class="nav-link" href="'.$navItem->url.'" title="UPGRADE TODAY">UPGRADE TODAY</a></li>';
                                                 }
                                                 echo $li;
                                             }

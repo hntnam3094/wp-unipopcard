@@ -28,21 +28,23 @@ $queryResult = $wpdb->get_results(
 $arrayPost = [];
 if (!empty($queryResult)) {
    foreach ($queryResult as $item) {
-       $categories = get_the_category($item->id_post);
-       $listCategory = [];
-       foreach ($categories as $category) {
-           array_push($listCategory, $category->name);
+       if (get_post($item->id_post) != null) {
+           $categories = get_the_category($item->id_post);
+           $listCategory = [];
+           foreach ($categories as $category) {
+               array_push($listCategory, $category->name);
+           }
+           $categoryItem =  implode(', ', $listCategory);
+
+           $post = [
+               'thumbnail' => get_the_post_thumbnail($item->id_post),
+               'title' => get_the_title($item->id_post),
+               'category' => $categoryItem,
+               'url' => get_the_permalink($item->id_post)
+           ];
+
+           array_push($arrayPost, $post);
        }
-       $categoryItem =  implode(', ', $listCategory);
-
-       $post = [
-         'thumbnail' => get_the_post_thumbnail($item->id_post),
-         'title' => get_the_title($item->id_post),
-         'category' => $categoryItem,
-         'url' => get_the_permalink($item->id_post)
-       ];
-
-       array_push($arrayPost, $post);
    }
 }
 get_header();

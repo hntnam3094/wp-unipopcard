@@ -101,9 +101,6 @@ if ($_POST['message_type'] == 'RECURRING_INSTALLMENT_SUCCESS') {
             $results = $wpdb->update($table, $dataUser, $where);
         }
     }
-
-
-
 }
 
 if (!empty($_GET) && isset($_GET['refno'])) {
