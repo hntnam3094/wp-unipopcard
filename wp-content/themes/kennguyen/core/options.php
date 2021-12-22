@@ -279,7 +279,7 @@ if ( ! class_exists( 'VA_Theme_Options' ) ) {
                         'type' => 'media',
                         'title' => __('Favicon', 'vietanh'),
                         'compiler' => true,
-                        'desc' => __('Cho phép dùng đuôi: jpg,png,gif', 'vietanh')
+                        'desc' => __('Cho phép dùng đuôi: ico', 'vietanh')
                     ),
                     array(
                         'id' => 'kn_page_title',
