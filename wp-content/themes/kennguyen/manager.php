@@ -110,13 +110,14 @@ get_header();
                                             <div class="icon"> <img src="<?php bloginfo('template_directory') ?>/common/images/icon/acc_02.svg" alt=""/><img class="on" src="<?php bloginfo('template_directory') ?>/common/images/icon/acc_02_on.svg" alt=""/></div>
                                             <div class="txt">Upgrade Today</div></a></li>
                                     <?php
-                                } else {
-                                    ?>
-                                    <li class="mt-40"><a href="<?php site_url() ?>/history">
-                                            <div class="icon"> <img src="<?php bloginfo('template_directory') ?>/common/images/icon/acc_03.svg" alt=""/><img class="on" src="<?php bloginfo('template_directory') ?>/common/images/icon/acc_02_on.svg" alt=""/></div>
-                                            <div class="txt">History order</div></a></li>
-                                    <?php
-                                }?>
+                                }
+//                                else {
+//                                    ?>
+<!--                                    <li class="mt-40"><a href="--><?php //site_url() ?><!--/history">-->
+<!--                                            <div class="icon"> <img src="--><?php //bloginfo('template_directory') ?><!--/common/images/icon/acc_03.svg" alt=""/><img class="on" src="--><?php //bloginfo('template_directory') ?><!--/common/images/icon/acc_02_on.svg" alt=""/></div>-->
+<!--                                            <div class="txt">History order</div></a></li>-->
+<!--                                    --><?php
+//                                }?>
 
                                 <li class="mt-40"><a href="<?php site_url() ?>/account">
                                         <div class="icon"> <img src="<?php bloginfo('template_directory') ?>/common/images/icon/acc_03.svg" alt=""/><img class="on" src="<?php bloginfo('template_directory') ?>/common/images/icon/acc_03_on.svg" alt=""/></div>
