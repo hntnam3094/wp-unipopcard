@@ -164,8 +164,8 @@ $listAllCatID = [];
                         $args = array(
                             'post_status' => 'publish',
                             'post_type'      => 'craft',
-                            'meta_key' => 'type_account',
-                            'meta_value' => '0',
+                            'meta_key' => 'weekly_bonus',
+                            'meta_value' => 1,
                             'cat' => $listAllCatID,
                             'showposts' => 6
                         );
@@ -174,7 +174,7 @@ $listAllCatID = [];
                         <?php if( $the_query->have_posts() ): ?>
                             <?php while( $the_query->have_posts() ) : $the_query->the_post(); ?>
                                 <div class="col-4 col-md-3 col-lg-2">
-                                    <a class="item mt-20" href="<?= get_the_permalink() ?>">
+                                    <a class="item mt-20 <?= getClassBlock(get_field('type_account'))  ?>" href="<?= get_the_permalink() ?>">
                                         <div class="imgDrop"> <?php echo get_the_post_thumbnail( get_the_id() ); ?></div>
                                     </a>
                                 </div>
