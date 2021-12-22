@@ -4,14 +4,6 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
-    <title><?= $va_options['kn_page_title'] ?></title>
-    <meta name="description" content="test"/>
-    <meta name="keywords" content="test"/>
-    <meta property="fb:app_id" content="<?= $va_options['kn_app_id'] ?>" />
-    <meta property="og:title" content="<?= $va_options['kn_page_title'] ?>"/>
-    <meta property="og:image" content="<?php bloginfo('template_directory') ?>/common/images/banner_01.jpg"/>
-    <meta property="og:site_name" content="<?= $va_options['kn_page_title'] ?>"/>
-    <link rel="icon" type="image/x-icon" href="<?= $va_options['kn_favicon'] ? $va_options['kn_favicon']['url'] : '' ?>"/>
     <link rel="stylesheet" href="<?php bloginfo('template_directory') ?>/common/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="<?php bloginfo('template_directory') ?>/common/css/owl.carousel.min.css"/>
     <link rel="stylesheet" href="<?php bloginfo('template_directory') ?>/common/css/common.css"/>
