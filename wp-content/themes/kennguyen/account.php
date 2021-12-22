@@ -155,13 +155,14 @@ get_header();
                                             <div class="icon"> <img src="<?php bloginfo('template_directory') ?>/common/images/icon/acc_02.svg" alt=""/><img class="on" src="<?php bloginfo('template_directory') ?>/common/images/icon/acc_02_on.svg" alt=""/></div>
                                             <div class="txt">Upgrade Today</div></a></li>
                                     <?php
-                                } else {
-                                    ?>
-                                    <li class="mt-40"><a href="<?php site_url() ?>/history">
-                                            <div class="icon"> <img src="<?php bloginfo('template_directory') ?>/common/images/icon/acc_03.svg" alt=""/><img class="on" src="<?php bloginfo('template_directory') ?>/common/images/icon/acc_02_on.svg" alt=""/></div>
-                                            <div class="txt">History order</div></a></li>
-                                    <?php
-                                }?>
+                                }
+//                                else {
+//                                    ?>
+<!--                                    <li class="mt-40"><a href="--><?php //site_url() ?><!--/history">-->
+<!--                                            <div class="icon"> <img src="--><?php //bloginfo('template_directory') ?><!--/common/images/icon/acc_03.svg" alt=""/><img class="on" src="--><?php //bloginfo('template_directory') ?><!--/common/images/icon/acc_02_on.svg" alt=""/></div>-->
+<!--                                            <div class="txt">History order</div></a></li>-->
+<!--                                    --><?php
+//                                }?>
 
                                 <li class="mt-40"><a class="active" href="<?php site_url() ?>/account">
                                         <div class="icon"> <img src="<?php bloginfo('template_directory') ?>/common/images/icon/acc_03.svg" alt=""/><img class="on" src="<?php bloginfo('template_directory') ?>/common/images/icon/acc_03_on.svg" alt=""/></div>
@@ -203,7 +204,7 @@ get_header();
                                                 <input type="text" name="last_name" value="<?php echo isset($user->last_name) ? $user->last_name : ''?>"/>
                                             </div>
                                             <div class="group">
-                                                <input type="date" name="birth_day" value="<?php echo isset($user->birth_day) ? $user->birth_day : ''?>"/>
+                                                <input type="date" name="birth_day" lang="en" value="<?php echo isset($user->birth_day) ? $user->birth_day : ''?>"/>
                                             </div>
                                             <div class="group">
                                                 <input type="mail" name="email" value="<?php echo isset($user->email) ? $user->email : ''?>" readonly/>
@@ -287,6 +288,58 @@ get_header();
                                                     </form>
                                                 </div>
                                            <?php }
+                                            ?>
+
+                                        </div>
+
+                                        <?php
+                                        $table = $wpdb->prefix . 'order';
+
+                                        $queryResultOrder = $wpdb->get_results(
+                                            $wpdb->prepare("SELECT * FROM {$table} WHERE id_customer=%d ",$user->id));
+                                        ?>
+                                        <div class="row pt-20">
+                                            <?php
+                                            if (isset($queryResultOrder)) {
+                                                ?>
+                                                <table class="table table-striped">
+                                                    <thead>
+                                                    <tr>
+                                                        <th scope="col">#</th>
+                                                        <th scope="col">Email/Name</th>
+                                                        <th scope="col">Package</th>
+                                                        <th scope="col">Bought date</th>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    <?php
+                                                    function validateEmail($email) {
+                                                        if(filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                                                            return true;
+                                                        }
+                                                        else {
+                                                            return false;
+                                                        }
+                                                    }
+                                                    foreach ($queryResultOrder as $key =>$item) { ?>
+                                                        <tr>
+                                                            <th scope="row"><?= $key + 1 ?></th>
+                                                            <td><?= validateEmail($item->email) ? $item->email : $item->full_name ?></td>
+                                                            <td><?= $item->package ?></td>
+                                                            <td><?= $item->bought_date ?></td>
+                                                        </tr>
+                                                    <?php } ?>
+                                                    </tbody>
+                                                </table>
+                                                <?php
+                                            } else {
+                                                ?>
+                                                <div class="content pt-5">
+                                                    <p>You do not have any order!</p>
+                                                    <a href="<?php site_url() ?>/upgrade-today">JOIN NOW</a>
+                                                </div>
+                                                <?php
+                                            }
                                             ?>
 
                                         </div>

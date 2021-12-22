@@ -104,7 +104,10 @@
                                             foreach ( $primaryNav as $navItem ) {
                                                 $li = '<li class="nav-item"><a class="nav-link" href="'.$navItem->url.'" title="'.$navItem->title.'">'.$navItem->title.'</a></li>';
                                                 $arr = explode('/', $navItem->url);
-                                                if ($arr[3] == 'upgrade-today') {
+                                                if ($navItem->classes[0] == 'blank') {
+                                                    $li = '<li class="nav-item"><a class="nav-link" href="'.$navItem->url.'" title="'.$navItem->title.'" target="_blank">'.$navItem->title.'</a></li>';
+                                                }
+                                                if ($navItem->classes[0] == 'upgrade-today') {
                                                     $li = '';
                                                 }
                                                 echo $li;
@@ -113,7 +116,10 @@
                                             foreach ( $primaryNav as $navItem ) {
                                                 $li = '<li class="nav-item"><a class="nav-link" href="'.$navItem->url.'" title="'.$navItem->title.'">'.$navItem->title.'</a></li>';
                                                 $arr = explode('/', $navItem->url);
-                                                if ($arr[3] == 'upgrade-today') {
+                                                if ($navItem->classes[0] == 'blank') {
+                                                    $li = '<li class="nav-item"><a class="nav-link" href="'.$navItem->url.'" title="'.$navItem->title.'" target="_blank">'.$navItem->title.'</a></li>';
+                                                }
+                                                if ($navItem->classes[0] == 'upgrade-today') {
                                                     $li = '<li class="nav-item"><a class="nav-link" href="'.$navItem->url.'" title="UPGRADE TODAY">UPGRADE TODAY</a></li>';
                                                 }
                                                 echo $li;
@@ -134,8 +140,10 @@
                                         foreach ( $primaryNav as $navItem ) {
                                             $li = '<li class="nav-item"><a class="nav-link" href="'.$navItem->url.'" title="'.$navItem->title.'">'.$navItem->title.'</a></li>';
                                             $arr = explode('/', $navItem->url);
-
-                                            if ($arr[3] == 'my-craft-room') {
+                                            if ($navItem->classes[0] == 'blank') {
+                                                $li = '<li class="nav-item"><a class="nav-link" href="'.$navItem->url.'" title="'.$navItem->title.'" target="_blank">'.$navItem->title.'</a></li>';
+                                            }
+                                            if ($navItem->classes[0] == 'my-craft-room') {
                                                 $li = '<li class="nav-item login"> <a class="nav-link login_link" href="'.$loginUrl.'">Login</a></li>';
                                             }
 //                                            if ($arr[3] == 'upgrade-today') {
