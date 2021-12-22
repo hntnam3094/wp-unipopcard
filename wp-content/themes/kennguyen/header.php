@@ -11,6 +11,11 @@
     <link rel="stylesheet" href="<?php bloginfo('template_directory') ?>/common/css/custom.css"/>
     <?php wp_head(); ?>
     <style>
+        @media only screen and (max-width: 991px) {
+            .shared_comment {
+                display: none;
+            }
+        }
         #at4-share {
             display: none;
         }

@@ -52,9 +52,11 @@ function getTypeAccountCraft () {
                             <div class="ttl">COMMENT</div><a class="icon" href="#comment">
                                 <img src="<?php bloginfo('template_directory') ?>/common/images/shared_03.svg" alt=""/>
                             </a>
-                            <a class="icon" href="">
-                                <img src="<?php bloginfo('template_directory') ?>/common/images/shared_04.svg" alt=""/>
-                            </a>
+                            <?php if (isset($_SESSION['user'])) { ?>
+                                <a class="icon" href="/my-craft-room">
+                                    <img src="<?php bloginfo('template_directory') ?>/common/images/shared_04.svg" alt=""/>
+                                </a>
+                            <?php } ?>
                         </div>
                     </div>
                 </div>

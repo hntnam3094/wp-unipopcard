@@ -47,10 +47,11 @@ $listAllCatID = [];
                     $categories = get_categories( $args );
                     $count = 1;
                     foreach ( $categories as $key => $category ) {
-                        array_push($listAllCatID, $category->cat_ID);
-                        if ($count == 5) {
-                            $count = 1;
-                        }
+                        if (get_term_meta($category->term_id, 'feature_category')[0] == 'yes') {
+                            array_push($listAllCatID, $category->cat_ID);
+                            if ($count == 5) {
+                                $count = 1;
+                            }
                         ?>
                         <div class="col-12 col-lg-3 mt-30">
                             <div class="row tab_category">
@@ -64,7 +65,7 @@ $listAllCatID = [];
                                     'year' => $year,
                                     'monthnum' => $month,
                                     'cat' => $category->cat_ID,
-                                    'showposts' => 4
+                                    'showposts' => 2
                                 );
                                 $the_query = new WP_Query( $args );
                                 ?>
@@ -82,7 +83,7 @@ $listAllCatID = [];
                                 <?php wp_reset_query(); ?>
                             </div>
                         </div>
-                    <?php }?>
+                    <?php }}?>
                 </div>
                 <?php if (check_membership() < 1) {
                     echo '<div class="mt-30 text-center"> <a class="btn_more" href="/upgrade-today">
@@ -127,7 +128,8 @@ $listAllCatID = [];
                             'post_type'      => 'craft',
                             'year' => $year,
                             'monthnum' => $month,
-                            'cat' => $listCatId
+                            'cat' => $listCatId,
+                            'showposts' => 12
                         );
                         $the_query = new WP_Query( $args );
                         ?>

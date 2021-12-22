@@ -314,13 +314,14 @@
         }
 
         $('#btn-share-facebook').on('click', () => {
-            if ($('#at-share-dock .at-svc-facebook').length > 0) {
-                $('#at-share-dock .at-svc-facebook')[0].click()
+            console.log($('#at-share-dock .at-svc-facebook'))
+            if ($('#at4-share .at-svc-facebook').length > 0) {
+                $('#at4-share .at-svc-facebook')[0].click()
             }
         })
         $('#btn-share-pinterest').on('click', () => {
-            if ($('#at-share-dock .at-svc-pinterest_share').length > 0) {
-                $('#at-share-dock .at-svc-pinterest_share')[0].click()
+            if ($('#at4-share .at-svc-pinterest_share').length > 0) {
+                $('#at4-share .at-svc-pinterest_share')[0].click()
             }
         })
 

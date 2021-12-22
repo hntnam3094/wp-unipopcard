@@ -763,24 +763,43 @@ add_action('admin_init', 'your_function');
 function my_taxonomy_add_meta_fields( $taxonomy ) { ?>
     <div class="form-field term-group">
     <label for="show_category">
-        <?php _e( 'Show this category in category page', 'codilight-lite' ); ?> <input type="checkbox" id="show_category" name="show_category" value="yes" />
+        <?php _e( 'Category in month', 'codilight-lite' ); ?> <input type="checkbox" id="show_category" name="show_category" value="yes" />
     </label>
-    </div><?php
+    </div>
+    <div class="form-field term-group">
+        <label for="feature_category">
+            <?php _e( 'Feature category', 'codilight-lite' ); ?> <input type="checkbox" id="feature_category" name="feature_category" value="yes" />
+        </label>
+    </div>
+    <?php
 }
 add_action( 'category_add_form_fields', 'my_taxonomy_add_meta_fields', 10, 2 );
 
 // Edit term page
 function my_taxonomy_edit_meta_fields( $term, $taxonomy ) {
+    $feature_category = get_term_meta( $term->term_id, 'feature_category', true );
     $show_category = get_term_meta( $term->term_id, 'show_category', true ); ?>
+
 
     <tr class="form-field term-group-wrap">
     <th scope="row">
-        <label for="show_category"><?php _e( 'Show this category in category page', 'codilight-lite' ); ?></label>
+        <label for="show_category"><?php _e( 'Category in month', 'codilight-lite' ); ?></label>
     </th>
     <td>
         <input type="checkbox" id="show_category" name="show_category" value="yes" <?php echo ( $show_category ) ? checked( $show_category, 'yes' ) : ''; ?>/>
     </td>
-    </tr><?php
+    </tr>
+
+    <tr class="form-field term-group-wrap">
+        <th scope="row">
+            <label for="feature_category"><?php _e( 'Feature category', 'codilight-lite' ); ?></label>
+        </th>
+        <td>
+            <input type="checkbox" id="feature_category" name="feature_category" value="yes" <?php echo ( $feature_category ) ? checked( $feature_category, 'yes' ) : ''; ?>/>
+        </td>
+    </tr>
+
+    <?php
 }
 add_action( 'category_edit_form_fields', 'my_taxonomy_edit_meta_fields', 10, 2 );
 
@@ -790,6 +809,12 @@ function my_taxonomy_save_taxonomy_meta( $term_id, $tag_id ) {
         update_term_meta( $term_id, 'show_category', 'yes' );
     } else {
         update_term_meta( $term_id, 'show_category', '' );
+    }
+
+    if ( isset( $_POST[ 'feature_category' ] ) ) {
+        update_term_meta( $term_id, 'feature_category', 'yes' );
+    } else {
+        update_term_meta( $term_id, 'feature_category', '' );
     }
 }
 add_action( 'created_category', 'my_taxonomy_save_taxonomy_meta', 10, 2 );
