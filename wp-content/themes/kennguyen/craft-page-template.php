@@ -25,9 +25,9 @@ $listAllCatID = [];
 <main>
     <section class="category pt-50 pb-50">
         <div class="wraper">
-            <h1 class="ttl_main fz-40 text-up">Craft academy </h1>
+            <h1 class="ttl_main fz-40 text-up"><?= $parentCategory->name ?></h1>
             <div class="heading">
-                <h2 class="ttl_sub fz-31 text-up mt-40">Your <?php echo date('F');?> CRAFT ACADEMY</h2>
+                <h2 class="ttl_sub fz-31 text-up mt-40">Your <?php echo date('F');?> <?= $parentCategory->name ?></h2>
                 <?php if (check_membership() < 1) {
                     echo '<div class="text">
                     <p>See a project you want to make?
