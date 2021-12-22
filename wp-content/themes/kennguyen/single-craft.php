@@ -24,50 +24,49 @@ function getClassBlock($typeAccount) {
     }
     return 'block';
 }
+function getTypeAccountCraft () {
+    if (get_field('type_account') == 1) {
+        return 'monthly';
+    }
+    if (get_field('type_account') == 2) {
+        return 'yearly';
+    }
+}
 ?>
 <main>
     <section class="course_detail pt-40 pb-40">
         <div class="wraper">
             <div class="row">
                 <div class="col-12 col-lg-1">
-                    <?php
-                    if (check_membership() >= get_post_meta(get_the_ID(), 'type_account', true)) { ?>
-                        <div class="shared_comment mt-100">
-                            <div class="item">
-                                <div class="ttl">SHARE</div>
-                                <a class="icon" href="#" id="btn-share-facebook">
-                                    <img src="<?php bloginfo('template_directory') ?>/common/images/shared_01.svg" alt=""/>
-                                </a>
-                                <a class="icon" href="#" id="btn-share-pinterest">
-                                    <img src="<?php bloginfo('template_directory') ?>/common/images/shared_02.svg" alt=""/>
-                                </a>
-                            </div>
-                            <div class="item mt-15">
-                                <div class="ttl">COMMENT</div><a class="icon" href="#comment">
-                                    <img src="<?php bloginfo('template_directory') ?>/common/images/shared_03.svg" alt=""/>
-                                </a>
-                                <a class="icon" href="">
-                                    <img src="<?php bloginfo('template_directory') ?>/common/images/shared_04.svg" alt=""/>
-                                </a>
-                            </div>
+                    <div class="shared_comment mt-100">
+                        <div class="item">
+                            <div class="ttl">SHARE</div>
+                            <a class="icon" href="#" id="btn-share-facebook">
+                                <img src="<?php bloginfo('template_directory') ?>/common/images/shared_01.svg" alt=""/>
+                            </a>
+                            <a class="icon" href="#" id="btn-share-pinterest">
+                                <img src="<?php bloginfo('template_directory') ?>/common/images/shared_02.svg" alt=""/>
+                            </a>
                         </div>
-                    <?php }?>
+                        <div class="item mt-15">
+                            <div class="ttl">COMMENT</div><a class="icon" href="#comment">
+                                <img src="<?php bloginfo('template_directory') ?>/common/images/shared_03.svg" alt=""/>
+                            </a>
+                            <a class="icon" href="">
+                                <img src="<?php bloginfo('template_directory') ?>/common/images/shared_04.svg" alt=""/>
+                            </a>
+                        </div>
+                    </div>
                 </div>
                 <div class="col-12 col-lg-8 content_main">
                     <div class="heading">
-                        <?php
-                        if (check_membership() >= get_post_meta(get_the_ID(), 'type_account', true)) { ?>
-                            <h1 class="ttl_main fz-20 text-up text-center"><?= get_the_title()?></h1>
-                        <?php } ?>
-                        <?php if (check_membership() < 1) {
-                            echo '<div class="mt-30 text-center"> <a class="btn_more" href="/upgrade-today"><span class="block main fz-22">You Can Make This!</span><span class="block sub">BECOME A MEMBER  </span></a></div>';
-                        } ?>
+                        <h1 class="ttl_main fz-20 text-up text-center"><?= get_the_title()?></h1>
                     </div>
 
+                    <div class="boding mt-30">
+                        <?= get_the_content()?>
+                    </div>
                     <?php if (check_membership() >= get_post_meta(get_the_ID(), 'type_account', true)) { ?>
-                        <div class="boding mt-30">
-                            <?= get_the_content()?>
-                        </div>
                         <div class="resource mt-30">
                             <ul class="list_download fz-20">
                                 <?php
@@ -102,22 +101,12 @@ function getClassBlock($typeAccount) {
                                 ?>
                             </ul>
                         </div>
-                    <?php } else { ?>
-                        <div class="w-100 d-flex justify-content-center align-items-center">
-<!--                            <div class="mt-30 text-center position-absolute">-->
-<!--                                <a class="btn_more" href="/login">-->
-<!--                                    <span class="block main fz-22">LOGIN TO VIEW THIS COLLECTION</span>-->
-<!--                                    <span class="block sub">Go to login</span>-->
-<!--                                </a>-->
-<!--                            </div>-->
-                            <img src="<?php bloginfo('template_directory') ?>/common/images/imageblock.png" alt=""/>
-                        </div>
                     <?php } ?>
-                    <?php if (check_membership() < 1) {
+                    <?php if (check_membership() < get_field('type_account')) {
                         echo '<div class="mt-50 text-center">
                                     <a class="btn_more" href="/upgrade-today">
                                         <span class="block main fz-22">You Can Make This!</span>
-                                        <span class="block sub">BECOME A MEMBER  </span>
+                                        <span class="block sub">BECOME A '.getTypeAccountCraft().' MEMBER  </span>
                                     </a>
                                 </div>';
                     } ?>

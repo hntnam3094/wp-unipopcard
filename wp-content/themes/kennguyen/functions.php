@@ -5,11 +5,11 @@ if (!session_id()) {
 require_once dirname( __FILE__ ).'/core/init.php';
 
 function theme_setup() {
-//    register_nav_menu('left-menu',__( 'Menu trái' ));
+    register_nav_menu('left-menu',__( 'Menu trái' ));
     register_nav_menu('right-menu',__( 'Menu phải' ));
     register_nav_menu('footer-about',__( 'Footer column about' ));
     register_nav_menu('footer-resources',__( 'Footer column resources' ));
-
+    register_nav_menu('other-footer',__( 'Footer for login, signup, payment' ));
     global $_wp_theme_features;
     $_wp_theme_features['post-thumbnails']= true;
 

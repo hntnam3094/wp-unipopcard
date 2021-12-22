@@ -241,3 +241,9 @@
 .loading-overlay.is-active {
     display: flex;
 }
+.project .item.block {
+    pointer-events: unset !important;
+}
+.category .course_main .item.block {
+    pointer-events: unset !important;
+}
