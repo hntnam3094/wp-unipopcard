@@ -248,6 +248,12 @@
     pointer-events: unset !important;
 }
 
+.product-manager {
+    font-size: 16px;
+    font-weight: 400;
+    margin-bottom: 0;
+}
+
 /*.video_show .owl-item .item .imgDrop:after {*/
 /*    background-image: unset;*/
 /*}*/

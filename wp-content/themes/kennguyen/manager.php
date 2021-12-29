@@ -140,7 +140,7 @@ get_header();
                                                 </div>
                                             </div>
                                             <div class="content" data-mh="content">
-                                                <h4 class="text-up trim trim_2"> <?= $post['title'] ?></h4>
+                                                <h4 class="text-up trim trim_2 product-manager"> <?= $post['title'] ?></h4>
                                                 <div class="desc"> <?= $post['category'] ?></div>
                                             </div>
                                         </a>
