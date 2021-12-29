@@ -27,7 +27,7 @@ $listAllCatID = [];
         <div class="wraper">
             <h1 class="ttl_main fz-40 text-up"><?= $parentCategory->name ?></h1>
             <div class="heading">
-                <h2 class="ttl_sub fz-31 text-up mt-40">Your <?php echo date('F');?> <?= $parentCategory->name ?></h2>
+                <h2 class="ttl_sub fz-31 text-up mt-40">Your <?php echo strtoupper(date('F'));?> <?= $parentCategory->name ?></h2>
                 <?php if (check_membership() < 1) {
                     echo '<div class="text">
                     <p>See a project you want to make?
@@ -135,7 +135,7 @@ $listAllCatID = [];
                         ?>
                         <?php if( $the_query->have_posts() ): ?>
                             <?php while( $the_query->have_posts() ) : $the_query->the_post(); ?>
-                                <div class="col-6 col-md-4 col-lg-3">
+                                <div class="col-6 col-md-4 col-lg-2">
                                     <a class="item mt-20 <?= getClassBlock(get_field('type_account'))  ?>" href="<?= get_the_permalink()?>">
                                         <div class="imgDrop">
                                             <?php echo get_the_post_thumbnail( get_the_id() ); ?>

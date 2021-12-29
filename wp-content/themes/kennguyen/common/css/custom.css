@@ -247,3 +247,10 @@
 .category .course_main .item.block {
     pointer-events: unset !important;
 }
+
+/*.video_show .owl-item .item .imgDrop:after {*/
+/*    background-image: unset;*/
+/*}*/
+.video_show .owl-item .item .imgDrop.custom-slider::after {
+    background-image: unset !important;
+}

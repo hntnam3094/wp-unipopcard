@@ -16,31 +16,33 @@ function getClassBlock($typeAccount) {
           <div class="heading flexBox midle">
             <h2 class="ttl_main fz-40 text-up">EXPLORE OUR PROJECTS</h2>
             <div class="sort">
-              <div class="dropdown">
-                  <?php $category = get_query_var('category');
-                  if (empty($category)) {
-                      $category = "ALL CATEGORIES";
-                  }
+<!--              <div class="dropdown">-->
+                  <?php
+//                  $category = get_query_var('category');
+//                  if (empty($category)) {
+//                      $category = "ALL CATEGORIES";
+//                  }
                   ?>
-                <div class="dropdown-toggle" id="dropdownMenuButton1" type="button" data-bs-toggle="dropdown" aria-expanded="false"><?php echo $category;?></div>
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                    <li><a class="dropdown-item" href="/">ALL CATEGORIES</a></li>
+<!--                <div class="dropdown-toggle" id="dropdownMenuButton1" type="button" data-bs-toggle="dropdown" aria-expanded="false">--><?php //echo $category;?><!--</div>-->
+<!--                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">-->
+<!--                    <li><a class="dropdown-item" href="/">ALL CATEGORIES</a></li>-->
                     <?php
-                    $cat_args = array(
-                        'parent'  => 0,
-                        'hide_empty' => 0,
-                        'order'    => 'ASC',
-                    );
-                    $categories = get_categories($cat_args); foreach ($categories as $category) {
-                        echo '<li><a class="dropdown-item" href="?category='.$category->name.'">'.$category->name.'</a></li>';
-                    }?>
-                </ul>
-              </div>
+//                    $cat_args = array(
+//                        'parent'  => 0,
+//                        'hide_empty' => 0,
+//                        'order'    => 'ASC',
+//                    );
+//                    $categories = get_categories($cat_args); foreach ($categories as $category) {
+//                        echo '<li><a class="dropdown-item" href="?category='.$category->name.'">'.$category->name.'</a></li>';
+//                    }
+                    ?>
+<!--                </ul>-->
+<!--              </div>-->
             </div>
-            <div class="search_project">
-              <input class="input" type="text" placeholder="Search..." id="input-search-data" onkeypress="handle(event)"/>
-              <input class="submit" type="submit" id="btn-search-data"/>
-            </div>
+<!--            <div class="search_project">-->
+<!--              <input class="input" type="text" placeholder="Search..." id="input-search-data" onkeypress="handle(event)"/>-->
+<!--              <input class="submit" type="submit" id="btn-search-data"/>-->
+<!--            </div>-->
           </div>
           <div class="content_main">
             <div class="row" id="listCollectionNew">
