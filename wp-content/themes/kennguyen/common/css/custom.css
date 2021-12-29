@@ -247,3 +247,9 @@
 .category .course_main .item.block {
     pointer-events: unset !important;
 }
+
+.product-manager {
+    font-size: 16px;
+    font-weight: 400;
+    margin-bottom: 0;
+}
