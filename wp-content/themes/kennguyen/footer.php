@@ -304,31 +304,33 @@
 
 
 
-    $(function (){
-        const urlParams = new URLSearchParams(window.location.search);
-        let paramQ = urlParams.get('q')
-        let paramCategory = urlParams.get('category')
-        if (paramQ || paramCategory) {
-            $('#input-search-data').val(paramQ)
-            document.getElementById('input-search-data').scrollIntoView();
-        }
-
-        $('#btn-share-facebook').on('click', () => {
-            if ($('#at-share-dock .at-svc-facebook').length > 0) {
-                $('#at-share-dock .at-svc-facebook')[0].click()
-            }
-        })
-        $('#btn-share-pinterest').on('click', () => {
-            if ($('#at-share-dock .at-svc-pinterest_share').length > 0) {
-                $('#at-share-dock .at-svc-pinterest_share')[0].click()
-            }
-        })
-
-        $('#btn-search-data').on('click', () => {
-            urlParams.set('q', $('#input-search-data').val());
-            window.location.href='?' + urlParams.toString()
-        })
-    })
+ // search data in homepage
+ //    $(function (){
+ //        const urlParams = new URLSearchParams(window.location.search);
+ //        let paramQ = urlParams.get('q')
+ //        let paramCategory = urlParams.get('category')
+ //        if (paramQ || paramCategory) {
+ //            $('#input-search-data').val(paramQ)
+ //            document.getElementById('input-search-data').scrollIntoView();
+ //        }
+ //
+ //        $('#btn-share-facebook').on('click', () => {
+ //            console.log($('#at-share-dock .at-svc-facebook'))
+ //            if ($('#at4-share .at-svc-facebook').length > 0) {
+ //                $('#at4-share .at-svc-facebook')[0].click()
+ //            }
+ //        })
+ //        $('#btn-share-pinterest').on('click', () => {
+ //            if ($('#at4-share .at-svc-pinterest_share').length > 0) {
+ //                $('#at4-share .at-svc-pinterest_share')[0].click()
+ //            }
+ //        })
+ //
+ //        $('#btn-search-data').on('click', () => {
+ //            urlParams.set('q', $('#input-search-data').val());
+ //            window.location.href='?' + urlParams.toString()
+ //        })
+ //    })
     function handle(e){
         if(e.keyCode === 13){
             e.preventDefault(); // Ensure it is only this code that runs

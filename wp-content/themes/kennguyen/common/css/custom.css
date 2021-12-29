@@ -241,3 +241,22 @@
 .loading-overlay.is-active {
     display: flex;
 }
+.project .item.block {
+    pointer-events: unset !important;
+}
+.category .course_main .item.block {
+    pointer-events: unset !important;
+}
+
+.product-manager {
+    font-size: 16px;
+    font-weight: 400;
+    margin-bottom: 0;
+}
+
+/*.video_show .owl-item .item .imgDrop:after {*/
+/*    background-image: unset;*/
+/*}*/
+.video_show .owl-item .item .imgDrop.custom-slider::after {
+    background-image: unset !important;
+}
