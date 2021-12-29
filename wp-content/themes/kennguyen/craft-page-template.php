@@ -27,7 +27,7 @@ $listAllCatID = [];
         <div class="wraper">
             <h1 class="ttl_main fz-40 text-up"><?= $parentCategory->name ?></h1>
             <div class="heading">
-                <h2 class="ttl_sub fz-31 text-up mt-40">Your <?php echo date('F');?> <?= $parentCategory->name ?></h2>
+                <h2 class="ttl_sub fz-31 text-up mt-40">Your <?php echo strtoupper(date('F'));?> <?= $parentCategory->name ?></h2>
                 <?php if (check_membership() < 1) {
                     echo '<div class="text">
                     <p>See a project you want to make?
@@ -47,10 +47,11 @@ $listAllCatID = [];
                     $categories = get_categories( $args );
                     $count = 1;
                     foreach ( $categories as $key => $category ) {
-                        array_push($listAllCatID, $category->cat_ID);
-                        if ($count == 5) {
-                            $count = 1;
-                        }
+                        if (get_term_meta($category->term_id, 'feature_category')[0] == 'yes') {
+                            array_push($listAllCatID, $category->cat_ID);
+                            if ($count == 5) {
+                                $count = 1;
+                            }
                         ?>
                         <div class="col-12 col-lg-3 mt-30">
                             <div class="row tab_category">
@@ -64,7 +65,7 @@ $listAllCatID = [];
                                     'year' => $year,
                                     'monthnum' => $month,
                                     'cat' => $category->cat_ID,
-                                    'showposts' => 4
+                                    'showposts' => 2
                                 );
                                 $the_query = new WP_Query( $args );
                                 ?>
@@ -82,7 +83,7 @@ $listAllCatID = [];
                                 <?php wp_reset_query(); ?>
                             </div>
                         </div>
-                    <?php }?>
+                    <?php }}?>
                 </div>
                 <?php if (check_membership() < 1) {
                     echo '<div class="mt-30 text-center"> <a class="btn_more" href="/upgrade-today">
@@ -127,13 +128,14 @@ $listAllCatID = [];
                             'post_type'      => 'craft',
                             'year' => $year,
                             'monthnum' => $month,
-                            'cat' => $listCatId
+                            'cat' => $listCatId,
+                            'showposts' => 12
                         );
                         $the_query = new WP_Query( $args );
                         ?>
                         <?php if( $the_query->have_posts() ): ?>
                             <?php while( $the_query->have_posts() ) : $the_query->the_post(); ?>
-                                <div class="col-6 col-md-4 col-lg-3">
+                                <div class="col-6 col-md-4 col-lg-2">
                                     <a class="item mt-20 <?= getClassBlock(get_field('type_account'))  ?>" href="<?= get_the_permalink()?>">
                                         <div class="imgDrop">
                                             <?php echo get_the_post_thumbnail( get_the_id() ); ?>
@@ -162,8 +164,8 @@ $listAllCatID = [];
                         $args = array(
                             'post_status' => 'publish',
                             'post_type'      => 'craft',
-                            'meta_key' => 'type_account',
-                            'meta_value' => '0',
+                            'meta_key' => 'weekly_bonus',
+                            'meta_value' => 1,
                             'cat' => $listAllCatID,
                             'showposts' => 6
                         );
@@ -172,7 +174,7 @@ $listAllCatID = [];
                         <?php if( $the_query->have_posts() ): ?>
                             <?php while( $the_query->have_posts() ) : $the_query->the_post(); ?>
                                 <div class="col-4 col-md-3 col-lg-2">
-                                    <a class="item mt-20" href="<?= get_the_permalink() ?>">
+                                    <a class="item mt-20 <?= getClassBlock(get_field('type_account'))  ?>" href="<?= get_the_permalink() ?>">
                                         <div class="imgDrop"> <?php echo get_the_post_thumbnail( get_the_id() ); ?></div>
                                     </a>
                                 </div>

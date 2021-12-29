@@ -52,9 +52,11 @@ function getTypeAccountCraft () {
                             <div class="ttl">COMMENT</div><a class="icon" href="#comment">
                                 <img src="<?php bloginfo('template_directory') ?>/common/images/shared_03.svg" alt=""/>
                             </a>
-                            <a class="icon" href="">
-                                <img src="<?php bloginfo('template_directory') ?>/common/images/shared_04.svg" alt=""/>
-                            </a>
+                            <?php if (isset($_SESSION['user'])) { ?>
+                                <a class="icon" href="/my-craft-room">
+                                    <img src="<?php bloginfo('template_directory') ?>/common/images/shared_04.svg" alt=""/>
+                                </a>
+                            <?php } ?>
                         </div>
                     </div>
                 </div>
@@ -62,7 +64,14 @@ function getTypeAccountCraft () {
                     <div class="heading">
                         <h1 class="ttl_main fz-20 text-up text-center"><?= get_the_title()?></h1>
                     </div>
-
+                    <?php if (check_membership() < get_field('type_account')) {
+                        echo '<div class="mt-50 text-center">
+                                    <a class="btn_more" href="/upgrade-today">
+                                        <span class="block main fz-22">You Can Make This!</span>
+                                        <span class="block sub">BECOME A '.getTypeAccountCraft().' MEMBER  </span>
+                                    </a>
+                                </div>';
+                    } ?>
                     <div class="boding mt-30">
                         <?= get_the_content()?>
                     </div>
