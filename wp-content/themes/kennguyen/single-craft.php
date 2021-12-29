@@ -64,14 +64,22 @@ function getTypeAccountCraft () {
                     <div class="heading">
                         <h1 class="ttl_main fz-20 text-up text-center"><?= get_the_title()?></h1>
                     </div>
-                    <?php if (check_membership() < get_field('type_account')) {
+                    <?php
+                    if (check_membership() < get_field('type_account')) {
                         echo '<div class="mt-50 text-center">
                                     <a class="btn_more" href="/upgrade-today">
                                         <span class="block main fz-22">You Can Make This!</span>
                                         <span class="block sub">BECOME A '.getTypeAccountCraft().' MEMBER  </span>
                                     </a>
                                 </div>';
-                    } ?>
+                    } else if (check_membership() == get_field('type_account') &&  get_field('type_account') == 0) {
+                        echo '<div class="mt-50 text-center">
+                                    <a class="btn_more" href="/upgrade-today">
+                                        <span class="block main fz-22">You Can Make This!</span>
+                                        <span class="block sub">UPGRADE MEMBERSHIP</span>
+                                    </a>
+                                </div>';
+                    }?>
                     <div class="boding mt-30">
                         <?= get_the_content()?>
                     </div>
@@ -116,6 +124,13 @@ function getTypeAccountCraft () {
                                     <a class="btn_more" href="/upgrade-today">
                                         <span class="block main fz-22">You Can Make This!</span>
                                         <span class="block sub">BECOME A '.getTypeAccountCraft().' MEMBER  </span>
+                                    </a>
+                                </div>';
+                    } else if (check_membership() == get_field('type_account') &&  get_field('type_account') == 0) {
+                        echo '<div class="mt-50 text-center">
+                                    <a class="btn_more" href="/upgrade-today">
+                                        <span class="block main fz-22">You Can Make This!</span>
+                                        <span class="block sub">UPGRADE MEMBERSHIP</span>
                                     </a>
                                 </div>';
                     } ?>
