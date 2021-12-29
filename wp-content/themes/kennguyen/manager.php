@@ -25,12 +25,11 @@ if (!empty($_POST)) {
 
 $queryResult = $wpdb->get_results(
     $wpdb->prepare("SELECT * FROM {$table} WHERE id_customer=%d ORDER BY id DESC LIMIT %d  ",$user->id,$limit));
-var_dump($queryResult);
+
 $arrayPost = [];
 if (!empty($queryResult)) {
    foreach ($queryResult as $item) {
-       var_dump(get_post($item->id_post));
-       if (get_post($item->id_post) != null) {
+       if (get_post($item->id_post) != null && get_post_status($item->id_post) != 'trash') {
            $categories = get_the_category($item->id_post);
            $listCategory = [];
            foreach ($categories as $category) {
