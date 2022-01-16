@@ -260,3 +260,10 @@
 .video_show .owl-item .item .imgDrop.custom-slider::after {
     background-image: unset !important;
 }
+
+.payment .content_right .list_check .group {
+    pointer-events: none;
+}
+.wp-caption.alignright { text-align: right; }
+.wp-caption.alignleft { text-align: left; }
+.wp-caption.aligncenter { text-align: center }

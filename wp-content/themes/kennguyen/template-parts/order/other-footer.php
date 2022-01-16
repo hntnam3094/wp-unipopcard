@@ -11,7 +11,6 @@
                     $menuLocations = get_nav_menu_locations();
                     $menuID = $menuLocations['other-footer'];
                     $primaryNav = wp_get_nav_menu_items($menuID);
-                    var_dump($primaryNav);
                     foreach ($primaryNav as $key => $item) {
                         echo '<div class="col-4"> <a href="'.$item->url.'">'.$item->title.'</a></div>';
                     }

@@ -81,7 +81,7 @@ function getTypeAccountCraft () {
                                 </div>';
                     }?>
                     <div class="boding mt-30">
-                        <?= get_the_content()?>
+                        <?= the_content()?>
                     </div>
                     <?php if (check_membership() >= get_post_meta(get_the_ID(), 'type_account', true)) { ?>
                         <div class="resource mt-30">
@@ -118,6 +118,36 @@ function getTypeAccountCraft () {
                                 ?>
                             </ul>
                         </div>
+                    <?php } else {  ?>
+                    <div class="resource mt-30">
+                        <ul class="list_download fz-20">
+                            <?php
+                            $rows = get_field('list_file');
+                            $user = null;
+                            if (isset($_SESSION['user'])) {
+                                foreach( $rows as $row ) {
+                                    echo '<li class="mt-20 download-item">
+                                            <a href="/upgrade-today" >
+                                                <span class="txt trim trim_1">'.$row['file_name'].'</span>
+                                                <span class="button">BECOME A '.getTypeAccountCraft().' MEMBER TO DOWNLOAD</span>
+                                            </a>
+                                        </li>';
+                                }
+                            } else {
+                                if( $rows ) {
+                                    foreach( $rows as $row ) {
+                                        echo '<li class="mt-20 download-item">
+                                            <a href="/login" >
+                                                <span class="txt trim trim_1">'.$row['file_name'].'</span>
+                                                <span class="button">Login to download</span>
+                                            </a>
+                                        </li>';
+                                    }
+                                }
+                            }
+                            ?>
+                        </ul>
+                    </div>
                     <?php } ?>
                     <?php if (check_membership() < get_field('type_account')) {
                         echo '<div class="mt-50 text-center">
@@ -134,11 +164,9 @@ function getTypeAccountCraft () {
                                     </a>
                                 </div>';
                     } ?>
-                    <?php if (check_membership() >= get_post_meta(get_the_ID(), 'type_account', true)) { ?>
-                        <div class="comment mt-80 pb-30" id="comment">
-                            <div class="fb-comments" data-href="<?php the_permalink(); ?>" data-width="100%" data-numposts="10" data-order-by="social" data-colorscheme="light"></div>
-                        </div>
-                    <?php } ?>
+                    <div class="comment mt-80 pb-30" id="comment">
+                        <div class="fb-comments" data-href="<?php the_permalink(); ?>" data-width="100%" data-numposts="10" data-order-by="social" data-colorscheme="light"></div>
+                    </div>
                 </div>
                 <div class="col-12 col-lg-3 sidebar">
                     <div class="footer">
