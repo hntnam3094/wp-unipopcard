@@ -264,6 +264,15 @@
 .payment .content_right .list_check .group {
     pointer-events: none;
 }
-.wp-caption.alignright { text-align: right; }
-.wp-caption.alignleft { text-align: left; }
-.wp-caption.aligncenter { text-align: center }
+.wp-caption.alignright {
+    display: table;
+    margin: 0 0 0 auto;
+}
+.wp-caption.alignleft {
+    display: table;
+    margin: 0;
+}
+.wp-caption.aligncenter {
+    display: table;
+    margin: 0 auto;
+}
