@@ -1083,3 +1083,10 @@ function default_timezone () {
     date_default_timezone_set('Asia/Ho_Chi_Minh');
 }
 add_action('init', 'default_timezone');
+
+function my_img_caption_shortcode_width($width, $atts, $content)
+{
+    return 0;
+}
+
+add_filter('img_caption_shortcode_width', 'my_img_caption_shortcode_width', 10, 3);
