@@ -91,16 +91,15 @@ function getTypeAccountCraft () {
                                 $user = null;
                                 if (isset($_SESSION['user'])) {
                                     $user = $_SESSION['user'];
-                                    if( $rows ) {
-                                        foreach( $rows as $row ) {
-                                            echo '
-                                    <li data-iduser="'.$user->id.'" data-idpost="'.get_the_ID().'" class="mt-20 download-item">
-                                        <a href="'.$row['file']['url'].'" download>
-                                            <span class="txt trim trim_1">'.$row['file_name'].'</span>
-                                            <span class="button">Click Download & Print</span>
-                                        </a>
-                                    </li>
-                                    ';
+                                    if ($rows) {
+                                        foreach ($rows as $row) {
+                                            echo '<li data-iduser="' . $user->id . '" data-idpost="' . get_the_ID() . '" class="mt-20 download-item">
+                                                    <a href="' . $row['file']['url'] . '" download>
+                                                        <span class="txt trim trim_1">' . $row['file_name'] . '</span>
+                                                        <span class="button">Click Download & Print</span>
+                                                    </a>
+                                                </li>
+                                                ';
                                         }
                                     }
                                 } else {
@@ -129,7 +128,7 @@ function getTypeAccountCraft () {
                                     echo '<li class="mt-20 download-item">
                                             <a href="/upgrade-today" >
                                                 <span class="txt trim trim_1">'.$row['file_name'].'</span>
-                                                <span class="button">BECOME A '.getTypeAccountCraft().' MEMBER TO DOWNLOAD</span>
+                                                <span class="button">Upgrade to dowload</span>
                                             </a>
                                         </li>';
                                 }
