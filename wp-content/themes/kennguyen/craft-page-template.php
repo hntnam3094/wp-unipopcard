@@ -28,12 +28,12 @@ $listAllCatID = [];
             <h1 class="ttl_main fz-40 text-up"><?= $parentCategory->name ?></h1>
             <div class="heading">
                 <h2 class="ttl_sub fz-31 text-up mt-40">Your <?php echo strtoupper(date('F'));?> <?= $parentCategory->name ?></h2>
-                <?php if (check_membership() < 1) {
-                    echo '<div class="text">
-                    <p>See a project you want to make?
-                        <a href="/upgrade-today">Become a member</a> to unlock this month’s collection and start crafting your favorites. When the month is up, you’ll get a new craft collection — and you can still access these projects anytime.</p>
-                </div>';
-                } ?>
+<!--                --><?php //if (check_membership() < 1) {
+//                    echo '<div class="text">
+//                    <p>See a project you want to make?
+//                        <a href="/upgrade-today">Become a member</a> to unlock this month’s collection and start crafting your favorites. When the month is up, you’ll get a new craft collection — and you can still access these projects anytime.</p>
+//                </div>';
+//                } ?>
             </div>
             <div class="course_main mt-30">
                 <div class="row">
@@ -85,12 +85,12 @@ $listAllCatID = [];
                         </div>
                     <?php }}?>
                 </div>
-                <?php if (check_membership() < 1) {
-                    echo '<div class="mt-30 text-center"> <a class="btn_more" href="/upgrade-today">
-                        <span class="block fz-31">JOIN NOW</span><span class="block sub">To Unlock ALL Collection Projects!</span>
-                    </a>
-                </div>';
-                } ?>
+<!--                --><?php //if (check_membership() < 1) {
+//                    echo '<div class="mt-30 text-center"> <a class="btn_more" href="/upgrade-today">
+//                        <span class="block fz-31">JOIN NOW</span><span class="block sub">To Unlock ALL Collection Projects!</span>
+//                    </a>
+//                </div>';
+//                } ?>
             </div>
             <div class="couse_intro mt-40">
                 <div class="heading">
@@ -114,11 +114,11 @@ $listAllCatID = [];
                         echo date('F').' '.implode(' & ', $listCategoriesShow);
                         ?>
                     </h2>
-                    <?php if (check_membership() < 1) {
-                        echo '<div class="text">
-                        <p>These designs are only available until the end of the month. <a href="/upgrade-today">Become a member</a> to download them today!</p>
-                    </div>';
-                    }?>
+<!--                    --><?php //if (check_membership() < 1) {
+//                        echo '<div class="text">
+//                        <p>These designs are only available until the end of the month. <a href="/upgrade-today">Become a member</a> to download them today!</p>
+//                    </div>';
+//                    }?>
                 </div>
                 <div class="course_main mt-10">
                     <div class="row">
@@ -146,9 +146,9 @@ $listAllCatID = [];
                         <?php endif; ?>
                         <?php wp_reset_query(); ?>
                     </div>
-                    <?php if (check_membership() < 1) {
-                        echo '<div class="mt-30 text-center"> <a class="btn_more" href="/upgrade-today"> <span class="block fz-31">JOIN NOW</span><span class="block sub">To Unlock ALL Collection Projects!</span></a></div>';
-                    } ?>
+<!--                    --><?php //if (check_membership() < 1) {
+//                        echo '<div class="mt-30 text-center"> <a class="btn_more" href="/upgrade-today"> <span class="block fz-31">JOIN NOW</span><span class="block sub">To Unlock ALL Collection Projects!</span></a></div>';
+//                    } ?>
                 </div>
             </div>
             <div class="key_bonus mt-40">

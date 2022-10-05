@@ -128,7 +128,8 @@
                                                     $li = '<li class="nav-item '.$navClass.'"><a class="nav-link" href="'.$navItem->url.'" title="'.$navItem->title.'" target="_blank">'.$navItem->title.'</a></li>';
                                                 }
                                                 if (isset($navItem->classes[0]) && $navItem->classes[0] == 'upgrade-today') {
-                                                    $li = '<li class="nav-item '.$navClass.'"><a class="nav-link" href="'.$navItem->url.'" title="UPGRADE TODAY">UPGRADE TODAY</a></li>';
+//                                                    $li = '<li class="nav-item '.$navClass.'"><a class="nav-link" href="'.$navItem->url.'" title="UPGRADE TODAY">UPGRADE TODAY</a></li>';
+                                                    $li = '';
                                                 }
                                                 echo $li;
                                             }
@@ -155,10 +156,11 @@
                                             if (isset($navItem->classes[0]) && $navItem->classes[0] == 'my-craft-room') {
                                                 $li = '<li class="nav-item login"> <a class="nav-link login_link" href="'.$loginUrl.'">Login</a></li>';
                                             }
-//                                            if ($arr[3] == 'upgrade-today') {
+                                            if ($arr[3] == 'upgrade-today') {
 //                                                $title = str_replace('$_MONEY',$va_options['kn_monthly_package_sale_price'] . '$', $navItem->title);
 //                                                $li = '<li class="nav-item"><a href="'.$navItem->url.'" title="'.$title.'">'.$title.'</a></li>';
-//                                            }
+                                                $li = '';
+                                            }
                                             echo $li;
 
                                         }

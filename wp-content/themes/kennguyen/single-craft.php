@@ -64,22 +64,22 @@ function getTypeAccountCraft () {
                     <div class="heading">
                         <h1 class="ttl_main fz-20 text-up text-center"><?= get_the_title()?></h1>
                     </div>
-                    <?php
-                    if (check_membership() < get_field('type_account')) {
-                        echo '<div class="mt-50 text-center">
-                                    <a class="btn_more" href="/upgrade-today">
-                                        <span class="block main fz-22">You Can Make This!</span>
-                                        <span class="block sub">BECOME A '.getTypeAccountCraft().' MEMBER  </span>
-                                    </a>
-                                </div>';
-                    } else if (check_membership() == get_field('type_account') &&  get_field('type_account') == 0) {
-                        echo '<div class="mt-50 text-center">
-                                    <a class="btn_more" href="/upgrade-today">
-                                        <span class="block main fz-22">You Can Make This!</span>
-                                        <span class="block sub">UPGRADE MEMBERSHIP</span>
-                                    </a>
-                                </div>';
-                    }?>
+<!--                    --><?php
+//                    if (check_membership() < get_field('type_account')) {
+//                        echo '<div class="mt-50 text-center">
+//                                    <a class="btn_more" href="/upgrade-today">
+//                                        <span class="block main fz-22">You Can Make This!</span>
+//                                        <span class="block sub">BECOME A '.getTypeAccountCraft().' MEMBER  </span>
+//                                    </a>
+//                                </div>';
+//                    } else if (check_membership() == get_field('type_account') &&  get_field('type_account') == 0) {
+//                        echo '<div class="mt-50 text-center">
+//                                    <a class="btn_more" href="/upgrade-today">
+//                                        <span class="block main fz-22">You Can Make This!</span>
+//                                        <span class="block sub">UPGRADE MEMBERSHIP</span>
+//                                    </a>
+//                                </div>';
+//                    }?>
                     <div class="boding mt-30">
                         <?= the_content()?>
                     </div>
@@ -148,21 +148,21 @@ function getTypeAccountCraft () {
                         </ul>
                     </div>
                     <?php } ?>
-                    <?php if (check_membership() < get_field('type_account')) {
-                        echo '<div class="mt-50 text-center">
-                                    <a class="btn_more" href="/upgrade-today">
-                                        <span class="block main fz-22">You Can Make This!</span>
-                                        <span class="block sub">BECOME A '.getTypeAccountCraft().' MEMBER  </span>
-                                    </a>
-                                </div>';
-                    } else if (check_membership() == get_field('type_account') &&  get_field('type_account') == 0) {
-                        echo '<div class="mt-50 text-center">
-                                    <a class="btn_more" href="/upgrade-today">
-                                        <span class="block main fz-22">You Can Make This!</span>
-                                        <span class="block sub">UPGRADE MEMBERSHIP</span>
-                                    </a>
-                                </div>';
-                    } ?>
+<!--                    --><?php //if (check_membership() < get_field('type_account')) {
+//                        echo '<div class="mt-50 text-center">
+//                                    <a class="btn_more" href="/upgrade-today">
+//                                        <span class="block main fz-22">You Can Make This!</span>
+//                                        <span class="block sub">BECOME A '.getTypeAccountCraft().' MEMBER  </span>
+//                                    </a>
+//                                </div>';
+//                    } else if (check_membership() == get_field('type_account') &&  get_field('type_account') == 0) {
+//                        echo '<div class="mt-50 text-center">
+//                                    <a class="btn_more" href="/upgrade-today">
+//                                        <span class="block main fz-22">You Can Make This!</span>
+//                                        <span class="block sub">UPGRADE MEMBERSHIP</span>
+//                                    </a>
+//                                </div>';
+//                    } ?>
                     <div class="comment mt-80 pb-30" id="comment">
                         <div class="fb-comments" data-href="<?php the_permalink(); ?>" data-width="100%" data-numposts="10" data-order-by="social" data-colorscheme="light"></div>
                     </div>
