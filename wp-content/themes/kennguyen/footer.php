@@ -103,7 +103,7 @@
 <script src="<?php bloginfo('template_directory') ?>/common/js/custom.js"></script>
 <!-- Go to www.addthis.com/dashboard to customize your tools -->
 <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-617ddd1be044758e"></script>
-
+<script async type="text/javascript" src="https://static.klaviyo.com/onsite/js/klaviyo.js?company_id=TAWcw4"></script>
 <script>
     $(document).ready(function(){
         var offset = 11; // khái báo số lượng bài viết đã hiển thị
