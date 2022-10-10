@@ -83,7 +83,6 @@ if ((string)$accessToken) {
     $response = $fb->get('/me?fields=id,first_name,last_name,name,email',(string)$accessToken);
     $me = $response->getGraphUser();
     $email = $me->getEmail();
-
     $queryResult = $wpdb->get_results(
         $wpdb->prepare("SELECT * FROM {$table} WHERE id_facebook=%s", $me->getId()));
 
@@ -123,6 +122,9 @@ if ((string)$accessToken) {
 
             $insertRs = $wpdb->insert($table, $data);
             if (isset($insertRs)) {
+                if ($email) {
+                    do_action('add_subscription',$data['first_name'], $data['last_name'], $email);
+                }
                 $queryResultAfterInsert = $wpdb->get_results(
                     $wpdb->prepare("SELECT * FROM {$table} WHERE id_facebook=%s",$me->getId()));
                 if (!empty($queryResultAfterInsert)) {

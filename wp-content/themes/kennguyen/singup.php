@@ -45,6 +45,9 @@ if ($_POST) {
             $insertRs = $wpdb->insert($table, $data);
             if (isset($insertRs)) {
                 do_action('active_account_email', $data['email']);
+                if ($email) {
+                    do_action('add_subscription',$first_name, $last_name, $email);
+                }
                 $_SESSION['register_email'] = $data['email'];
 
                 wp_redirect(site_url() . '/thanks-register');

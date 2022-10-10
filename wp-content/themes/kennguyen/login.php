@@ -111,6 +111,10 @@ if ($_POST) {
 
                 $insertRs = $wpdb->insert($table, $data);
                 if (isset($insertRs)) {
+                    if ($email) {
+                        do_action('add_subscription',$data['first_name'], $data['last_name'], $email);
+                    }
+
                     $queryResultAfterInsert = $wpdb->get_results(
                         $wpdb->prepare("SELECT * FROM {$table} WHERE email=%s",$email));
                     if (!empty($queryResultAfterInsert)) {

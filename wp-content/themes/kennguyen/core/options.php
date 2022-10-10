@@ -55,6 +55,10 @@ if ( ! class_exists( 'VA_Theme_Options' ) ) {
             $this->setGoogleLogin();
 
             $this->set2checkout();
+            
+            if(in_array('klavioy/klavioy.php', apply_filters('active_plugins', get_option('active_plugins')))){
+                $this->SettingKlavioy();
+            }
 
             if ( ! isset( $this->args['opt_name'] ) ) { // No errors please
                 return;
@@ -591,6 +595,31 @@ if ( ! class_exists( 'VA_Theme_Options' ) ) {
                         'id' => 'kn_2co_demo',
                         'type' => 'checkbox',
                         'title' => __('2Checkout Demo mode', 'vietanh'),
+                        'compiler' => true,
+                    )
+                )
+            ); // end section
+
+        }
+
+
+        public function SettingKlavioy() {
+            // Home Section
+            $this->sections[] = array(
+                'title'  => __( 'Setting Klavioy', 'thanhnam' ),
+                'desc'   => __( 'All of settings for Klavioy', 'thanhnam' ),
+                'icon'   => 'el el-thumbs-up',
+                'fields' => array(
+                    array(
+                        'id' => 'klavioy_list_id',
+                        'type' => 'text',
+                        'title' => __('Klavioy list Id', 'thanhnam'),
+                        'compiler' => true,
+                    ),
+                    array(
+                        'id' => 'klavioy_api_key',
+                        'type' => 'text',
+                        'title' => __('Klavioy API Key', 'thanhnam'),
                         'compiler' => true,
                     )
                 )
