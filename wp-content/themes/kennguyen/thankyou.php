@@ -102,7 +102,8 @@ if ($_POST['message_type'] == 'RECURRING_INSTALLMENT_SUCCESS') {
         }
     }
 }
-
+$klavioy_frist_name = '';
+$klavioy_last_name = '';
 if (!empty($_GET) && isset($_GET['refno'])) {
 
     $orderReference = $_GET['refno'];
@@ -179,6 +180,9 @@ if (!empty($_GET) && isset($_GET['refno'])) {
         if (isset($_SESSION['user'])) {
             $user = $_SESSION['user'];
 
+            $klavioy_frist_name = $user->first_name;
+            $klavioy_last_name = $user->last_name;
+
             // create new order detail
             $dataOrder = array();
             $dataOrder['id_customer'] = $user->id;
@@ -252,6 +256,9 @@ if (!empty($_GET) && isset($_GET['refno'])) {
                 $first_name = $fullname_split[0];
                 $last_name = $fullname_split[1];
 
+                $klavioy_frist_name = $first_name;
+                $klavioy_last_name = $last_name;
+
                 //create new customer with random password + package
                 $data = array();
                 $data['first_name'] = $first_name;
@@ -304,6 +311,9 @@ if (!empty($_GET) && isset($_GET['refno'])) {
                 if (!empty($queryResultExist)) {
                     $existUser = $queryResultExist[0];
 
+                    $klavioy_frist_name = $existUser->first_name;
+                    $klavioy_last_name = $existUser->last_name;
+
                     // create new order detail
                     $dataOrder = array();
                     $dataOrder['id_customer'] = $existUser->id;
@@ -348,6 +358,10 @@ if (!empty($_GET) && isset($_GET['refno'])) {
                 }
             }
         }
+    }
+
+    if ($emailOrder) {
+        do_action('add_subscription',$klavioy_frist_name, $klavioy_last_name, $emailOrder);
     }
 }
 
