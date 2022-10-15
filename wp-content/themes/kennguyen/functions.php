@@ -1064,6 +1064,9 @@ function ajax_request_register_guest_email() {
         $total_query = "SELECT COUNT(1) FROM (${query}) AS totalEmail";
         $total = $wpdb->get_var( $total_query );
         if ($total == 0) {
+            if ($data['email']) {
+                do_action('add_subscription','User', 'subscriber', $data['email']);
+            }
             $wpdb->insert( $table, $data );
             echo 'Thank you for your information. We will contact you shortly.';
         } else {
