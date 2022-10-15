@@ -41,11 +41,11 @@ global $va_options;
 
                     <div class="content_back flexBox center mt-50 space pb-50"> <a class="item" href="#">
                             <div class="icon"> <img src="<?php bloginfo('template_directory') ?>/common/images/icon/thanks_03.svg" alt=""/></div>
-                            <div class="txt" style="color:#c41320">Sign up your account</div></a><a class="item" href="#">
+                            <div class="txt" style="color:green">Sign up your account</div></a><a class="item" href="#">
                             <div class="icon"> <img src="<?php bloginfo('template_directory') ?>/common/images/icon/thanks_01.svg" alt=""/></div>
-                            <div class="txt" style="color:<?= $results != 0 ? '#c41320' : '' ?> ">Check your email and click the link</div></a><a class="item" href="#">
+                            <div class="txt" style="color:<?= $results != 0 ? 'green' : '' ?> ">Check your email and click the link</div></a><a class="item" href="#">
                             <div class="icon"> <img src="<?php bloginfo('template_directory') ?>/common/images/icon/thanks_02.svg" alt=""/></div>
-                            <div class="txt" style="color:<?= $results != 0 ? '#c41320' : '' ?> ">Register successfull</div></a></div>
+                            <div class="txt" style="color:<?= $results != 0 ? 'green' : '' ?> ">Register successfull</div></a></div>
                 </form>
             </div>
         </div>
