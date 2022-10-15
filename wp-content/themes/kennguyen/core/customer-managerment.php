@@ -72,7 +72,7 @@ class Paulund_Wp_List_Table
     public function list_table_page()
     {
         $selected = '';
-        if ($_POST['type_membership'] != '') {
+        if (isset($_POST['type_membership']) && $_POST['type_membership'] != '') {
             $selected = $_POST['type_membership'];
         }
         $customer = new Customer_Table();
