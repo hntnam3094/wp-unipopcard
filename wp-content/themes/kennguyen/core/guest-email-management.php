@@ -4,6 +4,15 @@ function my_admin_menu2() {
     add_menu_page( 'Guest email management', 'Guest email', 'manage_options', 'kn-guest-email', 'admin_guest_email_page', 'dashicons-email');
 }
 
+if ($_GET['guest_id']) {
+    global $wpdb;
+    $id = $_GET['guest_id'];
+    $result = $wpdb->get_results ( "SELECT * FROM  wp_guest_email WHERE id=" . $id );
+    if (!empty($result)) {
+        $rs = $wpdb->delete( 'wp_guest_email', ['id' => $id]);
+    }
+}
+
 function admin_guest_email_page(){
     global $wpdb;
     $query = 'SELECT * FROM wp_guest_email';
@@ -21,6 +30,7 @@ function admin_guest_email_page(){
             <tr>
                 <th class="manage-column column-columnname" scope="col">No</th>
                 <th class="manage-column column-columnname" scope="col">Email</th>
+                <th class="manage-column column-columnname" scope="col">Action</th>
             </tr>
             </thead>
 
@@ -31,6 +41,9 @@ function admin_guest_email_page(){
                 <tr class="alternate">
                     <td class="column-columnname"><?= $no++ ?></td>
                     <td class="column-columnname"><?= $value->email ?></td>
+                    <td class="column-columnname">
+                        <a href="?page=kn-guest-email&guest_id=<?= $value->id ?>" onclick="return confirm(`Are you sure?`)">Delete</a>
+                    </td>
                 </tr>
             <?php }?>
             </tbody>
