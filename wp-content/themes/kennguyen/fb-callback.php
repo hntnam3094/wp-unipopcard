@@ -123,7 +123,8 @@ if ((string)$accessToken) {
             $insertRs = $wpdb->insert($table, $data);
             if (isset($insertRs)) {
                 if ($email) {
-                    do_action('add_subscription',$data['first_name'], $data['last_name'], $email);
+                    $listId = $va_options['klavioy_list_id_group1'];
+                    do_action('add_subscription',$data['first_name'], $data['last_name'], $email, $listId);
                 }
                 $queryResultAfterInsert = $wpdb->get_results(
                     $wpdb->prepare("SELECT * FROM {$table} WHERE id_facebook=%s",$me->getId()));

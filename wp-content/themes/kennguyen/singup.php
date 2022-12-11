@@ -46,7 +46,8 @@ if ($_POST) {
             if (isset($insertRs)) {
                 do_action('active_account_email', $data['email']);
                 if ($email) {
-                    do_action('add_subscription',$first_name, $last_name, $email);
+                    $listId = $va_options['klavioy_list_id_group1'];
+                    do_action('add_subscription',$first_name, $last_name, $email, $listId);
                 }
                 $_SESSION['register_email'] = $data['email'];
 

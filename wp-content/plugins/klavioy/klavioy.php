@@ -7,16 +7,15 @@
 
 
 
-add_action('add_subscription', 'function_add_subscription', 10, 3);
+add_action('add_subscription', 'function_add_subscription', 10, 4);
 
-function function_add_subscription($first_name, $last_name, $email) {
-
+function function_add_subscription($first_name, $last_name, $email, $listId) {
     global $va_options;
-    $listId = $va_options['klavioy_list_id'];
     $apiKey = $va_options['klavioy_api_key'];
     if (empty($listId) || empty($apiKey)) {
         return true;
     }
+
     $curl = curl_init();
     curl_setopt_array($curl, array(
         CURLOPT_URL => 'https://a.klaviyo.com/api/v2/list/'.$listId.'/members?api_key='.$apiKey,

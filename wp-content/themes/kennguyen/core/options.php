@@ -611,9 +611,15 @@ if ( ! class_exists( 'VA_Theme_Options' ) ) {
                 'icon'   => 'el el-thumbs-up',
                 'fields' => array(
                     array(
-                        'id' => 'klavioy_list_id',
+                        'id' => 'klavioy_list_id_group1',
                         'type' => 'text',
-                        'title' => __('Klavioy list Id', 'thanhnam'),
+                        'title' => __('Klavioy list Id Group 1', 'thanhnam'),
+                        'compiler' => true,
+                    ),
+                    array(
+                        'id' => 'klavioy_list_id_group2',
+                        'type' => 'text',
+                        'title' => __('Klavioy list Id Group 2', 'thanhnam'),
                         'compiler' => true,
                     ),
                     array(

@@ -1055,6 +1055,7 @@ function ajax_request_register_guest_email() {
     // The $_REQUEST contains all the data sent via AJAX from the Javascript call
     if ( isset($_REQUEST) ) {
         global $wpdb;
+        global $va_options;
         $table = $wpdb->prefix .'guest_email';
         $data = array(
             'email'    => $_REQUEST['guest_email']
@@ -1065,7 +1066,8 @@ function ajax_request_register_guest_email() {
         $total = $wpdb->get_var( $total_query );
         if ($total == 0) {
             if ($data['email']) {
-                do_action('add_subscription','User', 'subscriber', $data['email']);
+                $listId = $va_options['klavioy_list_id_group2'];
+                do_action('add_subscription','User', 'subscriber', $data['email'], $listId);
             }
             $wpdb->insert( $table, $data );
             echo 'Thank you for your information. We will contact you shortly.';

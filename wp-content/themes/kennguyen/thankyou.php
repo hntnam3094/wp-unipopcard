@@ -361,7 +361,8 @@ if (!empty($_GET) && isset($_GET['refno'])) {
     }
 
     if ($emailOrder) {
-        do_action('add_subscription',$klavioy_frist_name, $klavioy_last_name, $emailOrder);
+        $listId = $va_options['klavioy_list_id_group1'];
+        do_action('add_subscription',$klavioy_frist_name, $klavioy_last_name, $emailOrder, $listId);
     }
 }
 
