@@ -460,7 +460,7 @@ function activeAccountSMTP($email) {
                                                 <br>
                                                 <a href="'.$url.'" style="color:#000000;text-decoration:none" target="_blank">
                                                     <span style="font-family:Arial;font-size:14px;font-weight:bold">
-                                                        Active register account for KenNguyen
+                                                        Verify account register for UniCraft
                                                     </span>
                                                 </a>
                                             </td>
@@ -481,16 +481,23 @@ function activeAccountSMTP($email) {
                                                       <tbody>
                                                           <tr>
                                                             <td style="padding:20px 20px 15px;font-family:arial;font-size:12px;line-height:20px;color:#333333">
-                                                              Dear '.$dear.',
+                                                              Hi '.$dear.',
                                                             </td>
                                                           </tr>
                                                           <tr style="border-bottom:10px solid #eeeeee">
                                                             <td style="padding:0 20px 20px;font-family:arial;font-size:12px;line-height:20px;color:#333333;border-bottom:10px solid #eeeeee">
-                                                             Click on the link below to activate your account for <a href="'.$url.'" style="font-weight: bold;color: #333;font-style: italic;text-decoration: none" target="_blank" >KenNguyen</a>
+                                                            We\'re excited to have you on board with UniCraft.<br/> 
+                                                            We\'re sorry to bother you, but we need to verify that you are the owner of this email address. 
+      
                                                              <br/><br/> 
                                                              '.$urlActive.'
                                                             <br><br>
-                                                              Thank you for use our services of <a href="'.$url.'" >KenNguyen</a> online products and services.
+                                                                It\'s important that we do this so we can make sure you receive the information you\'re entitled to.<br/> 
+                                                    
+                                                                If you have any questions, please let us know.<br/> 
+                                                                
+                                                                Best,<br/> 
+                                                                UniCraft Support
                                                               <br>
                                                             </td>
                                                           </tr>
@@ -520,7 +527,7 @@ function activeAccountSMTP($email) {
 add_action( 'active_account_email', 'activeAccountSMTP');
 
 function getLogoBase64() {
-    $path = isset($va_options['kn_logo']) && $va_options['kn_logo']['url'] !== '' ? $va_options['kn_logo']['url'] : get_template_directory_uri() . '/common/images/logo_new.jpg';
+    $path = isset($va_options['kn_logo']) && $va_options['kn_logo']['url'] !== '' ? $va_options['kn_logo']['url'] : get_template_directory_uri() . '/common/images/LogoUniCraft-2.png';
     $type = pathinfo($path, PATHINFO_EXTENSION);
     $data = file_get_contents($path);
     $base64 = 'data:image/' . $type . ';base64,' . base64_encode($data);
