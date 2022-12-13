@@ -613,13 +613,13 @@ if ( ! class_exists( 'VA_Theme_Options' ) ) {
                     array(
                         'id' => 'klavioy_list_id_group1',
                         'type' => 'text',
-                        'title' => __('Klavioy list Id Group 1', 'thanhnam'),
+                        'title' => __('Klavioy listId for register user', 'thanhnam'),
                         'compiler' => true,
                     ),
                     array(
                         'id' => 'klavioy_list_id_group2',
                         'type' => 'text',
-                        'title' => __('Klavioy list Id Group 2', 'thanhnam'),
+                        'title' => __('Klavioy listId for subscriber user', 'thanhnam'),
                         'compiler' => true,
                     ),
                     array(
