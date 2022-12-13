@@ -83,6 +83,47 @@ function getTypeAccountCraft () {
                     <div class="boding mt-30">
                         <?= the_content()?>
                     </div>
+                    <div class="boding mt-30 list-short-blog">
+                        <?php
+                            $listCatgeory = get_the_terms(get_the_ID(), 'category');
+                            $listShortBlog = [];
+                            if ($listCatgeory && count($listCatgeory) > 0) {
+                                foreach ($listCatgeory as $key => $item) {
+                                    $args = array(
+                                        'post_type' => 'short_blog',
+                                        'tax_query' => array(
+                                            array(
+                                                'taxonomy' => 'category',
+                                                'field' => 'term_id',
+                                                'terms' => $item->term_id
+                                            )
+                                        )
+                                    );
+                                    $query = new WP_Query( $args );
+                                    $listPost = $query->posts;
+                                    if ($listPost && count($listPost) > 0) {
+                                        foreach ($listPost as $key2 => $item2) {
+                                            if (!empty($listShortBlog)) {
+                                                $isExist = false;
+                                               foreach ($listShortBlog as $item3) {
+                                                   if ($item3->ID == $item2->ID) {
+                                                       $isExist = true;
+                                                   }
+                                               }
+                                               if (!$isExist) {
+                                                   $listShortBlog[] = $item2;
+                                               }
+                                            } else {
+                                                $listShortBlog[] = $item2;
+                                            }
+
+                                        }
+                                    }
+                                }
+                            }
+                            var_dump($listShortBlog);
+                        ?>
+                    </div>
                     <?php if (check_membership() >= get_post_meta(get_the_ID(), 'type_account', true)) { ?>
                         <div class="resource mt-30">
                             <ul class="list_download fz-20">
