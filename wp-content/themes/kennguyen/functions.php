@@ -433,9 +433,9 @@ function activeAccountSMTP($email) {
     $mail->Password   = $va_options['kn_email_password'];
 
     $mail->IsHTML(true);
-    $mail->AddAddress($email, "Verify account register for KenNguyen!!");
-    $mail->SetFrom($va_options['kn_email_from'], "Verify account register for KenNguyen!!");
-    $mail->Subject = "Verify account register for KenNguyen!!";
+    $mail->AddAddress($email, "Verify account register for UniCraft");
+    $mail->SetFrom($va_options['kn_email_from'], "Verify account register for UniCraft");
+    $mail->Subject = "Verify account register for UniCraft";
     $content = '<div style="width:100%; background-color: #EEEEEE"><div class="adM">
                     </div><div style="max-width:600px; margin: 0 auto"><div class="adM">
                         </div><table cellspacing="0" cellpadding="0" border="0" align="center" bgcolor="#eeeeee" width="100%" style="max-width:600px">
@@ -497,7 +497,7 @@ function activeAccountSMTP($email) {
                                                                 If you have any questions, please let us know.<br/> 
                                                                 
                                                                 Best,<br/> 
-                                                                UniCraft Support
+                                                                <a href="'.$url.'/contact-us" >UniCraft Support</a
                                                               <br>
                                                             </td>
                                                           </tr>
@@ -566,9 +566,9 @@ function forgetPasswordSMTP($email, $password, $isNewAccount = false) {
     $mail->Password   = $va_options['kn_email_password'];
 
     $mail->IsHTML(true);
-    $mail->AddAddress($email, $isNewAccount ? "Successful payment at Ken Nguyen!" : "Create new password for KenNguyen account!");
-    $mail->SetFrom($va_options['kn_email_from'], $isNewAccount ? "Successful payment at Ken Nguyen!" : "Create new password for KenNguyen account!");
-    $mail->Subject = $isNewAccount ? "Successful payment at Ken Nguyen!" : "Create new password for KenNguyen account!";
+    $mail->AddAddress($email, $isNewAccount ? "Successful payment at UniCraft!" : "Create new password for UniCraft account!");
+    $mail->SetFrom($va_options['kn_email_from'], $isNewAccount ? "Successful payment at UniCraft!" : "Create new password for UniCraft account!");
+    $mail->Subject = $isNewAccount ? "Successful payment at UniCraft!" : "Create new password for UniCraft account!";
     $content = '<div style="width:100%; background-color: #EEEEEE"><div class="adM">
                     </div><div style="max-width:600px; margin: 0 auto"><div class="adM">
                         </div><table cellspacing="0" cellpadding="0" border="0" align="center" bgcolor="#eeeeee" width="100%" style="max-width:600px">
@@ -593,7 +593,7 @@ function forgetPasswordSMTP($email, $password, $isNewAccount = false) {
                                                 <br>
                                                 <a href="'.$url.'" style="color:#000000;text-decoration:none" target="_blank">
                                                     <span style="font-family:Arial;font-size:14px;font-weight:bold">
-                                                        Create new password for KenNguyen account!
+                                                        Create new password for UniCraft account!
                                                     </span>
                                                 </a>
                                             </td>
@@ -614,17 +614,18 @@ function forgetPasswordSMTP($email, $password, $isNewAccount = false) {
                                                       <tbody>
                                                           <tr>
                                                             <td style="padding:20px 20px 15px;font-family:arial;font-size:12px;line-height:20px;color:#333333">
-                                                              Dear '.$dear.',
+                                                              Hi, '.$dear.',
                                                             </td>
                                                           </tr>
                                                           <tr style="border-bottom:10px solid #eeeeee">
                                                             <td style="padding:0 20px 20px;font-family:arial;font-size:12px;line-height:20px;color:#333333;border-bottom:10px solid #eeeeee">
-                                                             This is new your password for '.$url.'
+                                                             This is new your password for <a href="'.$url.'" >UniCraft</a
                                                              <br/>
                                                               <strong style="font-size: 20px; background-color: #EEEEEE"> '.$password.'</strong>
                                                               <br/> Please change your password when you login successful!
                                                             <br><br>
-                                                              Thank you for use our services of <a href="'.$url.'" >KenNguyen</a> online products and services.
+                                                            Best,<br/> 
+                                                            <a href="'.$url.'/contact-us" >UniCraft Support</a
                                                               <br>
                                                             </td>
                                                           </tr>
@@ -672,7 +673,7 @@ function forgetPasswordSMTP($email, $password, $isNewAccount = false) {
                                                 <br>
                                                 <a href="'.$url.'" style="color:#000000;text-decoration:none" target="_blank">
                                                     <span style="font-family:Arial;font-size:14px;font-weight:bold">
-                                                        Successful payment at Ken Nguyen!
+                                                        Successful payment at UniCraft!
                                                     </span>
                                                 </a>
                                             </td>
@@ -720,7 +721,7 @@ function forgetPasswordSMTP($email, $password, $isNewAccount = false) {
                                                              <br/>
                                                               Password: <strong style="font-size: 13px;"> '.$password.'</strong
                                                             <br><br>
-                                                              Thank you for use our services of <a href="'.$url.'" >KenNguyen</a> online products and services.
+                                                              Thank you for use our services of <a href="'.$url.'" >UniCraft</a> online products and services.
                                                               <br>
                                                             </td>
                                                           </tr>
@@ -1102,3 +1103,5 @@ function my_img_caption_shortcode_width($width, $atts, $content)
 }
 
 add_filter('img_caption_shortcode_width', 'my_img_caption_shortcode_width', 10, 3);
+
+
