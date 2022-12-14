@@ -121,7 +121,15 @@ function getTypeAccountCraft () {
                                     }
                                 }
                             }
-                            var_dump($listShortBlog);
+                            if ($listShortBlog && count($listShortBlog) > 0) {
+                                foreach ($listShortBlog as $blog) { ?>
+                                    <div class="short-blog-item">
+                                        <div class="short-blog-item-desc">
+                                            <?= $blog->post_content ?>
+                                        </div>
+                                    </div>
+                            <?php    }
+                            }
                         ?>
                     </div>
                     <?php if (check_membership() >= get_post_meta(get_the_ID(), 'type_account', true)) { ?>
